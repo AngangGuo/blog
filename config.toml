@@ -1,6 +1,6 @@
 ##########################################
 # Site Settings
-baseURL = "https://angang.gitlab.io/blog/"
+baseURL = "https://angang.ca/"
 title = "G+A+A"
 languageCode = "en"
 hasCJKLanguage = false
