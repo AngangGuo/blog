@@ -20,7 +20,7 @@ I'll show you how to deploy your website to Gitlab Pages.
 GitLab Pages is a feature that allows you to publish static websites directly from a repository in GitLab.
 It's the easiest way to get your website up and running.
 
-See [Creating a blog using Hugo](http://localhost:1313/posts/2020/creating-a-blog-using-hugo/) first if you don't know how to create a website.
+See [Creating a blog using Hugo](../creating-a-blog-using-hugo/) first if you don't know how to create a website.
 
 Continue from the last post. 
  
