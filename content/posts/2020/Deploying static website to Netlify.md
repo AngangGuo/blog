@@ -18,7 +18,8 @@ instant cache invalidation, one-click SSL, a browser-based interface, and many o
 The STARTER plan is free for individuals. Following these steps to host the Hugo blog website on Netlify for free.
 
 ## `netlify.toml`
-After you created your website using Hugo, to host the website on Netlify:
+I've created my blog website using Hugo(See [Creating A Blog Using Hugo](../creating-a-blog-using-hugo/)). 
+To host the website on Netlify:
 * Create a `netlify.toml` file in the **root** of your project.
 * Add the following contents and commit to github.
 
