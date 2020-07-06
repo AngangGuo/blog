@@ -194,6 +194,15 @@ The easiest is to use [Vercel(ZEIT) Now](https://vercel.com/docs), see [example]
 See [this post](/posts/2020/host-static-website-on-gitlab-pages/) on how to host your blog on Gitlab.
 
 ## FAQ
+### How can I link within a page?
+Here is the example on how to use anchor to link within a page.
+
+```markdown
+### Add anchor at the end of the link {#my-anchor}
+
+[Link to the anchor within the page]({{</* ref "#my-anchor" */>}})
+```
+
 ### How can I add Youtube video to my page?
 By using Hugo `Shortcode`, Copy the YouTube video ID that follows v= in the video’s URL and pass it to the youtube shortcode:
 ```
