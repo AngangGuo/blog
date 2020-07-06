@@ -68,7 +68,7 @@ HUGO_ENABLEGITINFO = "true"
 * Select the blog project and branch
 * Click `Deploy Site`
 * A generated site name(quizzical-yalow-451641) will show out if successfully deployed
-* Visit your site `https://quizzical-yalow-451641.netlify.app`
+* Visit the new deployed website from `https://quizzical-yalow-451641.netlify.app`
 
 Now every time you push changes to your hosted git repository, Netlify will rebuild and redeploy your site. 
 
@@ -78,7 +78,7 @@ which has the form `[name-of-your-site].netlify.app`.
 
 Custom domains allow you to make your sites accessible at your own, non-Netlify domain names.
 
-### Configure your DNS 
+### Configure - DNS Provider {#config-dns}
 * Go to your DNS provider website: eg. [Canspace.ca](https://canspace.ca/clients/clientarea.php) 
 * Select `DNS Manager`
 * Add a `CNAME` record with subdomain `blog`, as the host
@@ -92,6 +92,7 @@ Custom domains allow you to make your sites accessible at your own, non-Netlify 
 * Add your customer domain: `blog.angang.ca`
 * select `Yes, add domain`
 
+### (Ignore this section for now)
 * Add DNS records (optional)  > Continue
 
 The DNS records for your Netlify sites will be configured automatically.
@@ -110,14 +111,17 @@ dns4.p07.nsone.net
 
 It may take hours for the settings to propagate across the global Domain Name System.
 
-* HTTPS website
+* Enable HTTPS
+
 After you added the Netlify nameservers to your domain name provider DNS system,
-Netlify will provide TLS certificates with Let’s Encrypt automatically.
+Netlify will provide TLS certificates with `Let’s Encrypt` automatically.
+
 Visit the blog website and the protocol will changed to `https`.
 
 ![https://blog.angang.ca](/images/2020/https-blog-angang-ca.jpg)
 
-## Q&A
+## Troubleshooting
+
 ### Hugo Themes not found
 The `git clone` method for installing themes is not supported by Netlify.
 A better approach is to install a theme as a proper git submodule.
@@ -126,3 +130,10 @@ A better approach is to install a theme as a proper git submodule.
 ~/blog $ git init
 ~/blog $ git submodule add --depth 1 https://github.com/reuixiy/hugo-theme-meme.git themes/meme
 ```
+
+### DNS information missing
+After adding the Netlify name server information into my Canspace DNS manager, it works well a short time.
+The next day I can't visit my website. the DNS records for `angang.ca` are missing!
+
+Click the `Add New Zone` to re-add the domain name `angang.ca` into my DSN manager and map the the website
+according to section [Configure - DNS Provider]({{< ref "#config-dns" >}})
