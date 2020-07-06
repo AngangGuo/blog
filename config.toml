@@ -1,6 +1,6 @@
 ##########################################
 # Site Settings
-baseURL = "https://angang.ca/"
+baseURL = "https://blog.angang.ca/"
 title = "G+A+A"
 languageCode = "en"
 hasCJKLanguage = false
@@ -844,7 +844,9 @@ uglyURLs = false
 
     enableImageHost = true
 
-    imageHostURL = "https://angang.gitlab.io/blog/"
+    imageHostURL = "https://blog.angang.ca/"
+    # Use the following url when deploy to gitlab
+    # imageHostURL = "https://angang.gitlab.io/blog/"
 
     # Replace the image link in the HTML
     # head meta also?

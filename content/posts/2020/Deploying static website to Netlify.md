@@ -7,6 +7,7 @@ categories:
 tags:
  - Netlify
  - Blog
+ - Hugo
 draft: false
 ---
 
