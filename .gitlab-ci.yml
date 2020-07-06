@@ -1,0 +1,17 @@
+# this image is from gitlab that is normal version
+# image: registry.gitlab.com/pages/hugo:latest
+
+# This is Hugo Extended version
+image: monachus/hugo
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+pages:
+  script:
+    - hugo
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
