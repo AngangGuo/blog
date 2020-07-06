@@ -22,19 +22,19 @@ It looks as though the setting of the label size is incorrect.
 We changed the printer preference settings to use ScanID(2.00in x 1.00in).
 But it keeps skipping labels as though the setting didn't take effect.
 
-![E-4205 Page Preference](/images/2020/E-4205_Page.jpg)
+![E-4205 Page Preference](/images/2020/E-4205A_Page.jpg)
 
-![E-4205 Page Preference](/images/2020/E-4205_Graphics.jpg)
+![E-4205 Page Preference](/images/2020/E-4205A_Graphics.jpg)
 
-![E-4205 Page Preference](/images/2020/E-4205_Stock.jpg)
+![E-4205 Page Preference](/images/2020/E-4205A_Stock.jpg)
 
  
 **Solution:**
 You need to change the printer default settings instead of printer preference settings.
 
-![E-4205 Properties](/images/2020/E-4205_Properties.JPG)
+![E-4205 Properties](/images/2020/E-4205A_Properties.JPG)
 
-![E-4205 Advanced Settings](/images/2020/E-4205_Advanced.JPG)
+![E-4205 Advanced Settings](/images/2020/E-4205A_Advanced.JPG)
 
-![E-4205 Default Page Settings](/images/2020/E-4205_Defaults_Page.JPG)
+![E-4205 Default Page Settings](/images/2020/E-4205A_Defaults_Page.JPG)
 
