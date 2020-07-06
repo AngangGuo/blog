@@ -84,7 +84,7 @@ press `F2` then `Alt + Shift + Enter` to create the function.
 ### Auto Test
 To run the tests automatically on changes, select `Toggle auto-test` from Run tab and adjust the delay parameters.
 
-![auto_test](/images/2020/auto_test.jpg) 
+![auto_test](/images/2020/goland_auto_test.jpg) 
 
 ### Refactor
 To refactor a function, press `Ctrl + Alt + Shift + T` to show the `Refactor this` window.
