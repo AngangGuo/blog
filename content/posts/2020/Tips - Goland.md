@@ -63,3 +63,33 @@ create a batch file `goland.bat` with these lines in a folder that is in your sy
 "C:\Program Files\JetBrains\GoLand 2020.1.1\bin\goland.bat" %*
 ```
 
+## Tips for testing
+
+### Generate tests
+#### From testing file
+Navigating to your test file(eg. hello_test.go) press `Alt + Insert` to show `generate feature` window.
+You can chose to generate Test / Table Test / Benchmark ... from the window.
+
+#### From source file
+Navigating to your source file, press `Alt + Insert` to show `Generate` window.
+Select `Tests for file` to generate the tests for the source file.
+
+### Run the test
+Press `Ctrl + Shift + F10`  (Run context configuration) to run the test.
+
+### Create Function
+When testing failed, if it's undefined function error, highlight the function name in test file, 
+press `F2` then `Alt + Shift + Enter` to create the function.
+
+### Auto Test
+To run the tests automatically on changes, select `Toggle auto-test` from Run tab and adjust the delay parameters.
+
+![auto_test](/images/2020/auto_test.jpg) 
+
+### Refactor
+To refactor a function, press `Ctrl + Alt + Shift + T` to show the `Refactor this` window.
+Chose the function from the window:
+* Rename: `Shift + F6`
+* Change Signature: `Ctrl + F6`
+* Move: `F6`
+* Copy File: `F5`
