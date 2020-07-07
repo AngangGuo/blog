@@ -112,6 +112,11 @@ dns4.p07.nsone.net
 It may take hours for the settings to propagate across the global Domain Name System.
 
 * Enable HTTPS
+By default the Netlify subdomain is TLS enabled. 
+You can visit the website using `https://the-name.netlify.app`.
+But if you use extenal domain name and the domain name is configured in your domain name provider DNS system.
+
+![https://blog.angang.ca](/images/2020/http-blog-angang-ca.jpg)
 
 After you added the Netlify nameservers to your domain name provider DNS system,
 Netlify will provide TLS certificates with `Let’s Encrypt` automatically.
