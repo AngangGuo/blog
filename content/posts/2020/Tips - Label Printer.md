@@ -30,7 +30,7 @@ But it keeps skipping labels as though the setting didn't take effect.
 
  
 **Solution:**
-You need to change the printer default settings instead of printer preference settings.
+You need to change the printer **DEFAULT** settings instead of printer preference settings.
 
 ![E-4205 Properties](/images/2020/E-4205A_Properties.JPG)
 
