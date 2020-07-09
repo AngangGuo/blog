@@ -38,7 +38,7 @@ enableRobotsTXT = true
 # Number of items per page in paginated
 # lists (valid for the `posts` homepage
 # layout in MemE)
-paginate = 5
+paginate = 10
 
 # URL related
 disablePathToLower = false
@@ -801,7 +801,7 @@ uglyURLs = false
     ######################################
     # Headings Anchor
 
-    enableHeadingsAnchor = true
+    enableHeadingsAnchor = false
 
     # Level range of headings
     headingsOpt = "1-6"
