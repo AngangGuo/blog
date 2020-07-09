@@ -1,5 +1,5 @@
 ---
-title: "Verses   Read and Prayer"
+title: "Verses - Read & Prayer"
 date: 2020-07-08T11:41:37-07:00
 categories:
  - Church
