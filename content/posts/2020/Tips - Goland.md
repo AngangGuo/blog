@@ -30,8 +30,9 @@ for i := 0; i < ; i++ {
 
 ### Select text vertically?
 
-#### Option 1 - Direct mode: 
-Click Mouse wheel and drag
+#### Option 1: Drag the mouse
+* Click the mouse wheel and drag; Or
+* Hold `Alt + Shift` keys and left click the mouse and drag
 
 #### Option 2: In `Column Selection Mode`
 Press `Alt + Shift + Insert`, or go to `Edit` > click `Column Selection Mode`,
