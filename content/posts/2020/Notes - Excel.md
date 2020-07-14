@@ -1,5 +1,5 @@
 ---
-title: "Tips - Excel"
+title: "Notes - Excel"
 date: 2020-07-10T13:18:04-07:00
 categories:
  - Tech
@@ -9,7 +9,7 @@ tags:
 draft: false
 ---
 
-## Tips - Excel
+## Excel Notes
 
 ### How to copy and paste just visible cells only?
 ##### Sort/Filter area

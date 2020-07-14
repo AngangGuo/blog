@@ -1,6 +1,7 @@
 ---
 title: "About"
 date: 2020-02-28T22:36:19-08:00
+toc: false
 draft: false
 ---
 
