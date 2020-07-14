@@ -21,7 +21,7 @@ defaultContentLanguageInSubdir = false
 pluralizeListTitles = false
 
 # The length of text in words to show in summary
-summaryLength = 30
+summaryLength = 25
 
 # Enable Emoji emoticons support?
 enableEmoji = false
@@ -38,7 +38,7 @@ enableRobotsTXT = true
 # Number of items per page in paginated
 # lists (valid for the `posts` homepage
 # layout in MemE)
-paginate = 10
+paginate = 15
 
 # URL related
 disablePathToLower = false
@@ -234,7 +234,7 @@ uglyURLs = false
     ######################################
     # Header
 
-    enableHeader = false
+    enableHeader = true
 
     displayHeaderInHome = true
     # Note: invalid for header layout flex
@@ -242,7 +242,8 @@ uglyURLs = false
     headerBackground = "linear-gradient(90deg, #f795331a 0, #f370551a 15%, #ef4e7b1a 30%, #a166ab1a 44%, #5073b81a 58%, #1098ad1a 72%, #07b39b1a 86%, #6dba821a 100%)"
     # Note: https://developer.mozilla.org/en-US/docs/Web/CSS/background
 
-    headerLayout = "flex"
+    headerLayout = "center"
+    # headerLayout = "flex"
     # Note: center or flex
 
     headerFallbackWidth = "32em"
@@ -256,7 +257,7 @@ uglyURLs = false
 
     # Hide menu bar and display a toggle
     # on narrow screen?
-    enableNavToggle = false
+    enableNavToggle = true
 
     navHeight = "10em"
     # Note: menu bar height when it’s
