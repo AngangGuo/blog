@@ -2,7 +2,7 @@
 title: "Midas M32 Digital Console Notes"
 date: 2020-03-14T23:19:56-07:00
 categories:
- - Tech
+ - Church
  - Media
 tags:
  - M32 Mixer

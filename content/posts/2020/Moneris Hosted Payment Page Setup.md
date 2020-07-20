@@ -2,7 +2,7 @@
 title: "Moneris Hosted Payment Page Setup"
 date: 2020-05-01T10:41:32-07:00
 categories:
- - Tech
+ - Church
  - Web
 tags:
  - Moneris
