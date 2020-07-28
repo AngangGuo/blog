@@ -9,6 +9,7 @@ tags:
  - Prayer
 dropCap: false
 toc: false
+weight: 10
 draft: false
 summary: "2020年五区圣经祷读经文汇总，方便大家复习参考。经文按照时间先后次序排列。最近一周的祷读经文在上面，以前的经文放在下面。"
 ---
