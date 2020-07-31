@@ -145,6 +145,16 @@ See [FFmpeg Wiki][7]
 ffmpeg -i input.flv -ss 00:00:14.435 -vframes 1 out.png
 ```
 
+###  Convert video file
+```
+ffmpeg -i in.mp4 -s 320x180 -b:v 1500k -b:a 128k out.mp4
+```
+
+### Convert 608X1080 to 1080X720 and padding with blue
+```
+ffmpeg -i in.mp4 -vf “scale=iw*720/1080:720,pad=1080:720:0:0:blue” out.mp4 
+```
+
 **Tips**
 If you want to use batch file to convert/process the video files, put all the batch files and `ffmpeg.exe` in the same folder,
 and including the following batch file. You can double click this file to open the command line window:
