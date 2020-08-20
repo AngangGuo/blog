@@ -49,4 +49,13 @@ sudo reboot
 // Upgrade to the latest release:
 sudo do-release-upgrade
 ```
-  
+
+### How to run donation program?
+```
+chmod +x ./donation
+sudo -b ./donation > log.txt
+// to stop it
+ps -eaf | grep donation
+// kill the process id xxx
+sudo kill xxx
+```  

@@ -12,6 +12,43 @@ draft: false
 ---
 
 ## Git
+
+### Tag
+```
+// lightweight tag
+git tag v0.1
+
+// create annotated tag
+git tag -a v0.2 -m "my version 0.2"
+
+// show tags
+git tag
+
+// show tag details
+git show v1.0
+```
+
+### How to rename a git tag
+To rename git tag `v0.2` to `v1.0`
+```
+// create a new tag
+$ git tag v1.0 v0.2
+$ git push --tags
+Total 0 (delta 0), reused 0 (delta 0)
+To https://github.com/AngangGuo/donation.git
+ * [new tag]         v1.0 -> v1.0
+
+// delete old tag
+$ git tag -d v0.2
+$ git push origin :refs/tags/0.2
+remote: warning: Deleting a non-existent ref.
+To https://github.com/AngangGuo/donation.git
+ - [deleted]         0.2
+
+
+```
+
+
 ### How to rewrite the most recent commit message?
 **Commit has not been pushed online**
 ```

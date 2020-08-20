@@ -62,6 +62,28 @@ function check() {
 }
 ```
 
+### Enable reCaptcha v3
+https://stackoverflow.com/questions/51507695/google-recaptcha-v3-example-demo
+
+https://developers.google.com/recaptcha/docs/v3
+```
+// Load the JavaScript API with your sitekey.
+<script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
+
+// Call grecaptcha.execute on each action you wish to protect.
+   
+<script>
+     function onClick(e) {
+       e.preventDefault();
+       grecaptcha.ready(function() {
+         grecaptcha.execute('reCAPTCHA_site_key', {action: 'submit'}).then(function(token) {
+             // Add your logic to submit to your backend server here.
+         });
+       });
+     }
+</script>
+
+```
 ### Resource
 * Admin Console: https://www.google.com/recaptcha/admin
 * Developer Guide: https://developers.google.com/recaptcha/intro
