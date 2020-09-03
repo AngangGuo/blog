@@ -33,6 +33,10 @@ go build
 $ env GOOS=windows GOARCH=amd64 go build
 ```
 
+## Module
+### How to update the dependencies?
+`go get -u`
+
 ## Troubleshooting
 ### could not launch process
 ```
@@ -51,4 +55,19 @@ C:\Users\Andrew\go\bin\dlv.exe // new version 1.5 doesn't run
 ```
 Both Delve and Go versions must compatible for it to work.
 Remove the old version and update both Delve and Go to their latest version will solve the problem. 
+
+## Pitfalls
+### How to convert number to string?
+```
+// ASCII code
+s := string(65) // convert to "A"
+
+// Right
+n1 := int64(234)
+s1 := strconv.FormatInt(n1, 10) // "234"
+
+n2 := 4.56423
+s2 := strconv.FormatFloat(n2, 'f', 2, 32) // "4.56"
+```
+
 
