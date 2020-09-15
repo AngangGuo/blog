@@ -34,8 +34,11 @@ $ env GOOS=windows GOARCH=amd64 go build
 ```
 
 ## Module
-### How to update the dependencies?
-`go get -u`
+### How to view available dependency upgrades
+`go list -u -m all`
+
+### How to update all the dependencies to the latest version?
+`go get -u ./...`
 
 ## Troubleshooting
 ### could not launch process
