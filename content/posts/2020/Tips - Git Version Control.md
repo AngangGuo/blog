@@ -27,6 +27,19 @@ git tag
 // show tag details
 git show v1.0
 ```
+### How to change remote URL from Gitlab to Github?
+```
+$ git remote -v
+origin  https://gitlab.com/angang/renewalfamily.git (fetch)
+origin  https://gitlab.com/angang/renewalfamily.git (push)
+
+$ git remote set-url origin https://github.com/AngangGuo/RenewalFamily.git
+$ git remote -v
+origin  https://github.com/AngangGuo/RenewalFamily.git (fetch)
+origin  https://github.com/AngangGuo/RenewalFamily.git (push)
+
+git push -u origin master
+```
 
 ### How to rename a git tag
 To rename git tag `v0.2` to `v1.0`
