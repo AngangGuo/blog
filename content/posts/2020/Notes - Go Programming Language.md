@@ -19,6 +19,29 @@ draft: true
 	fmt.Println(t2) // 2009-11-12
 ```
 
+### How to check a date in a range?
+The operators `<`, `>` are not defined to compare date / time. Use `time.After()` and `time.Before()` instead. 
+```
+	s1 := "2020-07-19"
+	s2 := "2020-09-01"
+	t1, _ := time.Parse("2006-01-02", s1)
+	t2, _ := time.Parse("2006-01-02", s2)
+
+    // invalid operation: t1 < t2 (operator < not defined on struct)
+	// fmt.Println(t1 < t2)
+
+	fmt.Println(t1.After(t2), t1.Before(t2)) // false true
+```
+
+### How to get the type of a variable?
+```
+v := []string{"a", "b"}
+// using %T
+fmt.Printf("%T", v) // []string
+// using reflect package
+fmt.Println(reflect.TypeOf(v)) // []string
+fmt.Println(reflect.ValueOf(v).Kind()) // slice
+```
 
 ### How to cross compile Go program?
 To cross-build executables for other Go-supported platform,
