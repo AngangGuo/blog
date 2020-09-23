@@ -4,6 +4,31 @@ date: 2020-07-31T14:47:26-07:00
 draft: true
 ---
 
+## Other
+### How to get the type of a variable?
+```
+v := []string{"a", "b"}
+// using %T
+fmt.Printf("%T", v) // []string
+// using reflect package
+fmt.Println(reflect.TypeOf(v)) // []string
+fmt.Println(reflect.ValueOf(v).Kind()) // slice
+```
+
+### How to cross compile Go program?
+To cross-build executables for other Go-supported platform,
+just set `GOARCH` and `GOOS` to the target platform and build.
+```
+// From Windows
+set GOARCH=amd64
+set GOOS=linux
+go build
+
+// From Linux
+$ env GOOS=windows GOARCH=amd64 go build
+```
+
+## Time
 ### time.Add() vs time.AddDate()
 ```
     days := 2
@@ -33,27 +58,18 @@ The operators `<`, `>` are not defined to compare date / time. Use `time.After()
 	fmt.Println(t1.After(t2), t1.Before(t2)) // false true
 ```
 
-### How to get the type of a variable?
+## Template
+### How to use `if` and `eq` in template?
 ```
-v := []string{"a", "b"}
-// using %T
-fmt.Printf("%T", v) // []string
-// using reflect package
-fmt.Println(reflect.TypeOf(v)) // []string
-fmt.Println(reflect.ValueOf(v).Kind()) // slice
+{{if eq .Lang "tw"}}
+{{else if eq .Lang "cn"}}
+{{else if eq .Lang "en"}}
+{{end}}
 ```
 
-### How to cross compile Go program?
-To cross-build executables for other Go-supported platform,
-just set `GOARCH` and `GOOS` to the target platform and build.
+### How to use `or` in template?
 ```
-// From Windows
-set GOARCH=amd64
-set GOOS=linux
-go build
-
-// From Linux
-$ env GOOS=windows GOARCH=amd64 go build
+{{if or (eq .Lang "tw") (eq .Lang "cn")}}
 ```
 
 ## Module
