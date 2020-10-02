@@ -22,6 +22,29 @@ Release: 19.04
 Codename: disco
 ```
 
+### How to upgrade from Ubuntu Linux 16.04 to 18.04
+```
+$ sudo apt update
+$ sudo apt upgrade
+$ sudo reboot
+
+// optional 1: open port 1022
+// $ sudo ufw allow 1022/tcp comment 'Temp open port ssh tcp port 1022 for upgrade'
+// optional 2: or temporate disable filewall
+// $ sudo ufw status
+// $ sudo ufw disable
+// $ sudo ufw enable
+
+$ sudo do-release-upgrade
+
+// verify
+$ uname -r
+
+// optional: remove port 1022
+// $ sudo ufw delete allow 1022/tcp
+
+```
+
 ### Why repository no longer has a Release file?
 When I run `sudo apt-get update` command, it shows:
 ```
@@ -54,8 +77,8 @@ sudo do-release-upgrade
 ```
 chmod +x ./donation
 sudo -b ./donation > log.txt
-// to stop it
+// to stop it if it is running
 ps -eaf | grep donation
-// kill the process id xxx
+// kill it by the process id xxx
 sudo kill xxx
 ```  
