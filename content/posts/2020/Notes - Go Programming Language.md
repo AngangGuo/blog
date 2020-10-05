@@ -112,4 +112,37 @@ n2 := 4.56423
 s2 := strconv.FormatFloat(n2, 'f', 2, 32) // "4.56"
 ```
 
+### How to check if file exist?
+
+
+### How to copy file?
+```
+// Method 1
+src, _ := os.Open(srcFile)
+defer src.Close()
+
+dst, _ := os.Create(dstFile)
+defer dst.Close()
+
+n, err := io.Copy(dst, src)
+
+// Method 2
+src, _ := ioutil.ReadFile(srcFile)
+_ = ioutil.WriteFile(dstFile, src, 0644)
+
+// Method 3
+buf := make([]byte, BUFFERSIZE)
+for {
+    n, err := src.Read(buf)
+    if err != nil && err != io.EOF {
+        return err
+    }
+    if n == 0 {
+        break
+    }
+    if _, err := dst.Write(buf[:n]); err != nil {
+        return err
+    }
+}
+```
 
