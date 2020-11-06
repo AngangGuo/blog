@@ -18,7 +18,7 @@ The radio has 22 channels. It's annoying sometime that you can hear others talki
 
 It's better to add a privacy code to your channel so that other voice won't enter your channel. 
 
-![T51A Walkie Talkie](/images/2020/T51A Walkie Talkie.PNG)
+![T51A Walkie Talkie](/images/2020/T51A-Walkie-Talkie.PNG)
 
 ### Channel Selection
 Press MENU button, then the UP/DOWN button to select on of the 22 channels, 
