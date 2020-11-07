@@ -98,6 +98,80 @@ C:\Users\Andrew\go\bin\dlv.exe // new version 1.5 doesn't run
 Both Delve and Go versions must compatible for it to work.
 Remove the old version and update both Delve and Go to their latest version will solve the problem. 
 
+## Interface
+### Interface Type assertion
+```
+var data interface{} // nil
+data = float64(3.4)
+a, ok := data(float64)
+b := data.(float64)
+c := int(data.(float64))
+
+```
+
+Type switch example from [here](https://stackoverflow.com/questions/18041334/convert-interface-to-int)
+```
+func main() {
+    var val interface{}
+    val = 4
+
+    var i int
+
+    switch t := val.(type) {
+    case int:
+        fmt.Printf("%d == %T\n", t, t)
+        i = t
+    case int8:
+        fmt.Printf("%d == %T\n", t, t)
+        i = int(t) // standardizes across systems
+    case int16:
+        fmt.Printf("%d == %T\n", t, t)
+        i = int(t) // standardizes across systems
+    case int32:
+        fmt.Printf("%d == %T\n", t, t)
+        i = int(t) // standardizes across systems
+    case int64:
+        fmt.Printf("%d == %T\n", t, t)
+        i = int(t) // standardizes across systems
+    case bool:
+        fmt.Printf("%t == %T\n", t, t)
+        // // not covertible unless...
+        // if t {
+        //  i = 1
+        // } else {
+        //  i = 0
+        // }
+    case float32:
+        fmt.Printf("%g == %T\n", t, t)
+        i = int(t) // standardizes across systems
+    case float64:
+        fmt.Printf("%f == %T\n", t, t)
+        i = int(t) // standardizes across systems
+    case uint8:
+        fmt.Printf("%d == %T\n", t, t)
+        i = int(t) // standardizes across systems
+    case uint16:
+        fmt.Printf("%d == %T\n", t, t)
+        i = int(t) // standardizes across systems
+    case uint32:
+        fmt.Printf("%d == %T\n", t, t)
+        i = int(t) // standardizes across systems
+    case uint64:
+        fmt.Printf("%d == %T\n", t, t)
+        i = int(t) // standardizes across systems
+    case string:
+        fmt.Printf("%s == %T\n", t, t)
+        // gets a little messy...
+    default:
+        // what is it then?
+        fmt.Printf("%v == %T\n", t, t)
+    }
+
+    fmt.Printf("i == %d\n", i)
+}
+```
+
+
 ## Pitfalls
 ### How to convert number to string?
 ```
