@@ -41,7 +41,7 @@ Repeat the same procedure to unlock the To unlock the keypad,
 To reset your radio to the original (default) setting, 
 turn on the radio while pressing UP and holding the button.
 
-### 
+### Abbreviation
 * VOX - "Voice-Operated Exchanged" means voice-activated transmission
 * PTT - "Push-to-talk" means press-to transmission
 * GMRS - "General  Mobile  Radio Service"

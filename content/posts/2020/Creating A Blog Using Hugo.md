@@ -242,3 +242,13 @@ baseURL = "https://angang.gitlab.io/"
 # URL for production
 #baseURL = "https://angang.gitlab.io/blog/"
 ```
+
+### Markdown problems
+
+#### How to add a link with space in it?
+It's better to use dash or underscore to separate the words in file name or link instead of spaces.
+
+If you do have space in the link or file name, you can use url encode the link like this:
+```
+![T51A Walkie Talkie](/images/2020/T51A%20Walkie%20Talkie.PNG)
+```
