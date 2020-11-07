@@ -9,7 +9,20 @@ tags:
 draft: false
 ---
 
+
 ## Tips to speed up editing
+### Keyboard Shortcuts
+```
+Ctrl + Alt + Left: Back to previous caret position
+Ctrl + Alt + Right: Forward to next caret position
+
+```
+
+### Customize Keymap
+```
+Alt + Shift + L: Sort lines (select the lines and hit this key. I use it to sort names)
+```
+
 ### Group declarations
 Goland will expand `vars` -> `Tab` to group declaration:
 ```
