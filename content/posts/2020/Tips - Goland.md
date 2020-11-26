@@ -19,6 +19,7 @@ Ctrl + Alt + Right: Forward to next caret position
 ```
 
 ### Customize Keymap
+Sort Lines:
 ```
 Alt + Shift + L: Sort lines (select the lines and hit this key. I use it to sort names)
 ```
@@ -40,6 +41,13 @@ for i := 0; i < ; i++ {
 }
 ```
 
+### View Tips
+#### Soft Wrap
+From `Settings > Editor > General > Soft Wraps`, You can config soft wraps for specific file types. Enter file extensions separating them with semicolon.
+
+You can also enable or disable soft wraps right in the editor:
+Right-click the left gutter and from the context menu, either select or clear the Soft-Wrap Current Editor option. 
+Keep in mind that these settings affect only the current editor, not a file. 
 
 ### Select text vertically?
 
