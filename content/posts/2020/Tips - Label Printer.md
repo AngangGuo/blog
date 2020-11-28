@@ -11,6 +11,15 @@ draft: false
 ---
 
 ## Troubleshooting
+
+### GK420t Printer - Labels stuck around the roll
+To remove the labels on the Platen Roller and clean it, 
+pull the two tabs out and pull it out.
+
+![GK420t Platen Roller](/images/2020/GK420t-Roller.PNG)
+
+Or watch this video: https://www.youtube.com/watch?v=BEJtSEb_Otg
+
 ### Label Size Problem
 **Model:** Datamax - o'neil E-Class Mark III printer(E-4205A)
 
