@@ -81,6 +81,10 @@ $ git push --force example-branch
 See [here](https://docs.github.com/en/github/committing-changes-to-your-project/changing-a-commit-message)
 
 ## Github
+### Preview HTML File
+If you want to see an HTML page on Github as a normal rendered HTML page, go to https://htmlpreview.github.io/
+
+### Compare View
 Every repository contains a Compare view, which allows you to compare the state of your repository across branches, tags, commits, time periods, and more. The compare view provides you with the same diff tooling that the Pull Request view does.
 
 To get to the compare view, append `/compare` to your repository's path(eg. `https://github.com/AngangGuo/blog/compare`)
