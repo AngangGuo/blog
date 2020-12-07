@@ -16,12 +16,15 @@ Signup or login to [Github](https://github.com/)
 
 ### Create Repository In Github
 1. Click `Create Repository`
+   
    ![Create Repository](/images/2020/github-create-repository.jpg)
 
 2. Repository name: `renewalfamily/website` > Click `Create Repository`
+   
    ![Renewal Family website Repository](/images/2020/github-new-repository.jpg)
 
 3. Github shows the instructions
+   
    ![New Repository Instruction](/images/2020/github-repo-instruction.jpg)
 
 ### Upload Website Files To Github
@@ -114,7 +117,7 @@ All the files are in Github and ready to be deployed from Netlify
 
    ![Netlify Install](/images/2020/netlify-site-deployed.jpg)
 
-9. Check the website
+9. Check the website https://hardcore-lumiere-1f990a.netlify.app/
 
    ![Netlify Install](/images/2020/netlify-deployed-website.jpg)
 
