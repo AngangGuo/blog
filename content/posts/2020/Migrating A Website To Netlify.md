@@ -28,45 +28,15 @@ Signup or login to [Github](https://github.com/)
    ![New Repository Instruction](/images/2020/github-repo-instruction.jpg)
 
 ### Upload Website Files To Github
-All the website files are in the `C:\andrew\prj\go\src\renew-website>` folder.
+All the website files are in the `C:\andrew\prj\go\src\renew-website>` folder. Go to the folder and execute the following [git](https://git-scm.com/download/win) commands from PowerShell to upload files to Github:
 
-According to the instruction, upload the files by using [git](https://git-scm.com/download/win) from PowerShell command line:
 ```
-PS C:\andrew\prj\go\src\renew-website> git init
-Initialized empty Git repository in C:/andrew/prj/go/src/renew-website/.git/
-
-PS C:\andrew\prj\go\src\renew-website> git add -A
-
-PS C:\andrew\prj\go\src\renew-website> git commit -m "init commit"
-[master (root-commit) 9d68b77] init commit
- 153 files changed, 10834 insertions(+)
- create mode 100644 awaken-cn.html
- create mode 100644 awaken-en.html
- create mode 100644 awaken-tw.html
- ... ...
- 
-PS C:\andrew\prj\go\src\renew-website> git remote add origin https://github.com/renewalfamily/website.git
-
-PS C:\andrew\prj\go\src\renew-website> git push -u origin main
-Logon failed, use ctrl+c to cancel basic credential prompt.
-Username for 'https://github.com': renewalfamily
-Password for 'https://renewalfamily@github.com':
-Enumerating objects: 158, done.
-Counting objects: 100% (158/158), done.
-Delta compression using up to 4 threads
-Compressing objects: 100% (158/158), done.
-Writing objects: 100% (158/158), 450.97 MiB | 4.93 MiB/s, done.
-Total 158 (delta 33), reused 0 (delta 0)
-remote: Resolving deltas: 100% (33/33), done.
-remote: warning: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.
-remote: warning: See http://git.io/iEPt8g for more information.
-remote: warning: File static/moshi/Lesson9-TheCross.mp3 is 70.78 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB
-remote: warning: File static/moshi/Lesson9.m4a is 52.46 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB
-To https://github.com/renewalfamily/website.git
- * [new branch]      main -> main
-Branch 'main' set up to track remote branch 'main' from 'origin'.
-PS C:\andrew\prj\go\src\renew-website>
-
+git init
+git add -A
+git commit -m "commit all files"
+git remote add origin https://github.com/renewalfamily/website.git
+git branch -M main
+git push -u origin main
 ```
 
 All the files are in Github and ready to be deployed from Netlify
@@ -193,3 +163,61 @@ Add the following `index.html` to redirect home page to `index-cn.html`.
 </html>
 ```
 
+### Page Not Found
+After moving to the new server, the link changed from `https://www.renewalfamily.org/v2` to `https://www.renewalfamily.org/`.
+Some of the link may broken and Netlify will show the default "Page Not Found" web page.
+
+To customize the page, create a `404.html` in your root folder:
+```
+<div class="col text-center">
+   <h3>Sorry / 对不起</h3>
+   <p>We couldn't find that page.<br>
+   找不到网页。
+   </p>
+   <p><a href="https://www.renewalfamily.org/index-en.html">Go to "Renewal Family" home page</a><br>
+       <a href="https://www.renewalfamily.org/index-cn.html">进入《更新家庭网站》主页</a>
+   </p>
+
+</div>
+```
+
+### Screenshot of git command
+
+According to the instruction, upload the files by using [git](https://git-scm.com/download/win) from PowerShell command line:
+```
+PS C:\andrew\prj\go\src\renew-website> git init
+Initialized empty Git repository in C:/andrew/prj/go/src/renew-website/.git/
+
+PS C:\andrew\prj\go\src\renew-website> git add -A
+
+PS C:\andrew\prj\go\src\renew-website> git commit -m "init commit"
+[master (root-commit) 9d68b77] init commit
+ 153 files changed, 10834 insertions(+)
+ create mode 100644 awaken-cn.html
+ create mode 100644 awaken-en.html
+ create mode 100644 awaken-tw.html
+ ... ...
+ 
+PS C:\andrew\prj\go\src\renew-website> git remote add origin https://github.com/renewalfamily/website.git
+
+PS C:\andrew\prj\go\src\renew-website> git push -u origin main
+Logon failed, use ctrl+c to cancel basic credential prompt.
+Username for 'https://github.com': renewalfamily
+Password for 'https://renewalfamily@github.com':
+Enumerating objects: 158, done.
+Counting objects: 100% (158/158), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (158/158), done.
+Writing objects: 100% (158/158), 450.97 MiB | 4.93 MiB/s, done.
+Total 158 (delta 33), reused 0 (delta 0)
+remote: Resolving deltas: 100% (33/33), done.
+remote: warning: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.
+remote: warning: See http://git.io/iEPt8g for more information.
+remote: warning: File static/moshi/Lesson9-TheCross.mp3 is 70.78 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB
+remote: warning: File static/moshi/Lesson9.m4a is 52.46 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB
+To https://github.com/renewalfamily/website.git
+ * [new branch]      main -> main
+Branch 'main' set up to track remote branch 'main' from 'origin'.
+PS C:\andrew\prj\go\src\renew-website>
+
+```
