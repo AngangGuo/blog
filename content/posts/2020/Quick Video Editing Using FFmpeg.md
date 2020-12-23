@@ -139,6 +139,16 @@ ffmpeg -i "20191201.mp3" -c:a aac a.m4a
 ```
 M4A file is compressed while with lossless quality, which means you get smaller(than mp3) file with original quality.
 
+### How to convert WMA to MP3?
+```
+ffmpeg.exe -i sample.wma -codec:a libmp3lame -ab 128000 -id3v2_version 3 -write_id3v1 1 sample.mp3
+```
+
+For bulk convertion:
+```
+FOR /F "tokens=*" %G IN ('dir /b *.wma') DO ffmpeg -i "%G" -codec:a libmp3lame -ab 128000 -id3v2_version 3 -write_id3v1 1 "%~nG.mp3"
+```
+
 ### How to extract a picture from a video file?
 See [FFmpeg Wiki][7]
 ```
