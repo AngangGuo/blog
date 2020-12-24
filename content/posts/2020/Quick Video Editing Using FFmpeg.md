@@ -144,10 +144,12 @@ M4A file is compressed while with lossless quality, which means you get smaller(
 ffmpeg.exe -i sample.wma -codec:a libmp3lame -ab 128000 -id3v2_version 3 -write_id3v1 1 sample.mp3
 ```
 
-For bulk convertion:
+For bulk converting WMA to MP3 files:
 ```
 FOR /F "tokens=*" %G IN ('dir /b *.wma') DO ffmpeg -i "%G" -codec:a libmp3lame -ab 128000 -id3v2_version 3 -write_id3v1 1 "%~nG.mp3"
 ```
+
+You can use a simple tool [File Converter](https://file-converter.org/) to convert audio files.
 
 ### How to extract a picture from a video file?
 See [FFmpeg Wiki][7]
