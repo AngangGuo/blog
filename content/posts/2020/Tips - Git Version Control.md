@@ -13,6 +13,29 @@ draft: false
 
 ## Git
 
+### Adding Files
+```
+// To stage all files(including all files in subdirectories) in your repository, 
+// which includes all new, modified, and deleted files
+git add -A
+
+// To stages files in the current directory and not any subdirectories
+// It also removes a file from your repository if it no longer exists in the project
+git add .
+
+// By adding the --ignore-removal option, which will only stage new and modified files:
+git add --ignore-removal .
+
+// To stage only the Modified and Deleted Files, but not any new files
+git add -u
+
+// Adding file by wildcard
+git add *.html
+
+// To add all JavaScript files, including those in subdirectories:
+git add **/*.js
+```
+
 ### Tag
 ```
 // lightweight tag
