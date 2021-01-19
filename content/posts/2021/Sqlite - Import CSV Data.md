@@ -1,13 +1,25 @@
 ---
 title: "Sqlite   Import CSV Data"
 date: 2021-01-13T16:55:05-08:00
-draft: true
+categories:
+   - Tech
+   - Database
+tags
+   - SQLite
+   - CSV 
+draft: false
 ---
 
+We have inventory all fields file which is in CSV format. 
+There're several methods to load these data into database for further processing.
 
-RL Daily All Fields
+## Import Into Sqlite Database
 
-## Import CSV from command line
+### Import CSV file from command line
+Download and install [SQLite](https://www.sqlite.org/download.html).
+From command line execute the following commands to import your CSV file into a table:
+
+Note: All the columns' data types are `TEXT` 
 ```
 C:\Sqlite> sqlite
 sqlite> 
@@ -27,7 +39,7 @@ sqlite> .quit
 
 ```
 
-## Import Data From DB Browser
+### Import Data Using DB Browser
 [DB Browser for SQLite](https://sqlitebrowser.org/) (DB4S) is a high quality, visual, open source tool to create, design, 
 and edit database files compatible with SQLite.
 
@@ -43,8 +55,18 @@ Import Options:
 
 ![Import Options](/images/2021/db-browser-import-csv-options.PNG)
 
-Tips: You can use `PRAGMA table_info(table_name)` to get all the column names of a table.
+DB4S can detect the column data types: TEXT, INTEGER, REAL, etc.
 
+Tips: 
+* You can use `PRAGMA table_info(table_name)` to get all the column names of a table.
+* You can get the table create statement from Database Structure tab
+
+
+## Load Data Using Go
+TBD
+
+## Reference
+* Create table statement as of 2021-01-18
 ```
 CREATE TABLE "assets" (
 "Facility"	TEXT,
@@ -211,6 +233,4 @@ CREATE TABLE "assets" (
 "Sort_TAT"	INTEGER,
 "FG_TAT"	INTEGER
 )
-
-
 ```
