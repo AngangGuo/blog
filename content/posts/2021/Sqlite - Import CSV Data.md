@@ -4,7 +4,7 @@ date: 2021-01-13T16:55:05-08:00
 categories:
 - Tech
 - Database
-tags
+tags:
 - SQLite
 - CSV 
 draft: false
