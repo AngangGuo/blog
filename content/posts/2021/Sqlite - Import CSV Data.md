@@ -1,12 +1,12 @@
 ---
-title: "Sqlite   Import CSV Data"
+title: "Sqlite - Import CSV Data"
 date: 2021-01-13T16:55:05-08:00
 categories:
-   - Tech
-   - Database
+- Tech
+- Database
 tags
-   - SQLite
-   - CSV 
+- SQLite
+- CSV 
 draft: false
 ---
 
