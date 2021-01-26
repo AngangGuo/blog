@@ -1,5 +1,5 @@
 ---
-title: "Notes - Sqlite"
+title: "Notes - Sqlite Database"
 date: 2021-01-13T16:55:05-08:00
 categories:
 - Tech
