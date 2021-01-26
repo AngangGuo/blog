@@ -103,13 +103,31 @@ Remove the old version and update both Delve and Go to their latest version will
 ```
 var data interface{} // nil
 data = float64(3.4)
-a, ok := data(float64)
-b := data.(float64)
-c := int(data.(float64))
-
+f := data.(float64)
+a, ok := data.(float64)
+if !ok {
+    // data is not float64
+    ...
+}    
 ```
 
-Type switch example from [here](https://stackoverflow.com/questions/18041334/convert-interface-to-int)
+### Type assertion or Parse float64?
+```go
+var i interface{}
+i = "24.08"
+
+// incorrect
+// ok is always false; i is string type
+f, ok := i.(float64) 
+
+// correct
+// first convert i to string, then use parse float function
+threshold, err := strconv.ParseFloat(i.(string), 64)
+```
+
+### Type switch
+example from [here](https://stackoverflow.com/questions/18041334/convert-interface-to-int)
+
 ```
 func main() {
     var val interface{}
@@ -162,6 +180,7 @@ func main() {
     case string:
         fmt.Printf("%s == %T\n", t, t)
         // gets a little messy...
+        // use strconv.ParseInt()
     default:
         // what is it then?
         fmt.Printf("%v == %T\n", t, t)
