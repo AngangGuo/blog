@@ -7,7 +7,7 @@ categories:
 tags:
  - Caddy
  - Go
-draft: true
+draft: false
 ---
 
 ## How to install Caddy in Ubunbu?

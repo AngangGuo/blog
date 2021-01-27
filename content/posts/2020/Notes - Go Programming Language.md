@@ -1,7 +1,12 @@
 ---
 title: "Notes   Go Programming Language"
 date: 2020-07-31T14:47:26-07:00
-draft: true
+categories:
+ - Tech
+ - Programming
+tags:
+ - Go
+draft: false
 ---
 
 ## Other
