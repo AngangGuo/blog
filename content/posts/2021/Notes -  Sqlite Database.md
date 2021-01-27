@@ -12,7 +12,7 @@ draft: false
 
 ## Liquidation Class & Category Report
 * Download the latest Inventory All Fields file from [Egnyte](https://cloudblue.egnyte.com/#username)
-* Import the CSV data into a temp database(`rlweek`). See {{< relref "import" >}} 
+* Import the CSV data into a temp database(`rlweek`). See {{< relref "csv" >}} 
 * Execute the following command to get the report data.
 
 ```sqlite
@@ -28,7 +28,7 @@ WHERE Shipped_Date >= "2021-01-17" AND Shipped_Date <= "2021-01-23"
 * Copy all the data into the `RL Liquidation Report - 20210117-23.xlsx` Excel template file
 
 
-## Import CSV file Into Sqlite Database (#import)
+## Import CSV file Into Sqlite Database {#csv}
 We have inventory all fields file which is in CSV format. 
 There're several methods to load these data into database for further processing.
 
