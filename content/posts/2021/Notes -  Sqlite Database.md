@@ -12,7 +12,7 @@ draft: false
 
 ## Liquidation Class & Category Report
 * Download the latest Inventory All Fields file from [Egnyte](https://cloudblue.egnyte.com/#username)
-* Import the CSV data into a temp database(`rlweek`). See {{< relref "csv" >}} 
+* Import the CSV data into a temp database(`rlweek`). See {{< ref "#csv" >}} 
 * Execute the following command to get the report data.
 
 ```sqlite
