@@ -112,6 +112,14 @@ Every repository contains a Compare view, which allows you to compare the state 
 
 To get to the compare view, append `/compare` to your repository's path(eg. `https://github.com/AngangGuo/blog/compare`)
 
+### How to pin items to your profile
+You can pin gists, your own public repositories or others' repositories if you've made contributions to your profile.
+
+1. In the top right corner of GitHub, click your profile photo, then click Your profile.
+2. In the "Popular repositories" or "Pinned" section, click Customize your pins.
+3. Select a combination of up to six repositories and/or gists to display.
+4. Click Save pins.
+
 ## Gitlab
 ### How to sync `gitlab` and `github` repository?
 See [gitlab doc][gitlab]
