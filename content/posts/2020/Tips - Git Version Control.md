@@ -104,6 +104,23 @@ $ git push --force example-branch
 See [here](https://docs.github.com/en/github/committing-changes-to-your-project/changing-a-commit-message)
 
 ## Github
+### How to reference a commit or issue in comment?
+Every commit, issue or pull request has a uniqe URL or SHA hash code(commit only). 
+Insert the URL or SHA into the comment directly, 
+Github will automatically convert it into shortened links to the commit.
+
+```
+// for commit
+Commit URL: https://github.com/jlord/sheetsee.js/commit/a5c3785ed8d6a35868bc169f07e40e889087fd2e =>	a5c3785
+SHA: a5c3785ed8d6a35868bc169f07e40e889087fd2e => a5c3785
+
+// for issue and pull request
+Issue or pull request URL: https://github.com/AngangGuo/playiq/issues/4 => #4
+# and issue or pull request number: #4 => #4
+```
+
+See [Autolinked references and URLs](https://docs.github.com/en/github/writing-on-github/autolinked-references-and-urls)
+
 ### Preview HTML File
 If you want to see an HTML page on Github as a normal rendered HTML page, go to https://htmlpreview.github.io/
 
