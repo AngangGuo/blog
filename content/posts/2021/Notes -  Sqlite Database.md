@@ -1,5 +1,5 @@
 ---
-title: "Sqlite - Import CSV Data"
+title: "Notes - Sqlite Database"
 date: 2021-01-13T16:55:05-08:00
 categories:
 - Tech
@@ -10,10 +10,27 @@ tags:
 draft: false
 ---
 
+## Liquidation Class & Category Report
+* Download the latest Inventory All Fields file from [Egnyte](https://cloudblue.egnyte.com/#username)
+* Import the CSV data into a temp database(`rlweek`). See {{< ref "#csv" >}} 
+* Execute the following command to get the report data.
+
+```sqlite
+SELECT Asset_Tag, Class, Category, Mfg, Model_Number,
+    Repair_Disposition, Final_Functional_Status, 
+    Audit_Final_Notes, Total_Fees, BER_Threshold_Percentage, 
+    BER_Threshold, BER_Threshold_Remaining 
+FROM rlweek
+WHERE Shipped_Date >= "2021-01-17" AND Shipped_Date <= "2021-01-23"
+    AND Last_FG_Site = "FG(RL-LIQ)"
+```
+
+* Copy all the data into the `RL Liquidation Report - 20210117-23.xlsx` Excel template file
+
+
+## Import CSV file Into Sqlite Database {#csv}
 We have inventory all fields file which is in CSV format. 
 There're several methods to load these data into database for further processing.
-
-## Import Into Sqlite Database
 
 ### Import CSV file from command line
 Download and install [SQLite](https://www.sqlite.org/download.html).
@@ -62,7 +79,7 @@ Tips:
 * You can get the table create statement from Database Structure tab
 
 
-## Load Data Using Go
+### Load Data Using Go
 TBD
 
 ## Reference
