@@ -1,5 +1,5 @@
 ---
-title: "Notes   Go Programming Language"
+title: "Notes - Go Programming Language"
 date: 2020-07-31T14:47:26-07:00
 categories:
  - Tech
@@ -78,11 +78,19 @@ The operators `<`, `>` are not defined to compare date / time. Use `time.After()
 ```
 
 ## Module
-### How to view available dependency upgrades
-`go list -u -m all`
+Useful Commands:
+```
+go get github.com/gin-gonic/gin // install latest published module
+go get -u github.com/gin-gonic/gin // update the module
 
-### How to update all the dependencies to the latest version?
-`go get -u ./...`
+// Version queries
+go get github.com/gin-gonic/gin@master // install the latest module 
+
+go list -u -m all // View available dependency upgrades
+go get -u ./... // update all the dependencies
+
+go mod tidy // add missing modules and remove unused modules
+```
 
 ## Troubleshooting
 ### could not launch process
