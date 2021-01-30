@@ -121,6 +121,12 @@ Issue or pull request URL: https://github.com/AngangGuo/playiq/issues/4 => #4
 
 See [Autolinked references and URLs](https://docs.github.com/en/github/writing-on-github/autolinked-references-and-urls)
 
+### How to add images to Github comments?
+* Using Snipping Tool in Windows to get the image, copy to clipboard.
+* Click on the right position in Github issue comments, paste the image in the comment directly
+
+Or using drag and drop also works.
+
 ### Preview HTML File
 If you want to see an HTML page on Github as a normal rendered HTML page, go to https://htmlpreview.github.io/
 
