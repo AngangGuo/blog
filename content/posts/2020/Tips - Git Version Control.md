@@ -127,6 +127,9 @@ See [Autolinked references and URLs](https://docs.github.com/en/github/writing-o
 
 Or using drag and drop also works.
 
+### How to mark Github issue as `bug`?
+Open the issue, at the right hand of the page, you can assign `bug` label to mark the issue.
+
 ### Preview HTML File
 If you want to see an HTML page on Github as a normal rendered HTML page, go to https://htmlpreview.github.io/
 
