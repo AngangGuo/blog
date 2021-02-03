@@ -10,7 +10,6 @@ Here is the simplest SSE server example.
 package main
 
 import (
-	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 	"io"
 	"time"
@@ -29,8 +28,6 @@ func main() {
 
 	// serve client page
 	r.StaticFile("/", "./index.html")
-	// import github.com/gin-contrib/static
-	r.Use(static.Serve("/", static.LocalFile("./index.html", true)))
 
 	r.Run()
 }
