@@ -4,6 +4,50 @@ date: 2021-01-30T09:21:45-08:00
 draft: true
 ---
 
+## How to get parameter/form values?
+### URL Parameters
+Gin uses [httprouter](https://github.com/julienschmidt/httprouter).
+
+#### Named parameters
+Named parameters(`:name`) only match a single path segment.
+Since this router has only explicit matches, you can not register static routes and parameters for the same path segment.
+For example if you registered `/user/:user` you can't register `/user/new` for the same request method at the same time.
+```go
+name := c.Param("name")
+```
+#### Catch-All parameters
+Catch-All parameters(`*action`) match everything. Therefore they must always be at the end of the pattern
+```go
+action := c.Param("action")
+```
+
+### Querystring parameters
+// single value: `http://localhost:8080/welcome?firstname=Jane&lastname=Doe`
+```go
+// DefaultQuery returns the query value if it exists, otherwise it returns the defaultValue.
+firstname := c.DefaultQuery("firstname")
+
+// shortcut for c.Request.URL.Query().Get("lastname")
+lastname := c.Query("lastname")
+```
+
+// map: `http://localhost:8080/welcome?names[first]=Kevin&names[second]=Andrew`
+```go
+names := c.QueryMap("names")
+```
+
+### URLencoded/Multipart Form values
+// Single value: `name=manu&notes=this_is_great`
+```go
+notes := c.PostForm("notes")
+name := c.DefaultPostForm("name", "anonymous") 
+```
+
+// map: `names[first]=kevin&names[second]=andrew`
+```go
+names := c.PostFormMap("names")
+```
+
 ## SSE(Server Sent Event) Example
 Here is the simplest SSE server example.
 ```go
