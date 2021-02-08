@@ -6,8 +6,15 @@ categories:
  - Office
 tags:
  - Excel
-draft: true
+draft: false
 ---
+
+## Tips
+### How to remove/suppress the `#DIV/0!` error?
+Use any of the following formula to remove the #DIV/0! from Spreadsheet:
+* `=IFERROR(A1/A2, 0)`
+* `=IF(A2,A1/A2,0)` or `=IF(A2,A1/A2,"No Input")`
+* `=IF(ISERROR(A1/A2),0,A1/A2)`
 
 ## Excel Notes
 
