@@ -4,6 +4,18 @@ date: 2021-01-30T09:21:45-08:00
 draft: true
 ---
 
+## How to send message to client?
+### Sending JSON
+```go
+ctx.JSON(http.StatusOK, gin.H{"message": "pong"})
+```
+
+### Sending String
+```go
+ctx.String(http.StatusOK, "Hello %s", name)
+```
+
+
 ## How to get parameter/form values?
 ### URL Parameters
 Gin uses [httprouter](https://github.com/julienschmidt/httprouter).
