@@ -10,6 +10,17 @@ tags:
 draft: false
 ---
 
+## How to use Caddy to serve a static website(See [here](https://caddyserver.com/docs/quick-starts/static-files))
+Go to the root of the static website, run the following command:
+```
+caddy file-server --listen :8080
+```
+
+If you don't have index.html in the root folder, use following command to list files:
+```
+caddy file-server --browse
+```
+
 ## How to install Caddy in Ubunbu?
 ```
 $ echo "deb [trusted=yes] https://apt.fury.io/caddy/ /" \
