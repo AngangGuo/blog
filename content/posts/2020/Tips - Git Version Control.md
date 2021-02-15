@@ -104,6 +104,15 @@ $ git push --force example-branch
 See [here](https://docs.github.com/en/github/committing-changes-to-your-project/changing-a-commit-message)
 
 ## Github
+### How to create a task list?
+Beginning with a dash, use spaces separate the square brackets.
+```markdown
+- [x] Watch TV
+- [ ] Do homework
+```
+- [x] Watch TV
+- [ ] Do homework
+
 ### How to reference a commit or issue in comment?
 Every commit, issue or pull request has a uniqe URL or SHA hash code(commit only). 
 Insert the URL or SHA into the comment directly, 
