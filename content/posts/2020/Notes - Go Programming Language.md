@@ -32,8 +32,70 @@ go build
 // From Linux
 $ env GOOS=windows GOARCH=amd64 go build
 ```
+## CSV
+### How to remove BOM data at the beginning of the file
+```go
+	f, _ := os.Open(`RL Inventory All Fields_12012021_Vancouver, BC (RL).csv`)
+	defer f.Close()
+
+	r := csv.NewReader(f)
+    row, _ := r.Read() // one record (a slice of fields)
+    for i, col := range row {
+        if i == 0 {
+            // See https://github.com/golang/go/issues/33887
+            bom:="\xEF\xBB\xBF"
+            bom2:="\uFEFF" // same as "\xEF\xBB\xBF" above
+            fmt.Println(strings.Contains(v,bom)) // true
+            fmt.Println(strings.Contains(v,bom2)) // true
+            fmt.Println(strings.TrimLeft(v,bom)) // Facility
+            break
+        }
+    }
+```
+
+## Context
+
+### WithCancel
+```go
+ctx := context.Background()
+ctx, cancel := context.WithCancel(ctx)
+// defer cancel()
+// cancel after 2 seconds
+time.AfterFunc(2*time.Second, cancel) // continue to the next line, doesn't wait
+doWithCtx(ctx, 5*time.Second) // context canceled: abort after 2 seconds
+// context canceled
+```
+```go
+func doWithCtx(ctx context.Context, d time.Duration) {
+	select {
+	// cancelled
+	case <-ctx.Done():
+		log.Println(ctx.Err())
+	case <-time.After(d):
+		fmt.Println("Done")
+	}
+}
+```
+
+### WithTimeout
+```go
+ctx := context.Background()
+ctx, cancel := context.WithTimeout(ctx, time.Second)
+defer cancel()
+
+doWithCtx(ctx, 5*time.Second) // context deadline exceeded
+```
 
 ## Time
+
+### How long the process last?
+```go
+start := time.Now()
+doSth()
+end := time.Now()
+fmt.Printf("time last %v\n", end.Sub(start))
+```
+
 ### time.Add() vs time.AddDate()
 ```
     days := 2
