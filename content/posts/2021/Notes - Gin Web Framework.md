@@ -5,6 +5,29 @@ draft: true
 ---
 
 ## How to send message to client?
+
+### Render HTML Template
+```go
+router := gin.Default()
+
+// loading all the templates
+router.LoadHTMLGlob("templates/*")
+
+// rendering template
+router.GET("/", func(ctx *gin.Context) {
+        // Call the HTML method of the Context to render a template
+        ctx.HTML(
+        // Set the HTTP status to 200 (OK)
+        http.StatusOK,
+        // Use the index.html template
+        "index.html",
+        // Pass the data that the page uses (in this case, 'title')
+        gin.H{
+        "title": "Home Page",
+        },
+    )
+})
+```
 ### Sending JSON
 ```go
 ctx.JSON(http.StatusOK, gin.H{"message": "pong"})
@@ -14,7 +37,6 @@ ctx.JSON(http.StatusOK, gin.H{"message": "pong"})
 ```go
 ctx.String(http.StatusOK, "Hello %s", name)
 ```
-
 
 ## How to get parameter/form values?
 ### URL Parameters
