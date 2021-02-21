@@ -10,6 +10,26 @@ tags:
 draft: false
 ---
 
+## Common Commands
+### Insert
+```sqlite
+-- single value
+INSERT INTO artists (name)
+VALUES('Andrew');
+
+-- multiple values
+INSERT INTO associate (name) 
+VALUES
+       ("Andrew"),
+       ("Mellisa"),
+       ("Lisa");
+
+-- data from other table
+INSERT INTO artists_backup
+SELECT ArtistId, Name
+FROM artists;
+```
+
 ## Liquidation Class & Category Report
 * Download the latest Inventory All Fields file from [Egnyte](https://cloudblue.egnyte.com/#username)
 * Import the CSV data into a temp database(`rlweek`). See {{< ref "#csv" >}} 
