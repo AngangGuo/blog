@@ -10,6 +10,14 @@ tags:
 draft: false
 ---
 
+## Golang
+https://jmeubank.github.io/tdm-gcc/download/
+https://github.com/mattn/go-sqlite3
+go get github.com/mattn/go-sqlite3
+
+sql: Scan error on column index 3, name "end_date": converting NULL to string is unsupported
+https://medium.com/aubergine-solutions/how-i-handled-null-possible-values-from-database-rows-in-golang-521fb0ee267
+
 ## Common Commands
 ### Insert
 ```sqlite
@@ -28,6 +36,11 @@ VALUES
 INSERT INTO artists_backup
 SELECT ArtistId, Name
 FROM artists;
+```
+
+### Update
+```sqlite
+UPDATE associate SET end_date="2021-02-19" WHERE name="Luciano";
 ```
 
 ## Liquidation Class & Category Report
