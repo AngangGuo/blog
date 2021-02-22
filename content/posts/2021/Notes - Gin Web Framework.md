@@ -68,15 +68,16 @@ action := c.Param("action")
 // single value: `http://localhost:8080/welcome?firstname=Jane&lastname=Doe`
 ```go
 // DefaultQuery returns the query value if it exists, otherwise it returns the defaultValue.
-firstname := c.DefaultQuery("firstname")
+today := time.Now().Format("2006-01-02")
+theDate = ctx.DefaultQuery("date", today) // http://example.org/timesheet?date="2021-02-01"
 
-// shortcut for c.Request.URL.Query().Get("lastname")
-lastname := c.Query("lastname")
+// shortcut for ctx.Request.URL.Query().Get("lastname")
+lastname := ctx.Query("lastname")
 ```
 
 // map: `http://localhost:8080/welcome?names[first]=Kevin&names[second]=Andrew`
 ```go
-names := c.QueryMap("names")
+names := ctx.QueryMap("names")
 ```
 
 ### URLencoded/Multipart Form values

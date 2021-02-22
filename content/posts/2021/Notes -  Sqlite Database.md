@@ -10,6 +10,13 @@ tags:
 draft: false
 ---
 
+## Commands
+### Insert Or Update
+```sqlite
+INSERT or replace INTO daily (date,name_id,testing_hour,sellable,liquidation,quality,concession) 
+VALUES ("2021-02-01",5,1.0,2,3,4,5);
+```
+
 ## Liquidation Class & Category Report
 * Download the latest Inventory All Fields file from [Egnyte](https://cloudblue.egnyte.com/#username)
 * Import the CSV data into a temp database(`rlweek`). See {{< ref "#csv" >}} 
