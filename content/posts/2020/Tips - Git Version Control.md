@@ -104,6 +104,44 @@ $ git push --force example-branch
 See [here](https://docs.github.com/en/github/committing-changes-to-your-project/changing-a-commit-message)
 
 ## Github
+
+### How to upload large files into Github?
+Note: GitHub blocks pushes that exceed 100 MB; Warning for files larger than 50 MB
+
+* Download and install [Git Large File Storage](https://git-lfs.github.com/)
+* Verify the installation from Git Bash: `git lfs install`
+* Change your current working directory to an existing repository
+* Associate the file type in your repository with Git LFS: `git lfs track "*.m4a"`
+* Add the file and push to Github: 
+  ```
+  git add audio.m4a
+  git commit -m "add my audio file"
+  git push
+  ```
+
+### How to clear out the history of a Git/Github repository
+See: [repo-reset](https://gist.github.com/heiswayi/350e2afda8cece810c0f6116dadbe651) and 
+[git-clearHistory](https://gist.github.com/stephenhardy/5470814)
+```
+-- First: Remove your history 
+rm -rf .git
+
+-- Second: Add your current content
+git init
+git add .
+git commit -m "Initial commit"
+
+-- Better delete the repository from Github and re-create it
+-- This will delete any sensitive information and pull request, etc
+git remote add origin git@github.com:<YOUR ACCOUNT>/<YOUR REPOS>.git
+git push origin master
+
+-- Or if you want to keep the repository
+-- Third: push to the github remote repos ensuring you overwrite history
+git remote add origin git@github.com:<YOUR ACCOUNT>/<YOUR REPOS>.git
+git push -u --force origin master // or git push --mirror --force
+```
+
 ### How to create a task list?
 Beginning with a dash, use spaces separate the square brackets.
 ```markdown
