@@ -10,19 +10,6 @@ tags:
 draft: false
 ---
 
-## Sqlite
-### With clause vs temp table vs view
-**With Clause**:
-Common Table Expressions or CTEs act like temporary views that exist only for the duration of a single SQL statement.
-
-https://stackoverflow.com/questions/6703676/use-of-temp-tables-in-sqlite-databases
-
-### Auto increment ID
-In SQLite, table rows normally have a 64-bit signed integer ROWID which is unique among all rows in the same table.
-You can access the ROWID of an SQLite table using one of the special column names ROWID, _ROWID_, or OID.
-
-If a table contains a column of type INTEGER PRIMARY KEY, then that column becomes an alias for the ROWID.
-
 ## Liquidation Class & Category Report
 * Download the latest Inventory All Fields file from [Egnyte](https://cloudblue.egnyte.com/#username)
 * Import the CSV data into a temp database(`rlweek`). See {{< ref "#csv" >}} 
