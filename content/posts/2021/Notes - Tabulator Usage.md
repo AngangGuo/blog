@@ -6,10 +6,25 @@ draft: true
 Tabulator allows you to create interactive tables in seconds from any HTML Table, JavaScript Array,
 AJAX data source or JSON formatted data.
 
+### Editing
+See [Tabulator Editing](http://tabulator.info/docs/4.9/edit)
+* The `input` editor allows entering of a single line of **plain text**.
+* The `textarea` editor allows entering of multiple lines of plain text
+* The `number` editor allows for numeric entry with a number type input element with increment and decrement buttons.
+* The `range` editor allows for numeric entry with a range type input element.
+* The `tickCross` editor allows for boolean values using a **checkbox** type input element.
+* The `select` editor creates a dropdown select box to allow the user to select from some predefined options passed into the values property of the editorParams option.
+
 ### How to get table data as JSON data?
+Get all data including not shown out
 ```javascript
 let data = table.getData();
 let json = JSON.stringify(data)
+```
+
+To get visible data only, pass `true` as argument:
+```javascript
+let visibleData = table.getData(true);
 ```
 
 ### Ajax Data
@@ -41,7 +56,8 @@ var table = new Tabulator("#example-table", {
 });
 ```
 
-### Async / Await
+### Load Data
+JavaScript:
 ```javascript
 async function getdata() {
     const response = await fetch("http://localhost:8080/json")
