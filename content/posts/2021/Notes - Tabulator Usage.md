@@ -3,6 +3,14 @@ title: "Notes   Tabulator Usage"
 date: 2021-02-19T23:09:51-08:00
 draft: true
 ---
+Tabulator allows you to create interactive tables in seconds from any HTML Table, JavaScript Array,
+AJAX data source or JSON formatted data.
+
+### How to get table data as JSON data?
+```javascript
+let data = table.getData();
+let json = JSON.stringify(data)
+```
 
 ### Ajax Data
 You must at least setup the columns, otherwise the data will not show out
