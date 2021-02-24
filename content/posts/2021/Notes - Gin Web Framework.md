@@ -4,6 +4,44 @@ date: 2021-01-30T09:21:45-08:00
 draft: true
 ---
 
+## Router
+
+### Full Router Examples
+```go
+func prepareRoutes(router *gin.Engine) {
+	// Web Resources
+	router.Static("/static", "web/dist")
+
+	// API Routes
+	api := router.Group("/api/v1")
+	admin := api.Group("/admin")
+	public := api.Group("/public")
+	registered := api.Group("/")
+	sameRegisteredUser := api.Group("/user")
+
+	prepareMiddleware(admin, public, registered, sameRegisteredUser)
+
+	admin.GET("/users", listUsers)
+	admin.GET("/places", listPlaces)
+	admin.POST("/places", createPlace)
+	admin.POST("/events", createEvent)
+	admin.PUT("/place/:placeId", updatePlace)
+	admin.PUT("/event/:eventId", updateEvent)
+	admin.DELETE("/event/:eventId", cancelEvent)
+
+	sameRegisteredUser.GET("/:userId", getUser)
+	sameRegisteredUser.PUT("/:userId", updateUser)
+	sameRegisteredUser.DELETE("/:userId", disableUser)
+
+	registered.POST("/buy/:seatId", buyTicket)
+
+	public.GET("/place/:placeId", getPlace)
+	public.GET("/events", listEvents)
+	public.GET("/event/:eventId", getEvent)
+	public.POST("/users", createUser) // TODO Checar, me huele raro......
+	public.POST("/login", loginUser)
+}
+```
 ## How to send message to client?
 
 ### Render HTML Template
