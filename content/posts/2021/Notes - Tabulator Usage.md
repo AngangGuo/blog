@@ -15,6 +15,16 @@ See [Tabulator Editing](http://tabulator.info/docs/4.9/edit)
 * The `tickCross` editor allows for boolean values using a **checkbox** type input element.
 * The `select` editor creates a dropdown select box to allow the user to select from some predefined options passed into the values property of the editorParams option.
 
+**Note:**
+Editor for number type is `number`, Validator for valid numbers is `numeric`.
+
+### Validator
+Top level config:
+validationMode:"highlight",
+
+Column level:
+validator:["min:0", "max:5", "integer"],
+
 ### How to get table data as JSON data?
 Get all data including not shown out
 ```javascript
@@ -25,21 +35,6 @@ let json = JSON.stringify(data)
 To get visible data only, pass `true` as argument:
 ```javascript
 let visibleData = table.getData(true);
-```
-
-### Ajax Data
-You must at least setup the columns, otherwise the data will not show out
-```javascript
-var show_table = function(){
-  var columns=[
-        {title:"name", field:"name"},
-        {title:"date", field:"date"},
-    ];
-  var table = new Tabulator("#table", {
-    ajaxURL: "ajax.json",
-    columns:columns
-  });
-}
 ```
 
 ### Title
@@ -56,8 +51,8 @@ var table = new Tabulator("#example-table", {
 });
 ```
 
-### Load Data
-JavaScript:
+## Loading Data
+### Plain JavaScript:
 ```javascript
 async function getdata() {
     const response = await fetch("http://localhost:8080/json")
@@ -69,6 +64,21 @@ async function getdata() {
         data: data,
         autoColumns: true,
     });
+}
+```
+
+### Tabulator: ajaxURL
+
+```javascript
+var show_table = function(){
+  var columns=[
+        {title:"name", field:"name"},
+        {title:"date", field:"date"},
+    ];
+  var table = new Tabulator("#table", {
+    ajaxURL: "http://localhost:8080/json", // or for json file use "myfile.json"
+    columns:columns
+  });
 }
 ```
 
@@ -104,3 +114,6 @@ async function savedata(){
     return
 }
 ```
+
+## FAQ
+You must at least setup the columns, otherwise the data will not show out
