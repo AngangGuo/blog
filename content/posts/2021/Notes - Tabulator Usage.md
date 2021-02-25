@@ -92,6 +92,20 @@ var table = Tabulator.prototype.findTable("#example-table")[0]; // find table ob
 ```
 The findTable function will return an array of matching tables. If no match is found it will return false
 
+### How to reuse table instance?
+```javascript
+let table = Tabulator.prototype.findTable("#example-table")[0];
+if (table) {
+    // reuse table instance
+    table.setData(data)
+    return
+}
+// else: instance doesn't exist - create a new instance
+table = new Tabulator("#example-table", {
+    ...
+});
+```
+
 ### Save
 ```javascript
 async function savedata(){
