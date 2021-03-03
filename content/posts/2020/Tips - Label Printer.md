@@ -10,6 +10,15 @@ tags:
 draft: false
 ---
 
+### What's the difference between GK420d and GK420t?
+GK420d = direct thermal (no printer ribbon facility), 
+requires labels to be made from a direct thermal material in order to create print.
+
+GK420t = thermal transfer (option of a printer ribbon), 
+takes labels made from normal stocks but they can also print onto direct thermal materials too.
+
+GK420t is more expensive than GK420d. If you use direct thermal only, GK420d is the best choice. 
+
 ## Troubleshooting
 
 ### GK420t Printer - Labels stuck around the roll
