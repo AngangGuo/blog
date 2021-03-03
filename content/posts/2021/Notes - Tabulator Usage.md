@@ -51,6 +51,26 @@ var table = new Tabulator("#example-table", {
 });
 ```
 
+### How to wrap column header title text?
+By default Tabulator will try and keep column header titles on one line, truncating the text with ellipsis if it gets wider that the column.
+
+To wrap the text, add the following rule into your css file to override it:
+```css
+.tabulator .tabulator-header .tabulator-col .tabulator-col-content .tabulator-col-title {
+    white-space: normal;
+}
+```
+
+Problems: 
+* The titles don't wrap at the beginning, it only wraps when I resize the column.
+* I can resize all rows except the title row
+
+Solution:
+* Use a shorter title 
+* Use title tooltips to show full title: `{title: "Hours", field: "TestingHour", headerTooltip:"Testing Hours"},` 
+* Use `titleDownload:"Outgoing Quality"` to show full title in the downloaded files  
+* Use vertical titles: `{title:"Name", field:"name", headerVertical:true},`
+
 ## Loading Data
 ### Plain JavaScript:
 ```javascript
