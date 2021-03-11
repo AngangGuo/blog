@@ -1,7 +1,13 @@
 ---
 title: "Notes - Gin Web Framework"
 date: 2021-01-30T09:21:45-08:00
-draft: true
+categories:
+- Tech
+- Web 
+tags:
+- Go
+- Gin  
+draft: false
 ---
 
 ## Router
@@ -75,6 +81,10 @@ router.GET("/", func(c *gin.Context) {
 router.Run()
 }
 ```
+
+### Render Multiple Templates
+See [here](https://gist.github.com/anhtran/9150054167b20ec62ccc)
+
 ### Sending JSON
 ```go
 ctx.JSON(http.StatusOK, gin.H{"message": "pong"})

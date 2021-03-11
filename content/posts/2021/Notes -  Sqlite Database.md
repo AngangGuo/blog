@@ -11,10 +11,37 @@ draft: false
 ---
 
 ## Commands
+### Unique Values
+```sqlite
+SELECT DISTINCT report_date FROM daily;
+```
+
 ### Insert Or Update
 ```sqlite
 INSERT or replace INTO daily (date,name_id,testing_hour,sellable,liquidation,quality,concession) 
 VALUES ("2021-02-01",5,1.0,2,3,4,5);
+```
+
+### Update
+```sqlite
+UPDATE associate SET show=1 WHERE show IS NULL
+```
+
+### Creating Sub-Query
+```sqlite
+with yvr3(facility,class,cat, sub) as
+(select "YVR3", class,cat, count(*) as sub from amazon where location < "QC-76.11"
+group by class,cat),
+
+yyc1(facility, class,cat,sub) as 
+(select "YYC1", class,cat,count(*) as sub from amazon where location > "QC-76.10"
+group by class,cat)
+
+select yyc1.facility,yyc1.class,yyc1.cat, yyc1.sub from yyc1
+left join yvr3
+on (yyc1.class=yvr3.class and yyc1.cat=yvr3.cat)
+where yvr3.cat is null
+order by yyc1.sub desc;
 ```
 
 ## Liquidation Class & Category Report

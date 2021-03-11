@@ -10,6 +10,7 @@ tags:
 draft: false
 ---
 
+## Models
 ### What's the difference between GK420d and GK420t?
 GK420d = direct thermal (no printer ribbon facility), 
 requires labels to be made from a direct thermal material in order to create print.
@@ -18,6 +19,12 @@ GK420t = thermal transfer (option of a printer ribbon),
 takes labels made from normal stocks but they can also print onto direct thermal materials too.
 
 GK420t is more expensive than GK420d. If you use direct thermal only, GK420d is the best choice. 
+
+### What about Zebra ZD401?
+ZD401 can print 2in x 1in label. ZD401 can print up to 2.25in label, but GK420d can print up to 4.25in labels. 
+
+Zebra contact information:
+The Inquiry Department can be contacted at 877-208-7756 or at [contact.us](http://contact.us) @zebra.com.
 
 ## Troubleshooting
 

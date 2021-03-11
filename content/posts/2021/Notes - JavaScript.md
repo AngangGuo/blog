@@ -4,6 +4,19 @@ date: 2021-02-22T07:10:14-08:00
 draft: true
 ---
 
+## DOM
+### getElementById()
+Note: no "#" at the beginning of the id
+```javascript
+let element = document.getElementById("message");
+```
+
+### Get/Set InnerText
+```javascript
+const renderedText = htmlElement.innerText
+htmlElement.innerText = string
+```
+
 ## Async / Await
 
 ### Top
@@ -50,6 +63,21 @@ function start() {
 ```
 
 ## Fetch
+
+### Search Parameters
+* Naive approach
+```javascript
+const city = "Rome";
+const price = "200";
+const myNaiveUrl = `https://www.example.dev/?city=${city}&price=${price}`;
+```
+* Robust approach
+```javascript
+const url = new URL("https://www.example.dev/");
+url.searchParams.append("city", "Rome");
+url.searchParams.append("price", "200");
+```
+
 ### Fetch - Get
 ```javascript
 async function getData() {
