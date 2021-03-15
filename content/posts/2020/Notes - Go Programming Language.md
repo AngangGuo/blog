@@ -153,21 +153,39 @@ The operators `<`, `>` are not defined to compare date / time. Use `time.After()
 ```
 
 ## Module
-Useful Commands:
+### Useful Commands:
 ```
 go get github.com/gin-gonic/gin // install latest published module
 go get -u github.com/gin-gonic/gin // update the module
 
 // Version queries
 go get github.com/gin-gonic/gin@master // install the latest module 
+```
 
-go list -u -m all // View available dependency upgrades
-go get -u ./... // update all the dependencies
-
+### How to clean up the modules?
+```go
 go mod tidy // add missing modules and remove unused modules
 ```
 
+### How to upgrade to a specific commit?
+```go
+C:\Users\angan\go\src\rl>go get -u github.com/mxschmitt/playwright-go@355fba9
+go: downloading github.com/mxschmitt/playwright-go v0.171.2-0.20210220003257-355fba93c781
+go: github.com/mxschmitt/playwright-go 355fba9 => v0.171.2-0.20210220003257-355fba93c781
+```
+### How to upgrade all dependencies at once?
+```go
+go list -u -m all // View available dependency upgrades
+go get -u ./... // update all the dependencies
+```
 ## Troubleshooting
+### Error: go get .: path is not a package in module rooted
+```
+C:\Users\angan\go\src\rl>go get -u
+go get .: path C:\Users\angan\go\src\rl is not a package in module rooted at C:\Users\angan\go\src\rl
+```
+See How to upgrade all dependencies at once?
+
 ### could not launch process
 ```
 C:\>dlv debug
