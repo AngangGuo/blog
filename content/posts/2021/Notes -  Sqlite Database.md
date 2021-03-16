@@ -44,9 +44,14 @@ where yvr3.cat is null
 order by yyc1.sub desc;
 ```
 
-## Liquidation Class & Category Report
+### FULL OUT JOIN 
+Sqlite doesn't support `FULL OUT JOIN` or `RIGHT JOIN`.
+See {{< ref "#fulloutjoin" >}} on how to emulate full out join in Sqlite.
+
+## Work
+### How to get Liquidation Class & Category Report
 * Download the latest Inventory All Fields file from [Egnyte](https://cloudblue.egnyte.com/#username)
-* Import the CSV data into a temp database(`rlweek`). See {{< ref "#csv" >}} 
+* Import the CSV data into a temp database(`RL`). See {{< ref "#csv" >}} 
 * Execute the following command to get the report data.
 
 ```sqlite
@@ -54,13 +59,41 @@ SELECT Asset_Tag, Class, Category, Mfg, Model_Number,
     Repair_Disposition, Final_Functional_Status, 
     Audit_Final_Notes, Total_Fees, BER_Threshold_Percentage, 
     BER_Threshold, BER_Threshold_Remaining 
-FROM rlweek
-WHERE Shipped_Date >= "2021-01-17" AND Shipped_Date <= "2021-01-23"
-    AND Last_FG_Site = "FG(RL-LIQ)"
+FROM RL
+WHERE Shipped_Date >= "2021-03-07" AND Shipped_Date <= "2021-03-13" AND Last_FG_Site = "FG(RL-LIQ)"
 ```
 
-* Copy all the data into the `RL Liquidation Report - 20210117-23.xlsx` Excel template file
+* Copy all the data from DB Browser and Paste the data into "Weekly-Stats-Template.xlsx"
+* Save it as `20210316 - RL Liquidation Report.xlsx` 
+* Remove the two yellow columns and save it as `20210316 - Amazon Liquidation Report.xlsx`
+* Attach these two files and send the report
 
+### How to get the associates' daily/weekly testing details report? {#fulloutjoin}
+To Get the Sellable(including Fraud) and Liquidation assets details for each associate.
+```sqlite
+WITH a AS(
+SELECT Auditor, count(*) AS sellable
+FROM RL
+WHERE Date_put_to_FG_Site >= "2021-03-07" AND Date_put_to_FG_Site <= "2021-03-13" AND (Repair_Disposition = "COMP" OR Repair_Disposition = "FRAUD")
+GROUP BY Auditor),
+
+b AS (
+SELECT Auditor, count(*) AS liq
+FROM RL
+WHERE Date_put_to_FG_Site >= "2021-03-07" AND Date_put_to_FG_Site <= "2021-03-13" AND (Repair_Disposition = "LIQC" OR Repair_Disposition = "LIQF")
+GROUP BY Auditor)
+
+SELECT a.Auditor AS auditor, a.sellable, b.liq FROM a
+LEFT JOIN b ON a.Auditor = b.Auditor
+
+UNION ALL
+
+SELECT b.Auditor AS auditor, a.sellable, b.liq FROM b
+LEFT JOIN a ON a.Auditor = b.Auditor
+WHERE a.Auditor IS NULL
+
+ORDER BY auditor
+```
 
 ## Import CSV file Into Sqlite Database {#csv}
 We have inventory all fields file which is in CSV format. 
@@ -112,9 +145,6 @@ Tips:
 * You can use `PRAGMA table_info(table_name)` to get all the column names of a table.
 * You can get the table create statement from Database Structure tab
 
-
-### Load Data Using Go
-TBD
 
 ## Reference
 * Create table statement as of 2021-01-18
