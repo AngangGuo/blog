@@ -12,6 +12,88 @@ SvelteJS notes
 on:event-name={handler}
 ```
 
+## Slot
+You can compose components by using `slot`.
+
+### Fall back content in slot
+Child.svelte
+```sqlite
+<div>
+    <slot>default text</slot>
+</div>    
+```
+App.svelte
+```sqlite
+<script>
+    import Child from './Child.svelte';
+</script>
+
+<Child /> <!-- show default text -->
+
+<Child>
+    this will replace the default text in the slot position
+</Child>        
+```
+
+### How to get a slot list passed by the parent from a child component?
+The keys of the `$$slots` object are the names of the slots passed into the child component by the parent.
+```sqlite
+<!-- Child.svelte -->
+<div>
+    <slot name="title"></slot>
+    <slot name="age"></slot>
+    {$$slots.title} - {$$slots.age}
+</div>
+```
+
+```sqlite
+<!-- App.svelte -->
+<script>
+	import Child from './Child.svelte';
+</script>
+
+<Child>
+	<span slot="title">My Title</span>
+</Child>
+```
+
+```sqlite
+<!-- Output -->
+My Title
+
+true - undefined
+```
+
+### How to pass data from component to parent?
+By using slot props you can pass data from component to parent.
+
+`Child.svelte`
+```sqlite
+<script>
+	let myVal = 4;
+</script>
+
+<div>
+	<slot childProp={myVal}></slot>
+</div>
+```
+
+`App.svelte`
+```sqlite
+<script>
+	import Child from './Child.svelte';
+	let parentVal = 8;
+</script>
+
+<Child let:childProp={childVal}>
+	<p>{childVal + parentVal}</p>
+</Child>
+```
+
+Note: 
+* Use `let:childProp={childVal}` to assign the `childProp` value from `Child` component to variable `childVal` 
+* `childVal` is only visible in this `Child` component
+
 ### Event Emit
 Components can emit events using `createEventDispatcher`, or by forwarding DOM events.
 
