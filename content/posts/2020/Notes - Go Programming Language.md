@@ -9,6 +9,19 @@ tags:
 draft: false
 ---
 
+## JSON
+### How to process NaN value?
+When liquidation and total equals zero, the `item.LIQRate` will be `NAN`.
+```go
+item.LIQRate = float64(item.Liquidation) / float64(item.Total)
+```
+`json.Marshal(item)` will throw this error:
+```go
+json: unsupported value: NaN
+```
+
+
+
 ## Other
 ### How to get the type of a variable?
 ```

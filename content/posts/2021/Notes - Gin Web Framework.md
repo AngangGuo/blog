@@ -1,7 +1,13 @@
 ---
 title: "Notes - Gin Web Framework"
 date: 2021-01-30T09:21:45-08:00
-draft: true
+categories:
+- Tech
+- Web 
+tags:
+- Go
+- Gin  
+draft: false
 ---
 
 ## Router
@@ -42,7 +48,39 @@ func prepareRoutes(router *gin.Engine) {
 	public.POST("/login", loginUser)
 }
 ```
-## How to send message to client?
+
+### How to serve static files in root page?
+```go
+api:=r.Group("/api")
+api.GET("/json", serveJSON)
+
+r.Static("/","./public")
+```
+
+Will get the following error:
+```
+[GIN-debug] GET    /api/json                 --> main.main.func1 (3 handlers)
+[GIN-debug] GET    /*filepath                --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+panic: wildcard segment '*filepath' conflicts with existing children in path '/*filepath'
+```
+
+Solution: Use `github.com/gin-contrib/static` to serve the static file:
+```go
+func main() {
+    r:=gin.Default()
+    api:=r.Group("/api")
+    api.GET("/json", serveJSON)
+    
+    //r.Static("/","") // cause errors
+    
+    // fix: use "static" package to serve the file 
+    r.Use(static.Serve("/",static.LocalFile("./front/svlt/public",true)))
+    
+    r.Run(":5000")
+}
+```
+
+## How to send contents to client?
 
 ### Render HTML Template
 ```go
@@ -75,14 +113,18 @@ router.GET("/", func(c *gin.Context) {
 router.Run()
 }
 ```
+
+### Render Multiple Templates
+See [here](https://gist.github.com/anhtran/9150054167b20ec62ccc)
+
 ### Sending JSON
 ```go
-ctx.JSON(http.StatusOK, gin.H{"message": "pong"})
+c.JSON(http.StatusOK, gin.H{"message": "pong"})
 ```
 
 ### Sending String
 ```go
-ctx.String(http.StatusOK, "Hello %s", name)
+c.String(http.StatusOK, "Hello %s", name)
 ```
 
 ## How to get parameter/form values?
