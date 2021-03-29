@@ -1,7 +1,13 @@
 ---
 title: "Notes   Validator"
 date: 2021-03-26T13:45:20-07:00
-draft: true
+categories:
+- Tech
+- Web
+tags:
+- Go
+- Validator
+draft: false
 ---
 
 ## Validator Usage

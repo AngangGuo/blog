@@ -160,6 +160,9 @@ go get -u github.com/gin-gonic/gin // update the module
 
 // Version queries
 go get github.com/gin-gonic/gin@master // install the latest module 
+
+// update go version to version 1.16
+go mod edit -go=1.16
 ```
 
 ### How to clean up the modules?
