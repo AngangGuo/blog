@@ -48,7 +48,7 @@ Set the value specifically as `true` will be ok.
 
 ## Validator
 ### How to set up a validator?
-See [Validator](posts/2021/Notes-Validator/) for advanced usage.
+See [Validator](Notes-Validator) for advanced usage.
 
 ```go
 type CustomValidator struct {
