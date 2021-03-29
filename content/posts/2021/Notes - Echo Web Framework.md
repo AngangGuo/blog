@@ -1,5 +1,5 @@
 ---
-title: "Notes   Echo Web Framework"
+title: "Notes - Echo Web Framework"
 date: 2021-03-23T14:38:32-07:00
 draft: true
 ---
@@ -37,3 +37,21 @@ Set the value specifically as `true` will be ok.
 <input type="checkbox" name="agree" value="true">
 ```
 
+### Route `/admin` vs `/admin/`
+```go
+    admin := e.Group("admin")
+    // example.com/admin
+	admin.GET("", func(c echo.Context) error {
+		return c.String(200, "admin root")
+	})
+    // example.com/admin/
+	admin.GET("/", func(c echo.Context) error {
+		return c.String(200, "in admin")
+	})
+```
+
+You can use [trailing slash middleware](https://echo.labstack.com/middleware/trailing-slash/) to add or remove the trailing slash of a request uri.
+
+### JWT 
+https://github.com/victorsteven/Go-JWT-Postgres-Mysql-Restful-API/blob/master/api/auth/token.go
+https://echo.labstack.com/cookbook/jwt/
