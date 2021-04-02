@@ -348,3 +348,63 @@ for {
 }
 ```
 
+## Network
+### Simple Go client
+Get Content
+```go
+    response, _ := http.Get(url)
+	defer response.Body.Close()
+
+	if response.StatusCode != 200 {
+		...
+	}
+
+	b, _ := ioutil.ReadAll(response.Body)
+	fmt.Println(string(b))
+```
+
+Download file:
+```go	
+	file, _ := os.Create(fileName)
+	defer file.Close()
+
+	//Write the bytes to the fiel
+	_ = io.Copy(file, response.Body)
+```
+
+### Customized Go Client
+```go
+type egnyteFile struct {
+	Path string
+	Name string
+}
+type egnyteResponse struct {
+	Name  string
+	Path  string
+	Files []egnyteFile
+}
+
+func main() {
+	url := "https://mydomain.egnyte.com/pubapi/v1/fs/xxx"
+	req, _ := http.NewRequest("GET", url, nil)
+
+	req.Header.Add("Authorization", "Bearer "+"xxx")
+	client := &http.Client{}
+	response, _ := client.Do(req)
+	defer response.Body.Close()
+
+	if response.StatusCode != 200 {
+		log.Fatal(response.StatusCode)
+	}
+
+	var e egnyteResponse
+	json.NewDecoder(response.Body).Decode(&e)
+
+	for _, v := range e.Files {
+		if strings.Contains(v.Name, "Vancouver, BC") {
+			fmt.Println(v.Path)
+			break
+		}
+	}
+}
+```
