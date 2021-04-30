@@ -11,9 +11,20 @@ draft: false
 ---
 
 ## Commands
-### Unique Values
+### Get unique values
 ```sqlite
 SELECT DISTINCT report_date FROM daily;
+```
+
+### How many records?
+```sqlite
+SELECT count(*) from vanall WHERE Shipped_Date="2021-01-12";
+```
+
+### Last Shipped Date
+```sqlite
+-- Current max date in the table
+SELECT max(Shipped_Date) from vanall;
 ```
 
 ### Insert Or Update
@@ -22,9 +33,22 @@ INSERT or replace INTO daily (date,name_id,testing_hour,sellable,liquidation,qua
 VALUES ("2021-02-01",5,1.0,2,3,4,5);
 ```
 
+### Insert data get from other tables
+```sqlite
+-- insert new data from temp into table vanall
+INSERT INTO vanall
+SELECT * from temp where Shipped_Date>"2021-01-12";
+```
+
 ### Update
 ```sqlite
 UPDATE associate SET show=1 WHERE show IS NULL
+```
+
+### Delete
+```sqlite
+-- remove all the assets that are not shipped yet
+DELETE FROM vanall WHERE Shipped_Date is NULL
 ```
 
 ### Creating Sub-Query
@@ -46,7 +70,15 @@ order by yyc1.sub desc;
 
 ### FULL OUT JOIN 
 Sqlite doesn't support `FULL OUT JOIN` or `RIGHT JOIN`.
+It’s easy to perform a RIGHT OUTER JOIN in SQLite by simply reversing the order of tables and using a LEFT OUTER JOIN. 
+It’s also possible to do a FULL OUTER JOIN by combining LEFT OUTER JOINs using the UNION keyword.
+
 See {{< ref "#fulloutjoin" >}} on how to emulate full out join in Sqlite.
+
+### Sqlite: Get table information
+```sqlite
+PRAGMA table_info(vancouver)
+```
 
 ## Work
 ### How to get Liquidation Class & Category Report
