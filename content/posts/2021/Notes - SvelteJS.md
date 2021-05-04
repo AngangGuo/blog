@@ -12,6 +12,9 @@ SvelteJS notes
 on:event-name={handler}
 ```
 
+## Context
+See [How and When to Use Component Context in Svelte](https://imfeld.dev/writing/svelte_context)
+
 ## Slot
 You can compose components by using `slot`.
 
@@ -135,7 +138,15 @@ the component will forward the event, meaning that a consumer of the component c
 <SomeComponent on:whatever/>
 ```
 
+## Actions
+Actions are essentially functions that are executed when an element is mounted.
+What's inside the function is entirely up to you. It's similar to React Hooks.
+
+
 ## FAQ
 ### How's the `each` block works internally?
 In the [keyed each block](https://svelte.dev/tutorial/keyed-each-blocks) example, 
 See the reason [here](https://stackoverflow.com/questions/62499335/further-explanation-of-sveltes-keyed-each-block)
+
+### How to integrate Svelte app with Go app?
+See [Serving a React app with GoLang using Gin](https://medium.com/@synapticsynergy/serving-a-react-app-with-golang-using-gin-c6402ee64a4b)

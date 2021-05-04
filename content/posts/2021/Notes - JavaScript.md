@@ -19,6 +19,17 @@ htmlElement.innerText = string
 
 ## Async / Await
 
+## Event
+```javascript
+document.getElementById('name')
+  .addEventListener('keyup', function(event) {
+    if (event.code === 'Enter') {
+      event.preventDefault();
+      document.querySelector('form').submit();
+    }
+  });
+```
+
 ### Top
 Await can only be used inside async functions. 
 You can wrap it inside an anonymous sync function or use async function expression:
@@ -109,7 +120,7 @@ async function postData() {
   return content
 }
 
-getData().then().catch()
+// getData().then().catch()
 ```
 
 A typical fetch request consists of two await calls:
