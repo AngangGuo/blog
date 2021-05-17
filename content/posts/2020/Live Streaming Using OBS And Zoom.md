@@ -101,3 +101,18 @@ Hardware Input #1 > Select Input Device > WDM: Microphone (Scarlett 2i4 USB):
 * Camera: OBS-Camera
 
 
+## OBS Tips
+### How to convert `.mkv` to `.mp4`?
+Usually OBS recording is in `.mkv` format. It can't be imported to Davinci Resolve 17 to edit.
+
+You can easily convert the file to `.mp4` format by follow these steps in OBS:
+
+From OBS > `File` > `Remux Recordings`
+
+![OBS Remux Menu](/images/2020/obs-remux.PNG)
+
+Select the `.mkv` file you want to convert, name the target file and click `Remux` to convert it to `.mp4` file.
+
+![OBS Remux File](/images/2020/obs0remux-file.PNG)
+
+
