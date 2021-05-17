@@ -113,6 +113,6 @@ From OBS > `File` > `Remux Recordings`
 
 Select the `.mkv` file you want to convert, name the target file and click `Remux` to convert it to `.mp4` file.
 
-![OBS Remux File](/images/2020/obs0remux-file.PNG)
+![OBS Remux File](/images/2020/obs-remux-file.PNG)
 
 
