@@ -15,7 +15,17 @@ draft: false
 ```sqlite
 SELECT DISTINCT report_date FROM daily;
 ```
+### Like and Escape
+* `%`: zero or more characters
+* `_`: one character
 
+```sqlite
+-- Labels end with 30126
+SELECT Label from RL WHERE Label LIKE '%30126';
+
+-- Contains 10%
+SELECT Label from RL WHERE Label LIKE '%10\%%' ESCAPE '\';
+```
 ### How many records?
 ```sqlite
 SELECT count(*) from vanall WHERE Shipped_Date="2021-01-12";
