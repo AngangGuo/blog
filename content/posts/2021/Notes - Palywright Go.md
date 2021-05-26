@@ -4,6 +4,17 @@ date: 2021-01-25T17:09:37-08:00
 draft: true
 ---
 
+
+## Selector
+
+See [Element Selectors](https://playwright.dev/docs/selectors/)
+
+### Number Only
+Class identifiers are allowed to start with a number, but ID identifiers are not.
+You can't use an ID selector starting as a number: `'#123' is not a valid selector.`
+
+You can use escape the number as `` `#\31 23` `` or `` `id=123` ``
+
 ## Common Commands
 ```go
 // launch with options
@@ -58,8 +69,50 @@ page.Type(loginInputUserNameID, iq.userName)
 page.EvalOnSelectorAll("ul.todo-list > li", "el => el.length")
 ```
 
+## HTML Select Element
+### Show value of a Select element
+```go
+value,err:=page.EvalOnSelector(selectElementID, "e => e.value")
+```
+
+### Set an option value
+You can set the select options according to Label, Value, Index or Elements
+
+```go
+// by label
+v,err:=page.SelectOption("#ctl32_ctl04_ctl03_ddValue",playwright.SelectOptionValues{Labels: playwright.StringSlice("Canada")})
+
+// by index (int); 0 based?
+v,err=page.SelectOption("#ctl32_ctl04_ctl15_ddValue",playwright.SelectOptionValues{Indexes: playwright.IntSlice(1)})
+
+// by value (string)
+v,err=page.SelectOption("#ctl32_ctl04_ctl15_ddValue",playwright.SelectOptionValues{Values: playwright.StringSlice("2")})
+```
+
+Note: You can't select the text with `&nbsp;` space in the label for now. 
+See [`&nbsp;` Space Problem](https://github.com/mxschmitt/playwright-go/issues/131)
+
+## iFrame
+See [Example](https://github.com/mxschmitt/playwright-go/issues/97)
+
+```go
+    frameElement, err := page.QuerySelector("#myframe")
+	if err != nil {
+		log.Fatalf("could not find #myframe iframe: %v\n", err)
+	}
+	
+	frame, err := frameElement.ContentFrame()
+	if err != nil {
+		log.Fatalf("could not get content frame: %v\n", err)
+	}
+	
+	fmt.Println(frame.URL())
+	fmt.Println(frame.InnerHTML("body"))
+```
+
+
 ### Headless Mode
-Browser will be lunched in headless mode by default. 
+Browser will be lunched in headless mode by default.
 
 To run in non-headless mode:
 ```go
@@ -67,8 +120,6 @@ browser, err := pw.Chromium.Launch(playwright.BrowserTypeLaunchOptions{
   Headless: playwright.Bool(false),
 })
 ```
-
-
 
 ## HTTP authentication example?
 Use `browser.NewContext()` for HTTP authentication
