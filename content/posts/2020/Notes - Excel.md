@@ -19,10 +19,14 @@ Use any of the following formula to remove the #DIV/0! from Spreadsheet:
 ## Excel Notes
 
 ### How to copy and paste just visible cells only?
-##### Sort/Filter area
+#### Keyboard shortcut: 
+Select the range, press `ALT + ;` will select only the visible cells.
+See [here](https://trumpexcel.com/select-visible-cells/)
+
+#### Sort/Filter area
 `Sort & Filter` > `Filter`: You can copy/paste the visible cells of the sorting area. 
 
-##### Select visible cells
+#### Select visible cells
 * Select the entire range you need to copy.
 * Press F5, this opens Go to dialog. Click on Special button.
 * Now select visible cells option.

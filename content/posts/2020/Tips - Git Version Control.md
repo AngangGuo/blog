@@ -80,9 +80,8 @@ $ git push origin :refs/tags/0.2
 remote: warning: Deleting a non-existent ref.
 To https://github.com/AngangGuo/donation.git
  - [deleted]         0.2
-
-
 ```
+
 
 
 ### How to rewrite the most recent commit message?
@@ -105,6 +104,16 @@ See [here](https://docs.github.com/en/github/committing-changes-to-your-project/
 
 ## Github
 
+### How to remove the last commit from Github?
+```
+// Reset local repository to previous commit
+// If you don't want to keep the file changes, use --hard instead of --soft
+// If you want to keep the changes to current files
+git reset --soft HEAD^ // use HEAD~2 for last 2 commit
+
+// Push the changes to Github by force
+git push origin --force
+```
 ### How to upload large files into Github?
 Note: GitHub blocks pushes that exceed 100 MB; Warning for files larger than 50 MB
 
