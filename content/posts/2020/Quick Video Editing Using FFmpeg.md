@@ -133,6 +133,17 @@ del mylist.txt
 ```
 See [Concatenate][6]
 
+### How to extract audio from video file?
+```
+// simplest
+ffmpeg -i video.mp4 audio.mp3
+
+// custom bitrate
+ffmpeg -i video.mp4 -b:a 192k -vn audio.mp3
+```
+
+Note: You can also use [Audacity](https://www.audacityteam.org/) to convert video file to mp3
+
 ### How to convert audio format?
 ```
 ffmpeg -i "20191201.mp3" -c:a aac a.m4a
