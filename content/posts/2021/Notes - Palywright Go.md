@@ -64,6 +64,7 @@ page.Click("text=download")
 
 // type
 page.Type(loginInputUserNameID, iq.userName)
+page.Type("#ctl32_ctl04_ctl11_txtValue",today, playwright.PageTypeOptions{Delay: playwright.Float(100.0)})
 
 // Eval
 page.EvalOnSelectorAll("ul.todo-list > li", "el => el.length")
@@ -110,6 +111,28 @@ See [Example](https://github.com/mxschmitt/playwright-go/issues/97)
 	fmt.Println(frame.InnerHTML("body"))
 ```
 
+### Download Files
+```go
+    // 1. Browser instance
+    browser, err := pw.Chromium.Launch(playwright.BrowserTypeLaunchOptions{
+		Headless: playwright.Bool(false),
+		DownloadsPath: playwright.String(`C:\Andrew\prj\rl\learn`),
+	})
+	
+	// 2. Browser context
+	c, err := browser.NewContext(playwright.BrowserNewContextOptions{
+		HttpCredentials: &playwright.BrowserNewContextOptionsHttpCredentials{
+			Username: playwright.String(`CORPORATE\my-win-id`),
+			Password: playwright.String("my-password"),
+		},
+		AcceptDownloads: playwright.Bool(true),
+	})
+	
+	// 3. Download
+	download,err:=page.ExpectDownload(func() error {
+		return page.Click("#ctl32_ctl05_ctl04_ctl00_Menu > div:nth-child(6) > a")
+	})
+```
 
 ### Headless Mode
 Browser will be lunched in headless mode by default.
