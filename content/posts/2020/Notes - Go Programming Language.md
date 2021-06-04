@@ -66,6 +66,17 @@ $ env GOOS=windows GOARCH=amd64 go build
     }
 ```
 
+### How to set Comma separator?
+```go
+    r := csv.NewReader(strings.NewReader(my-csv-string))
+	r.Comma = '#'
+	r.Comment = '*'
+```
+Note: Comma and Comment must be a valid rune, not string. For example, if using `r.Comma = "#"` will cause this error:
+```go
+cannot use "#" (type untyped string) as type rune in assignment
+```
+
 ## Context
 
 ### WithCancel
