@@ -220,6 +220,16 @@ Remove the old version and update both Delve and Go to their latest version will
 
 ## Interface
 ### Interface Type assertion
+#### How to convert interface to string?
+String Example:
+```go
+// stats is interface
+stats,_ := page.EvalOnSelector("//div[text()='Employee Name']/../../..",f)
+// convert interface to string
+r:=csv.NewReader(strings.NewReader(stats.(string)))
+```
+
+#### How to convert interface to float64?
 ```
 var data interface{} // nil
 data = float64(3.4)
@@ -231,7 +241,7 @@ if !ok {
 }    
 ```
 
-### Type assertion or Parse float64?
+#### Type assertion or Parse float64?
 ```go
 var i interface{}
 i = "24.08"
