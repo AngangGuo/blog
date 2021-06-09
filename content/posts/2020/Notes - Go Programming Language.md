@@ -66,6 +66,17 @@ $ env GOOS=windows GOARCH=amd64 go build
     }
 ```
 
+### How to set Comma separator?
+```go
+    r := csv.NewReader(strings.NewReader(my-csv-string))
+	r.Comma = '#'
+	r.Comment = '*'
+```
+Note: Comma and Comment must be a valid rune, not string. For example, if using `r.Comma = "#"` will cause this error:
+```go
+cannot use "#" (type untyped string) as type rune in assignment
+```
+
 ## Context
 
 ### WithCancel
@@ -209,6 +220,16 @@ Remove the old version and update both Delve and Go to their latest version will
 
 ## Interface
 ### Interface Type assertion
+#### How to convert interface to string?
+String Example:
+```go
+// stats is interface
+stats,_ := page.EvalOnSelector("//div[text()='Employee Name']/../../..",f)
+// convert interface to string
+r:=csv.NewReader(strings.NewReader(stats.(string)))
+```
+
+#### How to convert interface to float64?
 ```
 var data interface{} // nil
 data = float64(3.4)
@@ -220,7 +241,7 @@ if !ok {
 }    
 ```
 
-### Type assertion or Parse float64?
+#### Type assertion or Parse float64?
 ```go
 var i interface{}
 i = "24.08"

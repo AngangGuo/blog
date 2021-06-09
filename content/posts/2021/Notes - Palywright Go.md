@@ -1,7 +1,13 @@
 ---
 title: "Notes - Palywright-Go"
 date: 2021-01-25T17:09:37-08:00
-draft: true
+categories:
+  - Tech
+  - Programming 
+tags:
+  - Go
+  - Playwrite
+draft: false
 ---
 
 
@@ -14,6 +20,17 @@ Class identifiers are allowed to start with a number, but ID identifiers are not
 You can't use an ID selector starting as a number: `'#123' is not a valid selector.`
 
 You can use escape the number as `` `#\31 23` `` or `` `id=123` ``
+
+### XPath
+
+```javascript
+// div text is 'Employee Name'
+page.WaitForSelector("//div[text()='Employee Name']")
+
+// parent of the div element
+page.WaitForSelector("//div[text()='Employee Name']/..")
+
+```
 
 ## Common Commands
 ```go
@@ -64,12 +81,20 @@ page.Click("text=download")
 
 // type
 page.Type(loginInputUserNameID, iq.userName)
+// type with optional delay
+page.Type("#ctl32_ctl04_ctl11_txtValue",today, playwright.PageTypeOptions{Delay: playwright.Float(100.0)})
 
 // Eval
 page.EvalOnSelectorAll("ul.todo-list > li", "el => el.length")
 ```
 
 ## HTML Select Element
+### Wait for selector
+```go
+// prefer to use WaitForSelector rather than time.Sleep
+page.WaitForSelector("//div[text()='Employee Name']")
+```
+
 ### Show value of a Select element
 ```go
 value,err:=page.EvalOnSelector(selectElementID, "e => e.value")
@@ -92,7 +117,7 @@ v,err=page.SelectOption("#ctl32_ctl04_ctl15_ddValue",playwright.SelectOptionValu
 Note: You can't select the text with `&nbsp;` space in the label for now. 
 See [`&nbsp;` Space Problem](https://github.com/mxschmitt/playwright-go/issues/131)
 
-## iFrame
+### iFrame
 See [Example](https://github.com/mxschmitt/playwright-go/issues/97)
 
 ```go
@@ -110,6 +135,55 @@ See [Example](https://github.com/mxschmitt/playwright-go/issues/97)
 	fmt.Println(frame.InnerHTML("body"))
 ```
 
+### Download Files
+```go
+    // 1. Browser instance
+    browser, err := pw.Chromium.Launch(playwright.BrowserTypeLaunchOptions{
+		Headless: playwright.Bool(false),
+		DownloadsPath: playwright.String(`C:\Andrew\prj\rl\learn`),
+	})
+	
+	// 2. Browser context
+	c, err := browser.NewContext(playwright.BrowserNewContextOptions{
+		HttpCredentials: &playwright.BrowserNewContextOptionsHttpCredentials{
+			Username: playwright.String(`CORPORATE\my-win-id`),
+			Password: playwright.String("my-password"),
+		},
+		AcceptDownloads: playwright.Bool(true),
+	})
+	
+	// 3. Download
+	download,err:=page.ExpectDownload(func() error {
+		return page.Click("#ctl32_ctl05_ctl04_ctl00_Menu > div:nth-child(6) > a")
+	})
+```
+
+### Run JavaScript function on selector
+```go
+// 1. simple example
+page.EvalOnSelector("//div[text()='Employee Name']/../../..",`(el) => el.nodeName`) // TBODY
+
+// 2. complex function example
+// run function on the selector
+f:=`
+(el) => {
+	let result = "", name = "", client = "", liq = "";
+	let sep = "$" // can't use comma, because the comma is used in name
+	
+	if (el.nodeName==="TBODY"){
+		for (let j=1;j<el.rows.length;j++){
+		    name = el.rows[j].cells[1].textContent
+		    client = el.rows[j].cells[6].textContent
+		    liq = el.rows[j].cells[7].textContent
+			result = result + name + sep + client + sep + liq + "\n"
+		}
+	}
+
+	return result
+}
+`
+csvStats, _ := page.EvalOnSelector("//div[text()='Employee Name']/../../..", f)
+```
 
 ### Headless Mode
 Browser will be lunched in headless mode by default.
