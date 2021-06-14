@@ -844,9 +844,9 @@ uglyURLs = false
     #       /images/meme.jpg
     #       (~/blog/static/images/meme.jpg)
 
-    enableImageHost = true
+    enableImageHost = false
 
-    imageHostURL = ""
+    imageHostURL = "/"
     # Use the following url when deploy to gitlab
     # imageHostURL = "https://angang.gitlab.io/blog/"
 
