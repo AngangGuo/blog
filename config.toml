@@ -846,7 +846,7 @@ uglyURLs = false
 
     enableImageHost = true
 
-    imageHostURL = "https://blog.angang.ca/"
+    imageHostURL = ""
     # Use the following url when deploy to gitlab
     # imageHostURL = "https://angang.gitlab.io/blog/"
 
