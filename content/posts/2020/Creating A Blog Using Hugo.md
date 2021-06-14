@@ -284,6 +284,15 @@ baseURL = ""
 # relativeURLs = false
 relativeURLs = true
 ```
+The above settings can solve the CSS load problem but will cause `same-origin` error. 
+We need to change the image host settings to match the above:
+```toml
+# enableImageHost = true
+enableImageHost = false
+
+# imageHostURL = "https://blog.angang.ca/"
+imageHostURL = "/"
+```
 
 See also [here](https://discourse.gohugo.io/t/gohugo-without-baseurl-or-with-relative-url-only/2779)
 and [here](https://discourse.gohugo.io/t/mime-type-text-plain-is-not-a-supported-stylesheet-mime-type-and-strict-mime-checking-is-enabled/16435/11)
