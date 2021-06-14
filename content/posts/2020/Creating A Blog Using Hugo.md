@@ -203,7 +203,7 @@ Here is the example on how to use anchor to link within a page.
 [Link to the anchor within the page]({{</* ref "#my-anchor" */>}})
 ```
 
-### How can I add Youtube video to my page?
+### How can I add YouTube video to my page?
 By using Hugo `Shortcode`, Copy the YouTube video ID that follows v= in the video’s URL and pass it to the youtube shortcode:
 ```
 {{</* youtube qtIqKaDlqXo */>}}
@@ -213,15 +213,17 @@ By using Hugo `Shortcode`, Copy the YouTube video ID that follows v= in the vide
 ### How to add image in a page?
 Copy the images into `blog/static/images` folder or its sub-folder. Use the following format to add the image in the blog:
 ```markdown
-![T51A Walkie Talkie](/images/2020/T51A-Walkie-Talkie.PNG)
+![CSS load error](/images/2020/css-load-error.PNG)
 ```
+The Absolute URL or Relative URL settings may cause image loading problem. 
+See [here]({{< ref "#css-load-error" >}}) for more details.
 
 #### How to add a link with space in it?
 It's better to use dash or underscore to separate the words in file name or link instead of spaces.
 
 If you do have space in the link or file name, you can use url encode the link like this:
 ```
-![CSS load error](/images/2020/css-load-error.PNG)
+![T51A Walkie Talkie](/images/2020/T51A%20Walkie%20Talkie.PNG)
 ```
 
 ## Troubleshooting
@@ -265,7 +267,7 @@ Using `hugo` to generate the static files into `public` folder.
 It shows the following errors when serving it from `localhost` by using Goland browser.
 
 ```text
-Refused to apply style from 'http://localhost:63342/css/meme.min...css' 
+Refused to apply style from 'http://localhost/css/meme.min...css' 
 because its MIMI type ('text/html') is not a supported stylesheet MIMI type, 
 and strict MIMI checking is enabled.
 ...
@@ -273,28 +275,34 @@ and strict MIMI checking is enabled.
 
 ![CSS load error](/images/2020/css-load-error.PNG)
 
-Using relative URL by changing the settings of `baseURL` and `relativeURLs` will solve the problem.
+If you want to have your site to be installed in different places or using different domain names,
+you need to use relative URL instead of the specific URL(https://blog.angang.ca/).
 
+Change all these settings together when using relative URL.
+
+`config.toml` for Absolute URL
 ```toml
-# config.toml
+# Site Settings
+baseURL = "https://blog.angang.ca/"
+relativeURLs = false
 
-# baseURL = "https://blog.angang.ca/"
-baseURL = ""
-
-# relativeURLs = false
-relativeURLs = true
+# Image Hosting
+enableImageHost = true
+imageHostURL = "https://blog.angang.ca/"
 ```
-The above settings can solve the CSS load problem but will cause `same-origin` error. 
-We need to change the image host settings to match the above:
-```toml
-# enableImageHost = true
-enableImageHost = false
 
-# imageHostURL = "https://blog.angang.ca/"
+`config.toml` for Relative URL
+```toml
+# Site Settings
+baseURL = ""
+relativeURLs = true
+
+# Image Hosting
+enableImageHost = false
 imageHostURL = "/"
 ```
 
-See also [here](https://discourse.gohugo.io/t/gohugo-without-baseurl-or-with-relative-url-only/2779)
+For more details see also [here](https://discourse.gohugo.io/t/gohugo-without-baseurl-or-with-relative-url-only/2779)
 and [here](https://discourse.gohugo.io/t/mime-type-text-plain-is-not-a-supported-stylesheet-mime-type-and-strict-mime-checking-is-enabled/16435/11)
-for more details.
+
 
