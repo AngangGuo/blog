@@ -1,14 +1,35 @@
 ---
 title: "Notes   SvelteJS"
 date: 2021-03-10T10:31:48-08:00
-draft: true
+categories:
+- Tech
+- Web
+tags:
+- Svelte
+- Framework
+draft: false
 ---
 
 SvelteJS notes
 
 ## Component
-### Event directive
+### Prop
+A prop value can be a literal value of any type (Boolean, number, string, object, array,
+or function) or the value of a JavaScript expression. 
+When the value is a string, it is enclosed in single or double quotes. 
+Otherwise the value is enclosed in curly braces.
 ```javascript
+<Person
+    fullName="Jane Programmer"
+    developer={true}
+    ball={{name: 'baseball', grams: 149, new: false}}
+    favoriteColors={['yellow', 'orange']}
+    age={calculateAge(person)}
+    onBirthday={celebrateFunc}
+/>
+```
+### Event directive
+```
 on:event-name={handler}
 ```
 
@@ -20,13 +41,13 @@ You can compose components by using `slot`.
 
 ### Fall back content in slot
 Child.svelte
-```sqlite
+```javascript
 <div>
     <slot>default text</slot>
 </div>    
 ```
 App.svelte
-```sqlite
+```javascript
 <script>
     import Child from './Child.svelte';
 </script>
@@ -40,7 +61,7 @@ App.svelte
 
 ### How to get a slot list passed by the parent from a child component?
 The keys of the `$$slots` object are the names of the slots passed into the child component by the parent.
-```sqlite
+```javascript
 <!-- Child.svelte -->
 <div>
     <slot name="title"></slot>
@@ -49,7 +70,7 @@ The keys of the `$$slots` object are the names of the slots passed into the chil
 </div>
 ```
 
-```sqlite
+```javascript
 <!-- App.svelte -->
 <script>
 	import Child from './Child.svelte';
@@ -60,7 +81,7 @@ The keys of the `$$slots` object are the names of the slots passed into the chil
 </Child>
 ```
 
-```sqlite
+```
 <!-- Output -->
 My Title
 
@@ -71,7 +92,7 @@ true - undefined
 By using slot props you can pass data from component to parent.
 
 `Child.svelte`
-```sqlite
+```javascript
 <script>
 	let myVal = 4;
 </script>
@@ -82,7 +103,7 @@ By using slot props you can pass data from component to parent.
 ```
 
 `App.svelte`
-```sqlite
+```javascript
 <script>
 	import Child from './Child.svelte';
 	let parentVal = 8;
@@ -141,6 +162,10 @@ the component will forward the event, meaning that a consumer of the component c
 ## Actions
 Actions are essentially functions that are executed when an element is mounted.
 What's inside the function is entirely up to you. It's similar to React Hooks.
+
+## Tips
+* A component can only have one instance-level `<script>` element
+* All Javascript statements must go inside the `<script` block
 
 
 ## FAQ
