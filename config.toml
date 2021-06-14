@@ -1,6 +1,7 @@
 ##########################################
 # Site Settings
-baseURL = "https://blog.angang.ca/"
+# baseURL = "https://blog.angang.ca/"
+baseURL = ""
 title = "G+A+A"
 languageCode = "en"
 hasCJKLanguage = false
@@ -42,7 +43,7 @@ paginate = 15
 
 # URL related
 disablePathToLower = false
-relativeURLs = false
+relativeURLs = true
 uglyURLs = false
 
 # URL structure
