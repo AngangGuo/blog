@@ -210,6 +210,21 @@ By using Hugo `Shortcode`, Copy the YouTube video ID that follows v= in the vide
 ```
 {{< youtube qtIqKaDlqXo >}}
 
+### How to add image in a page?
+Copy the images into `blog/static/images` folder or its sub-folder. Use the following format to add the image in the blog:
+```markdown
+![T51A Walkie Talkie](/images/2020/T51A-Walkie-Talkie.PNG)
+```
+
+#### How to add a link with space in it?
+It's better to use dash or underscore to separate the words in file name or link instead of spaces.
+
+If you do have space in the link or file name, you can use url encode the link like this:
+```
+![CSS load error](/images/2020/css-load-error.PNG)
+```
+
+## Troubleshooting
 ### Why my new page doesn't show out?
 I create a new post page using the following command but the page doesn't show out.
 ```
@@ -243,12 +258,34 @@ baseURL = "https://angang.gitlab.io/"
 #baseURL = "https://angang.gitlab.io/blog/"
 ```
 
-### Markdown problems
+The better solution can be using relative URLs as shown [below]({{< ref "#css-load-error" >}})
 
-#### How to add a link with space in it?
-It's better to use dash or underscore to separate the words in file name or link instead of spaces.
+### Why the generated static site can't load CSS/JS files ? {#css-load-error}
+Using `hugo` to generate the static files into `public` folder. 
+It shows the following errors when serving it from `localhost` by using Goland browser.
 
-If you do have space in the link or file name, you can use url encode the link like this:
+```text
+Refused to apply style from 'http://localhost:63342/css/meme.min...css' 
+because its MIMI type ('text/html') is not a supported stylesheet MIMI type, 
+and strict MIMI checking is enabled.
+...
 ```
-![T51A Walkie Talkie](/images/2020/T51A%20Walkie%20Talkie.PNG)
+
+![CSS load error](/images/2020/css-load-error.PNG)
+
+Using relative URL by changing the settings of `baseURL` and `relativeURLs` will solve the problem.
+
+```toml
+# config.toml
+
+# baseURL = "https://blog.angang.ca/"
+baseURL = ""
+
+# relativeURLs = false
+relativeURLs = true
 ```
+
+See also [here](https://discourse.gohugo.io/t/gohugo-without-baseurl-or-with-relative-url-only/2779)
+and [here](https://discourse.gohugo.io/t/mime-type-text-plain-is-not-a-supported-stylesheet-mime-type-and-strict-mime-checking-is-enabled/16435/11)
+for more details.
+
