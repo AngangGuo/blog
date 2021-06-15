@@ -10,7 +10,7 @@ tags:
 draft: false
 ---
 
-SvelteJS notes
+# SvelteJS notes
 
 ## Component
 ### Prop
@@ -33,6 +33,20 @@ Otherwise the value is enclosed in curly braces.
 on:event-name={handler}
 ```
 
+### CSS specificity
+See [here](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)
+
+The following list of selector types increases by specificity:
+* Type selectors (e.g., h1) and pseudo-elements (e.g., ::before).
+* Class selectors (e.g., .example), attributes selectors (e.g., [type="radio"]) and pseudo-classes (e.g., :hover).
+* ID selectors (e.g., #example).
+* Inline styles added to an element (e.g., style="font-weight: bold;") always overwrite any styles in external stylesheets, 
+and thus can be thought of as having the highest specificity.
+
+* CSS properties specified using the `:global` modifier override those for the same CSS selector in `public/global.css`.
+* The `:global` modifier can also be used to override styles in descendant components.
+This relies on creating CSS rules with selectors that have higher specificity than rules in descendant components.
+  
 ## Context
 See [How and When to Use Component Context in Svelte](https://imfeld.dev/writing/svelte_context)
 
