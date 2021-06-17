@@ -181,6 +181,34 @@ What's inside the function is entirely up to you. It's similar to React Hooks.
 * A component can only have one instance-level `<script>` element
 * All Javascript statements must go inside the `<script` block
 
+## Pitfalls
+### The value of Boolean props without a value will be true!
+* When the prop is omitted, its value defaults to false. 
+* When the prop name is specified without a value, its value is inferred to be true.
+```javascript
+// BoolProp.svelte
+<script>
+    export let marked = false
+</script>
+
+<p>	marked is {marked} </p>
+```
+```javascript
+// App.svelte
+<script>
+	import BoolProp from './BoolProp.svelte'
+	let marked=false
+</script>
+
+<BoolProp />
+<BoolProp marked={marked} />
+<BoolProp marked />
+
+// Output
+marked is false
+marked is false
+marked is true // without a value will be true even if prop is false in App.svelte
+```
 
 ## FAQ
 ### How's the `each` block works internally?
