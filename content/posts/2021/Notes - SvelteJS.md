@@ -14,10 +14,11 @@ draft: false
 
 ## Component
 ### Prop
-A prop value can be a literal value of any type (Boolean, number, string, object, array,
-or function) or the value of a JavaScript expression. 
-When the value is a string, it is enclosed in single or double quotes. 
-Otherwise the value is enclosed in curly braces.
+* A prop value can be a literal value of any type (Boolean, number, string, object, array, or function) or the value of a JavaScript expression. 
+* When the value is a string, it is enclosed in single or double quotes. 
+* Prop values that are non-string literals or JavaScript expressions must be surrounded by curly braces instead of quotes. 
+  These can evaluate to any kind of JavaScript value, including objects, arrays, and functions.
+* The braces around a prop value can optionally be surrounded with quotes  
 ```javascript
 <Person
     fullName="Jane Programmer"
@@ -177,9 +178,11 @@ the component will forward the event, meaning that a consumer of the component c
 Actions are essentially functions that are executed when an element is mounted.
 What's inside the function is entirely up to you. It's similar to React Hooks.
 
-## Tips
-* A component can only have one instance-level `<script>` element
-* All Javascript statements must go inside the `<script` block
+## Component State
+* All Javascript statements must go inside the `<script>` block
+* A component can have at most one instance-level `<script>` element and one module-level `<script context="module">`
+* The module context variables and functions can be shared by all instances, but instance context variables and functions are not accessible in the module context
+* Module context variables are not reactive.
 
 
 ## FAQ
