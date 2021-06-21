@@ -210,6 +210,12 @@ marked is false
 marked is true // without a value will be true even if prop is false in App.svelte
 ```
 
+### Assign value to arrays
+https://svelte.dev/tutorial/updating-arrays-and-objects
+
+### Keyed each block
+https://svelte.dev/tutorial/keyed-each-blocks
+
 ## FAQ
 ### How's the `each` block works internally?
 In the [keyed each block](https://svelte.dev/tutorial/keyed-each-blocks) example, 
