@@ -117,16 +117,22 @@ git push origin --force
 ### How to upload large files into Github?
 Note: GitHub blocks pushes that exceed 100 MB; Warning for files larger than 50 MB
 
-* Download and install [Git Large File Storage](https://git-lfs.github.com/)
+* Download and install Git Large File Storage from https://git-lfs.github.com/
 * Verify the installation from Git Bash: `git lfs install`
 * Change your current working directory to an existing repository
 * Associate the file type in your repository with Git LFS: `git lfs track "*.m4a"`
-* Add the file and push to Github: 
-  ```
-  git add audio.m4a
-  git commit -m "add my audio file"
-  git push
-  ```
+* Add the `.gitattributes` file along with other files which need to be committed and push the changes.  
+* push to Github: 
+```
+git add .gitattributes
+git add audio.m4a
+git commit -m "add my audio file"
+git push origin main
+```
+
+Note: 
+* Netlify support Github large files. See https://docs.netlify.com/large-media/overview/
+* Maybe you can use Audacity or other software to convert the audio files to lower 
 
 ### How to clear out the history of a Git/Github repository
 See: [repo-reset](https://gist.github.com/heiswayi/350e2afda8cece810c0f6116dadbe651) and 
