@@ -17,6 +17,12 @@ const renderedText = htmlElement.innerText
 htmlElement.innerText = string
 ```
 
+## Using XPath in JavaScript
+See [Introduction to using XPath in JavaScript](https://developer.mozilla.org/en-US/docs/Web/XPath/Introduction_to_using_XPath_in_JavaScript)
+```javascript
+var xpathResult = document.evaluate( xpathExpression, contextNode, namespaceResolver, resultType, result );
+```
+
 ## Async / Await
 
 ## Event
