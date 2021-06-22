@@ -277,6 +277,18 @@ onDestroy
 <input bind:this={nameInput} bind:value={name}>
 ```
 
+## Deploy
+### To Netlify
+* New site from Git
+* Select and authorize your Svelte project repository
+* Basic build settings
+```text
+Branch to deploy: main
+Build command: npm run build (or yarn build to match your package.json seetings)
+Publish directory: public/
+```
+* click Deploy site
+
 ## Pitfalls
 ### The value of Boolean props without a value will be true!
 * When the prop is omitted, its value defaults to false. 
