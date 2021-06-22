@@ -242,6 +242,41 @@ What's inside the function is entirely up to you. It's similar to React Hooks.
 * The module context variables and functions can be shared by all instances, but instance context variables and functions are not accessible in the module context
 * Module context variables are not reactive.
 
+## Lifecycle Functions
+* `onMount` function schedules a callback to run as soon as the component has been mounted to the DOM.
+* `beforeUpdate` function schedules a callback to run immediately before the component is updated after any state change.
+* `afterUpdate` function schedules a callback to run immediately after the component has been updated.
+* `onDestroy` function schedules a callback to run immediately before the component is unmounted.
+
+### Order
+```
+// The first time a component is loaded
+beforeUpdate
+onMount
+afterUpdate
+
+// whenever the component state changed
+beforeUpdate
+afterUpdate
+
+// after unloaded the component
+onDestroy
+```
+
+### onMount Example
+
+```javascript
+<script>
+  import {onMount} from 'svelte';
+  let name = '';
+  let nameInput;
+  onMount(() => nameInput.focus());
+</script>
+
+// The bind:this directive sets a variable to a reference to a DOM element.
+<input bind:this={nameInput} bind:value={name}>
+```
+
 ## Pitfalls
 ### The value of Boolean props without a value will be true!
 * When the prop is omitted, its value defaults to false. 
