@@ -13,6 +13,16 @@ draft: false
 # SvelteJS notes
 
 ## Component
+
+### Component communication options
+There are six ways to share data between Svelte components.
+1 `Props` pass data from parent components to child components, and optionally back to the parent by using `bind`.
+2 `Slots` pass content from parent components to child components so children can decide whether and where to render it.
+3 `Events` are used to notify a parent component that something has happened in a child component, and they optionally include data in the event object that is passed to the parent.
+4 `Contexts` allow ancestor components to make data available to descendant components without explicitly passing it to all the layers in between.
+5 `Module context` stores data in component modules and makes it available to all instances of the component.
+6 `Stores` store data outside components and can make it available to any of them.
+
 ### Prop
 * A prop value can be a literal value of any type (Boolean, number, string, object, array, or function) or the value of a JavaScript expression. 
 * When the value is a string, it is enclosed in single or double quotes. 
@@ -172,6 +182,54 @@ the component will forward the event, meaning that a consumer of the component c
 ```javascript
 // an on:message event directive without a value means 'forward all message events'.
 <SomeComponent on:whatever/>
+```
+
+## Fetch & Await block
+See: 
+[Using Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) and
+[Using Fetch to Consume APIs with Svelte](https://sveltesociety.dev/recipes/component-recipes/using-fetch-to-consume-apis/)
+
+Note:
+
+`fetch` returns a promise containing the response (a Response object). 
+This is just an HTTP response, not the actual JSON. 
+
+To extract the JSON body content from the response, we use the json() method (defined on the Body mixin, 
+which is implemented by both the Request and Response objects.)
+
+The Body mixin defines the following methods to extract a body (implemented by both Request and Response). 
+These all return a promise that is eventually resolved with the actual content.
+* arrayBuffer()
+* blob()
+* json()
+* text()
+* formData()
+
+Example: 
+```javascript
+<script>
+let promise
+const handleClick = () => {
+  promise = fetch("https://mywebsite.com/v1/api/stats.json").then((response) => {
+    if (!response.ok){
+      throw new Error('Network response was not ok')
+    }
+    return response.json()
+    })
+}
+</script>
+
+<button on:click="{handleClick}">
+  Click to load data
+</button>
+
+{#await promise}
+  <p>waiting for the promise to resolve...</p>
+{:then data}
+  <p>the value is {JSON.stringify(data, null, 2}</p>
+{:catch error)
+  <p style="color: red">something went wrong: {error.message}</p>
+{/await}  
 ```
 
 ## Actions
