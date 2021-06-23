@@ -57,7 +57,48 @@ and thus can be thought of as having the highest specificity.
 * CSS properties specified using the `:global` modifier override those for the same CSS selector in `public/global.css`.
 * The `:global` modifier can also be used to override styles in descendant components.
 This relies on creating CSS rules with selectors that have higher specificity than rules in descendant components.
-  
+
+## Import
+### Import Other Component
+* Child.svelte
+```javascript
+<script>
+	export let answer;
+</script>
+
+<p>The answer is {answer}</p>
+```
+* App.svelte
+```javascript
+<script>
+	import Child from './Child.svelte';
+</script>
+
+<Child answer={42}/>
+```
+
+### Import JavaScript Files
+* util.js
+```javascript
+export const a = {"a":1,"b":2}
+```
+
+* App.svelte
+```javascript
+<script>
+	import {a} from './file.js'
+</script>
+<pre>
+  {JSON.stringify(a, null, 2)}
+</pre>
+
+// output: 
+{
+  "a": 1,
+  "b": 2
+}
+```
+
 ## Context
 See [How and When to Use Component Context in Svelte](https://imfeld.dev/writing/svelte_context)
 
@@ -278,16 +319,47 @@ onDestroy
 ```
 
 ## Deploy
-### To Netlify
+### Svelte APP To Netlify
 * New site from Git
 * Select and authorize your Svelte project repository
 * Basic build settings
 ```text
 Branch to deploy: main
-Build command: npm run build (or yarn build to match your package.json seetings)
+// Svelte in Action: npm install; npm run build
+Build command: npm run build (or yarn build to match your package.json settings)
 Publish directory: public/
 ```
 * click Deploy site
+
+### SvelteKit app to Netlify
+* For simple website, you can set build command and publish directory the same as the above; 
+  For complex website, in the root of your project, create a `netlify.toml` file:
+
+```toml
+[build]
+  command = "npm run build"
+  publish = "build/"
+  functions = "functions/"
+
+...(add even more settings)  
+```
+
+* Install `adapter-netlify`
+```
+npm i -D @sveltejs/adapter-netlify@next
+```
+* Edit `~/svelte.config.cjs`, change `adapter-node` to `adapter-netlify`
+```
+-const node = require('@sveltejs/adapter-node')
++const netlify = require('@sveltejs/adapter-netlify')
+
+-    adapter: node(),
++    adapter: netlify(),
+```
+
+* Add the new repo to Netlify (e.g. the "New site from Git" button)
+* Accept the default options
+
 
 ## Pitfalls
 ### The value of Boolean props without a value will be true!
