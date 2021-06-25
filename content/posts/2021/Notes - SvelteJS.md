@@ -44,6 +44,7 @@ There are six ways to share data between Svelte components.
 on:event-name={handler}
 ```
 
+## Style
 ### CSS specificity
 See [here](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)
 
@@ -57,6 +58,36 @@ and thus can be thought of as having the highest specificity.
 * CSS properties specified using the `:global` modifier override those for the same CSS selector in `public/global.css`.
 * The `:global` modifier can also be used to override styles in descendant components.
 This relies on creating CSS rules with selectors that have higher specificity than rules in descendant components.
+
+### Scoped Style
+In Svelte, CSS inside a component's <style> block will be scoped only to that component.
+This works by adding a class to selected elements, which is based on a hash of the component styles.
+
+```css
+// greet.svelte
+<h1>Hello World!</h1>
+
+// style in component
+<style>
+  h1 {
+    color: red;
+  }
+</style>
+```
+
+When compiling the app, Svelte changes our h1 styles definition to h1.svelte-1tky8bj,
+and then modifies every <h1> element in our component to <h1 class="svelte-1tky8bj">,
+so that it picks up the styles as required.
+
+```css
+// html page
+<h1 class="svelte-1tky8bj">Hello World!</h1>
+
+// builder.css
+h1.svelte-1tky8bj {
+    color: red;
+  }
+```
 
 ## Import
 ### Import Other Component
@@ -97,6 +128,17 @@ export const a = {"a":1,"b":2}
   "a": 1,
   "b": 2
 }
+```
+
+### Global Style
+If you want to apply styles to a selector globally, use the :global(...) modifier:
+```css
+// style in component
+<style>
+  :global(h1) {
+    color: red;
+  }
+</style>
 ```
 
 ## Context
