@@ -44,6 +44,7 @@ There are six ways to share data between Svelte components.
 on:event-name={handler}
 ```
 
+## Style
 ### CSS specificity
 See [here](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)
 
@@ -57,7 +58,89 @@ and thus can be thought of as having the highest specificity.
 * CSS properties specified using the `:global` modifier override those for the same CSS selector in `public/global.css`.
 * The `:global` modifier can also be used to override styles in descendant components.
 This relies on creating CSS rules with selectors that have higher specificity than rules in descendant components.
-  
+
+### Scoped Style
+In Svelte, CSS inside a component's <style> block will be scoped only to that component.
+This works by adding a class to selected elements, which is based on a hash of the component styles.
+
+```css
+// greet.svelte
+<h1>Hello World!</h1>
+
+// style in component
+<style>
+  h1 {
+    color: red;
+  }
+</style>
+```
+
+When compiling the app, Svelte changes our h1 styles definition to h1.svelte-1tky8bj,
+and then modifies every <h1> element in our component to <h1 class="svelte-1tky8bj">,
+so that it picks up the styles as required.
+
+```css
+// html page
+<h1 class="svelte-1tky8bj">Hello World!</h1>
+
+// builder.css
+h1.svelte-1tky8bj {
+    color: red;
+  }
+```
+
+## Import
+### Import Other Component
+* Child.svelte
+```javascript
+<script>
+	export let answer;
+</script>
+
+<p>The answer is {answer}</p>
+```
+* App.svelte
+```javascript
+<script>
+	import Child from './Child.svelte';
+</script>
+
+<Child answer={42}/>
+```
+
+### Import JavaScript Files
+* util.js
+```javascript
+export const a = {"a":1,"b":2}
+```
+
+* App.svelte
+```javascript
+<script>
+	import {a} from './file.js'
+</script>
+<pre>
+  {JSON.stringify(a, null, 2)}
+</pre>
+
+// output: 
+{
+  "a": 1,
+  "b": 2
+}
+```
+
+### Global Style
+If you want to apply styles to a selector globally, use the :global(...) modifier:
+```css
+// style in component
+<style>
+  :global(h1) {
+    color: red;
+  }
+</style>
+```
+
 ## Context
 See [How and When to Use Component Context in Svelte](https://imfeld.dev/writing/svelte_context)
 
@@ -314,16 +397,47 @@ onDestroy
 ```
 
 ## Deploy
-### To Netlify
+### Svelte APP To Netlify
 * New site from Git
 * Select and authorize your Svelte project repository
 * Basic build settings
 ```text
 Branch to deploy: main
-Build command: npm run build (or yarn build to match your package.json seetings)
+// Svelte in Action: npm install; npm run build
+Build command: npm run build (or yarn build to match your package.json settings)
 Publish directory: public/
 ```
 * click Deploy site
+
+### SvelteKit app to Netlify
+* For simple website, you can set build command and publish directory the same as the above; 
+  For complex website, in the root of your project, create a `netlify.toml` file:
+
+```toml
+[build]
+  command = "npm run build"
+  publish = "build/"
+  functions = "functions/"
+
+...(add even more settings)  
+```
+
+* Install `adapter-netlify`
+```
+npm i -D @sveltejs/adapter-netlify@next
+```
+* Edit `~/svelte.config.cjs`, change `adapter-node` to `adapter-netlify`
+```
+-const node = require('@sveltejs/adapter-node')
++const netlify = require('@sveltejs/adapter-netlify')
+
+-    adapter: node(),
++    adapter: netlify(),
+```
+
+* Add the new repo to Netlify (e.g. the "New site from Git" button)
+* Accept the default options
+
 
 ## Pitfalls
 ### The value of Boolean props without a value will be true!
