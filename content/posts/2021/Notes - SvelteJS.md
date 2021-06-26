@@ -143,6 +143,42 @@ Note:
 * Use `let:childProp={childVal}` to assign the `childProp` value from `Child` component to variable `childVal` 
 * `childVal` is only visible in this `Child` component
 
+## Event
+### Event Handler
+* Pass the handler function name
+  ```sveltehtml
+<script>
+	let count = 0;
+	function handleClick() {
+		count += 1;
+	}
+</script>
+
+<button on:click={handleClick}>
+	count: {count}
+</button>
+```
+
+### Event handler with parameters
+To pass parameters to event hanader, use anonymous arrow function to wrap it:
+```sveltehtml
+<script>
+  let fruits = [
+    {name: "Apple", id: 1},
+    {name: "Banana", id:2}
+  ]
+  const deleteFruit = (id) => {
+      console.log(id)
+  }
+</script>
+
+{#each fruits as fruit (fruit.id)}
+    <p>{fruit.name}</p>
+    <button on:click={() => deleteFruit(fruit.id)}>Delete</button>
+{/each}
+```
+Warning: It will execute immediately if you use <button on:click={deleteFruit(fruit.id)}>Delete</button>
+
 ### Event Emit
 Components can emit events using `createEventDispatcher`, or by forwarding DOM events.
 
