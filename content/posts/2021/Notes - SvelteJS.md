@@ -29,7 +29,7 @@ There are six ways to share data between Svelte components.
 * Prop values that are non-string literals or JavaScript expressions must be surrounded by curly braces instead of quotes. 
   These can evaluate to any kind of JavaScript value, including objects, arrays, and functions.
 * The braces around a prop value can optionally be surrounded with quotes  
-```javascript
+```
 <Person
     fullName="Jane Programmer"
     developer={true}
@@ -60,10 +60,10 @@ and thus can be thought of as having the highest specificity.
 This relies on creating CSS rules with selectors that have higher specificity than rules in descendant components.
 
 ### Scoped Style
-In Svelte, CSS inside a component's <style> block will be scoped only to that component.
+In Svelte, CSS inside a component's `<style>` block will be scoped only to that component.
 This works by adding a class to selected elements, which is based on a hash of the component styles.
 
-```sveltehtml
+```
 // greet.svelte
 <h1>Hello World!</h1>
 
@@ -79,7 +79,7 @@ When compiling the app, Svelte changes our h1 styles definition to h1.svelte-1tk
 and then modifies every <h1> element in our component to <h1 class="svelte-1tky8bj">,
 so that it picks up the styles as required.
 
-```sveltehtml
+```
 // html page
 <h1 class="svelte-1tky8bj">Hello World!</h1>
 
@@ -94,7 +94,7 @@ h1.svelte-1tky8bj {
 ## Import
 ### Import Other Component
 * Child.svelte
-```javascript
+```
 <script>
 	export let answer;
 </script>
@@ -102,7 +102,7 @@ h1.svelte-1tky8bj {
 <p>The answer is {answer}</p>
 ```
 * App.svelte
-```javascript
+```
 <script>
 	import Child from './Child.svelte';
 </script>
@@ -112,12 +112,12 @@ h1.svelte-1tky8bj {
 
 ### Import JavaScript Files
 * util.js
-```javascript
+```
 export const a = {"a":1,"b":2}
 ```
 
 * App.svelte
-```javascript
+```
 <script>
 	import {a} from './file.js'
 </script>
@@ -134,7 +134,7 @@ export const a = {"a":1,"b":2}
 
 ### Global Style
 If you want to apply styles to a selector globally, use the :global(...) modifier:
-```sveltehtml
+```
 // style in component
 <style>
   :global(h1) {
@@ -151,13 +151,13 @@ You can compose components by using `slot`.
 
 ### Fall back content in slot
 Child.svelte
-```javascript
+```
 <div>
     <slot>default text</slot>
 </div>    
 ```
 App.svelte
-```javascript
+```
 <script>
     import Child from './Child.svelte';
 </script>
@@ -171,7 +171,7 @@ App.svelte
 
 ### How to get a slot list passed by the parent from a child component?
 The keys of the `$$slots` object are the names of the slots passed into the child component by the parent.
-```javascript
+```
 <!-- Child.svelte -->
 <div>
     <slot name="title"></slot>
@@ -180,7 +180,7 @@ The keys of the `$$slots` object are the names of the slots passed into the chil
 </div>
 ```
 
-```javascript
+```
 <!-- App.svelte -->
 <script>
 	import Child from './Child.svelte';
@@ -202,7 +202,7 @@ true - undefined
 By using slot props you can pass data from component to parent.
 
 `Child.svelte`
-```javascript
+```
 <script>
 	let myVal = 4;
 </script>
@@ -213,7 +213,7 @@ By using slot props you can pass data from component to parent.
 ```
 
 `App.svelte`
-```javascript
+```
 <script>
 	import Child from './Child.svelte';
 	let parentVal = 8;
@@ -231,7 +231,7 @@ Note:
 ## Event
 ### Event Handler
 * Pass the handler function name
-```sveltehtml
+```
 <script>
 	let count = 0;
 	function handleClick() {
@@ -246,7 +246,7 @@ Note:
 
 ### Event handler with parameters
 To pass parameters to event hanader, use anonymous arrow function to wrap it:
-```sveltehtml
+```
 <script>
   let fruits = [
     {name: "Apple", id: 1},
@@ -264,12 +264,37 @@ To pass parameters to event hanader, use anonymous arrow function to wrap it:
 ```
 Warning: It will execute immediately if you use <button on:click={deleteFruit(fruit.id)}>Delete</button>
 
+### Event Modifier
+**`self` Example:** 
+
+* If no self modifier, when you click anywhere within `div` area(including the button inside it), the log will be executed;
+* If add self modifier, the function will be executed only when you click in the div(red) area, but not the button inside it.
+```
+<script>
+	let log = ()=>console.log("clicked")
+</script>
+
+<div on:click|self={log}>
+	<button>Click Me</button>
+</div>
+
+<style>
+	div {
+		width:80px;
+		height:40px;
+		border: solid;
+		padding: 30px;
+        background-color: red;
+	}
+</style>
+```
+
 ### Event Emit
 Components can emit events using `createEventDispatcher`, or by forwarding DOM events.
 
 **Emit event:** Using `createEventDispatcher`
 Dispatch email from a component
-```javascript
+```
 <script>
 	import { createEventDispatcher } from 'svelte';
 
@@ -283,7 +308,7 @@ Events dispatched from child components can be listened to in their parent.
 <SomeComponent on:whatever={handler}/>
 ```
  
-```javascript
+```
 <script>
 	function callbackFunction(event) {
 		console.log(`Notify fired! Detail: ${event.detail}`)
@@ -300,7 +325,7 @@ If you want to listen to an event on some deeply nested component, the intermedi
 As with DOM events, if the `on:` directive is used without a value, 
 the component will forward the event, meaning that a consumer of the component can listen for it.
 
-```javascript
+```
 // an on:message event directive without a value means 'forward all message events'.
 <SomeComponent on:whatever/>
 ```
@@ -327,7 +352,7 @@ These all return a promise that is eventually resolved with the actual content.
 * formData()
 
 Example: 
-```sveltehtml
+```
 <script>
 let promise
 const handleClick = () => {
@@ -386,7 +411,7 @@ onDestroy
 
 ### onMount Example
 
-```javascript
+```
 <script>
   import {onMount} from 'svelte';
   let name = '';
@@ -445,7 +470,7 @@ npm i -D @sveltejs/adapter-netlify@next
 ### The value of Boolean props without a value will be true!
 * When the prop is omitted, its value defaults to false. 
 * When the prop name is specified without a value, its value is inferred to be true.
-```javascript
+```
 // BoolProp.svelte
 <script>
     export let marked = false
@@ -453,7 +478,8 @@ npm i -D @sveltejs/adapter-netlify@next
 
 <p>	marked is {marked} </p>
 ```
-```javascript
+
+```
 // App.svelte
 <script>
 	import BoolProp from './BoolProp.svelte'
