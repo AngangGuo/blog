@@ -63,7 +63,7 @@ This relies on creating CSS rules with selectors that have higher specificity th
 In Svelte, CSS inside a component's <style> block will be scoped only to that component.
 This works by adding a class to selected elements, which is based on a hash of the component styles.
 
-```css
+```sveltehtml
 // greet.svelte
 <h1>Hello World!</h1>
 
@@ -79,14 +79,16 @@ When compiling the app, Svelte changes our h1 styles definition to h1.svelte-1tk
 and then modifies every <h1> element in our component to <h1 class="svelte-1tky8bj">,
 so that it picks up the styles as required.
 
-```css
+```sveltehtml
 // html page
 <h1 class="svelte-1tky8bj">Hello World!</h1>
 
 // builder.css
+<style>
 h1.svelte-1tky8bj {
     color: red;
-  }
+}
+</style>
 ```
 
 ## Import
@@ -124,15 +126,15 @@ export const a = {"a":1,"b":2}
 </pre>
 
 // output: 
-{
-  "a": 1,
-  "b": 2
-}
+// {
+//   "a": 1,
+//   "b": 2
+// }
 ```
 
 ### Global Style
 If you want to apply styles to a selector globally, use the :global(...) modifier:
-```css
+```sveltehtml
 // style in component
 <style>
   :global(h1) {
@@ -229,7 +231,7 @@ Note:
 ## Event
 ### Event Handler
 * Pass the handler function name
-  ```sveltehtml
+```sveltehtml
 <script>
 	let count = 0;
 	function handleClick() {
@@ -325,7 +327,7 @@ These all return a promise that is eventually resolved with the actual content.
 * formData()
 
 Example: 
-```javascript
+```sveltehtml
 <script>
 let promise
 const handleClick = () => {
@@ -345,8 +347,8 @@ const handleClick = () => {
 {#await promise}
   <p>waiting for the promise to resolve...</p>
 {:then data}
-  <p>the value is {JSON.stringify(data, null, 2}</p>
-{:catch error)
+  <p>the value is {JSON.stringify(data, null, 2)}</p>
+{:catch error}
   <p style="color: red">something went wrong: {error.message}</p>
 {/await}  
 ```
@@ -463,9 +465,9 @@ npm i -D @sveltejs/adapter-netlify@next
 <BoolProp marked />
 
 // Output
-marked is false
-marked is false
-marked is true // without a value will be true even if prop is false in App.svelte
+// marked is false
+// marked is false
+// marked is true // without a value will be true even if prop is false in App.svelte
 ```
 
 ### Assign value to arrays
