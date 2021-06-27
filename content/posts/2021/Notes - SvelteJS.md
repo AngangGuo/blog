@@ -16,12 +16,12 @@ draft: false
 
 ### Component communication options
 There are six ways to share data between Svelte components.
-1 `Props` pass data from parent components to child components, and optionally back to the parent by using `bind`.
-2 `Slots` pass content from parent components to child components so children can decide whether and where to render it.
-3 `Events` are used to notify a parent component that something has happened in a child component, and they optionally include data in the event object that is passed to the parent.
-4 `Contexts` allow ancestor components to make data available to descendant components without explicitly passing it to all the layers in between.
-5 `Module context` stores data in component modules and makes it available to all instances of the component.
-6 `Stores` store data outside components and can make it available to any of them.
+1. `Props` pass data from parent components to child components, and optionally back to the parent by using `bind`.
+2. `Slots` pass content from parent components to child components so children can decide whether and where to render it.
+3. `Events` are used to notify a parent component that something has happened in a child component, and they optionally include data in the event object that is passed to the parent.
+4. `Contexts` allow ancestor components to make data available to descendant components without explicitly passing it to all the layers in between.
+5. `Module context` stores data in component modules and makes it available to all instances of the component.
+6. `Stores` store data outside components and can make it available to any of them.
 
 ### Prop
 * A prop value can be a literal value of any type (Boolean, number, string, object, array, or function) or the value of a JavaScript expression. 
@@ -50,9 +50,9 @@ See [here](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)
 
 The following list of selector types increases by specificity:
 * Type selectors (e.g., h1) and pseudo-elements (e.g., ::before).
-* Class selectors (e.g., .example), attributes selectors (e.g., [type="radio"]) and pseudo-classes (e.g., :hover).
+* Class selectors (e.g., .example), attributes selectors (e.g., `[type="radio"]`) and pseudo-classes (e.g., :hover).
 * ID selectors (e.g., #example).
-* Inline styles added to an element (e.g., style="font-weight: bold;") always overwrite any styles in external stylesheets, 
+* Inline styles added to an element (e.g., `style="font-weight: bold;"`) always overwrite any styles in external stylesheets, 
 and thus can be thought of as having the highest specificity.
 
 * CSS properties specified using the `:global` modifier override those for the same CSS selector in `public/global.css`.
@@ -75,8 +75,8 @@ This works by adding a class to selected elements, which is based on a hash of t
 </style>
 ```
 
-When compiling the app, Svelte changes our h1 styles definition to h1.svelte-1tky8bj,
-and then modifies every <h1> element in our component to <h1 class="svelte-1tky8bj">,
+When compiling the app, Svelte changes our `h1` styles definition to `h1.svelte-1tky8bj`,
+and then modifies every `<h1>` element in our component to `<h1 class="svelte-1tky8bj">`,
 so that it picks up the styles as required.
 
 ```
@@ -133,7 +133,7 @@ export const a = {"a":1,"b":2}
 ```
 
 ### Global Style
-If you want to apply styles to a selector globally, use the :global(...) modifier:
+If you want to apply styles to a selector globally, use the `:global(...)` modifier:
 ```
 // style in component
 <style>
@@ -147,7 +147,7 @@ If you want to apply styles to a selector globally, use the :global(...) modifie
 See [How and When to Use Component Context in Svelte](https://imfeld.dev/writing/svelte_context)
 
 ## Slot
-You can compose components by using `slot`.
+Components can have child content. The content is exposed in the child component using the `<slot>` element.
 
 ### Fall back content in slot
 Child.svelte
@@ -167,6 +167,36 @@ App.svelte
 <Child>
     this will replace the default text in the slot position
 </Child>        
+```
+### Named Slot
+Named slot will get the content from the element with `slot="name"` prop. 
+All other contents will fill in the default slots.
+
+Child.svelte
+```
+<div>
+  <slot>default slot</slot>
+  <slot name="notes"></slot>
+</div>
+```
+
+App.svelte
+```
+<script>
+    import Child from './Child.svelte';
+</script>
+
+<Child>
+    <p>Above</p>
+    <p slot="notes">Notes</p>
+    <p>Bottom</p>
+</Child>    
+```
+Output
+```
+Above
+Bottom
+Notes
 ```
 
 ### How to get a slot list passed by the parent from a child component?
@@ -262,13 +292,13 @@ To pass parameters to event hanader, use anonymous arrow function to wrap it:
     <button on:click={() => deleteFruit(fruit.id)}>Delete</button>
 {/each}
 ```
-Warning: It will execute immediately if you use <button on:click={deleteFruit(fruit.id)}>Delete</button>
+Warning: It will execute immediately if you use `<button on:click={deleteFruit(fruit.id)}>Delete</button>`
 
 ### Event Modifier
 **`self` Example:** 
 
-* If no self modifier, when you click anywhere within `div` area(including the button inside it), the log will be executed;
-* If add self modifier, the function will be executed only when you click in the div(red) area, but not the button inside it.
+* If no `self` modifier, when you click anywhere within `div` area(including the button inside it), the log will be executed;
+* If add `self` modifier, the function will be executed only when you click in the `div`(red) area, but not the button inside it.
 ```
 <script>
 	let log = ()=>console.log("clicked")
@@ -304,7 +334,7 @@ Dispatch email from a component
 <button on:click="{() => dispatch('notify', 'detail value')}">Fire Event</button>
 ```
 Events dispatched from child components can be listened to in their parent.
-```javascript
+```
 <SomeComponent on:whatever={handler}/>
 ```
  
