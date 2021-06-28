@@ -102,6 +102,23 @@ If you want to apply styles to a selector globally, use the `:global(...)` modif
 </style>
 ```
 
+### CSS library
+```
+<script>
+	import { ButtonSet, Button } from "carbon-components-svelte";
+	import Login16 from "carbon-icons-svelte/lib/Login16";
+</script>
+
+<svelte:head><link rel="stylesheet" href="https://unpkg.com/carbon-components-svelte@0.30.0/css/g10.css" /></svelte:head>
+
+<div style="padding: 2rem;">
+	<ButtonSet>
+		<Button icon={Login16} kind="secondary">Cancel</Button>
+		<Button kind="primary">Save</Button>
+	</ButtonSet>
+</div>
+```
+
 ## Import
 ### How can I import CSS(Bootstrap) library in REPL?
 ```css
