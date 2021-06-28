@@ -1,5 +1,5 @@
 ---
-title: "Notes   SvelteJS"
+title: "Notes - SvelteJS"
 date: 2021-03-10T10:31:48-08:00
 categories:
 - Tech
@@ -91,7 +91,25 @@ h1.svelte-1tky8bj {
 </style>
 ```
 
+### Global Style
+If you want to apply styles to a selector globally, use the `:global(...)` modifier:
+```
+// style in component
+<style>
+  :global(h1) {
+    color: red;
+  }
+</style>
+```
+
 ## Import
+### How can I import CSS(Bootstrap) library in REPL?
+```css
+<style>
+	@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css");
+</style>
+```
+
 ### Import Other Component
 * Child.svelte
 ```
@@ -132,19 +150,23 @@ export const a = {"a":1,"b":2}
 // }
 ```
 
-### Global Style
-If you want to apply styles to a selector globally, use the `:global(...)` modifier:
-```
-// style in component
-<style>
-  :global(h1) {
-    color: red;
-  }
-</style>
-```
-
 ## Context
 See [How and When to Use Component Context in Svelte](https://imfeld.dev/writing/svelte_context)
+
+Note:
+* `setContext` and `getContext` must be called during component initialisation;
+* context is not reactive
+
+### Context Keys
+We can use anything as a context key. Prefer to use an object literal instead of string. 
+Using an object literal means the keys are guaranteed not to conflict in any circumstance 
+(since an object only has referential equality to itself, i.e. {} !== {} whereas "x" === "x").
+
+### Contexts vs. stores
+Contexts and stores seem similar. They differ in that stores are available to any part of an app, 
+while a context is only available to a component and its descendants.
+
+### Module Context
 
 ## Slot
 Components can have child content. The content is exposed in the child component using the `<slot>` element.
