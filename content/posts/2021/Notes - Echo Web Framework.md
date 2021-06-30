@@ -81,3 +81,20 @@ You can use [trailing slash middleware](https://echo.labstack.com/middleware/tra
 ### JWT 
 https://github.com/victorsteven/Go-JWT-Postgres-Mysql-Restful-API/blob/master/api/auth/token.go
 https://echo.labstack.com/cookbook/jwt/
+
+## FAQ
+### How to make Echo serve an SPA correctly?
+Echo has problems with SPA routing. To make Echo work well with your SPA, you need to enable the `HTML5` property for the Echo static middleware. 
+```go
+e.Use(middleware.StaticWithConfig(echoMw.StaticConfig{
+    // This is the path to your SPA build folder, the folder that is created from running "npm build"
+    Root:   "public",	
+    
+    // This is the default html page for your SPA
+    Index:  "index.html",	
+	
+    // Enable HTML5 mode by forwarding all not-found requests to root so that
+    // SPA (single-page application) can handle the routing.
+    HTML5:  true,
+}))
+```
