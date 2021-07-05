@@ -164,6 +164,33 @@ The operators `<`, `>` are not defined to compare date / time. Use `time.After()
 ```
 
 ## Module
+### Go Install
+Usually you need to use `go get` to download and install a package. 
+Use `go install` when you want to install an executable program(cmd - main package).
+
+The go install command builds and installs the packages named by the paths on the command line. 
+Executables (main packages) are installed to the directory named by the `GOBIN` environment variable, 
+which defaults to `$GOPATH/bin` or `$HOME/go/bin` if the GOPATH environment variable is not set. 
+Executables in `$GOROOT` are installed in `$GOROOT/bin` or `$GOTOOLDIR` instead of `$GOBIN`.
+
+Since Go 1.16, if the arguments have version suffixes (like @latest or @v1.0.0), go install builds packages in module-aware mode, 
+ignoring the go.mod file in the current directory or any parent directory if there is one. 
+This is useful for installing executables without affecting the dependencies of the main module.
+```
+# Install the latest version of a program,
+# ignoring go.mod in the current directory (if any).
+$ go install golang.org/x/tools/gopls@latest
+
+# Install a specific version of a program.
+$ go install golang.org/x/tools/gopls@v0.6.4
+
+# Install a program at the version selected by the module in the current directory.
+$ go install golang.org/x/tools/gopls
+
+# Install all programs in a directory.
+$ go install ./cmd/...
+```
+
 ### Useful Commands:
 ```
 go get github.com/gin-gonic/gin // install latest published module
