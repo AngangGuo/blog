@@ -197,25 +197,33 @@ go get github.com/gin-gonic/gin // install latest published module
 go get -u github.com/gin-gonic/gin // update the module
 
 // Version queries
-go get github.com/gin-gonic/gin@master // install the latest module 
+go get github.com/gin-gonic/gin@master // get the latest module 
 
 // update go version to version 1.16
 go mod edit -go=1.16
 ```
 
+### Module and GOPATH
+If the environment variable is unset, GOPATH defaults to a subdirectory named "go" in the user's home directory 
+($HOME/go on Unix, %USERPROFILE%\go on Windows), unless that directory holds a Go distribution. 
+Run "go env GOPATH" to see the current GOPATH.
+
+When using modules, GOPATH is no longer used for resolving imports. 
+However, it is still used to store downloaded source code (in GOPATH/pkg/mod) and compiled commands (in GOPATH/bin).
+
 ### How to clean up the modules?
-```go
+```
 go mod tidy // add missing modules and remove unused modules
 ```
 
 ### How to upgrade to a specific commit?
-```go
+```
 C:\Users\angan\go\src\rl>go get -u github.com/mxschmitt/playwright-go@355fba9
 go: downloading github.com/mxschmitt/playwright-go v0.171.2-0.20210220003257-355fba93c781
 go: github.com/mxschmitt/playwright-go 355fba9 => v0.171.2-0.20210220003257-355fba93c781
 ```
 ### How to upgrade all dependencies at once?
-```go
+```
 go list -u -m all // View available dependency upgrades
 go get -u ./... // update all the dependencies
 ```
