@@ -198,9 +198,9 @@ See [this post](/posts/2020/host-static-website-on-gitlab-pages/) on how to host
 Here is the example on how to use anchor to link within a page.
 
 ```markdown
-### Add anchor at the end of the link {#my-anchor}
+### Add anchor at the end of the text you want to link to {#my-anchor}
 
-[Link to the anchor within the page]({{</* ref "#my-anchor" */>}})
+Add a link to the anchor by using the same markdown link syntax [Link to the anchor within the page]({{</* ref "#my-anchor" */>}})
 ```
 
 ### How can I add YouTube video to my page?
@@ -225,6 +225,12 @@ If you do have space in the link or file name, you can use url encode the link l
 ```
 ![T51A Walkie Talkie](/images/2020/T51A%20Walkie%20Talkie.PNG)
 ```
+
+### How to pin a post at the top of the home page?
+Use `weight` in front matter for ordering your content in lists.
+Lower weight gets higher precedence.
+So content with lower weight will come first.
+If set, weights should be non-zero, as 0 is interpreted as an unset weight.
 
 ## Troubleshooting
 ### Why my new page doesn't show out?
