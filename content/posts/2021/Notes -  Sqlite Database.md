@@ -96,8 +96,10 @@ create table associate (
     last TEXT not null,
     -- Generated column: only AS keyword and the parenthesized expression is required
     full TEXT AS (last ||', '|| first) STORED,
-    -- Current timestamp as default value: 2021-07-09 19:09:06
-    created TEXT DEFAULT CURRENT_TIMESTAMP
+    -- Current timestamp as default value: 2021-07-09 19:09:06 (UTC/GMT timezone)
+    created TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    -- local timestamp: not recommanded
+    modified TEXT NOT NULL DEFAULT (datetime('now','localtime'))
 );
 ```
 ### Default value
@@ -107,6 +109,13 @@ then the value used in the new row is a text representation of the current UTC d
 For CURRENT_TIME, the format of the value is "HH:MM:SS". For CURRENT_DATE, "YYYY-MM-DD". 
 The format for CURRENT_TIMESTAMP is "YYYY-MM-DD HH:MM:SS".
 
+Note:
+When having a column defined with "NOT NULL DEFAULT CURRENT_TIMESTAMP", inserted records will always get set with UTC/GMT time.
+```sqlite
+-- show the timestamp as local time zone
+SELECT datetime(created,'localtime'), created from associate;
+-- output: 2021-07-09 14:57:00	2021-07-09 21:57:00
+```
 ### Generated Columns or Computed Columns
 Generated columns (also sometimes called "computed columns") are columns of a table whose values are a function of other columns in the same row. 
 Generated columns can be read, but their values can not be directly written. 
@@ -121,12 +130,10 @@ CREATE TABLE t1(
    d INT GENERATED ALWAYS AS (a*abs(b)) VIRTUAL,
    e TEXT GENERATED ALWAYS AS (substr(c,b,b+1)) STORED
 );
-
 ```
-
 ### Sqlite: Get table information
 ```sqlite
-PRAGMA table_info(vancouver)
+PRAGMA table_info(mytable)
 ```
 
 ## Expressions
@@ -145,6 +152,24 @@ SELECT Label from RL WHERE Label LIKE '%30126';
 
 -- Contains 10%
 SELECT Label from RL WHERE Label LIKE '%10\%%' ESCAPE '\';
+```
+
+### Datetime
+```sqlite
+-- select data between two dates
+SELECT * FROM User WHERE date_of_birth BETWEEN date(:from) AND date(:to)
+-- compare date
+select * from user where date_of_birth=Date(:date)
+-- group by Year
+SELECT strftime('%Y', date_of_birth) as year,count(date_of_birth) as count FROM User GROUP BY date_of_birth
+-- Select data for a specific year
+SELECT * FROM User WHERE strftime('%Y', date_of_birth) = :year
+-- get Last month Data
+select * from User where created_date>=datetime('now', 'now', '-30 day')
+-- Order by Date
+select * from User ORDER BY date(date_of_birth) asc
+-- calculate age from birth date
+SELECT *, cast(strftime('%Y.%m%d', 'now') - strftime('%Y.%m%d', date_of_birth) as int) as age FROM User
 ```
 
 ## Work
