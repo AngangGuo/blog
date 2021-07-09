@@ -115,3 +115,15 @@ Chose the function from the window:
 * Change Signature: `Ctrl + F6`
 * Move: `F6`
 * Copy File: `F5`
+
+## Troubleshooting
+
+### Unresolved Reference Error
+After creating a new project, I get the echo library(`go get github.com/labstack/echo/v4`), using it in main file, 
+but GoLand can't find any methods and highlight them in red:
+`Unresolved Reference xxx`
+
+Try these solutions: 
+1. File > Invalidate Caches... > Select Clear file system cache and Local History > Ok > Restart GoLand
+1. File > Settings > Go > GOPATH: Index entire GOPATH > Apply
+1. Or change the module name in `go.mod`
