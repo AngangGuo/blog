@@ -15,17 +15,7 @@ draft: false
 ```sqlite
 SELECT DISTINCT report_date FROM daily;
 ```
-### Like and Escape
-* `%`: zero or more characters
-* `_`: one character
 
-```sqlite
--- Labels end with 30126
-SELECT Label from RL WHERE Label LIKE '%30126';
-
--- Contains 10%
-SELECT Label from RL WHERE Label LIKE '%10\%%' ESCAPE '\';
-```
 ### How many records?
 ```sqlite
 SELECT count(*) from vanall WHERE Shipped_Date="2021-01-12";
@@ -59,6 +49,9 @@ UPDATE associate SET show=1 WHERE show IS NULL
 ```sqlite
 -- remove all the assets that are not shipped yet
 DELETE FROM vanall WHERE Shipped_Date is NULL
+
+-- delete table
+DROP TABLE associate;
 ```
 
 ### Creating Sub-Query
@@ -85,9 +78,98 @@ It’s also possible to do a FULL OUTER JOIN by combining LEFT OUTER JOINs using
 
 See [Full Out Join Example]({{< ref "#fulloutjoin" >}}) on how to emulate full out join in Sqlite.
 
+### How to convert datetime to string?
+See [Data and Time functions in Sqlite](https://www.sqlite.org/lang_datefunc.html)
+
+```sqlite
+SELECT strftime("%Y-%m-%d",datetime('now','localtime'))
+-- output: 2021-07-07
+
+SELECT strftime("%s",datetime('now'))
+-- output: 1625763745
+```
+
+## Create Table
+```sqlite
+create table associate (
+    first TEXT not NULL,
+    last TEXT not null,
+    -- Generated column: only AS keyword and the parenthesized expression is required
+    full TEXT AS (last ||', '|| first) STORED,
+    -- Current timestamp as default value: 2021-07-09 19:09:06 (UTC/GMT timezone)
+    created TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    -- local timestamp: not recommanded
+    modified TEXT NOT NULL DEFAULT (datetime('now','localtime'))
+);
+```
+### Default value
+If the default value of a column is CURRENT_TIME, CURRENT_DATE or CURRENT_TIMESTAMP, 
+then the value used in the new row is a text representation of the current UTC date and/or time. 
+
+For CURRENT_TIME, the format of the value is "HH:MM:SS". For CURRENT_DATE, "YYYY-MM-DD". 
+The format for CURRENT_TIMESTAMP is "YYYY-MM-DD HH:MM:SS".
+
+Note:
+When having a column defined with "NOT NULL DEFAULT CURRENT_TIMESTAMP", inserted records will always get set with UTC/GMT time.
+```sqlite
+-- show the timestamp as local time zone
+SELECT datetime(created,'localtime'), created from associate;
+-- output: 2021-07-09 14:57:00	2021-07-09 21:57:00
+```
+### Generated Columns or Computed Columns
+Generated columns (also sometimes called "computed columns") are columns of a table whose values are a function of other columns in the same row. 
+Generated columns can be read, but their values can not be directly written. 
+
+Generated columns can be either `VIRTUAL`(default if missing) or `STORED`. 
+The value of a `VIRTUAL` column is computed when read, whereas the value of a `STORED` column is computed when the row is written.
+```sqlite
+CREATE TABLE t1(
+   a INTEGER PRIMARY KEY,
+   b INT,
+   c TEXT,
+   d INT GENERATED ALWAYS AS (a*abs(b)) VIRTUAL,
+   e TEXT GENERATED ALWAYS AS (substr(c,b,b+1)) STORED
+);
+```
 ### Sqlite: Get table information
 ```sqlite
-PRAGMA table_info(vancouver)
+PRAGMA table_info(mytable)
+```
+
+## Expressions
+### Concat
+The `||` operator is "concatenate" - it joins together the two strings of its operands.
+```sqlite
+SELECT last || ", " || first FROM associate;
+```
+### Like and Escape
+* `%`: zero or more characters
+* `_`: one character
+
+```sqlite
+-- Labels end with 30126
+SELECT Label from RL WHERE Label LIKE '%30126';
+
+-- Contains 10%
+SELECT Label from RL WHERE Label LIKE '%10\%%' ESCAPE '\';
+```
+
+### Datetime
+```sqlite
+-- select data between two dates
+SELECT * FROM User WHERE date_of_birth BETWEEN date(:from) AND date(:to)
+-- compare date
+select * from user where date_of_birth=Date(:date)
+-- group by Year
+SELECT strftime('%Y', date_of_birth) as year,count(date_of_birth) as count FROM User GROUP BY date_of_birth
+-- Select data for a specific year
+SELECT * FROM User WHERE strftime('%Y', date_of_birth) = :year
+-- get Last month Data
+select * from User where created_date>=datetime('now', 'now', '-30 day')
+-- Order by Date
+select * from User ORDER BY date(date_of_birth) asc
+-- calculate age from birth date
+SELECT *, cast(strftime('%Y.%m%d', 'now') - strftime('%Y.%m%d', date_of_birth) as int) as age FROM User
 ```
 
 ## Work
@@ -137,11 +219,12 @@ WHERE a.Auditor IS NULL
 ORDER BY auditor
 ```
 
-## Import CSV file Into Sqlite Database {#csv}
+## Import
+### Import CSV file Into Sqlite Database {#csv}
 We have inventory all fields file which is in CSV format. 
 There're several methods to load these data into database for further processing.
 
-### Import CSV file from command line
+#### Import CSV file from command line
 Download and install [SQLite](https://www.sqlite.org/download.html).
 From command line execute the following commands to import your CSV file into a table:
 
@@ -165,7 +248,7 @@ sqlite> .quit
 
 ```
 
-### Import Data Using DB Browser
+#### Import data by using DB Browser
 [DB Browser for SQLite](https://sqlitebrowser.org/) (DB4S) is a high quality, visual, open source tool to create, design, 
 and edit database files compatible with SQLite.
 

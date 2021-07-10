@@ -218,7 +218,7 @@ Copy the images into `blog/static/images` folder or its sub-folder. Use the foll
 The Absolute URL or Relative URL settings may cause image loading problem. 
 See [here]({{< ref "#css-load-error" >}}) for more details.
 
-#### How to add a link with space in it?
+### How to add a link with space in it?
 It's better to use dash or underscore to separate the words in file name or link instead of spaces.
 
 If you do have space in the link or file name, you can use url encode the link like this:

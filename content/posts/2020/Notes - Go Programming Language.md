@@ -464,3 +464,8 @@ func main() {
 	}
 }
 ```
+
+## Useful links
+* [Cobra](https://github.com/spf13/cobra) is a library providing a simple interface to create powerful modern CLI interfaces
+* [Echo](https://echo.labstack.com) is a high performance, extensible, minimalist Go web framework
+* [Package validator](https://github.com/go-playground/validator) implements value validations for structs and individual fields based on tags.
