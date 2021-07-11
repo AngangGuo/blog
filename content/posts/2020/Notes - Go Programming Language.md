@@ -12,11 +12,11 @@ draft: false
 ## JSON
 ### How to process NaN value?
 When liquidation and total equals zero, the `item.LIQRate` will be `NAN`.
-```go
+```
 item.LIQRate = float64(item.Liquidation) / float64(item.Total)
 ```
 `json.Marshal(item)` will throw this error:
-```go
+```
 json: unsupported value: NaN
 ```
 
@@ -73,7 +73,7 @@ $ env GOOS=windows GOARCH=amd64 go build
 	r.Comment = '*'
 ```
 Note: Comma and Comment must be a valid rune, not string. For example, if using `r.Comma = "#"` will cause this error:
-```go
+```
 cannot use "#" (type untyped string) as type rune in assignment
 ```
 
