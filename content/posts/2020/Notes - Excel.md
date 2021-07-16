@@ -32,4 +32,18 @@ See [here](https://trumpexcel.com/select-visible-cells/)
 * Now select visible cells option.
 * Now press CTRL + C
 * Then go to target sheet and press CTRL + V to paste.
+
+### How to remove duplicated rows?
+You can remove duplicate cell values or rows according to your selection.
+1. Select the range of cells that has duplicate values you want to remove.
+2. Click `Data` > `Remove Duplicates`, and then Under Columns, 
+   check or uncheck the columns where you want to remove the duplicates.
  
+Note: the duplicate is for the rows you selected, it may contain one or more columns.
+
+### How to highlight duplicate values?
+1. Select the cells you want to check for duplicates.
+2. Click `Home` > `Conditional Formatting` > `Highlight Cells Rules` > `Duplicate Values`.
+3. In the box next to values with, pick the formatting you want to apply to the duplicate values, and then click OK.
+
+Note: This can only highlight individual duplicated cells, not duplicate rows.
