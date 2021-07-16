@@ -92,8 +92,8 @@ SELECT strftime("%s",datetime('now'))
 ## Create Table
 ```sqlite
 create table associate (
-    first TEXT not NULL,
-    last TEXT not null,
+    first TEXT NOT NULL,
+    last TEXT NOT NULL,
     -- Generated column: only AS keyword and the parenthesized expression is required
     full TEXT AS (last ||', '|| first) STORED,
     -- Current timestamp as default value: 2021-07-09 19:09:06 (UTC/GMT timezone)
@@ -106,8 +106,9 @@ create table associate (
 If the default value of a column is CURRENT_TIME, CURRENT_DATE or CURRENT_TIMESTAMP, 
 then the value used in the new row is a text representation of the current UTC date and/or time. 
 
-For CURRENT_TIME, the format of the value is "HH:MM:SS". For CURRENT_DATE, "YYYY-MM-DD". 
-The format for CURRENT_TIMESTAMP is "YYYY-MM-DD HH:MM:SS".
+* For CURRENT_TIME, the format of the value is "HH:MM:SS". 
+* For CURRENT_DATE, the format of the value is "YYYY-MM-DD". 
+* For CURRENT_TIMESTAMP, the format of the value is "YYYY-MM-DD HH:MM:SS".
 
 Note:
 When having a column defined with "NOT NULL DEFAULT CURRENT_TIMESTAMP", inserted records will always get set with UTC/GMT time.
@@ -116,6 +117,7 @@ When having a column defined with "NOT NULL DEFAULT CURRENT_TIMESTAMP", inserted
 SELECT datetime(created,'localtime'), created from associate;
 -- output: 2021-07-09 14:57:00	2021-07-09 21:57:00
 ```
+
 ### Generated Columns or Computed Columns
 Generated columns (also sometimes called "computed columns") are columns of a table whose values are a function of other columns in the same row. 
 Generated columns can be read, but their values can not be directly written. 
