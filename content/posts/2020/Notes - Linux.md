@@ -11,6 +11,24 @@ draft: false
 
 ## Linux Notes
 
+## Common Commands
+### How to change other user's password?
+```
+// set / change password for user postgres
+sudo passwd postgres
+```
+### How to execute commands as other user?
+```
+su // as root
+su - postgres // login as postgres
+su postgres // switch to postgres
+
+// preserve the entire environment (HOME, SHELL, USER, and LOGNAME) of the calling user
+su -p postgres 
+```
+
+
+## Ubuntu
 ### How to show ubuntu version?
 Press `Ctrl + Alt + T` open terminal and type the following command:
 ```
