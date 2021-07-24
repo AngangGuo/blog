@@ -149,6 +149,16 @@ The operators `<`, `>` are not defined to compare date / time. Use `time.After()
 	fmt.Println(t1.After(t2), t1.Before(t2)) // false true
 ```
 
+### Unix Time
+```go
+    ut := time.Now().Unix() 
+    fmt.Println(ut) 
+    // output: 1257894000
+    
+    fmt.Println(time.Unix(ut, 0)) 
+    // output: 2009-11-10 23:00:00 +0000 UTC
+```
+
 ## Template
 ### How to use `if` and `eq` in template?
 ```
@@ -355,6 +365,21 @@ func main() {
 }
 ```
 
+## IO
+### How to show message on screen and write into file at the same time?
+```go
+// You must open the file in read/write mode
+f, err := os.OpenFile("app.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+if err != nil {
+    log.Fatalf("error opening file: %v", err)
+}
+defer f.Close()
+
+wrt := io.MultiWriter(os.Stdout, f)
+log.SetOutput(wrt)
+
+log.Println("Hello, World!")
+```
 
 ## Pitfalls
 ### How to convert number to string?

@@ -51,7 +51,13 @@ SELECT version();
 (1 row)
 ```
 
-
+## Useful Commands
+### Get column names of a table
+```sql
+SELECT * FROM information_schema.columns WHERE table_schema = 'your_schema' AND table_name = 'your_table' ;
+-- example
+SELECT table_name, column_name, data_type FROM information_schema.columns WHERE table_name = 'city';
+```
 
 ## Restore Database Data
 ```
@@ -71,7 +77,7 @@ See [here](https://stackoverflow.com/questions/67518061/how-to-move-location-of-
 
 ```
 // check current data location
-SHOW data_directory;
+$ postgres=# SHOW data_directory;
            data_directory
 -------------------------------------
  C:/Program Files/PostgreSQL/13/data
@@ -79,13 +85,23 @@ SHOW data_directory;
 ```
 Shutdown PostgreSQL service
 ```
-sudo systemctl status postgres-12
-sudo systemctl stop postgres-12
+# sudo systemctl status postgres
+# sudo systemctl stop postgres
 ```
 Move data directory
 ```
+cp -r
+rsync -acv
+
 chown postgres:postgres /postgres/data
 chmod -R 750 /postgres/data
 
-
+```
+* Edit the startup file `/etc/init.d/postgresql`
+`@SET PGDATA=C:\Program Files\PostgreSQL\13\data`
+  
+* Start the new database
+```
+ps auxw | grep postgres
+psql -U postgres postgres
 ```
