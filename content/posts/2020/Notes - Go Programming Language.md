@@ -20,7 +20,98 @@ item.LIQRate = float64(item.Liquidation) / float64(item.Total)
 json: unsupported value: NaN
 ```
 
+### Should I parse JSON with structs or maps?
+#### Struct
+Pro: 
+* Parsing JSON data to structs is safe and easy.
 
+Con: 
+* When using structs, we must define every element within the JSON into the struct. 
+We have to know the field name and data type of each JSON element while writing our code.
+```go
+    / Example is our main data structure used for JSON parsing
+    type Example struct {
+        Name    string `json:"name"`
+        Numbers []int  `json:"numbers"`
+        Nested  Nested `json:"nested"`
+    }
+    
+    // Nested is an embedded structure within Example
+    type Nested struct {
+        IsIt        bool   `json:"isit"`
+        Description string `json:"description"`
+    }
+    
+    func main() {
+        // Define a JSON string
+        j := `{"name":"example","numbers":[1,2,3,4],"nested":{"isit":true,"description":"a nested json"}}`
+    
+        // Parse JSON string into data object
+        var data Example
+        err := json.Unmarshal([]byte(j), &data)
+        if err != nil {
+            fmt.Printf("Error parsing JSON string - %s", err)
+        }
+    
+        // Print the name
+        fmt.Printf("Name is %s", data.Name)
+    }
+```  
+
+#### Map
+Pro: 
+* Using map when we need to parse an unknown JSON.
+* Easy for simply data struct: `data["name"].(string)`; but it may become a mess rapidly if you want to check if the map missing the key or if the type is wrong.
+
+Con: 
+* Using `map[string]interface{}` is generally unsafe and require extra work to use the data safely once parsed.
+
+```go
+    var data map[string]interface{}
+
+	// Define a JSON string
+	j := `{"name":"example","numbers":[1,2,3,4],"nested":{"isit":true,"description":"a nested json"}}`
+
+	// Parse our JSON string
+	err := json.Unmarshal([]byte(j), &data)
+	if err != nil {
+		fmt.Printf("Error parsing JSON string - %s", err)
+	}
+	
+	// Print out one of our JSON values
+	n, ok := data["name"]
+	if !ok {
+		// access it another way
+		n = "defaultName"
+	}
+	v, ok := n.(string)
+	if !ok {
+		// figure out type another way
+		v = "defaultValue"
+	}
+	fmt.Printf("Name is %s", v)
+	
+	// Print out the JSON Numbers
+	var nums []int
+	i, ok := data["numbers"].([]interface{})
+	if ok {
+		for _, v := range i {
+			x, ok := v.(float64)
+			if !ok {
+				// set to default
+				nums = []int{}
+				break
+			}
+			nums = append(nums, int(x))
+
+		}
+	}
+	fmt.Printf("Numbers are")
+	for _, v := range nums {
+		fmt.Printf(" %d", v)
+	}
+	fmt.Printf("\n")
+```
 
 ## Other
 ### How to get the type of a variable?
@@ -237,6 +328,10 @@ go: github.com/mxschmitt/playwright-go 355fba9 => v0.171.2-0.20210220003257-355f
 go list -u -m all // View available dependency upgrades
 go get -u ./... // update all the dependencies
 ```
+
+### Should I commit `go.sum` file as well as my `go.mod` file to Github?
+Yes. See [here](https://github.com/golang/go/wiki/Modules#should-i-commit-my-gosum-file-as-well-as-my-gomod-file)
+
 ## Troubleshooting
 ### Error: go get .: path is not a package in module rooted
 ```
@@ -286,7 +381,7 @@ if !ok {
 }    
 ```
 
-#### Type assertion or Parse float64?
+### Type assertion or Parse float64?
 ```go
 var i interface{}
 i = "24.08"
@@ -489,6 +584,22 @@ func main() {
 	}
 }
 ```
+
+## Other
+### How to show your library in GODOC?
+
+* By using GODOC command line
+
+See [here](https://pkg.go.dev/golang.org/x/tools/cmd/godoc)
+```
+// Note: install the godoc cmd
+go get -v  golang.org/x/tools/cmd/godoc
+
+// go to the root of your library
+godoc -http=:6060
+```
+
+* By using https://pkg.go.dev/
 
 ## Useful links
 * [Cobra](https://github.com/spf13/cobra) is a library providing a simple interface to create powerful modern CLI interfaces
