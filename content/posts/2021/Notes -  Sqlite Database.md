@@ -174,6 +174,28 @@ select * from User ORDER BY date(date_of_birth) asc
 SELECT *, cast(strftime('%Y.%m%d', 'now') - strftime('%Y.%m%d', date_of_birth) as int) as age FROM User
 ```
 
+## FAQ
+### What's the difference between `UNION` and `JOIN`?
+Both Joins and Unions can be used to combine data from two or more tables.
+In short, JOIN combine columns, UNION combine rows
+
+#### `JOIN` 
+* It combines data from many tables based on a matched condition between them
+* It combines data into new columns
+
+#### `UNION` 
+* It combines the result-set of two or more `SELECT` statements
+* It combines data into new rows
+* Number of columns selected from each table should be the same
+
+`UNION`(slower) removes the duplicate rows while the `UNION ALL`(faster) includes the duplicate rows in the final result set.
+
+```sqlite
+SELECT dScanIDShippedDate, vLabel, vSerialNumber FROM Vancouver WHERE dScanIDShippedDate > '2020-10-01'
+UNION ALL
+SELECT dScanIDShippedDate, vLabel, vSerialNumber FROM Toronto WHERE dScanIDShippedDate > '2020-10-01';
+```
+
 ## Work
 ### How to get Liquidation Class & Category Report
 * Download the latest Inventory All Fields file from [Egnyte](https://cloudblue.egnyte.com/#username)
