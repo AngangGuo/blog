@@ -61,7 +61,8 @@ We have to know the field name and data type of each JSON element while writing 
 #### Map
 Pro: 
 * Using map when we need to parse an unknown JSON.
-* Easy for simply data struct: `data["name"].(string)`; but it may become a mess rapidly if you want to check if the map missing the key or if the type is wrong.
+* Easy for simply data struct: `data["name"].(string)`; 
+  but it may become a mess rapidly if you want to check if the map missing the key or if the type is wrong.
 
 Con: 
 * Using `map[string]interface{}` is generally unsafe and require extra work to use the data safely once parsed.
@@ -302,6 +303,16 @@ go get github.com/gin-gonic/gin@master // get the latest module
 
 // update go version to version 1.16
 go mod edit -go=1.16
+
+// why to use this module
+go mod why -m gopkg.in/yaml.v2
+Output:
+# gopkg.in/yaml.v2
+github.com/AngangGuo/rl/archived/stats
+github.com/gin-gonic/gin
+github.com/gin-gonic/gin/binding
+gopkg.in/yaml.v2
+
 ```
 
 ### Module and GOPATH
@@ -585,7 +596,7 @@ func main() {
 }
 ```
 
-## Other
+## Document
 ### How to show your library in GODOC?
 
 * By using GODOC command line
@@ -600,6 +611,10 @@ godoc -http=:6060
 ```
 
 * By using https://pkg.go.dev/
+
+### How can I add examples into my library document?
+See [blog](https://blog.golang.org/examples)
+
 
 ## Useful links
 * [Cobra](https://github.com/spf13/cobra) is a library providing a simple interface to create powerful modern CLI interfaces
