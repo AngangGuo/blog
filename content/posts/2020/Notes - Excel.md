@@ -47,3 +47,16 @@ Note: the duplicate is for the rows you selected, it may contain one or more col
 3. In the box next to values with, pick the formatting you want to apply to the duplicate values, and then click OK.
 
 Note: This can only highlight individual duplicated cells, not duplicate rows.
+
+## FAQ
+### Why the cell can't show out the whole number in Text format?
+Excel cell format is `General` by default, therefore it can display up to 11 digits in a cell. 
+For numbers more than 11 digits it'll show out as scientific format such as `1.23457E+11`.
+At this time even if you apply the `Text` format, the whole number doesn't show out.
+
+You need to set the cell format as `Text` **first**, then enter the long number.
+
+Alternatively, type a single quotation mark (') first in the cell, and then type the long number.
+(such as `'1234567890123`)
+
+
