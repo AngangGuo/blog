@@ -9,8 +9,25 @@ Viper is a complete configuration solution for Go applications from spf13.
 
 ## Tips
 * Viper configuration keys are case-insensitive.
-* When working with ENV variables, it’s important to recognize that Viper treats ENV variables as case-sensitive.
 * Priorities: Environment variables > Variables from configuration file > Default
+* When working with ENV variables, it’s important to recognize that Viper treats ENV variables as case-sensitive.
+* The ENV variable values will be read each time it is accessed.
+* Viper can access a nested field by passing a `.` delimited path of keys
+* Viper can access array indices by using numbers in the path: `GetInt("host.ports.1")`
+```json
+{
+    "host": {
+        "address": "localhost",
+        "ports": [
+            5799,
+            6029
+        ]
+    },
+    ...
+}
+
+ GetInt("host.ports.1") // returns 6029   
+```
 
 ### Get Methods
 Each `Get` function will return a zero value if the key is not found. 
