@@ -13,7 +13,90 @@ draft: false
 ## Validator Usage
 [go-playground/validator](https://github.com/go-playground/validator) 
 
-### Translation
+Note: Validator will fail at the first tag that violet the rule. 
+
+For example, a string "A.G" with rule "alpha,min=10" will cause the following error:
+```go
+type User struct {
+	Name string `validate:"required,alpha,min=10,max=15"`
+}
+
+func main() {
+	v := validator.New()
+	a := User{"A.G"}
+	err := v.Struct(a)
+	fmt.Println(err)
+    // error message: 
+    // Key: 'User.Name' Error:Field validation for 'Name' failed on the 'alpha' tag
+}
+```
+
+Removing the dot("AG") and run it again, it will show this error message:
+```text
+Key: 'User.Name' Error:Field validation for 'Name' failed on the 'min' tag
+```
+
+### Validate Variable
+```go
+v := validator.New()
+name := "Andrew"
+err = v.Var(name, "required,min=10,max=15")
+fmt.Println(err)
+
+```
+
+### Validate Struct
+```go
+type User struct {
+	Name string `validate:"required,min=10,max=25"`
+}
+
+func main() {
+	v := validator.New()
+
+	u1 := User{
+		Name: "Andrew G",
+	}
+	err := v.Struct(u1)
+	fmt.Println(err)
+	// Key: 'User.Name' Error:Field validation for 'Name' failed on the 'min' tag
+}
+```
+
+### Validate Map
+```go
+validate := validator.New()
+user := map[string]interface{}{"name": "Arshiya Kiani", "email": "zytel3301@gmail.com"}
+
+// Every rule will be applied to the item of the data that the offset of rule is pointing to.
+// So if you have a field "email": "omitempty,required,email", the validator will apply these
+// rules to offset of email in user data
+rules := map[string]interface{}{"name": "required,min=8,max=32", "email": "omitempty,required,email"}
+
+errs := validate.ValidateMap(user, rules)
+
+// ValidateMap will return map[string]error.
+// The offset of every item in errs is the name of invalid field and the value
+// is the message of error. If there was no error, ValidateMap method will
+// return an EMPTY map of errors, not nil. If you want to check that
+// if there was an error or not, you must check the length of the return value
+if len(errs) > 0 {
+    fmt.Println(errs)
+    // The user is invalid
+}
+
+// The user is valid
+```
+
+See [map-validation](https://github.com/go-playground/validator/blob/master/_examples/map-validation/main.go)
+
+### Customize Validation
+* For customer validate a struct, see example [here](https://github.com/go-playground/validator/blob/master/_examples/struct-level/main.go)
+* For customer validate a tag, see example [here](https://github.com/go-playground/validator/blob/master/_examples/custom-validation/main.go)
+* For customer validate a type, see example [here](https://github.com/go-playground/validator/blob/master/_examples/custom/main.go)
+
+## Translate
+### Translation Example
 See [Golang使用validator进行数据校验及自定义翻译器](https://wangyangyangisme.github.io/2020/10/20/golang-Golang%E4%BD%BF%E7%94%A8validator%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BF%BB%E8%AF%91%E5%99%A8/)
 Also [golang validator参数校验 中文](https://studygolang.com/articles/27728)
 
@@ -45,7 +128,7 @@ func main() {
 	universal := uTranslator.New(en, zh)
 
 	zhTranslator, _ := universal.GetTranslator("zh")
-	enTranslator, _ := universal.GetTranslator("en_CA")
+	enTranslator, _ := universal.GetTranslator("en")
 
 	myValidator := validator.New()
 	_ = zhTranslation.RegisterDefaultTranslations(myValidator, zhTranslator)
@@ -75,7 +158,6 @@ LastName长度必须至少为4个字符
 LastName must be at least 4 characters in length
 Age必须大于或等于4
 Age must be 4 or greater
-
 ```
 
 ```go
@@ -95,6 +177,28 @@ func validateInit() {
     })
 }
 ```
+
+### Translate Field Name
+By default, the field name is not translated. Use `RegisterTagNameFunc` to get the field name from a specific tag.
+
+```go
+// add tag for the field name(cn in this case, it can be any tag, like json tag)
+type User struct {
+	Name string `validate:"required,min=1,max=15" cn:"姓名"`
+}
+
+v:=validator.New()
+v.RegisterTagNameFunc(func(field reflect.StructField) string {
+    label := field.Tag.Get("cn")
+    if label == "" {
+        return field.Name
+    }
+    return label
+})
+
+```
+See [example 1](https://www.gushiciku.cn/pl/pHrV/zh-tw) and 
+[example 2](https://github.com/go-playground/validator/blob/master/_examples/struct-level/main.go)
 
 ## Validator & Echo web framework
 ### How to use validator in Echo?
@@ -159,3 +263,5 @@ id := c.Param("id")
 err := Validate.Var(id, "required,gt=0,lte=99999")
 ```
 
+## Useful Links
+https://medium.com/tunaiku-tech/go-validator-v10-c7a4f1be37df
