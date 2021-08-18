@@ -21,6 +21,8 @@ json: unsupported value: NaN
 ```
 
 ### Should I parse JSON with structs or maps?
+See [here](https://bencane.com/2020/12/08/maps-vs-structs-for-json/)
+
 #### Struct
 Pro: 
 * Parsing JSON data to structs is safe and easy.
@@ -118,8 +120,10 @@ Con:
 ### How to get the type of a variable?
 ```
 v := []string{"a", "b"}
+
 // using %T
 fmt.Printf("%T", v) // []string
+
 // using reflect package
 fmt.Println(reflect.TypeOf(v)) // []string
 fmt.Println(reflect.ValueOf(v).Kind()) // slice
@@ -137,6 +141,7 @@ go build
 // From Linux
 $ env GOOS=windows GOARCH=amd64 go build
 ```
+
 ## CSV
 ### How to remove BOM data at the beginning of the file
 ```go
@@ -157,6 +162,10 @@ $ env GOOS=windows GOARCH=amd64 go build
         }
     }
 ```
+
+### How to include special characters in CSV?
+* If there is a comma in the text, you can quote the field like `"Guo, Angang"`
+* If there is a quote in the text, quote it like `"""Q"""` for `"Q"`
 
 ### How to set Comma separator?
 ```go
@@ -266,6 +275,43 @@ The operators `<`, `>` are not defined to compare date / time. Use `time.After()
 ```
 
 ## Module
+
+### How to replace a module?
+The Go Excel library has changed the location and path from `github.com/360EntSecGroup-Skylar/excelize` to `github.com/xuri/excelize`.
+Our program all using the import path as `"github.com/360EntSecGroup-Skylar/excelize/v2"`
+
+When updating the modules, the following error occurs:
+```
+PS C:\Andrew\prj\lib> go get -u ./...
+go get: github.com/360EntSecGroup-Skylar/excelize/v2@v2.4.0 updating to
+        github.com/360EntSecGroup-Skylar/excelize/v2@v2.4.1: parsing go.mod:
+        module declares its path as: github.com/xuri/excelize/v2
+                but was required as: github.com/360EntSecGroup-Skylar/excelize/v2
+```
+
+Use `replace` directive will fix it:
+```go
+replace github.com/360EntSecGroup-Skylar/excelize/v2 => github.com/xuri/excelize/v2 v2.4.1
+
+require (
+	github.com/360EntSecGroup-Skylar/excelize/v2 v2.4.1
+)
+```
+
+Keep using the old module names only or replace all the old module names with new module names.
+You'll get the following error message if you use the old module and the new module at the same time: 
+```
+replace github.com/360EntSecGroup-Skylar/excelize/v2 => github.com/xuri/excelize/v2 v2.4.1
+
+require (
+	github.com/360EntSecGroup-Skylar/excelize/v2 v2.4.1
+	github.com/xuri/excelize/v2 v2.4.1
+)
+	
+PS C:\Andrew\prj\rl> go mod tidy
+go: github.com/xuri/excelize/v2@v2.4.1 used for two different module paths (github.com/360EntSecGroup-Skylar/excelize/v2 and github.com/xuri/excelize/v2)
+```
+
 ### Go Install
 Usually you need to use `go get` to download and install a package. 
 Use `go install` when you want to install an executable program(cmd - main package).
@@ -301,10 +347,18 @@ go get -u github.com/gin-gonic/gin // update the module
 // Version queries
 go get github.com/gin-gonic/gin@master // get the latest module 
 
+go list -u -m all // View available dependency upgrades
+go get -u ./... // update all the dependencies
+
+// upgrade to a specific commit
+go get -u github.com/mxschmitt/playwright-go@355fba9
+go: downloading github.com/mxschmitt/playwright-go v0.171.2-0.20210220003257-355fba93c781
+go: github.com/mxschmitt/playwright-go 355fba9 => v0.171.2-0.20210220003257-355fba93c781
+
 // update go version to version 1.16
 go mod edit -go=1.16
 
-// why to use this module
+// who's using this module
 go mod why -m gopkg.in/yaml.v2
 Output:
 # gopkg.in/yaml.v2
@@ -312,6 +366,9 @@ github.com/AngangGuo/rl/archived/stats
 github.com/gin-gonic/gin
 github.com/gin-gonic/gin/binding
 gopkg.in/yaml.v2
+
+// clean up the modules; add missing modules and remove unused modules
+go mod tidy
 
 ```
 
@@ -322,23 +379,6 @@ Run "go env GOPATH" to see the current GOPATH.
 
 When using modules, GOPATH is no longer used for resolving imports. 
 However, it is still used to store downloaded source code (in GOPATH/pkg/mod) and compiled commands (in GOPATH/bin).
-
-### How to clean up the modules?
-```
-go mod tidy // add missing modules and remove unused modules
-```
-
-### How to upgrade to a specific commit?
-```
-C:\Users\angan\go\src\rl>go get -u github.com/mxschmitt/playwright-go@355fba9
-go: downloading github.com/mxschmitt/playwright-go v0.171.2-0.20210220003257-355fba93c781
-go: github.com/mxschmitt/playwright-go 355fba9 => v0.171.2-0.20210220003257-355fba93c781
-```
-### How to upgrade all dependencies at once?
-```
-go list -u -m all // View available dependency upgrades
-go get -u ./... // update all the dependencies
-```
 
 ### Should I commit `go.sum` file as well as my `go.mod` file to Github?
 Yes. See [here](https://github.com/golang/go/wiki/Modules#should-i-commit-my-gosum-file-as-well-as-my-gomod-file)
@@ -351,7 +391,7 @@ go get .: path C:\Users\angan\go\src\rl is not a package in module rooted at C:\
 ```
 See How to upgrade all dependencies at once?
 
-### could not launch process
+### `dlv`: could not launch process
 ```
 C:\>dlv debug
 could not launch process: decoding dwarf section info at offset 0x0: too short
@@ -615,8 +655,23 @@ godoc -http=:6060
 ### How can I add examples into my library document?
 See [blog](https://blog.golang.org/examples)
 
+## Pitfalls
+### Missing value
+```go
+type SNInfo struct {
+	PreviousDate string
+	Facilities   []string
+	AssetSNList  []AssetSNRecord
+}
 
-## Useful links
+// Missing date
+func (info SNInfo) SetPreviousDate(date string) {
+	info.PreviousDate = date
+	return
+}
+```
+
+## Useful Library Links
 * [Cobra](https://github.com/spf13/cobra) is a library providing a simple interface to create powerful modern CLI interfaces
 * [Echo](https://echo.labstack.com) is a high performance, extensible, minimalist Go web framework
-* [Package validator](https://github.com/go-playground/validator) implements value validations for structs and individual fields based on tags.
+* [Validator](https://github.com/go-playground/validator) implements value validations for structs and individual fields based on tags.
