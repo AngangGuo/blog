@@ -671,6 +671,139 @@ func (info SNInfo) SetPreviousDate(date string) {
 }
 ```
 
+## Testing
+### TDD With Go
+See [Learn Go With Test](https://github.com/quii/learn-go-with-tests)
+
+### Name Convention
+* To write a new test suite, create a file whose name ends `_test.go`
+* The function name serves to identify the test routine: `func TestXxx(*testing.T){...}`
+
+### Package Name Strategy
+You can only have one package in a folder, or use `[packageName]_test` for testing file which is an exception to this rule.
+* Test files that declare a package with the suffix "_test" will be compiled as a separate package, and then linked and run with the main test binary. 
+* For testing package name strategy see [here](https://stackoverflow.com/questions/19998250/proper-package-naming-for-testing-with-the-go-language)
+
+### Defining subtests with `Run`
+Giving the individual test a name like `A=1` in this code:
+```go
+func TestFoo(t *testing.T) {
+  // <setup code>
+  t.Run("A=1", func(t *testing.T) { ... })
+  t.Run("A=2", func(t *testing.T) { ... })
+  t.Run("B=1", func(t *testing.T) { ... })
+  // <tear-down code>
+}
+```
+
+### Embedding `Run` and `Helper` example
+Note that `t.Helper()` is needed in `assert` function to tell the test suite that this function is a helper. 
+By doing this when it fails the line number reported will be in our function call rather than inside our test helper.
+
+```go
+func TestHello(t *testing.T) {
+	assert:= func(t *testing.T, got, want string) {
+		t.Helper()
+		if got!=want{
+		    // by using t.Helper(), error will be in line 26(caller position) - hello_test.go:26: got "Hello, world" want "Hello, world1"
+		    // if you comment out the t.Helper(), error will be in line 9 - hello_test.go:9: got "Hello, world" want "Hello, world1"
+			t.Errorf("got %q want %q", got, want)  // line 9
+		}
+	}
+
+    // t.Run can be embeded
+	t.Run("race", func(t *testing.T) {
+		t.Run("chris", func(t *testing.T) {
+			t.Parallel()
+			got := Hello("Chris")
+			want := "Hello, Chris"
+			assert(t,got,want)
+		})
+
+		t.Run("empty", func(t *testing.T) {
+			t.Parallel()
+			got := Hello("")
+			want := "Hello, world1"
+			assert(t,got,want) // line 26 testing failed on this line
+		})
+	})
+}
+
+PS C:\Andrew\prj\try\tdd> go test
+--- FAIL: TestHello (0.00s)
+    --- FAIL: TestHello/race (0.00s)
+        --- FAIL: TestHello/race/empty (0.00s)
+            hello_test.go:25: got "Hello, world" want "Hello, world1"
+FAIL
+exit status 1
+FAIL    github.com/AngangGuo/try/tdd 1.184s
+
+```
+
+### TestMain
+```go
+func TestMain(m *testing.M) {
+	v := m.Run()
+	if v == 0 && goroutineLeaked() {
+		os.Exit(1)
+	}
+	os.Exit(v)
+}
+
+```
+
+### Examples
+* For file name you can use `example_test.go`
+* The naming convention to declare examples for the package, a function F, a type T and method M on type T are:
+```
+func Example() { ... }
+func ExampleF() { ... }
+func ExampleT() { ... }
+func ExampleT_M() { ... }
+
+// errors package example from go/src/errors/example_test.go
+func Example() {
+	if err := oops(); err != nil {
+		fmt.Println(err)
+	}
+	// Output: 1989-03-15 22:30:00 +0000 UTC: the file system has gone away
+}
+
+// function strings.Join() example from go/src/strings/example_test.go
+func ExampleJoin() {
+	s := []string{"foo", "bar", "baz"}
+	fmt.Println(strings.Join(s, ", "))
+	// Output: foo, bar, baz
+}
+
+// type bytes.Buffer example from src/bytes/example_test.go
+func ExampleBuffer() {
+	var b bytes.Buffer // A Buffer needs no initialization.
+	b.Write([]byte("Hello "))
+	fmt.Fprintf(&b, "world!")
+	b.WriteTo(os.Stdout)
+	// Output: Hello world!
+}
+
+// type Buffer.Len method example from src/bytes/example_test.go
+func ExampleBuffer_Len() {
+	var b bytes.Buffer
+	b.Grow(64)
+	b.Write([]byte("abcde"))
+	fmt.Printf("%d", b.Len())
+	// Output: 5
+}
+```
+
+* Multiple example functions for a package/type/function/method may be provided by appending a distinct suffix 
+to the name. The suffix must start with a lower-case letter.
+```go
+// multiple bytes.Compare() function examples from src/bytes/example_test.go
+func ExampleCompare() {...}
+func ExampleCompare_search() {...)
+```
+
+
 ## Useful Library Links
 * [Cobra](https://github.com/spf13/cobra) is a library providing a simple interface to create powerful modern CLI interfaces
 * [Echo](https://echo.labstack.com) is a high performance, extensible, minimalist Go web framework
