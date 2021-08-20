@@ -680,8 +680,9 @@ See [Learn Go With Test](https://github.com/quii/learn-go-with-tests)
 * The function name serves to identify the test routine: `func TestXxx(*testing.T){...}`
 
 ### Package Name Strategy
-You can only have one package in a folder, or use `[packageName]_test` for testing file which is an exception to this rule.
-* Test files that declare a package with the suffix "_test" will be compiled as a separate package, and then linked and run with the main test binary. 
+You can only have one package in a folder(`go build` restriction, but doesn't mention in Go Spec), or use `[packageName]_test` for testing file which is an exception to this rule.
+* If you use the same package name as your code, it's called white box testing, you can test private functions as well as public functions
+* If you use `[packageName]_test` as package name, you need to import your code and can test public functions only. It's called black box testing.
 * For testing package name strategy see [here](https://stackoverflow.com/questions/19998250/proper-package-naming-for-testing-with-the-go-language)
 
 ### Defining subtests with `Run`
@@ -752,6 +753,23 @@ func TestMain(m *testing.M) {
 
 ```
 
+### Benchmarks
+* To run the benchmarks, use `go test -bench .`
+* Function of the form: `func BenchmarkXxx(*testing.B)`. For example
+```go
+func BenchmarkRandInt(b *testing.B) {
+    // optional: reset timer after setup 
+    // setup code
+    // b.ResetTimer()
+    for i := 0; i < b.N; i++ {
+        rand.Int()
+    }
+}
+```
+
+### Coverage
+You can use `go test -cover` to analyze the testing coverage.
+
 ### Examples
 * For file name you can use `example_test.go`
 * The naming convention to declare examples for the package, a function F, a type T and method M on type T are:
@@ -795,6 +813,10 @@ func ExampleBuffer_Len() {
 }
 ```
 
+Note:
+If you use anything other than `Output:` or `Unordered output:`, the example will not compare with the standard output. 
+No error message, it will just be treated as normal comment line.
+
 * Multiple example functions for a package/type/function/method may be provided by appending a distinct suffix 
 to the name. The suffix must start with a lower-case letter.
 ```go
@@ -802,7 +824,6 @@ to the name. The suffix must start with a lower-case letter.
 func ExampleCompare() {...}
 func ExampleCompare_search() {...)
 ```
-
 
 ## Useful Library Links
 * [Cobra](https://github.com/spf13/cobra) is a library providing a simple interface to create powerful modern CLI interfaces
