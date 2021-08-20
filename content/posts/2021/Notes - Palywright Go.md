@@ -225,3 +225,13 @@ func main() {
 }
 
 ```
+
+## Event
+### How to listen for console event?
+See [here](https://github.com/mxschmitt/playwright-go/issues/186)
+```go
+messages := make(chan playwright.ConsoleMessage, 1) 
+page.On("console", func(message playwright.ConsoleMessage) { 
+    messages <- message 
+}) 
+```
