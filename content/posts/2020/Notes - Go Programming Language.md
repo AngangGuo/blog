@@ -116,32 +116,6 @@ Con:
 	fmt.Printf("\n")
 ```
 
-## Other
-### How to get the type of a variable?
-```
-v := []string{"a", "b"}
-
-// using %T
-fmt.Printf("%T", v) // []string
-
-// using reflect package
-fmt.Println(reflect.TypeOf(v)) // []string
-fmt.Println(reflect.ValueOf(v).Kind()) // slice
-```
-
-### How to cross compile Go program?
-To cross-build executables for other Go-supported platform,
-just set `GOARCH` and `GOOS` to the target platform and build.
-```
-// From Windows
-set GOARCH=amd64
-set GOOS=linux
-go build
-
-// From Linux
-$ env GOOS=windows GOARCH=amd64 go build
-```
-
 ## CSV
 ### How to remove BOM data at the beginning of the file
 ```go
@@ -527,54 +501,6 @@ log.SetOutput(wrt)
 log.Println("Hello, World!")
 ```
 
-## Pitfalls
-### How to convert number to string?
-```
-// ASCII code
-s := string(65) // convert to "A"
-
-// Right
-n1 := int64(234)
-s1 := strconv.FormatInt(n1, 10) // "234"
-
-n2 := 4.56423
-s2 := strconv.FormatFloat(n2, 'f', 2, 32) // "4.56"
-```
-
-### How to check if file exist?
-
-
-### How to copy file?
-```
-// Method 1
-src, _ := os.Open(srcFile)
-defer src.Close()
-
-dst, _ := os.Create(dstFile)
-defer dst.Close()
-
-n, err := io.Copy(dst, src)
-
-// Method 2
-src, _ := ioutil.ReadFile(srcFile)
-_ = ioutil.WriteFile(dstFile, src, 0644)
-
-// Method 3
-buf := make([]byte, BUFFERSIZE)
-for {
-    n, err := src.Read(buf)
-    if err != nil && err != io.EOF {
-        return err
-    }
-    if n == 0 {
-        break
-    }
-    if _, err := dst.Write(buf[:n]); err != nil {
-        return err
-    }
-}
-```
-
 ## Network
 ### Simple Go client
 Get Content
@@ -655,8 +581,46 @@ godoc -http=:6060
 ### How can I add examples into my library document?
 See [blog](https://blog.golang.org/examples)
 
+## Map
+### `nil` Map
+A gotcha with maps is that they can be a nil value. A nil map behaves like an empty map when reading, 
+but attempts to write to a nil map will cause a runtime panic. You can read more about maps here.
+
+Therefore, you should never initialize an empty map variable:
+```go
+// avoid this 
+var m map[string]string
+
+// use this instead
+var dictionary = map[string]string{}
+// or this
+var dictionary = make(map[string]string)
+```
+
+### Pass By Value
+when you pass a map to a function/method, you are indeed copying it, 
+but just the pointer part(it's a pointer to the underlying runtime.hmap structure), 
+not the data structure that contains the data. So you can modify the map data without passing the map address.
+```go
+func main() {
+  myMap := map[string]bool{}
+  fmt.Println("before", myMap)
+  
+  change(myMap)
+  fmt.Println("after", myMap)
+}
+
+func change(m map[string]bool) {
+  m["modified"] = true
+}
+
+// output:
+before map[]
+after map[modified:true]
+```
 ## Pitfalls
 ### Missing value
+If you want to modify 
 ```go
 type SNInfo struct {
 	PreviousDate string
@@ -668,6 +632,53 @@ type SNInfo struct {
 func (info SNInfo) SetPreviousDate(date string) {
 	info.PreviousDate = date
 	return
+}
+```
+
+### How to convert number to string?
+```
+// ASCII code
+s := string(65) // convert to "A"
+
+// Right
+n1 := int64(234)
+s1 := strconv.FormatInt(n1, 10) // "234"
+
+n2 := 4.56423
+s2 := strconv.FormatFloat(n2, 'f', 2, 32) // "4.56"
+```
+
+### How to check if file exist?
+
+
+### How to copy file?
+```
+// Method 1
+src, _ := os.Open(srcFile)
+defer src.Close()
+
+dst, _ := os.Create(dstFile)
+defer dst.Close()
+
+n, err := io.Copy(dst, src)
+
+// Method 2
+src, _ := ioutil.ReadFile(srcFile)
+_ = ioutil.WriteFile(dstFile, src, 0644)
+
+// Method 3
+buf := make([]byte, BUFFERSIZE)
+for {
+    n, err := src.Read(buf)
+    if err != nil && err != io.EOF {
+        return err
+    }
+    if n == 0 {
+        break
+    }
+    if _, err := dst.Write(buf[:n]); err != nil {
+        return err
+    }
 }
 ```
 
@@ -823,6 +834,32 @@ to the name. The suffix must start with a lower-case letter.
 // multiple bytes.Compare() function examples from src/bytes/example_test.go
 func ExampleCompare() {...}
 func ExampleCompare_search() {...)
+```
+
+## Other
+### How to get the type of a variable?
+```
+v := []string{"a", "b"}
+
+// using %T
+fmt.Printf("%T", v) // []string
+
+// using reflect package
+fmt.Println(reflect.TypeOf(v)) // []string
+fmt.Println(reflect.ValueOf(v).Kind()) // slice
+```
+
+### How to cross compile Go program?
+To cross-build executables for other Go-supported platform,
+just set `GOARCH` and `GOOS` to the target platform and build.
+```
+// From Windows
+set GOARCH=amd64
+set GOOS=linux
+go build
+
+// From Linux
+$ env GOOS=windows GOARCH=amd64 go build
 ```
 
 ## Useful Library Links
