@@ -249,6 +249,7 @@ The operators `<`, `>` are not defined to compare date / time. Use `time.After()
 ```
 
 ## Module
+See [Developing and publishing modules](https://golang.org/doc/modules/developing)
 
 ### How to replace a module?
 The Go Excel library has changed the location and path from `github.com/360EntSecGroup-Skylar/excelize` to `github.com/xuri/excelize`.
@@ -286,6 +287,19 @@ PS C:\Andrew\prj\rl> go mod tidy
 go: github.com/xuri/excelize/v2@v2.4.1 used for two different module paths (github.com/360EntSecGroup-Skylar/excelize/v2 and github.com/xuri/excelize/v2)
 ```
 
+### How to use unpublished module in your local directory?
+Use `replace` directive as the following:
+```go
+module example.com/mymodule
+
+go 1.16
+
+require example.com/theirmodule v0.0.0-unpublished
+replace example.com/theirmodule v0.0.0-unpublished => ../to-local-folder
+
+// $ go mod edit -replace=example.com/theirmodule@v0.0.0-unpublished=../theirmodule
+// $ go get -d example.com/theirmodule@v0.0.0-unpublished
+```
 ### Go Install
 Usually you need to use `go get` to download and install a package. 
 Use `go install` when you want to install an executable program(cmd - main package).
@@ -685,6 +699,20 @@ for {
 ## Testing
 ### TDD With Go
 See [Learn Go With Test](https://github.com/quii/learn-go-with-tests)
+
+### Dependency Injection
+See [Google Wire](https://go.dev/blog/wire)
+
+Dependency injection (DI) is a style of writing code such that the dependencies of a particular object 
+(or, in go, a struct) are provided at the time the object is initialized.
+
+There are basically three types of dependency injection:
+* Constructor injection: the dependencies are provided through a class constructor.
+* Setter injection: the client exposes a setter method that the injector uses to inject the dependency.
+* Interface injection: the dependency provides an injector method that will inject the dependency into any client passed to it. Clients must implement an interface that exposes a setter method that accepts the dependency.
+
+### Mocking
+* Mocking: You use mocking to replace real things you inject with a pretend version that you can control and inspect in your tests.
 
 ### Name Convention
 * To write a new test suite, create a file whose name ends `_test.go`
