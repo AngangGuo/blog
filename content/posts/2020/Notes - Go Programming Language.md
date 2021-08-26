@@ -515,6 +515,49 @@ log.SetOutput(wrt)
 log.Println("Hello, World!")
 ```
 
+### How to check if file exist?
+```go
+if _, err := os.Stat("/path/to/whatever"); err == nil {
+  // exists
+} else if os.IsNotExist(err) { // or errors.Is(err, fs.ErrNotExist)
+  // does not exist
+} else {
+  // file may or may not exist. See err for details.
+  // permission denied, 
+}
+```
+
+### How to copy file?
+```
+// Method 1
+src, _ := os.Open(srcFile)
+defer src.Close()
+
+dst, _ := os.Create(dstFile)
+defer dst.Close()
+
+n, err := io.Copy(dst, src)
+
+// Method 2
+src, _ := ioutil.ReadFile(srcFile)
+_ = ioutil.WriteFile(dstFile, src, 0644)
+
+// Method 3
+buf := make([]byte, BUFFERSIZE)
+for {
+    n, err := src.Read(buf)
+    if err != nil && err != io.EOF {
+        return err
+    }
+    if n == 0 {
+        break
+    }
+    if _, err := dst.Write(buf[:n]); err != nil {
+        return err
+    }
+}
+```
+
 ## Network
 ### Simple Go client
 Get Content
@@ -634,20 +677,36 @@ after map[modified:true]
 ```
 ## Pitfalls
 ### Missing value
-If you want to modify 
+Because calling a function makes a copy of each argument value, if a function needs to update
+a variable, or if an argument is so large that we wish to avoid copy ing it, we must pass the
+address of the variable using a pointer. The same goes for methods that need to update the
+receiver variable.
+
 ```go
-type SNInfo struct {
-	PreviousDate string
-	Facilities   []string
-	AssetSNList  []AssetSNRecord
+type Student struct {
+	Name string
 }
 
-// Missing date
-func (info SNInfo) SetPreviousDate(date string) {
-	info.PreviousDate = date
-	return
+func NewStudent() Student {
+	return Student{}
+}
+	
+// Problem
+func (s Student) SetName(name string) {
+	s.Name = name
+}
+
+func main() {
+	a := NewStudent()
+	a.SetName("Andrew")
+	
+	fmt.Println(a) 
+	// Where's Andrew??? 
+	// Output: {}
 }
 ```
+
+To fix it, use the Pointer Receiver `func (s *Student) SetName(name string)` instead.
 
 ### How to convert number to string?
 ```
@@ -660,40 +719,6 @@ s1 := strconv.FormatInt(n1, 10) // "234"
 
 n2 := 4.56423
 s2 := strconv.FormatFloat(n2, 'f', 2, 32) // "4.56"
-```
-
-### How to check if file exist?
-
-
-### How to copy file?
-```
-// Method 1
-src, _ := os.Open(srcFile)
-defer src.Close()
-
-dst, _ := os.Create(dstFile)
-defer dst.Close()
-
-n, err := io.Copy(dst, src)
-
-// Method 2
-src, _ := ioutil.ReadFile(srcFile)
-_ = ioutil.WriteFile(dstFile, src, 0644)
-
-// Method 3
-buf := make([]byte, BUFFERSIZE)
-for {
-    n, err := src.Read(buf)
-    if err != nil && err != io.EOF {
-        return err
-    }
-    if n == 0 {
-        break
-    }
-    if _, err := dst.Write(buf[:n]); err != nil {
-        return err
-    }
-}
 ```
 
 ## Testing
