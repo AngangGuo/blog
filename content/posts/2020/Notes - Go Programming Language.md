@@ -300,32 +300,6 @@ replace example.com/theirmodule v0.0.0-unpublished => ../to-local-folder
 // $ go mod edit -replace=example.com/theirmodule@v0.0.0-unpublished=../theirmodule
 // $ go get -d example.com/theirmodule@v0.0.0-unpublished
 ```
-### Go Install
-Usually you need to use `go get` to download and install a package. 
-Use `go install` when you want to install an executable program(cmd - main package).
-
-The go install command builds and installs the packages named by the paths on the command line. 
-Executables (main packages) are installed to the directory named by the `GOBIN` environment variable, 
-which defaults to `$GOPATH/bin` or `$HOME/go/bin` if the GOPATH environment variable is not set. 
-Executables in `$GOROOT` are installed in `$GOROOT/bin` or `$GOTOOLDIR` instead of `$GOBIN`.
-
-Since Go 1.16, if the arguments have version suffixes (like @latest or @v1.0.0), go install builds packages in module-aware mode, 
-ignoring the go.mod file in the current directory or any parent directory if there is one. 
-This is useful for installing executables without affecting the dependencies of the main module.
-```
-# Install the latest version of a program,
-# ignoring go.mod in the current directory (if any).
-$ go install golang.org/x/tools/gopls@latest
-
-# Install a specific version of a program.
-$ go install golang.org/x/tools/gopls@v0.6.4
-
-# Install a program at the version selected by the module in the current directory.
-$ go install golang.org/x/tools/gopls
-
-# Install all programs in a directory.
-$ go install ./cmd/...
-```
 
 ### Useful Commands:
 ```
@@ -370,6 +344,56 @@ However, it is still used to store downloaded source code (in GOPATH/pkg/mod) an
 
 ### Should I commit `go.sum` file as well as my `go.mod` file to Github?
 Yes. See [here](https://github.com/golang/go/wiki/Modules#should-i-commit-my-gosum-file-as-well-as-my-gomod-file)
+
+## Tooling
+### Build Constraints
+See [doc](https://pkg.go.dev/cmd/go#hdr-Build_constraints)
+
+Build constraint(or build tag) is a line comment that begins(starting go1.17)
+```
+//go:build
+```
+It appears near the top of the file, preceded only by blank lines and other line comments.
+A build constraint is evaluated as an expression containing options combined by ||, &&, and ! operators and parentheses.
+Here're some examples:
+* To keep a file from being considered for the build:
+```
+//go:build ignore
+```
+
+* To build a file only when using cgo, and only on Linux and OS X:
+```
+//go:build cgo && (linux || darwin)
+```
+
+Note: Go versions 1.16 and earlier used a different syntax for build constraints, with a `// +build` prefix.
+
+### Go Install
+Usually you need to use `go get` to download and install a package.
+Use `go install` when you want to install an executable program(cmd - main package).
+
+The go install command builds and installs the packages named by the paths on the command line.
+Executables (main packages) are installed to the directory named by the `GOBIN` environment variable,
+which defaults to `$GOPATH/bin` or `$HOME/go/bin` if the GOPATH environment variable is not set.
+Executables in `$GOROOT` are installed in `$GOROOT/bin` or `$GOTOOLDIR` instead of `$GOBIN`.
+
+Since Go 1.16, if the arguments have version suffixes (like @latest or @v1.0.0), go install builds packages in module-aware mode,
+ignoring the go.mod file in the current directory or any parent directory if there is one.
+This is useful for installing executables without affecting the dependencies of the main module.
+```
+# Install the latest version of a program,
+# ignoring go.mod in the current directory (if any).
+$ go install golang.org/x/tools/gopls@latest
+
+# Install a specific version of a program.
+$ go install golang.org/x/tools/gopls@v0.6.4
+
+# Install a program at the version selected by the module in the current directory.
+$ go install golang.org/x/tools/gopls
+
+# Install all programs in a directory.
+$ go install ./cmd/...
+```
 
 ## Troubleshooting
 ### Error: go get .: path is not a package in module rooted
@@ -720,6 +744,19 @@ s1 := strconv.FormatInt(n1, 10) // "234"
 n2 := 4.56423
 s2 := strconv.FormatFloat(n2, 'f', 2, 32) // "4.56"
 ```
+
+### Build problem
+`go build` may fail if you name your files with the name pattern like the following situation.
+
+If a file's name, after stripping the extension and a possible _test suffix, matches any of the following patterns:
+```
+*_GOOS
+*_GOARCH
+*_GOOS_GOARCH
+```
+(example: source_windows_amd64.go) where GOOS and GOARCH represent any known operating system and architecture values respectively, 
+then the file is considered to have an implicit build constraint requiring those terms 
+(in addition to any explicit constraints in the file).
 
 ## Testing
 ### TDD With Go
