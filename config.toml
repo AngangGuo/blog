@@ -4,7 +4,7 @@
 baseURL = ""
 title = "G+A+A"
 languageCode = "en"
-hasCJKLanguage = false
+hasCJKLanguage = true
 # Copyright information (Markdown supported)
 copyright = "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)"
 
@@ -202,28 +202,34 @@ uglyURLs = false
         pre = "internal"
         post = "archive"
     [[menu.main]]
+        url = "/plans/"
+        name = "Plan B"
+        weight = 3
+        pre = "internal"
+        post = "archive"
+    [[menu.main]]
         url = "/categories/"
         name = "Categories"
-        weight = 3
+        weight = 4
         pre = "internal"
         post = "th"
     [[menu.main]]
         url = "/tags/"
         name = "Tags"
-        weight = 4
+        weight = 5
         pre = "internal"
         post = "tags"
     [[menu.main]]
         url = "/about/"
         name = "About"
-        weight = 5
+        weight = 6
         pre = "internal"
         post = "user-circle"
     [[menu.main]]
-        weight = 6
+        weight = 7
         identifier = "theme-switcher"
     [[menu.main]]
-        weight = 7
+        weight = 8
         identifier = "lang-switcher"
 
 
@@ -919,23 +925,23 @@ uglyURLs = false
     # Site brand
     fontFamilySiteBrand = "'Comfortaa', Helvetica"
     # Menu bar
-    fontFamilyMenu = ""
+    fontFamilyMenu = "'Microsoft JhengHei'"
     # Post title, post subtitle, list title, year and month title of the list, related posts title, previous/next post title, header of table, term/name in a definition list
-    fontFamilyTitle = "'Comfortaa', sans-serif"
+    fontFamilyTitle = "'Comfortaa', sans-serif, 'Microsoft JhengHei'"
     # Headings, toc title
-    fontFamilyHeadings = "'Comfortaa', sans-serif"
+    fontFamilyHeadings = "'Comfortaa', sans-serif, 'Microsoft YaHei'"
     # Code, superscript, post meta info, post updated badge, post gitinfo, minimal footer, busuanzi site view counter
     fontFamilyCode = "'Source Code Pro', monospace"
     # Blockquotes
     fontFamilyQuote = ""
     # Table of contents
-    fontFamilyTOC = ""
+    fontFamilyTOC = "Microsoft JhengHei"
     # Caption
     fontFamilyCaption = ""
     # Footer
     fontFamilyFooter = ""
     # Body
-    fontFamilyBody = "'IBM Plex Serif', serif"
+    fontFamilyBody = "'IBM Plex Serif', serif, 'Microsoft JhengHei'"
 
     # Embed fonts link
     fontsLink = "https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Comfortaa:wght@700&display=swap"
