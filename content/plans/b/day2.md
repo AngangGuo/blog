@@ -1,6 +1,6 @@
 ---
 title: "Day 2"
-date: 2021-08-30T09:29:08-07:00
+date: 2021-08-31T09:29:08-07:00
 categories:
   - Church
   - Bible
