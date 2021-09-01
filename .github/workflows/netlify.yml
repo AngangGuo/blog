@@ -2,7 +2,7 @@ name: Netlify Scheduled Post
 
 on:
   schedule:
-    - cron: "30 23 * * *"
+    - cron: "15 0 * * *"
 
 jobs:
   build:
