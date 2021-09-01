@@ -1,6 +1,6 @@
 ---
 title: "Day 3"
-date: 2021-09-01T09:29:08-07:00
+date: 2021-09-01
 categories:
   - Church
   - Bible
