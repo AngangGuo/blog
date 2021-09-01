@@ -134,6 +134,8 @@ draft: true
 ---
 ```
 
+Note: YAML and TOML file support single line comments. You can comment a line out by adding `#` in front of the line
+
 ### Add Contents to the pages
 Write the article by using Markdown syntax.
 

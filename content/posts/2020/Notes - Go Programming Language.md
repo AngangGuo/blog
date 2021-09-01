@@ -758,6 +758,13 @@ If a file's name, after stripping the extension and a possible _test suffix, mat
 then the file is considered to have an implicit build constraint requiring those terms 
 (in addition to any explicit constraints in the file).
 
+### Wrong version when missing patch number?
+See [Module version numbering](https://golang.org/doc/modules/version-numbers) on how to version your module.
+
+Module was tagged as v0.1100.0, later on after some commits tagged as v.01400 without patch number. 
+When using `go get -u xxx` to update the module, it shows the module as `v0.1100.1` instead of `v0.1400`. 
+See [issue here](https://github.com/mxschmitt/playwright-go/issues/190)
+
 ## Testing
 ### TDD With Go
 See [Learn Go With Test](https://github.com/quii/learn-go-with-tests)
