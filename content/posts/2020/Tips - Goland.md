@@ -85,7 +85,8 @@ create a batch file `goland.bat` with these lines in a folder that is in your sy
 "C:\Program Files\JetBrains\GoLand 2020.1.1\bin\goland.bat" %*
 ```
 
-## Tips for testing
+## Testing
+See [Test Driven Development with GoLand](https://blog.jetbrains.com/go/2020/03/13/test-driven-development-with-goland/)
 
 ### Generate tests
 #### From testing file
