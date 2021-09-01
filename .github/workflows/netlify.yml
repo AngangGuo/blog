@@ -1,0 +1,14 @@
+name: Netlify Scheduled Post
+
+on:
+  schedule:
+    - cron: "0 7 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Netlify Hook
+        run: curl -s -X POST "https://api.netlify.com/build_hooks/${TOKEN}"
+        env:
+          TOKEN: ${{ secrets.NETLIFY_BLOG_TOKEN }}
