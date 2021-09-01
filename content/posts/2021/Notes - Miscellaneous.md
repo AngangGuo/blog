@@ -130,21 +130,17 @@ Settings > Secrets > New repository secrets >
 * Name: Netlify_Blog_Token
 * Value: (paste the build hook token here)
 
-Ignore these
-**Setup a webhook on Github**
-* Login to Github
-* Settings > Webhooks > Add webhook
-* Store the build hook as a Github secret
-
-**Create a Github Workflow**
-
-Save the following file as `.github/workflows/netlify.yml` in your site repository, 
-```
+**Repository**
+* Create a `.github/workflows` directory in your repository
+* Create a new file `netlify.yml` in the folder
+* Create the workflow
+```yaml
 name: Netlify Scheduled Post
 
 on:
   schedule:
-    - cron: "0 7 * * *"
+  # At 00:15; see https://crontab.guru
+    - cron: "15 0 * * *"
 
 jobs:
   build:
@@ -153,11 +149,13 @@ jobs:
       - name: Trigger Netlify Hook
         run: curl -s -X POST "https://api.netlify.com/build_hooks/${TOKEN}"
         env:
-          TOKEN: ${{ secrets.NETLIFY_BLOG_TOKEN }}  
+          TOKEN: ${{ secrets.NETLIFY_BLOG_TOKEN }}
 ```
+* Commit and push it into Github
+* You can verify in Github > Your repository > Actions > Workflows 
 
 Note: 
-* 7:00am UTC = 12:00am PST. See https://crontab.guru/
+* 8:00am UTC(+00:00) = 12:00am PST(-08:00)
 
 
 Problem: 
@@ -191,3 +189,13 @@ Basic Sections:
 ## 思考与练习
 ## 金句
 ```
+
+## Other
+### W3C Time Format
+```
+1997-07-16T19:20:30.45+01:00
+2021-09-01T00:00:00+00:00
+2021-09-01T59:59:59+00:00
+2021-01-13T16:55:05-08:00
+```
+
