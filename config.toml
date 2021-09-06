@@ -203,7 +203,7 @@ uglyURLs = false
         post = "archive"
     [[menu.main]]
         url = "/plans/"
-        name = "Plan B"
+        name = "读经计划"
         weight = 3
         pre = "internal"
         post = "archive"
