@@ -82,8 +82,6 @@ To https://github.com/AngangGuo/donation.git
  - [deleted]         0.2
 ```
 
-
-
 ### How to rewrite the most recent commit message?
 **Commit has not been pushed online**
 ```
@@ -104,6 +102,21 @@ See [here](https://docs.github.com/en/github/committing-changes-to-your-project/
 
 ## Github
 
+### How to move a file into a folder?
+* Click the pencil icon to edit the file
+* In the filename field, type in the path you want the file to move in. Or
+* If you want to move the file to its parent folder, type `../` before the file name to move it up one directory level.
+
+By using commands:
+```
+// move readme.md into myfolder, or you can rename file using the same command
+git mv readme.md myfolder
+
+// or
+mv readme.md myfolder
+git add myfolder/readme.md
+git rm readme.md
+```
 ### How to remove the last commit from Github?
 ```
 // Reset local repository to previous commit

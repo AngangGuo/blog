@@ -356,9 +356,10 @@ Build constraint(or build tag) is a line comment that begins(starting go1.17)
 It appears near the top of the file, preceded only by blank lines and other line comments.
 A build constraint is evaluated as an expression containing options combined by ||, &&, and ! operators and parentheses.
 Here're some examples:
-* To keep a file from being considered for the build:
+* To keep a file from being considered for the build(first line is used after Go1.17, second line is used before Go1.17):
 ```
 //go:build ignore
+// +build ignore
 ```
 
 * To build a file only when using cgo, and only on Linux and OS X:

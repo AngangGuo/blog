@@ -15,6 +15,25 @@ draft: false
 
 See [Element Selectors](https://playwright.dev/docs/selectors/)
 
+### Select element by label
+Excerpt of page source
+```
+<tr>
+    <td>
+        <input id="ctl32_ctl04_ctl07_divDropDown_ctl70" type="checkbox">
+        <label for="ctl32_ctl04_ctl07_divDropDown_ctl70">Vancouver,&nbsp;BC&nbsp;(RL)</label>
+    </td>
+</tr>
+```
+```go
+// See https://playwright.dev/docs/selectors#text-selector
+err = page.Click("text=Vancouver") // ok
+err = page.Click("text=Vancouver, BC (RL)") // ok
+```
+```
+err = page.Click("text=Vancouver,&nbsp;BC&nbsp;(RL)") // not work
+```
+
 ### Number Only
 Class identifiers are allowed to start with a number, but ID identifiers are not.
 You can't use an ID selector starting as a number: `'#123' is not a valid selector.`
@@ -136,26 +155,33 @@ See [Example](https://github.com/mxschmitt/playwright-go/issues/97)
 ```
 
 ### Download Files
+* All the downloaded files belonging to the browser context are deleted when the browser context is closed.
+* Browser context must be created with the `acceptDownloads` set to `true` when user needs access to the downloaded content.
+
 ```go
     // 1. Browser instance
     browser, err := pw.Chromium.Launch(playwright.BrowserTypeLaunchOptions{
-		Headless: playwright.Bool(false),
-		DownloadsPath: playwright.String(`C:\Andrew\prj\rl\learn`),
-	})
-	
-	// 2. Browser context
-	c, err := browser.NewContext(playwright.BrowserNewContextOptions{
-		HttpCredentials: &playwright.BrowserNewContextOptionsHttpCredentials{
-			Username: playwright.String(`CORPORATE\my-win-id`),
-			Password: playwright.String("my-password"),
-		},
-		AcceptDownloads: playwright.Bool(true),
-	})
-	
-	// 3. Download
-	download,err:=page.ExpectDownload(func() error {
-		return page.Click("#ctl32_ctl05_ctl04_ctl00_Menu > div:nth-child(6) > a")
-	})
+        Headless: playwright.Bool(false),
+        DownloadsPath: playwright.String(`C:\Andrew\prj\rl\learn`),
+    })
+    
+    // 2. Browser context
+    c, err := browser.NewContext(playwright.BrowserNewContextOptions{
+        HttpCredentials: &playwright.BrowserNewContextOptionsHttpCredentials{
+            Username: playwright.String(`CORPORATE\my-win-id`),
+            Password: playwright.String("my-password"),
+        },
+        AcceptDownloads: playwright.Bool(true),
+    })
+    
+    // 3. Download
+    download,err:=page.ExpectDownload(func() error {
+        return page.Click("#ctl32_ctl05_ctl04_ctl00_Menu > div:nth-child(6) > a")
+    })
+    
+    // 4. Save the file
+    fileName := download.SuggestedFilename()
+    err = download.SaveAs(path.Join("./", fileName))
 ```
 
 ### Run JavaScript function on selector

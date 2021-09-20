@@ -16,6 +16,9 @@ draft: false
 Ctrl + Alt + Left: Back to previous caret position
 Ctrl + Alt + Right: Forward to next caret position
 
+Ctrl + .: fold / unfold selection
+Ctrl + -: fold 
+Ctrl + =: unfold
 ```
 
 ### Customize Keymap
