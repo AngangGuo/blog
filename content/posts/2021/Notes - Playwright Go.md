@@ -1,5 +1,5 @@
 ---
-title: "Notes - Palywright-Go"
+title: "Notes - Playwright-Go"
 date: 2021-01-25T17:09:37-08:00
 categories:
   - Tech
@@ -18,12 +18,12 @@ See [Element Selectors](https://playwright.dev/docs/selectors/)
 ### Select element by label
 Excerpt of page source
 ```
-<tr>
-    <td>
-        <input id="ctl32_ctl04_ctl07_divDropDown_ctl70" type="checkbox">
-        <label for="ctl32_ctl04_ctl07_divDropDown_ctl70">Vancouver,&nbsp;BC&nbsp;(RL)</label>
-    </td>
-</tr>
+    <tr>
+        <td>
+            <input id="ctl32_ctl04_ctl07_divDropDown_ctl70" type="checkbox">
+            <label for="ctl32_ctl04_ctl07_divDropDown_ctl70">Vancouver,&nbsp;BC&nbsp;(RL)</label>
+        </td>
+    </tr>
 ```
 ```go
 // See https://playwright.dev/docs/selectors#text-selector
@@ -33,12 +33,6 @@ err = page.Click("text=Vancouver, BC (RL)") // ok
 ```
 err = page.Click("text=Vancouver,&nbsp;BC&nbsp;(RL)") // not work
 ```
-
-### Number Only
-Class identifiers are allowed to start with a number, but ID identifiers are not.
-You can't use an ID selector starting as a number: `'#123' is not a valid selector.`
-
-You can use escape the number as `` `#\31 23` `` or `` `id=123` ``
 
 ### XPath
 
@@ -50,6 +44,12 @@ page.WaitForSelector("//div[text()='Employee Name']")
 page.WaitForSelector("//div[text()='Employee Name']/..")
 
 ```
+
+### Number Only
+Class identifiers are allowed to start with a number, but ID identifiers are not.
+You can't use an ID selector starting as a number: `'#123' is not a valid selector.`
+
+You can use escape the number as `` `#\31 23` `` or `` `id=123` ``
 
 ## Common Commands
 ```go
@@ -107,7 +107,7 @@ page.Type("#ctl32_ctl04_ctl11_txtValue",today, playwright.PageTypeOptions{Delay:
 page.EvalOnSelectorAll("ul.todo-list > li", "el => el.length")
 ```
 
-## HTML Select Element
+## Select HTML Element
 ### Wait for selector
 ```go
 // prefer to use WaitForSelector rather than time.Sleep
@@ -123,14 +123,14 @@ value,err:=page.EvalOnSelector(selectElementID, "e => e.value")
 You can set the select options according to Label, Value, Index or Elements
 
 ```go
-// by label
-v,err:=page.SelectOption("#ctl32_ctl04_ctl03_ddValue",playwright.SelectOptionValues{Labels: playwright.StringSlice("Canada")})
-
-// by index (int); 0 based?
-v,err=page.SelectOption("#ctl32_ctl04_ctl15_ddValue",playwright.SelectOptionValues{Indexes: playwright.IntSlice(1)})
-
-// by value (string)
-v,err=page.SelectOption("#ctl32_ctl04_ctl15_ddValue",playwright.SelectOptionValues{Values: playwright.StringSlice("2")})
+    // by label
+    v,err:=page.SelectOption("#ctl32_ctl04_ctl03_ddValue",playwright.SelectOptionValues{Labels: playwright.StringSlice("Canada")})
+    
+    // by index (int); 0 based?
+    v,err=page.SelectOption("#ctl32_ctl04_ctl15_ddValue",playwright.SelectOptionValues{Indexes: playwright.IntSlice(1)})
+    
+    // by value (string)
+    v,err=page.SelectOption("#ctl32_ctl04_ctl15_ddValue",playwright.SelectOptionValues{Values: playwright.StringSlice("2")})
 ```
 
 Note: You can't select the text with `&nbsp;` space in the label for now. 
@@ -141,17 +141,17 @@ See [Example](https://github.com/mxschmitt/playwright-go/issues/97)
 
 ```go
     frameElement, err := page.QuerySelector("#myframe")
-	if err != nil {
-		log.Fatalf("could not find #myframe iframe: %v\n", err)
-	}
-	
-	frame, err := frameElement.ContentFrame()
-	if err != nil {
-		log.Fatalf("could not get content frame: %v\n", err)
-	}
-	
-	fmt.Println(frame.URL())
-	fmt.Println(frame.InnerHTML("body"))
+    if err != nil {
+        log.Fatalf("could not find #myframe iframe: %v\n", err)
+    }
+    
+    frame, err := frameElement.ContentFrame()
+    if err != nil {
+        log.Fatalf("could not get content frame: %v\n", err)
+    }
+    
+    fmt.Println(frame.URL())
+    fmt.Println(frame.InnerHTML("body"))
 ```
 
 ### Download Files
