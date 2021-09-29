@@ -10,6 +10,14 @@ tags:
 draft: false
 ---
 
+## Teams
+### How to quote message in Teams desktop?
+Quote using a keyboard shortcut
+* Copy the message
+* On your keyboard press “Shift” + “>”
+* Paste the original message and then type your own message
+* Press Enter twice and to type your message after the quote
+
 ## Outlook
 ### How to recover deleted message/folder in Outlook?
 See [doc](https://support.microsoft.com/en-us/office/recover-deleted-items-in-outlook-for-windows-49e81f3c-c8f4-4426-a0b9-c0fd751d48ce)
@@ -29,7 +37,18 @@ Press Windows logo key + .(or ;) to open the Emoji Panel
 
 ## Command Line
 ### Execute multiple commands on one line
-For Powershell(semicolon): `go build; .\try.exe`
+* Windows 98: `go build | try`
+* Windows 2000: `mkdir -p newApp && cd newApp`
+* For Powershell(semicolon): `go build; .\try.exe`
+
+
+### Change character encoding
+Beginning in PowerShell 5.1, the redirection operators (> and >>) call the Out-File cmdlet, 
+which is UTF-16 encoding by default. To change the encoding to UTF-8:
+
+`$PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'`
+
+`.\plan-b.exe | Out-File plan.txt -encoding utf8`
 
 ## Markdown
 ### Comment
