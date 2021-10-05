@@ -206,6 +206,10 @@ You can install it from Software Center. Or you can install it from command line
 sudo apt install grub-customizer
 ```
 
+### Commands
+```
+mkdir -p ~/go/src/github.com/AngangGuo/rl && cd ~/go/src/github.com/AngangGuo/rl
+```
 
 ## Other
 ### W3C Time Format

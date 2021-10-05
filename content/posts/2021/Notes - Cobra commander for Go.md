@@ -130,6 +130,34 @@ func init() {
 }
 ```
 
+You can define your own variable and use it as flag value receiver:
+```go
+var download = false
+...
+liquidationCmd.Flags().BoolVarP(&download, "download", "d", true, "Download Inventory All Fields CSV file")
+
+// Use the "download" variable directly anywhere in its scope
+```
+
+### Examples
+```go
+// The "verbose" flag is persistent and global. 
+// Which means you can tell the program to show you details of the program execution with any command and flag set.
+rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "Verbose output")
+
+myCmd.Flags().IntVarP(&countFlag, "count", "c", 0, "A count of random numbers")
+// Must provide the "count" flag
+myCmd.MarkFlagRequired("count")
+
+myCmd.Flags().StringSliceVarP(&rangeFlag, "range", "r" []string{"1:100"}, "Range of numbers. Optional")
+```
+### Help
+```
+rl --help
+rl report --help
+rl report liquidation --help
+
+```
 ## Links
 * https://pkg.go.dev/flag
 * https://github.com/spf13/cobra
