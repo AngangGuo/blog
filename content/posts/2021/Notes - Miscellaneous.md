@@ -38,9 +38,10 @@ Press Windows logo key + .(or ;) to open the Emoji Panel
 ## Command Line
 ### Execute multiple commands on one line
 * Windows 98: `go build | try`
-* Windows 2000: `mkdir -p newApp && cd newApp`
-* For Powershell(semicolon): `go build; .\try.exe`
-
+* &: separate multiple commands on one command line.
+* &&: run the command following && only if the command preceding the symbol is successful. `mkdir -p newApp && cd newApp`
+* ||: run the command following || only if the command preceding || fails.
+* For Powershell or Bash(semicolon): `go build; .\try.exe`
 
 ### Change character encoding
 Beginning in PowerShell 5.1, the redirection operators (> and >>) call the Out-File cmdlet, 
@@ -194,20 +195,17 @@ Goland:
 Settings > Version Control > Github > 
 Then push again from Goland.
 
-## Plan B
-1. Create a new file: `hugo new "plans/b/dayxx.md`
-2. Title: `Day xx`
-3. (Optional) Date: `2021-09-02`
+## Linux
+### How to change the Ubuntu Grub boot order?
+I have a Windows / Ubuntu dual boot system. The default option is to boot into Ubuntu first.
+I can change the default boot order to Windows by using [Grub Customizer](https://launchpad.net/grub-customizer). 
 
-Basic Sections:
-```markdown
-## 经文
-第1周 / 第4日 创十至十一章
-## 主题：XXXX
-## YYY YYY
-## 思考与练习
-## 金句
+Starting with Ubuntu 19.10, Grub Customizer is available in the Universe repository. 
+You can install it from Software Center. Or you can install it from command line:
 ```
+sudo apt install grub-customizer
+```
+
 
 ## Other
 ### W3C Time Format
