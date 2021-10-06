@@ -220,3 +220,13 @@ mkdir -p ~/go/src/github.com/AngangGuo/rl && cd ~/go/src/github.com/AngangGuo/rl
 2021-01-13T16:55:05-08:00
 ```
 
+## GrapQL
+[gqlgen](https://gqlgen.com/getting-started/) should be the preferred library in Go.
+See [Feature Comparison](https://gqlgen.com/feature-comparison/)
+
+## Zoom
+### How to change your profile picture?
+See [doc](https://support.zoom.us/hc/en-us/articles/201363203-Customizing-your-profile#h_01F6MWFRY3D62ANBVYSB7ZNNS7)
+
+## Useful Links
+* Videojs and related video processing articles: https://cloud.tencent.com/developer/article/1615717
