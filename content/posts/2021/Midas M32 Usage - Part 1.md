@@ -17,6 +17,8 @@ Preamplifiers increase a microphone signal to line level (i.e. the level of sign
 red light: https://www.youtube.com/watch?v=eTjJvCvO1Qw&t=580s
 
 ### Low Cut filter or High Pass filter
+Maybe used on everything except Base, Kick, sometimes Tom, Keys.
+
 See https://www.youtube.com/watch?v=2R7qSYa_G8Y
 Human can hear 20HZ to 2000HZ
 Some high end microphone has built in low cut filter.
@@ -36,3 +38,54 @@ or 12dB more. This would represent a 12dB per octave rolloff, which is common.
 https://en.wikipedia.org/wiki/Noise_gate
 
 https://www.presonus.com/learn/technical-articles/How-To-Use-Dynamics-Processing-Getting-Started-With-Compressors-Gates-and-More
+
+### Compressor VS. Gate
+Gates and compressors in its virtual (i.e. plug-in) or hardware form are classified as dynamic processors.
+
+A compressor keeps a signal within a certain dynamic range, determined by the threshold and ratio controls. 
+When the signal exceeds the threshold, the volume is lowered by whatever ratio the compressor is set to. 
+This is used to smooth out volume levels.
+
+The best way to think of a gate is like an actual gate; it opens and closes to let things (or signal) pass. 
+The threshold determines the volume level at which the gate will open. 
+The attack control determines how fast the gate will act once the threshold has been reached. 
+The release controls how long the gate will stay open. 
+
+A gate won’t pass any signal at all until the signal coming into it reaches the threshold. 
+This is used to help eliminate unwanted noise (the hum from an amplifier, leakage from other instruments, etc.) 
+by essentially turning off a microphone when all it’s picking up is something other than the source it’s miking.
+
+Some gates can also be adjusted to open and close based on the frequency of the signal. 
+These are called frequency dependent gates and are very helpful in keeping hi-hat out of a snare mic and cymbals out of tom mikes.
+
+## Load/Save Scene Settings
+### How to save a scene setting?
+* Press `View` button in `Show Control` section
+* Select the `Scenes` tab in the main display by pressing the right arrow navigation control button
+* Select a blank scene and push the save push encoders from the left to save your scene
+* Type in the name by using the second right-most `Set` push encoder
+* 
+
+### How to load a scene setting?
+You can load your scenes following these steps:
+* Press `View` button in `Show Control` section
+* Select the `Scenes` tab in the main display by pressing the right arrow navigation control button
+* Use the left-most load push encoders to select your scene
+* Push the load push encoder to load your scene
+* Confirm by pushing the right arrow navigation control button
+
+### USB Drive
+You can also save/load scenes to/from USB drive.
+
+## Tips
+### Select the proper channel
+To adjust the settings at the top panel, make sure you select the right channel first.
+All the settings adjustment only affect the selected channel.
+
+### Bus Send
+* Individual Bus: Select one of the Bus channel, press fider flip button to visualize 
+showing the volume of each channel send to this Bus
+* Individual Channel: select the channel and set the bus send button on the top panel to send singal to each bus
+
+### Setting take effect
+You need to push the EQ/Gate/Low Cut/COMP button at the panel section for the settings to take effect
