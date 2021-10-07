@@ -96,6 +96,10 @@ You can also use raw HTML in your Markdown, and it'll mostly work pretty well.
 </dl>
 ```
 
+### VLC: Lock Window Size
+Select Tools ⇨ Preferences ⇨ Interface then uncheck the box Resize interface to video size. Finally, restart VLC. 
+When I started a video VLC was always maximized. The box was checked by default.
+
 ### Links
 There are two ways to create links.
 ```markdown
