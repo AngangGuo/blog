@@ -12,11 +12,35 @@ draft: false
 ## Linux Notes
 
 ## Common Commands
+### How to show file permission?
+```
+ls /var/www -al
+```
+### How to add a user?
+```
+sudo adduser new_username
+// or
+sudo useradd new_username
+```
+### How to remove a user?
+```
+sudo userdel username
+// remove user's home folder
+sudo rm -r /home/username
+```
 ### How to change other user's password?
 ```
 // set / change password for user postgres
 sudo passwd postgres
 ```
+
+### How to add a user to sudo group?
+```
+adduser username sudo
+// or
+usermod -aG sudo username
+```
+
 ### How to execute commands as other user?
 ```
 su // as root
@@ -27,6 +51,24 @@ su postgres // switch to postgres
 su -p postgres 
 ```
 
+### How to change file permission?
+See https://help.ubuntu.com/community/FilePermissions
+
+1. By changing file ownership?
+```
+cp ~/.ssh/authorized_keys ~[username]/.ssh/authorized_keys
+chown -R [username]:[username] ~[username]/.ssh
+```
+2. By changing file permission
+```
+sudo chmod -R 777 /var/www/html/
+```
+### How to list all users?
+```
+cat /etc/passwd
+// or
+cut -d: -f1 /etc/passwd
+```
 
 ## Ubuntu
 ### How to show ubuntu version?
@@ -38,6 +80,17 @@ Distributor ID: Ubuntu
 Description: Ubuntu 19.04
 Release: 19.04
 Codename: disco
+```
+
+### How to use `systemctl`?
+```
+systemctl daemon-reload
+systemctl status caddy
+// systemctl start starts (activates) the service immediately
+systemctl start caddy
+systemctl restart caddy
+// systemctl enable configures the system to start the service at next reboot
+systemctl enable caddy
 ```
 
 ### How to upgrade from Ubuntu Linux 16.04 to 18.04
