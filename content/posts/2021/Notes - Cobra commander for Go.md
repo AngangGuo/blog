@@ -151,6 +151,7 @@ myCmd.MarkFlagRequired("count")
 
 myCmd.Flags().StringSliceVarP(&rangeFlag, "range", "r" []string{"1:100"}, "Range of numbers. Optional")
 ```
+
 ### Help
 ```
 rl --help
@@ -158,7 +159,16 @@ rl report --help
 rl report liquidation --help
 
 ```
+
+### Command Completion
+You can generate the autocompletion script for Bash/Fish/PowerShell/Zsh.
+
+Generate PowerShell completion script by using:
+```
+rl completion powershell
+```
+
 ## Links
-* https://pkg.go.dev/flag
 * https://github.com/spf13/cobra
 * https://github.com/spf13/viper
+* https://pkg.go.dev/flag
