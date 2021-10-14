@@ -67,6 +67,17 @@ If your filter is at 150 Hz it is safe to assume the signal will only be reduced
 However, one octave below that, at 75 Hz, your signal may be attenuated 15dB,
 or 12dB more. This would represent a 12dB per octave rolloff, which is common.
 
+
+## Matrix Mixes 
+See https://www.youtube.com/watch?v=jQ09efrN8MQ
+
+A Matrix is a mix of other mixes, or a mix of Subgroups.
+
+### Why use matrix mixes?
+By using Matrix mixes, we have independent mix level control over individual mixes for broadcast truck,
+overflow room, cry room, live stream, backstage, etc.
+not affecting our FOH mix or any stage mixes.
+
 ## Load/Save Scene Settings
 ### How to save a scene setting?
 * Press `View` button in `Show Control` section
