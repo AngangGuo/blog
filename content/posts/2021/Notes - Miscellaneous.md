@@ -1,5 +1,5 @@
 ---
-title: "Notes   Miscellaneous"
+title: "Notes - Miscellaneous"
 date: 2021-07-30T08:49:20-07:00
 categories:
   - Tech
@@ -10,6 +10,26 @@ tags:
 draft: false
 ---
 
+## ProPresenter 7
+### Shortcuts
+```
+// Edit
+Undo: Ctr + Z
+Redo: Ctr + Y (Shift + Command + Z)
+Cut: Ctr + X
+Copy: Ctr + C
+Copy Text Style: Alt + Ctr + C
+Paste: Ctr + V
+Paste Text Style: Alt + Shift + V
+Paste and Match Style: Alt + V (Option + Shift + Command + V)
+Duplicate: Ctr + D
+Delete: Del
+Select All: Ctr + A
+Search: Ctr + F
+
+// In Edit Mode
+
+```
 ## Teams
 ### How to quote message in Teams desktop?
 Quote using a keyboard shortcut
@@ -19,6 +39,24 @@ Quote using a keyboard shortcut
 * Press Enter twice and to type your message after the quote
 
 ## Outlook
+### How can I show meetings in highlight color?
+For some important meetings, you may want to highlight them so that it can stand out from among your other meetings.
+
+Right-click on the appointment/meeting/event, select `Catagorize` > `Yellow category`(or any other colors you like).
+You can name the colored category to reflect your purpose.
+
+### How can I show holidays in my Calendar?
+File > Options > Calendar > Calendar options > Add Holidays > Select your locations(Canada)
+
+### How to set your calendar working time?
+I start working at 8:00am, but my calendar always show my schedule starting at 8:30. 
+I even missed an appointment with our manager at 8:00 because the appointment is hidden at the top line.
+
+You can change your working hours by setting Start time, End time, Work week, etc. from within Outlook:
+
+File > Options > Calendar > Work time > Work hours
+
+
 ### How to recover deleted message/folder in Outlook?
 See [doc](https://support.microsoft.com/en-us/office/recover-deleted-items-in-outlook-for-windows-49e81f3c-c8f4-4426-a0b9-c0fd751d48ce)
 

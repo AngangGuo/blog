@@ -4,8 +4,17 @@ date: 2021-07-23T12:30:04-07:00
 draft: true
 ---
 
+## Viper
 Viper is a complete configuration solution for Go applications from spf13. 
 
+### Precedence Order
+Viper uses the following precedence order. Each item takes precedence over the item below it:
+* explicit call to Set
+* flag
+* env
+* config
+* key/value store
+* default
 
 ## Tips
 * Viper configuration keys are case-insensitive.
