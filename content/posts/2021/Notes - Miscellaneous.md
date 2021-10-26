@@ -13,22 +13,40 @@ draft: false
 ## ProPresenter 7
 ### Shortcuts
 ```
-// Edit
-Undo: Ctr + Z
-Redo: Ctr + Y (Shift + Command + Z)
-Cut: Ctr + X
-Copy: Ctr + C
-Copy Text Style: Alt + Ctr + C
-Paste: Ctr + V
+Undo: Ctrl + Z
+Redo: Ctrl + Y (Shift + Command + Z)
+Cut: Ctrl + X
+Copy: Ctrl + C
+Copy Text Style: Alt + Ctrl + C
+Paste: Ctrl + V
 Paste Text Style: Alt + Shift + V
 Paste and Match Style: Alt + V (Option + Shift + Command + V)
-Duplicate: Ctr + D
+Duplicate: Ctrl + D
 Delete: Del
-Select All: Ctr + A
-Search: Ctr + F
+Select All: Ctrl + A
+Search: Ctrl + F
 
-// In Edit Mode
+New Presentation: Ctrl + N
+Save: Ctrl + S
 
+Duplicate current slide: Ctrl + Shift + D
+Insert new slide before current slide: Alt + New Slide
+Option + Return: Split a slide at the cursor
+Option + Shift + Return: Send text after the cursor to the next slide
+
+Open Bible: Ctrl + B
+Save Bible search as a new document: Command + Ctrol + S
+Toggle the Main Output On/Off: Ctrl + 1
+Toggle the Stage Display On/Off: Ctrl + 2
+Toggle 
+
+Clear All: F1
+Clear Text: F2
+Clear Background: F3
+Clear Audio: F5
+
+Hide ProPresenter: Ctrl + H
+Quit ProPresenter: Ctrl + Q
 ```
 ## Teams
 ### How to quote message in Teams desktop?
