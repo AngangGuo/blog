@@ -30,20 +30,28 @@ New Presentation: Ctrl + N
 Save: Ctrl + S
 
 Duplicate current slide: Ctrl + Shift + D
-Insert new slide before current slide: Alt + New Slide
-Option + Return: Split a slide at the cursor
-Option + Shift + Return: Send text after the cursor to the next slide
+Insert new slide before current slide: Alt + New Slide Button
+Split a slide at the cursor: Option + Return
+Send text after the cursor to the next slide: Option + Shift + Return 
 
-Open Bible: Ctrl + B
+Open Bible: Ctrl + Alt + B (Ctrl + B)
 Save Bible search as a new document: Command + Ctrol + S
 Toggle the Main Output On/Off: Ctrl + 1
 Toggle the Stage Display On/Off: Ctrl + 2
-Toggle 
+Toggle Preview Screen between Output and Stage Display
 
 Clear All: F1
 Clear Text: F2
 Clear Background: F3
+Clear Props: F4
 Clear Audio: F5
+Logo: F6
+
+Tighten Character Spacing: Ctrl + Shift + [ (Option + Command + [)
+Loosen Character Spacing: Ctrl + Shift + ] (Option + Command + ])
+Make Bigger: Ctrl + Plus(+)
+Make Smaller: Ctrl + Minus(-)
+Fit Slide Into Edit Window: Ctrl + 0
 
 Hide ProPresenter: Ctrl + H
 Quit ProPresenter: Ctrl + Q
