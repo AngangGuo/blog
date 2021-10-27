@@ -18,6 +18,14 @@ hold down the Shift key and select the last slide in the group.
 
 To select multiple slides which are not continuous hold down the Ctrl key and click on each slide.
 
+### How to create a slide like this?
+
+![ProPresenter - Fill with gradient color](/images/2021/propresenter-fill-with-gradient.PNG)
+
+* In `Edit` mode from `Shape` tab, select `Fill` > `Gradient`, choose the desired colors and angle
+* From `Text` tab, select `Lines Only` > `Full Width`
+* Set `Line Space` or `Line Height` by clicking the polygon icon 
+
 ### How to change text style across multiple slides?
 * Method 1: `Copy Style` - Better for few individual slides
 
