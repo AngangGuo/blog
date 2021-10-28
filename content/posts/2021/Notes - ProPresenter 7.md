@@ -8,7 +8,7 @@ tags:
 draft: false
 ---
 
-## ProPresenter 7
+## FAQ
 
 ### How to select multiple slides?
 You can select multiple slides in `Show` mode. 
@@ -18,13 +18,28 @@ hold down the Shift key and select the last slide in the group.
 
 To select multiple slides which are not continuous hold down the Ctrl key and click on each slide.
 
-### How to create a slide like this?
+### How to create lyric slides like this?
 
 ![ProPresenter - Fill with gradient color](/images/2021/propresenter-fill-with-gradient.PNG)
 
 * In `Edit` mode from `Shape` tab, select `Fill` > `Gradient`, choose the desired colors and angle
 * From `Text` tab, select `Lines Only` > `Full Width`
 * Set `Line Space` or `Line Height` by clicking the polygon icon 
+
+**Note:**
+You can also fill with media files like some background images, church logos, etc.
+
+### How to use `Reflow` editor?
+**Split a slide:**
+While editing text, if you would like to break a slide into multiple slides 
+you can use the `Insert Slide Break` feature. 
+First, put the cursor where you would like the text to break between slides, 
+then either click the `Insert Slide Break` button on the lower left or 
+press Option-Return on Mac or Control-Enter on PC. 
+This will create a new slide and move any text that is below the cursor to the next slide.
+
+**Merge two slides:**
+Put the cursor at the beginning of the second slide and press `Backspace`(`Delete`) will merge the two slides together.
 
 ### How to change text style across multiple slides?
 * Method 1: `Copy Style` - Better for few individual slides
@@ -44,12 +59,20 @@ To select multiple slides which are not continuous hold down the Ctrl key and cl
     * Doing so will update all of the slides in your presentation. 
     * You can also select multiple presentations and use this method to change several presentations at once.
 
-### How to create a new theme?
-To create a new theme from a slide, right-click the slide and 
-select `Themes...` > `New Theme from Selection`,
-Name the theme and save it.
+## Working with theme
+Themes allow you to quickly define a set of styles for your slides.
 
-### Shortcuts
+To create a new theme, click the Theme icon and selecting `New Theme`, name your new Theme and `Save` will open the Theme Editor. 
+You can add as many Theme Slides as you wish within a Theme.
+
+### How to create a new theme by using a slide?
+If you build a slide you'd like to save as a Theme Slide in a Theme, 
+* Right clicking on the Slide and going to `Themes...`, 
+* Selecting the Theme you wish to put this slide under and then choosing `Add Selection to Theme`
+
+
+
+## Shortcuts
 ```
 Undo: Ctrl + Z
 Redo: Ctrl + Y (Shift + Command + Z)
@@ -69,8 +92,6 @@ Save: Ctrl + S
 
 Duplicate current slide: Ctrl + Shift + D
 Insert new slide before current slide: Alt + New Slide Button
-Split a slide at the cursor: Option + Return
-Send text after the cursor to the next slide: Option + Shift + Return 
 
 Open Bible: Ctrl + Alt + B (Ctrl + B)
 Save Bible search as a new document: Command + Ctrol + S
@@ -96,3 +117,7 @@ Quit ProPresenter: Ctrl + Q
 
 Key Mapping: Alt + K
 ```
+
+## Useful Links
+* [Importing From SongSelect](https://support.renewedvision.com/hc/en-us/articles/360041815033-Importing-from-SongSelect)
+* [SongSelect](https://ca.ccli.com/):
