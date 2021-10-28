@@ -12,6 +12,60 @@ draft: false
 
 # SvelteJS notes
 
+## Up and running
+### Get Start
+See instruction for [Svelte Template](https://github.com/sveltejs/template)
+
+```
+npx degit sveltejs/template svelte-app
+cd svelte-app
+npm install
+
+// dev mode
+npm run dev
+// -- create your app
+
+
+// production mode
+npm run build
+npm run start
+
+```
+
+* main.js
+```javascript
+import App from './App.svelte';
+
+const app = new App({
+	target: document.body,
+});
+
+export default app;
+```
+
+* App.svelte
+```javascript
+<h1>Hello, World!</h1>
+```
+
+### FAQ
+#### How can I add an image to my svelte component?
+* For static files(images, videos, etc) must be under `public` folder. Use the path relative to `public/index.html`. 
+* For Svelte component files, they should be under `src` folder. 
+
+For example, if you want to show image under `public/static/flag.jpg` and show button from `src/Button.svelte`:
+```
+// src/App.svelte
+<script>
+    import Button from './Button.svelte'
+
+    let src = 'static/flag.jpg'
+</script>
+
+<Button/>
+<img {src} alt="my pic">
+```
+
 ## Component
 
 ### Component communication options
