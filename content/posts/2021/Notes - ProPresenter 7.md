@@ -9,6 +9,21 @@ draft: false
 ---
 
 ## FAQ
+### How can I show ProPresenter slides in Zoom?
+
+**From `Zoom`**
+* Click `Share Screen` button, select `screen`
+* (Option)Check `Share sound` if you play music
+* Click `Share`
+
+
+**From `ProPresenter`**
+* Select your presentation
+* Click `Audience` button (or `Ctrl + 1`)to show the slide on the screen
+* Click `X` button (or press `Ctrl + 1` again) to exit full screen presentation
+
+### How to use audio?
+See [Working With Audio in ProPresenter 7](https://www.youtube.com/watch?v=5H3n7K7oZxo)
 
 ### How to select multiple slides?
 You can select multiple slides in `Show` mode. 
