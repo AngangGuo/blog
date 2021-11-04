@@ -10,6 +10,15 @@ tags:
 draft: false
 ---
 
+## Install Xerox Printer Driver
+Network printer Xerox AltaLink C8155 in ALC office, Windows can't find the driver.
+
+[Xerox Smart Start - Driver Installer](https://www.support.xerox.com/en-ca/product/altalink-c8100-series/content/143617).
+intelligently looks at your specific system configuration and installs the appropriate drivers 
+for printing and scanning to your Xerox device.
+
+I use it to install the Xerox AltaLink C8155 printers in DC by searching the network.
+Select your printer and it'll install the driver automatically.
 
 ## MobaXterm
 [MobaXterm](https://mobaxterm.mobatek.net/) is an enhanced terminal for Windows with X11 server, tabbed SSH client, 
@@ -118,6 +127,14 @@ Quote using a keyboard shortcut
 * On your keyboard press “Shift” + “>”
 * Paste the original message and then type your own message
 * Press Enter twice and to type your message after the quote
+
+## Office
+### How to view the previous version of Office files?
+* Open the file you want to view.
+* Click File > Info > Version history. 
+* Select a version to open it in a separate window.
+* If you want to restore a previous version you've opened, select Restore.
+
 
 ## Outlook
 ### How can I show meetings in highlight color?
