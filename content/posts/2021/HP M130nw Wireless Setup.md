@@ -1,0 +1,52 @@
+---
+title: "HP M130nw Wireless Setup"
+date: 2021-11-03T21:04:30-07:00
+categories:
+  - Tech 
+tags:
+  - Printer
+  - Wireless
+draft: false
+---
+
+I have an HP LaserJet MFP M130nw printer bought years ago. We have several laptops in my home that share this printer.
+It's inconvenience to use it by plug/unplug the USB cable every time. 
+It will be great if everyone can connect it by using wireless network.
+
+## Setup Printer By Using WPS
+We use Telus network. The Telus router supports Wi-Fi Protected Setup (WPS).
+Here are how to use (WPS) to connect the printer.
+
+### Method 1: 
+* On the printer control panel, press and hold the Wireless button for two or more seconds, 
+and then release the button when the wireless light starts blinking.
+* Within two minutes, press the WPS button on your wireless router.
+* Wait up to two minutes while the printer automatically establishes a network connection with the wireless network.
+
+After the printer connects to the network, the wireless light is on and steady.
+
+### Method 2:
+* On the printer control panel, press `Settings` button.
+* Use Left/Right arrow key to select `Network Setup` > `OK`.
+* Select `Wireless Menu`  > `OK`
+* Select `Wi-Fi Protected Setup` > `OK`
+* Select `Pushbutton` > `OK`
+* Within two minutes, press the `WPS` button on my Telus wireless router.
+* Wait up to two minutes while the printer automatically establishes a network connection with the wireless network.
+
+After the printer connects to the network, the screen shows:
+```
+Connection established.
+SSID: TELUS9A06
+Channel: 54 (5G)
+```
+
+## Setup Laptops
+After the printer wireless function works, you can add the wireless printer to each laptop from Windows `Printers & Scanners`.
+
+* Click `Add a printer or scanner` button 
+* Select `NPI2796D8 (HP LaserJet MFP M130nw)` wireless printer.
+* It will be installed to your laptop and ready to use.
+
+## Scan
+From `Windows Fax and Scan`, you can also use it as a scanner. 
