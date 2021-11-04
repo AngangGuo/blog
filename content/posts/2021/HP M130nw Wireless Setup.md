@@ -50,3 +50,6 @@ After the printer wireless function works, you can add the wireless printer to e
 
 ## Scan
 From `Windows Fax and Scan`, you can also use it as a scanner. 
+
+## Link
+[HP LaserJet Printers - Wireless Printer Setup](https://support.hp.com/us-en/product/hp-laserjet-pro-mfp-m130-series/9365370/model/9365372/document/c05211196)
