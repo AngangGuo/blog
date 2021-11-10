@@ -935,6 +935,23 @@ func ExampleCompare_search() {...)
 ```
 
 ## Other
+### How to use text.tabwriter?
+```go
+wr := new(tabwriter.Writer)
+// func (b *Writer) Init(output io.Writer, minwidth, tabwidth, padding int, padchar byte, flags uint) *Writer
+wr.Init(os.Stdout, 1, 8, 1, '\t', 0)
+
+fmt.Fprintln(wr,"Col-0\tCol-1\tCol-2\tCol-3\tCol-4")
+fmt.Fprintln(wr,"1234\t12345678\t1234\t3\t4")
+
+wr.Flush()
+```
+Output
+```
+Col-0   Col-1           Col-2   Col-3   Col-4
+1234    12345678        1234    3       4
+```
+
 ### How to get the type of a variable?
 ```
 v := []string{"a", "b"}
