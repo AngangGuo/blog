@@ -700,6 +700,27 @@ func change(m map[string]bool) {
 before map[]
 after map[modified:true]
 ```
+
+## Concurrency
+### Once
+`func (o *Once) Do(f func())`
+
+Tip: if once.Do(f) is called multiple times, only the first call will invoke f, 
+even if f has a different value in each invocation.
+
+```go
+var count int
+increment := func() { count++ }
+decrement := func() { count-- }
+var once sync.Once
+once.Do(increment)
+once.Do(decrement)
+fmt.Printf("Count: %d\n", count)
+
+// output:
+// Count: 1
+```
+
 ## Pitfalls
 ### Missing value
 Because calling a function makes a copy of each argument value, if a function needs to update
