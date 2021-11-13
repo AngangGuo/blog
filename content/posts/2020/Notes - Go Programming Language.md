@@ -721,7 +721,48 @@ fmt.Printf("Count: %d\n", count)
 // Count: 1
 ```
 
+### How to check if channel is closed?
+You can always read values from a closed channel. 
+It will return the default value of the channel type.
+
+To check if a channel is closed:
+```go
+v, ok <- myChan
+if !ok {
+  fmt.Println("chan is closed")
+}  
+```
 ## Pitfalls
+
+### Why loop three times?
+```go
+func main() {
+	count:=0
+	c := make(chan int)
+	go func() {
+		time.Sleep(5 * time.Second)
+		close(c)
+	}()
+
+loop:
+	for {
+		select {
+		case <-c:
+			break loop
+		case <-time.After(time.Second):
+			break loop
+		default:
+			count++
+			time.Sleep(2*time.Second)
+		}
+	}
+
+	fmt.Println(count) // 3
+}
+```
+
+Because the `time.After(time.Second)` is evaluated every time, the `default` section is executed immediately
+
 ### Missing value
 Because calling a function makes a copy of each argument value, if a function needs to update
 a variable, or if an argument is so large that we wish to avoid copy ing it, we must pass the
