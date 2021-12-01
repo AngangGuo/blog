@@ -1,19 +1,31 @@
 ---
 title: "Windows Audit Mode or OOBE"
 date: 2021-11-26T14:48:33-08:00
-draft: true
+categories:
+  - Tech
+  - Work
+tags:
+  - Windows
+  - OOBE
+draft: false
 ---
 
 ## Audit Mode
-We need to enter Audit mode and install device drivers and pre-install applications.
+Audit mode allows you to make additional changes to the Windows installation before you send the computer to a customer 
+or capture the image for reuse in your organization. 
+
+You can install drivers included in a driver package, 
+install applications, or make other updates that require the Windows installation to be running.
 
 ### How to reset Windows to Out of Box Experience(OOBE)?
-Running the OOBE on an already set-up system does not uninstall software or erase any of your data. 
-As I said, it’s mostly about configuration and user interface choices.
+OOBE is the default out-of-box experience that allows end users to enter their account information, 
+select language, accept the Microsoft Terms of Service, and set up networking.
 
-https://askleo.com/set-up-windows-10-again-with-the-windows-out-of-box-experience-oobe/
-https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/customize-oobe
-https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/customize-oobe-in-windows-11
+From System Preparation Tool window
+* System Cleanup Action: Enter System Out-Of-Box Experience (OOBE)
+* Select Generate
+* Shutdown Options: Shutdown
+* Click `Ok`. Windows will prepare the system into OOBE mode.
 
 ### How to keep Administrator account enabled?
 See [here](https://support.microsoft.com/en-us/topic/21f02ac5-8fea-f3e9-313a-bb5276e11688)
@@ -40,13 +52,6 @@ You may need to restart windows by using the above command for the update to tak
 
 You may need to repeat the above steps for other unknown devices.
 
-### How to set Windows into OOBE mode?
-From System Preparation Tool window
-* System Cleanup Action: Enter System Out-Of-Box Experience (OOBE)
-* Un-select Generate (Select `Generate` if you want to capture the image and use it from other computers)
-* Shutdown Options: Shutdown
-* Click `Ok`. Windows will prepare the system into OOBE mode.
-
 ### How to run Sysprep by using command line?
 From command line:
 ```
@@ -57,7 +62,8 @@ C:\Windows\System32\Sysprep\sysprep.exe /generalize /shutdown
 
 ### Prevent Sysprep from removing installed devices
 When you set up a Windows PC, Windows Setup configures all detected devices.
-Generalizing a Windows installation uninstalls these configured devices, but doesn't remove device drivers from the PC.
+Generalizing a Windows installation uninstalls these configured devices, 
+but doesn't remove device drivers from the PC.
 
 If you're deploying an image to computers that have identical hardware and devices as the original PC,
 you can keep devices installed on the computer during system generalization by using an unattend file with
@@ -65,3 +71,4 @@ Microsoft-Windows-PnpSysprep | PersistAllDeviceInstalls set to true.
 
 ## Useful Links
 * [Sysprep (Generalize) a Windows installation](https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/sysprep--generalize--a-windows-installation?view=windows-11)
+* [Customize the Windows 10 Out of Box Experience (OOBE)](https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/customize-oobe)
