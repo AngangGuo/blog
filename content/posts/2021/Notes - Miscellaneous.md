@@ -373,4 +373,8 @@ Ctrl + Alt + Shift + H: Hide floating meeting controls
 See [doc](https://support.zoom.us/hc/en-us/articles/201363203-Customizing-your-profile#h_01F6MWFRY3D62ANBVYSB7ZNNS7)
 
 ## Useful Links
+### Video
 * Videojs and related video processing articles: https://cloud.tencent.com/developer/article/1615717
+
+### Tools
+* [Ventoy](https://www.ventoy.net/en/index.html) is an open source tool to create bootable USB drive for ISO/WIM/IMG/VHD(x)/EFI files. 

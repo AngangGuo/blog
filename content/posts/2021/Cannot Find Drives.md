@@ -21,7 +21,7 @@ But during Windows installation process, the hard drive can't be found by the in
 Go to Intel website and download the `Intel Rapid Storage Technology (Intel RST) Driver 18.6.1.1016` which supports 10th Gen and 11th Gen Intel Core platforms. 
 File name is [F6flpy-x64 - VMD.zip](https://www.intel.com/content/www/us/en/download/19512/intel-rapid-storage-technology-driver-installation-software-with-intel-optane-memory-10th-and-11th-gen-platforms.html)
 
-Extract the file into a folder in the installation disk then boot from the installation USB disk. 
+Extract the file into a folder in the installation USB disk then boot from it. 
 
 When prompting `"Where do you want to install Windows?"`, 
 * Select `Load driver`
@@ -31,13 +31,31 @@ When prompting `"Where do you want to install Windows?"`,
 * (Option)Delete the old partitions and create new partitions
 * Select the partition to install Windows
 
-After Windows installation, you can find some devices are marked as unknown devices. When you connect to internet,
-Windows will install MyASUS automatically and all the drivers will be installed.
+After Windows installation, you can find some devices are marked as unknown devices. 
+See following on how to update device drivers. 
+
+### How to update device drivers?
+**Normal Boot Up**
+
+Login to Windows and connect to internet, Windows will install MyASUS automatically and all the drivers will be installed.
+If it doesn't update automatically, see below on how to update the driver from `Windows Update`
+
+**In Audit Mode**
+
+But if in Audit mode, the driver won't update automatically. 
+
+You can right-click the device, select `Properties` and 
+update the driver from `Windows Update`(preferred); 
+
+Or download the driver from manufacture site and install them manually.
+(I installed all the downloaded Asus drivers but still lots of unknown devices)
+
 
 ### Windows Audit Mode and OOBE
-After Windows installation finished, it will reboot to a screen shows `Let's start with region.`.
-Press `Ctrl + Shift + F3` will enter the Audit mode using the built-in Administrator account
-You can generate 
+After Windows installation is finished, it will reboot to a screen shows `Let's start with region.`.
+Press `Ctrl + Shift + F3` will enter the Audit mode using the built-in Administrator account.
+
+You can install all the device drivers and other software, then generate to OOBE mode. 
 
 ## Intel
 ### Which RST file should I download?
@@ -60,9 +78,45 @@ For Asus Laptop:
 Press and hold the **F2** button of the keyboard, and then press the **Power button**.
 Hold **F2** button until the BIOS configuration display.
 
-### How to enter BIOS from Windows 10?
+### How to install device drivers?
+Windows Update > Check for update > Windows will download the update and install them automatically.
+If in Audit mode and there's pending restart, use command `shutdown -r -t 00` to restart computer.
+
+Check the Device Manager, if there's any unknown device, click the Windows update again to update the Windows.
+You may need to restart computer several time. Eventually all the device drivers will be installed.  
+
+Device Manager > Other Devices > Right-click the device with warning mark > Update driver > Windows Update
+
+**Alternative**
+Download the device driver from vendor website and install them individually. (Prefer to use Windows Update)
+
+**Warning**: 
+If in Audit mode, only use command `shutdown -r -t 00` to restart computer; 
+Don't click the restart button on Windows -  it'll lock the Administrator account.
+
+
+### How to enter BIOS from within Windows 10?
+
 If your computer is Windows 10, search "Change advanced startup option":
 Open > Advanced startup > Restart now > Troubleshoot > Advanced Options > UEFI Firmware Settings > Restart 
+
+## Account
+To set up Windows 10/11, it needs a Microsoft account. 
+
+We can use the testing account rl2login@outlook.com. The computer will be linked to this account. 
+Remember to `Remove this device` from this account after you finished testing.
+
+### How to unlink a device from your account?
+**From Windows System**:
+* Open `System Infomation`
+* Get and record your system name
+
+**From Browser**:
+* Sign In to your Microsoft account from [here](https://account.microsoft.com/account/), 
+* Click `view all devices` 
+* Find the device by using the device name recorded in the first step
+* Click `See Detils`, verify the name
+* Click `Remove this device` to unlink it from this Windows account.
 
 ## Useful Links
 * [Can't find drives when installing Windows 11/10](https://www.asus.com/support/faq/1044458)
