@@ -17,15 +17,18 @@ or capture the image for reuse in your organization.
 You can install drivers included in a driver package, 
 install applications, or make other updates that require the Windows installation to be running.
 
-### How to reset Windows to Out of Box Experience(OOBE)?
+### What's OOBE?
 OOBE is the default out-of-box experience that allows end users to enter their account information, 
 select language, accept the Microsoft Terms of Service, and set up networking.
 
-From System Preparation Tool window
+### How to reset Windows to Out of Box Experience(OOBE)?
+In Audit mode, From System Preparation Tool window
 * System Cleanup Action: Enter System Out-Of-Box Experience (OOBE)
-* Select Generate
+* Select Generate(See note)
 * Shutdown Options: Shutdown
 * Click `Ok`. Windows will prepare the system into OOBE mode.
+
+Note: You can un-select if you don't need to capture the image used for other computers
 
 ### How to keep Administrator account enabled?
 See [here](https://support.microsoft.com/en-us/topic/21f02ac5-8fea-f3e9-313a-bb5276e11688)

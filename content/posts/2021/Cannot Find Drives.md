@@ -101,17 +101,17 @@ If your computer is Windows 10, search "Change advanced startup option":
 Open > Advanced startup > Restart now > Troubleshoot > Advanced Options > UEFI Firmware Settings > Restart 
 
 ## Account
-To set up Windows 10/11, it needs a Microsoft account. 
+To set up Windows, you may need a Microsoft account. 
 
-We can use the testing account rl2login@outlook.com. The computer will be linked to this account. 
-Remember to `Remove this device` from this account after you finished testing.
+We can use the testing account **rl2login@outlook.com**. The computer will be linked to this account. 
+Remember to **Unlink** the device from this account after you finished testing.
 
 ### How to unlink a device from your account?
-**From Windows System**:
+**Find System Name**:
 * Open `System Infomation`
 * Get and record your system name
 
-**From Browser**:
+**Unlink From Windows Account**:
 * Sign In to your Microsoft account from [here](https://account.microsoft.com/account/), 
 * Click `view all devices` 
 * Find the device by using the device name recorded in the first step
