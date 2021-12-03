@@ -52,8 +52,11 @@ Check the Device Manager, if there are any unknown devices, right-click it and s
 update driver, search Windows Update, the driver will be installed automatically from `Windows Update`.
 
 You may need to restart windows by using the above command for the update to take effect.
+Repeat the above steps for other unknown devices.
 
-You may need to repeat the above steps for other unknown devices.
+Note: 
+For my Asus UX325EA-DS51 laptop, all the drivers will be installed automatically by `Windows Update`.
+I need to click `Check for Update` three times until all the driver can be installed. 
 
 ### How to run Sysprep by using command line?
 From command line:
