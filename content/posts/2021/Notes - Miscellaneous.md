@@ -10,7 +10,43 @@ tags:
 draft: false
 ---
 
-## Install Xerox Printer Driver
+## Media
+## Canon XA25
+### audio settings
+See [here](https://support.usa.canon.com/kb/index?page=content&id=ART140508)
+
+### How to adjust the microphone sensitivity? (INPUT terminals)
+You can adjust the sensitivity of the input of the INPUT 1 and INPUT 2 terminals. 
+You can set the sensitivity switch of the desired INPUT terminal to MIC or MIC+48V.
+
+Func > Menu > INPUT 1 Mic Trimming > Select the desired level(The available sensitivity levels are +12 dB, +6 dB, 0 dB, -6 dB and -12 dB.)
+
+### When should I activate the microphone attenuator? (INPUT terminals)
+You can activate the microphone attenuator (20 dB) for microphones connected to the INPUT 1 and INPUT 2 terminals to 
+prevent audio from being distorted if the audio level is too high.
+
+Set the sensitivity switch of the desired INPUT terminal to MIC or MIC+48V.
+
+Func > Menu > INPUT 1 Mic Att. > On
+
+## PC
+### What's the difference between Pink, Blue, and Green for audio ports?
+* Green - L/R Line out
+* Blue - L/R Line in
+* Pink - Mic in
+
+### How to connect a mixer to PC using Line In?
+See [Video](https://www.youtube.com/watch?v=RzD0B3LgDvg)
+
+* Use a dual 1/4" TS to 3.5mm TRS cable <br>
+Connect the 1/4" to mixer main out ports, 
+then connect the 3.5mm to the blue port in PC.
+
+* Use RCA to 3.5mm cable <br>
+Connect the RCA cable to the RCA out port in mixer,
+then connect the 3.5mm to the blue port in PC
+
+### How to install Xerox printer driver?
 Network printer Xerox AltaLink C8155 in ALC office, Windows can't find the driver.
 
 [Xerox Smart Start - Driver Installer](https://www.support.xerox.com/en-ca/product/altalink-c8100-series/content/143617).
@@ -39,86 +75,6 @@ SFTP error #2: No such file
 
 MobaXterm can't show Chinese character in SFTP window. 
 Use [FileZilla](https://filezilla-project.org/download.php?show_all=1) instead.
-
-### How to change locale in Ubuntu?
-* list current locale
-```
-$ locale
-LANG=en_US.UTF-8
-LANGUAGE=
-LC_CTYPE="en_US.UTF-8"
-LC_NUMERIC="en_US.UTF-8"
-LC_TIME="en_US.UTF-8"
-LC_COLLATE="en_US.UTF-8"
-LC_MONETARY="en_US.UTF-8"
-LC_MESSAGES="en_US.UTF-8"
-LC_PAPER="en_US.UTF-8"
-LC_NAME="en_US.UTF-8"
-LC_ADDRESS="en_US.UTF-8"
-LC_TELEPHONE="en_US.UTF-8"
-LC_MEASUREMENT="en_US.UTF-8"
-LC_IDENTIFICATION="en_US.UTF-8"
-LC_ALL=
-```
-* List all locales available in the system
-```
-$ local -a
-C
-C.UTF-8
-en_AG
-en_AG.utf8
-en_AU.utf8
-en_BW.utf8
-en_CA.utf8
-en_DK.utf8
-en_GB.utf8
-en_HK.utf8
-en_IE.utf8
-en_IL
-en_IL.utf8
-en_IN
-en_IN.utf8
-en_NG
-en_NG.utf8
-en_NZ.utf8
-en_PH.utf8
-en_SG.utf8
-en_US
-en_US.iso88591
-en_US.utf8
-en_ZA.utf8
-en_ZM
-en_ZM.utf8
-en_ZW.utf8
-POSIX
-
-```
-* Install zh_CN.UTF-8
-```
-$ sudo locale-gen zh_CN.UTF-8
-zh_CN.utf8
-```
-* Change locale to zh_CN.UTF-8
-```
-$ sudo update-locale LANG=zh_CN.utf8
-$ locale
-LANG=zh_CN.utf8
-LANGUAGE=
-LC_CTYPE="zh_CN.utf8"
-LC_NUMERIC="zh_CN.utf8"
-LC_TIME="zh_CN.utf8"
-LC_COLLATE="zh_CN.utf8"
-LC_MONETARY="zh_CN.utf8"
-LC_MESSAGES="zh_CN.utf8"
-LC_PAPER="zh_CN.utf8"
-LC_NAME="zh_CN.utf8"
-LC_ADDRESS="zh_CN.utf8"
-LC_TELEPHONE="zh_CN.utf8"
-LC_MEASUREMENT="zh_CN.utf8"
-LC_IDENTIFICATION="zh_CN.utf8"
-LC_ALL=
-
-```
 
 ## Teams
 ### How to quote message in Teams desktop?
