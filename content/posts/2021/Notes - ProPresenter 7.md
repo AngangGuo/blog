@@ -48,13 +48,15 @@ You can also fill with media files like some background images, church logos, et
 **Split a slide:**
 While editing text, if you would like to break a slide into multiple slides 
 you can use the `Insert Slide Break` feature. 
+
 First, put the cursor where you would like the text to break between slides, 
 then either click the `Insert Slide Break` button on the lower left or 
-press Option-Return on Mac or Control-Enter on PC. 
+press `Option-Return` on Mac or `Ctrl + Enter` on PC. 
+
 This will create a new slide and move any text that is below the cursor to the next slide.
 
 **Merge two slides:**
-Put the cursor at the beginning of the second slide and press `Backspace`(`Delete`) will merge the two slides together.
+Put the cursor at the beginning of the second slide and press `Backspace` on PC(or `Delete` on Mac) will merge the two slides together.
 
 ### How to change text style across multiple slides?
 * Method 1: `Copy Style` - Better for few individual slides
@@ -98,6 +100,7 @@ Paste: Ctrl + V
 Paste Text Style: Alt + Shift + V
 Paste and Match Style: Alt + V (Option + Shift + Command + V)
 Duplicate: Ctrl + D
+Edit: Ctrl + E
 Delete: Del
 Select All: Ctrl + A
 Search: Ctrl + F
@@ -105,21 +108,21 @@ Search: Ctrl + F
 New Presentation: Ctrl + N
 Save: Ctrl + S
 
-Duplicate current slide: Ctrl + Shift + D
-Insert new slide before current slide: Alt + New Slide Button
+Open Bible: Ctrl+Alt+B (Ctrl+B)
+Save Bible search as a new document: Command+Ctrol+S
 
-Open Bible: Ctrl + Alt + B (Ctrl + B)
-Save Bible search as a new document: Command + Ctrol + S
-Toggle the Main Output On/Off: Ctrl + 1
-Toggle the Stage Display On/Off: Ctrl + 2
+Configure Screens: Ctrl+Alt+1
+Toggle the Main Output On/Off: Ctrl+1
+Toggle the Stage Display On/Off: Ctrl+2
 Toggle Preview Screen between Output and Stage Display
 
 Clear All: F1
-Clear Text: F2
-Clear Background: F3
+Clear Slide: F2
+Clear Media: F3
 Clear Props: F4
 Clear Audio: F5
-Logo: F6
+Clear Message: F6
+Clear Announcement: F7
 
 Tighten Character Spacing: Ctrl + Shift + [ (Option + Command + [)
 Loosen Character Spacing: Ctrl + Shift + ] (Option + Command + ])
@@ -132,6 +135,16 @@ Quit ProPresenter: Ctrl + Q
 
 Key Mapping: Alt + K
 ```
+
+## Screen
+### How to create a multiview?
+See [here](https://www.youtube.com/watch?v=HZDOf3RRRcs)
+
+* Screens > Configure Screens... > Create a placeholder view in Stage section and name it as `Multiview`
+* Stage Editor > Add a new Blank Layout > Rename the layout to `Multi-Layout` or any name
+* Click `+` on the view > Select screens from `Screen Preview` or other elements and arrange them > Close
+* Click `Show` button > Select a slide > Click the down arrow below the Preview window > Select `Multiview` 
+* Screen > `Multiview` > `Multi-Layout`
 
 ## Useful Links
 * [Importing From SongSelect](https://support.renewedvision.com/hc/en-us/articles/360041815033-Importing-from-SongSelect)
