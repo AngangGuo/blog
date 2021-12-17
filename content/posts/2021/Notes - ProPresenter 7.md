@@ -91,14 +91,14 @@ If you build a slide you'd like to save as a Theme Slide in a Theme,
 
 ## Shortcuts
 ```
-Undo: Ctrl + Z
-Redo: Ctrl + Y (Shift + Command + Z)
-Cut: Ctrl + X
-Copy: Ctrl + C
-Copy Text Style: Alt + Ctrl + C
-Paste: Ctrl + V
-Paste Text Style: Alt + Shift + V
-Paste and Match Style: Alt + V (Option + Shift + Command + V)
+Undo: Ctrl+Z
+Redo: Ctrl+Y (Shift+Command+Z)
+Cut: Ctrl+X
+Copy: Ctrl+C
+Copy Text Style: Alt+Shift+C
+Paste: Ctrl+V
+Paste and Match Style: Alt+V (Option+Shift+Command+V)
+Paste Text Style: Alt+Shift+V
 Duplicate: Ctrl + D
 Edit: Ctrl + E
 Delete: Del
@@ -137,14 +137,15 @@ Key Mapping: Alt + K
 ```
 
 ## Screen
-### How to create a multiview?
+### How to create a multi-view layout?
 See [here](https://www.youtube.com/watch?v=HZDOf3RRRcs)
 
-* Screens > Configure Screens... > Create a placeholder view in Stage section and name it as `Multiview`
+* Screens > Configure Screens... > Create a placeholder view in Stage section and name it as `VirtualStage`
 * Stage Editor > Add a new Blank Layout > Rename the layout to `Multi-Layout` or any name
-* Click `+` on the view > Select screens from `Screen Preview` or other elements and arrange them > Close
-* Click `Show` button > Select a slide > Click the down arrow below the Preview window > Select `Multiview` 
-* Screen > `Multiview` > `Multi-Layout`
+* Add views into `Multi-Layout` by clicking `+` on the view > Select from `Screen Preview` or other elements >
+repeat the last step to add more previews and arrange them > Close
+* Click `Show` button > Select a slide > Click the down arrow below the Preview window > Select `VirtualStage` 
+* From `Screen` menu > Select `VirtualStage` > Change stage layout to `Multi-Layout`
 
 ## Useful Links
 * [Importing From SongSelect](https://support.renewedvision.com/hc/en-us/articles/360041815033-Importing-from-SongSelect)

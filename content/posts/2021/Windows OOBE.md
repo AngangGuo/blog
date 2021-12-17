@@ -17,6 +17,12 @@ or capture the image for reuse in your organization.
 You can install drivers included in a driver package, 
 install applications, or make other updates that require the Windows installation to be running.
 
+### How to enter Windows Audit Mode?
+After Windows installation is finished, it will reboot to a screen shows `Let's start with region.`.
+Press `Ctrl+Shift+F3` will enter the Audit mode using the built-in Administrator account.
+
+You can install all the device drivers and other software, then generate to OOBE mode.
+
 ### What's OOBE?
 OOBE is the default out-of-box experience that allows end users to enter their account information, 
 select language, accept the Microsoft Terms of Service, and set up networking.

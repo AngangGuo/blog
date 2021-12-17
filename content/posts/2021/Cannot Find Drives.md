@@ -42,20 +42,13 @@ If it doesn't update automatically, see below on how to update the driver from `
 
 **In Audit Mode**
 
-But if in Audit mode, the driver won't update automatically. 
+But if in Audit mode(`Ctrl+Shift+F3`), the driver may not update automatically. 
 
 You can right-click the device, select `Properties` and 
 update the driver from `Windows Update`(preferred); 
 
 Or download the driver from manufacture site and install them manually.
 (I installed all the downloaded Asus drivers but still lots of unknown devices)
-
-
-### Windows Audit Mode and OOBE
-After Windows installation is finished, it will reboot to a screen shows `Let's start with region.`.
-Press `Ctrl + Shift + F3` will enter the Audit mode using the built-in Administrator account.
-
-You can install all the device drivers and other software, then generate to OOBE mode. 
 
 ## Intel
 ### Which RST file should I download?
