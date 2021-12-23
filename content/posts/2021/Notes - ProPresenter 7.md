@@ -8,6 +8,22 @@ tags:
 draft: false
 ---
 
+## Interface
+### Library
+All your presentations should be in the library. You can create folders in the library to organize your presentation.
+Such as Songs, Sermons, etc.
+
+### Playlist
+Playlist is used to organize the presentations used for an individual event or show.
+
+Playlist can have headers, presentations, songs, announcement, etc.
+
+To add a presentation into the playlist:
+* Select the playlist
+* Search(Ctrl+F) your library 
+* Select the desired presentation
+* Press Ctrl+Enter to add it into your playlist (or drag and drop by mouse)
+
 ## FAQ
 ### How can I show ProPresenter slides in Zoom?
 
