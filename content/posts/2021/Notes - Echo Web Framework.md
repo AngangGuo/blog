@@ -12,6 +12,20 @@ draft: false
 
 ## Echo Web Framework
 
+### How to get URL parameter and query parameter values?
+```go
+// localhost/user/123?name=Andrew&age=12
+e.GET("/user/:id", showInfo)
+
+func showInfo(c echo.Context) error {
+    // name, age are get from url parameters; 
+	myname := c.QueryParam("name") // Andrew
+	myage := c.QueryParam("age") // 12
+
+    // id is get from url path
+	myid := c.Param("id") // 123
+```
+
 ## Binding
 ### Binding request data
 In the struct definition, each field can be tagged to restrict binding to a specific source.

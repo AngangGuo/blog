@@ -116,8 +116,31 @@ Con:
 	fmt.Printf("\n")
 ```
 
+## Flag
+### How to specify flag at command line?
+The following forms are permitted:
+```
+-flag
+-flag=x
+-flag x  // non-boolean flags only
+```
+One or two minus signs may be used; they are equivalent.
+
+For example:
+```go
+  // foo.exe
+  var message string
+  flag.StringVar(&message, "message", "default", "The of the user metrics. Default date is today. Date format: YYYY-MM-DD(2022-01-28)")
+  flag.Parse()
+  fmt.Println(message)
+  
+  // foo.exe => default
+  // foo.exe -message 
+```
+
+
 ## CSV
-### How to remove BOM data at the beginning of the file
+### How to check BOM data at the beginning of the file
 ```go
 	f, _ := os.Open(`RL Inventory All Fields_12012021_Vancouver, BC (RL).csv`)
 	defer f.Close()
@@ -525,6 +548,15 @@ func main() {
 ```
 
 ## IO
+### How to read string from command line?
+```go
+scanner := bufio.NewScanner(os.Stdin)
+log.Println("Enter user name: ")
+scanner.Scan()
+username := scanner.Text()
+fmt.Printf("Your name is %s", username)
+```
+
 ### How to show message on screen and write into file at the same time?
 ```go
 // You must open the file in read/write mode

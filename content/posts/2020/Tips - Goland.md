@@ -19,6 +19,8 @@ Ctrl + Alt + Right: Forward to next caret position
 Ctrl + .: fold / unfold selection
 Ctrl + -: fold 
 Ctrl + =: unfold
+
+Ctrl + Alt + Shift + J: Select all occurrences of a word
 ```
 
 ### Customize Keymap

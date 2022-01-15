@@ -10,6 +10,18 @@ tags:
 draft: false
 ---
 
+## PowerShell
+### How to display environment variables?
+```
+// dir and gci are both aliases for Get-ChildItem
+// dir env:
+PS > gci env: | where name -like 'METRICS*'
+Name                           Value
+----                           -----
+METRICSID                      CORPORATE\mynameid
+METRICSPASSWORD                MYPASSWORD
+```
+
 ## Media
 ## Canon XA25
 ### audio settings
@@ -129,10 +141,11 @@ Press Windows logo key + .(or ;) to open the Emoji Panel
 
 ## Command Line
 ### Execute multiple commands on one line
-* Windows 98: `go build | try`
-* &: separate multiple commands on one command line.
-* &&: run the command following && only if the command preceding the symbol is successful. `mkdir -p newApp && cd newApp`
-* ||: run the command following || only if the command preceding || fails.
+* Windows CMD: `go build | try`
+  * &: separate multiple commands on one command line.
+  * &&: run the command following && only if the command preceding the symbol is successful. `mkdir -p newApp && cd newApp`
+  * ||: run the command following || only if the command preceding || fails.
+
 * For Powershell or Bash(semicolon): `go build; .\try.exe`
 
 ### Change character encoding
