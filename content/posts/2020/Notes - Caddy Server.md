@@ -55,13 +55,6 @@ $ sudo systemctl status caddy
              └─2051 /usr/bin/caddy run --environ --config /etc/caddy/Caddyfile
 
 Oct 12 23:14:57 koreasvr caddy[2051]: {"level":"info","ts":1634105697.454619,"logger":"tls.issuance.acme","msg":"done waiting on internal rate limiter","identifiers">
-Oct 12 23:14:57 koreasvr caddy[2051]: {"level":"info","ts":1634105697.849833,"logger":"tls.issuance.acme.acme_client","msg":"trying to solve challenge","identifier":>
-Oct 12 23:14:58 koreasvr caddy[2051]: {"level":"info","ts":1634105698.4661674,"logger":"tls.issuance.acme","msg":"served key authentication","identifier":"xingfu.bri>
-Oct 12 23:14:58 koreasvr caddy[2051]: {"level":"info","ts":1634105698.5031447,"logger":"tls.issuance.acme","msg":"served key authentication","identifier":"xingfu.bri>
-Oct 12 23:14:59 koreasvr caddy[2051]: {"level":"info","ts":1634105699.233223,"logger":"tls.issuance.acme","msg":"served key authentication","identifier":"xingfu.brid>
-Oct 12 23:15:28 koreasvr caddy[2051]: {"level":"info","ts":1634105728.4488063,"logger":"tls.issuance.acme","msg":"served key authentication","identifier":"xingfu.bri>
-Oct 12 23:15:28 koreasvr caddy[2051]: {"level":"info","ts":1634105728.9218576,"logger":"tls.issuance.acme.acme_client","msg":"validations succeeded; finalizing order>
-Oct 12 23:15:29 koreasvr caddy[2051]: {"level":"info","ts":1634105729.7730637,"logger":"tls.issuance.acme.acme_client","msg":"successfully downloaded available certi>
 Oct 12 23:15:29 koreasvr caddy[2051]: {"level":"info","ts":1634105729.7737117,"logger":"tls.obtain","msg":"certificate obtained successfully","identifier":"xingfu.br>
 Oct 12 23:15:29 koreasvr caddy[2051]: {"level":"info","ts":1634105729.7738106,"logger":"tls.obtain","msg":"releasing lock","identifier":"xingfu.brideofchrist.ca"}
 lines 1-21/21 (END)
@@ -130,8 +123,6 @@ Are your ports 80 and 443 externally reachable, and is Caddy able to bind to the
 
 ## Configuration
 ### Simple command list
-
-
 * Point your domain's A/AAAA DNS records at this machine. See below on "How to set up your domain?" section.
 * Upload your site's files to `/var/www/html`. MobaXterm SFTP client can't show Chinese path correctly, prefer to use FileZilla to upload files, 
 * Edit your Caddyfile at /etc/caddy/Caddyfile:

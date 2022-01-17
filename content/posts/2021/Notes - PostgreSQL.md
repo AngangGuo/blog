@@ -1,10 +1,13 @@
 ---
 title: "Notes - PostgreSQL"
 date: 2021-07-16T10:52:39-07:00
-draft: true
+categories:
+- Tech
+- Database
+tags:
+- PostgreSQL
+draft: false
 ---
-
-## PostgreSQL Notes
 
 ## Installation
 * Download the installer from [PostgreSQL Download Page](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)

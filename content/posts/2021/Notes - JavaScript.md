@@ -1,7 +1,13 @@
 ---
 title: "Notes - JavaScript"
 date: 2021-02-22T07:10:14-08:00
-draft: true
+categories:
+- Tech
+- Program
+- Web
+tags:
+- JavaScript
+draft: false
 ---
 
 ## DOM

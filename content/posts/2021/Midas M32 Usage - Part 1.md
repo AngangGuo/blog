@@ -1,7 +1,13 @@
 ---
 title: "Midas M32 Usage - Part 1"
 date: 2021-10-02T23:13:47-07:00
-draft: true
+categories:
+  - Church
+  - Media
+tags:
+  - Sound System
+  - Midas
+draft: false
 ---
 
 ## CONFIG/PREAMP

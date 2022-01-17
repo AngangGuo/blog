@@ -1,7 +1,13 @@
 ---
 title: "Notes - Configuration With Viper"
 date: 2021-07-23T12:30:04-07:00
-draft: true
+categories:
+  - Tech
+  - Program 
+tags:
+  - Viper
+  - Go
+draft: false
 ---
 
 ## Viper

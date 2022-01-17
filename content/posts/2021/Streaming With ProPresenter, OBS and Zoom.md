@@ -1,7 +1,14 @@
 ---
 title: "Streaming With ProPresenter, OBS and Zoom"
 date: 2021-12-17T14:39:21-08:00
-draft: true
+categories:
+- Church
+- Media
+tags:
+- ProPresenter
+- OBS
+- Zoom
+draft: false
 ---
 
 ## ProPresenter Setup

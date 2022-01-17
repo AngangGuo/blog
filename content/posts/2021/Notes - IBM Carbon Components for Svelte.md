@@ -1,7 +1,13 @@
 ---
-title: "Notes   IBM Carbon Components for Svelte"
+title: "Notes - IBM Carbon Components for Svelte"
 date: 2021-03-15T13:00:51-07:00
-draft: true
+categories:
+- Tech
+- Web
+tags:
+- Svelte
+- Framework
+draft: false
 ---
 
 ## IBM Carbon Components - Svelte

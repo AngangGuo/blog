@@ -71,6 +71,17 @@ cut -d: -f1 /etc/passwd
 ```
 
 ## Ubuntu
+### How to reboot system?
+```
+sudo reboot
+sudo shutdown -r // after two minutes: shutdown -r +2 
+
+// 0 - Power off the machine
+// 1 – Enter rescue mode
+// 2,3,4,5 – Start runlevelX.target unit
+// 6 - reboot
+init 6 
+```
 ### How to show ubuntu version?
 Press `Ctrl + Alt + T` open terminal and type the following command:
 ```
@@ -147,6 +158,9 @@ sudo do-release-upgrade
 ### How to run donation program?
 ```
 chmod +x ./donation
+andrew@svr:~/go/src/shareverses$ sudo -b ./shareverses >> log.txt
+andrew@svr:~/main$ sudo caddy start
+
 sudo -b ./donation > log.txt
 // to stop it if it is running
 ps -eaf | grep donation

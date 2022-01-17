@@ -1,7 +1,13 @@
 ---
 title: "Notes   HTML and CSS"
 date: 2021-03-11T14:10:32-08:00
-draft: true
+categories:
+  - Tech
+  - Web
+tags:
+  - HTML
+  - CSS
+draft: false
 ---
 
 ## Input

@@ -32,7 +32,6 @@ To add a presentation into the playlist:
 * (Option)Check `Share sound` if you play music
 * Click `Share`
 
-
 **From `ProPresenter`**
 * Select your presentation
 * Click `Audience` button (or `Ctrl + 1`)to show the slide on the screen
