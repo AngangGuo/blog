@@ -24,6 +24,34 @@ To add a presentation into the playlist:
 * Select the desired presentation
 * Press Ctrl+Enter to add it into your playlist (or drag and drop by mouse)
 
+## Live Stream
+### How to live-stream to Facebook?
+First, go to Facebook > Login > Live Video > Go live > Stream Setup 
+* From `Select a video source` section, Select `Streaming software`
+*  > Copy `Stream key` (FB-1650472968634461-0-Ab...)
+* Click `Advanced Settings` > Copy `Server URL`(rtmps://live-api-s.facebook.com:443/rtmp/) 
+
+Note: Once you start to preview the broadcast you have up to 5 hours to go live.
+
+Then, Go to ProPresenter, click `Live` and select `Capture Settings...`
+* Source: (Select the Screen output to Facebook)
+* Destination: RTMP
+* Address: rtmps://live-api-s.facebook.com:443/rtmp/
+* Key: FB-165...-0-Ab...
+* Encoding: 720p30(2.5 Mbps or any one of them)
+* Start Capture
+
+Go to Facebook Dashboard, check the video, audio quality and click `Go live`
+
+After the event, go to ProPresenter, click `Live` and `Stop Capture`
+
+### How to live stream to YouTube and Facebook at the same time?
+Use NDI to send screen capture to local network. 
+Use two computers with OBS NDI plugin installed and add the ProPresenter NDI output as OBS source. 
+Set up one OBS to streaming to YouTube and another to Facebook.
+
+Or use [restream.io] service.
+
 ## FAQ
 ### How can I show ProPresenter slides in Zoom?
 
