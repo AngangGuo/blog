@@ -28,18 +28,57 @@ func showInfo(c echo.Context) error {
 
 ## Binding
 ### Binding request data
-In the struct definition, each field can be tagged to restrict binding to a specific source.
+In the struct definitions each field can be tagged to restrict binding to specific source.
+```
+    query - source is request query parameters.
+    param - source is route path parameter.
+    header - source is header parameter.
+    form - source is form. Values are taken from query and request body. Uses Go standard library form parsing.
+    json - source is request body. Uses Go json package for unmarshalling.
+    xml - source is request body. Uses Go xml package for unmarshalling.
+```
 
-The following 5 tags can be used:
-* query
-* param
-* form
-* json
-* xml
+Note:
+* For query, param, header, form only fields with tags are bound.
+* Each step can overwrite bound fields from the previous step. 
+This means if your json request has query param &name=query and body is {"name": "body"} then the result will be User{Name: "body"}.
+
+
+Request data is bound to the struct in given order:
+1. Path parameters
+2. Query parameters (only for GET/DELETE methods)
+3. Request body
+
+### How to POST JSON data by using Postman?
+* Select "POST" method
+* Type in the URL
+* Select `Body` > `raw` data> `JSON` format
+* Compose your data {"id": "1"}
+* Click `Send`
+
+### How to process JSON request data? 
+Note: You can't POST the form data as JSON data. Use Postman shown above to send raw JSON data.
 
 ```go
 type Student struct {
-  ID string `param:"id" query:"id" form:"id" json:"id" xml:"id"`
+  ID string `json:"id"`
+}
+
+func addStudent(c echo.Context) error {
+    student := Student{}
+	// 1
+	err := c.Bind(&student)
+	
+	// defer c.Request().Body.Close()
+	// 2
+	// err:=json.NewDecoder(c.Request().Body).Decode(&student)
+	
+	// 3
+	// data, err := os.ReadAll(c.Re
+	if err != nil {
+		return echo.NewHTTPError(http.StatusInternalServerError, "internal server error")
+	}
+	return c.JSON(http.StatusOK, student)
 }
 ```
 
