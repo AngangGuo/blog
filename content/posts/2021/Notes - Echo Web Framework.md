@@ -51,8 +51,8 @@ Request data is bound to the struct in given order:
 
 ### How to POST JSON data by using Postman?
 * Select "POST" method
-* Type in the URL
-* Select `Body` > `raw` data> `JSON` format
+* Type in the URL(http://localhost:1323/save)
+* Select `Body` > send `raw` data> `JSON` format
 * Compose your data {"id": "1"}
 * Click `Send`
 
@@ -64,20 +64,19 @@ type Student struct {
   ID string `json:"id"`
 }
 
-func addStudent(c echo.Context) error {
+func getStudent(c echo.Context) error {
     student := Student{}
-	// 1
-	err := c.Bind(&student)
+	// Method 1
+	_ := c.Bind(&student)
 	
 	// defer c.Request().Body.Close()
-	// 2
-	// err:=json.NewDecoder(c.Request().Body).Decode(&student)
+	// Method 2
+	// _ :=json.NewDecoder(c.Request().Body).Decode(&student)
 	
-	// 3
-	// data, err := os.ReadAll(c.Re
-	if err != nil {
-		return echo.NewHTTPError(http.StatusInternalServerError, "internal server error")
-	}
+	// Method 3
+	// data, _ := io.ReadAll(c.Request().Body)
+	// _ = json.Unmarshal(data, &student)
+	
 	return c.JSON(http.StatusOK, student)
 }
 ```
@@ -99,6 +98,36 @@ Set the value specifically as `true` will be ok.
 <input type="checkbox" name="agree" value="true">
 ```
 
+## Middleware
+You can use middleware in three levels:
+* Root
+* Group
+* Route
+
+```
+// root level
+e.Use(middleware.Logger())
+
+// group level
+g := e.Group("/admin")
+g.Use(middleware.BasicAuth(func(username, password string, c echo.Context) (bool, error) {
+  if username == "joe" && password == "secret" {
+    return true, nil
+  }
+  return false, nil
+}))
+
+// route level
+track := func(next echo.HandlerFunc) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		println("request to /users")
+		return next(c)
+	}
+}
+e.GET("/users", func(c echo.Context) error {
+	return c.String(http.StatusOK, "/users")
+}, track)
+```
 ## Validator
 ### How to set up a validator?
 See [Validator](/posts/2021/Notes-Validator/) for advanced usage.
