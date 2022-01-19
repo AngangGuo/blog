@@ -10,7 +10,20 @@ draft: false
 ---
 
 ## JSON
-### How to process NaN value?
+### How to get information from JSON?
+```go
+info := Info{}
+defer r.Body.Close()
+
+// 1. steam
+err := json.NewDecoder(r.Body).Decode(&info)
+
+// 2.
+data, err := ioutil.ReadAll(r.Body)
+err = json.Unmarshal(data, &info)
+```
+
+### Error when processing NaN value
 When liquidation and total equals zero, the `item.LIQRate` will be `NAN`.
 ```
 item.LIQRate = float64(item.Liquidation) / float64(item.Total)
@@ -19,11 +32,14 @@ item.LIQRate = float64(item.Liquidation) / float64(item.Total)
 ```
 json: unsupported value: NaN
 ```
+There's a [ticket](https://github.com/golang/go/issues/3480) for it.
+
+In this case, it's better to preprocess the NAN to 0 before marshal it.
 
 ### Should I parse JSON with structs or maps?
 See [here](https://bencane.com/2020/12/08/maps-vs-structs-for-json/)
 
-#### Struct
+#### Using Struct
 Pro: 
 * Parsing JSON data to structs is safe and easy.
 
@@ -60,7 +76,7 @@ We have to know the field name and data type of each JSON element while writing 
     }
 ```  
 
-#### Map
+#### Using Map
 Pro: 
 * Using map when we need to parse an unknown JSON.
 * Easy for simply data struct: `data["name"].(string)`; 
@@ -616,6 +632,19 @@ for {
 ```
 
 ## Network
+
+### How to properly close the request body?
+```go
+defer func() {
+    err := r.Body.Close()
+
+    if err != nil {
+        http.Error(w, err.Error(), 500)
+        return
+    }
+}()
+```
+
 ### Simple Go client
 Get Content
 ```go
