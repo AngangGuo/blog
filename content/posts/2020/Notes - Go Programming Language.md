@@ -724,6 +724,22 @@ godoc -http=:6060
 ### How can I add examples into my library document?
 See [blog](https://blog.golang.org/examples)
 
+## Slice
+### Copy function usage
+The built-in copy function copies elements into a destination slice dst from a source slice src.
+```
+func copy(dst, src []Type) int
+```
+
+As a special case, it’s legal to copy bytes from a string to a slice of bytes.
+```
+// copy(dst []byte, src string) int
+a := [8]byte{}
+b := "12345678"
+copy(a[:], b)
+fmt.Println(a) // [49 50 51 52 53 54 55 56]
+```
+
 ## Map
 ### `nil` Map
 A gotcha with maps is that they can be a nil value. A nil map behaves like an empty map when reading, 

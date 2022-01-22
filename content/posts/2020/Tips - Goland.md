@@ -21,6 +21,8 @@ Ctrl + -: fold
 Ctrl + =: unfold
 
 Ctrl + Alt + Shift + J: Select all occurrences of a word
+Alt + Enter: Fill in struct fields
+Ctrl + B: Go to declaration usage
 ```
 
 ### Customize Keymap

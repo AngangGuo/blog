@@ -118,6 +118,7 @@ g.Use(middleware.BasicAuth(func(username, password string, c echo.Context) (bool
 }))
 
 // route level
+// e.Get("/user", getUser, myMiddleWare)
 track := func(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		println("request to /users")

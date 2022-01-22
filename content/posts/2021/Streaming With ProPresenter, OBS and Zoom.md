@@ -24,10 +24,15 @@ See [How To Use ProPresenter in OBS + Lower Thirds](https://www.youtube.com/watc
 
 Note: The video used Syphon as example, but the same principles apply to NDI.
 
-### Tips
+**Tips**
 * You can mirror the main audience screen and configure the mirror screen as NDI(or Syphon) output send to OBS. 
 Or you can create a new NDI screen if you want to have more control(different theme like lower third, etc.).
+* NDI screen can't be turned off, it's always on/available. You may need to delete the unused NDI screen to save some local bandwidth.
 * In Mac, you can use [Syphon](https://renewedvision.com/blog/beginners-guide-to-syphon/) to send video to OBS.
+
+### What the Pros and Cons between using mirrored screen and separate screen as NDI output?
+Mirror Screen:
+
 
 ### How to capture screen to OBS in ProPresenter 6?
 In ProPresenter 6, there's no integrated NDI support. 
