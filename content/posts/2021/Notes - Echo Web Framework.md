@@ -13,17 +13,19 @@ draft: false
 ## Echo Web Framework
 
 ### How to get URL parameter and query parameter values?
-```go
+```
 // localhost/user/123?name=Andrew&age=12
 e.GET("/user/:id", showInfo)
 
 func showInfo(c echo.Context) error {
     // name, age are get from url parameters; 
-	myname := c.QueryParam("name") // Andrew
-	myage := c.QueryParam("age") // 12
-
+    myname := c.QueryParam("name") // Andrew
+    myage := c.QueryParam("age") // 12
+    
     // id is get from url path
-	myid := c.Param("id") // 123
+    myid := c.Param("id") // 123
+	...
+}	
 ```
 
 ## Binding
@@ -59,30 +61,30 @@ Request data is bound to the struct in given order:
 ### How to process JSON request data? 
 Note: You can't POST the form data as JSON data. Use Postman shown above to send raw JSON data.
 
-```go
+```
 type Student struct {
   ID string `json:"id"`
 }
 
 func getStudent(c echo.Context) error {
     student := Student{}
-	// Method 1
-	_ := c.Bind(&student)
-	
-	// defer c.Request().Body.Close()
-	// Method 2
-	// _ :=json.NewDecoder(c.Request().Body).Decode(&student)
-	
-	// Method 3
-	// data, _ := io.ReadAll(c.Request().Body)
-	// _ = json.Unmarshal(data, &student)
-	
-	return c.JSON(http.StatusOK, student)
+    // Method 1
+    _ := c.Bind(&student)
+    
+    // defer c.Request().Body.Close()
+    // Method 2
+    // _ :=json.NewDecoder(c.Request().Body).Decode(&student)
+    
+    // Method 3
+    // data, _ := io.ReadAll(c.Request().Body)
+    // _ = json.Unmarshal(data, &student)
+    
+    return c.JSON(http.StatusOK, student)
 }
 ```
 
 ### How to bind a checkbox?
-```go
+```
 type PostForm struct {
     Name  string
     Agree bool
@@ -99,6 +101,7 @@ Set the value specifically as `true` will be ok.
 ```
 
 ## Middleware
+### Middleware levels
 You can use middleware in three levels:
 * Root
 * Group
@@ -111,35 +114,58 @@ e.Use(middleware.Logger())
 // group level
 g := e.Group("/admin")
 g.Use(middleware.BasicAuth(func(username, password string, c echo.Context) (bool, error) {
-  if username == "joe" && password == "secret" {
+    if username == "joe" && password == "secret" {
     return true, nil
-  }
-  return false, nil
+    }
+    return false, nil
 }))
 
 // route level
 // e.Get("/user", getUser, myMiddleWare)
 track := func(next echo.HandlerFunc) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		println("request to /users")
-		return next(c)
-	}
+    return func(c echo.Context) error {
+        println("request to /users")
+        return next(c)
+    }
 }
 e.GET("/users", func(c echo.Context) error {
-	return c.String(http.StatusOK, "/users")
+    return c.String(http.StatusOK, "/users")
 }, track)
 ```
+
+### How to write a custom middleware?
+
+```
+// AddHeader middleware will add header key/value to echo server
+func AddHeader(next echo.HandlerFunc) echo.HandlerFunc {
+    return func(c echo.Context) error {
+        c.Response().Header().Set(echo.HeaderServer, "MyOwnServer")
+        // In Chrome, the key is always capitalized: Anykey:anyvalue
+        c.Response().Header().Set("anykey", "anyvalue")
+        log.Println("middleware executed")
+        return next(c)
+    }
+}
+```
+
+**Tips**
+To view the request or response HTTP headers in Google Chrome, take the following steps :
+* In Chrome, press "Ctrl + Shift + J" to open the developer tools.
+* Select Network tab.
+* Reload the page
+* Select the HTTP request on the left panel, and the HTTP headers will be displayed on the right panel.
+
 ## Validator
 ### How to set up a validator?
 See [Validator](/posts/2021/Notes-Validator/) for advanced usage.
 
-```go
+```
 type CustomValidator struct {
     Validator *validator.Validate
 }
 
 func (c *CustomValidator) Validate(i interface{}) error {
-	return c.Validator.Struct(i)
+    return c.Validator.Struct(i)
 }
 
 // set up the Validator from main.go
@@ -147,35 +173,70 @@ e.Validator = &CustomValidator{Validator: validator.New()}
 ```
 
 ### Route `/admin` vs `/admin/`
-```go
-    admin := e.Group("admin")
-    // example.com/admin
-	admin.GET("", func(c echo.Context) error {
-		return c.String(200, "admin root")
-	})
-    // example.com/admin/
-	admin.GET("/", func(c echo.Context) error {
-		return c.String(200, "in admin")
-	})
+```
+admin := e.Group("admin")
+// example.com/admin
+admin.GET("", func(c echo.Context) error {
+    return c.String(200, "admin root")
+})
+// example.com/admin/
+admin.GET("/", func(c echo.Context) error {
+    return c.String(200, "in admin")
+})
 ```
 
 You can use [trailing slash middleware](https://echo.labstack.com/middleware/trailing-slash/) to add or remove the trailing slash of a request uri.
 
 ### JWT 
-https://github.com/victorsteven/Go-JWT-Postgres-Mysql-Restful-API/blob/master/api/auth/token.go
-https://echo.labstack.com/cookbook/jwt/
+```
+// import "github.com/golang-jwt/jwt/v4"
+// https://pkg.go.dev/github.com/golang-jwt/jwt/v4
+
+func main() {
+	secret := []byte("MySecret")
+
+	// Create the Claims
+	claims := &jwt.RegisteredClaims{
+		ExpiresAt: jwt.NewNumericDate(time.Now().Add(5 * time.Minute)),
+		Issuer:    "Andrew",
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	ss, err := token.SignedString(secret)
+	fmt.Printf("%v %v\n", ss, err)
+	//Output: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBbmRyZXciLCJleHAiOjE2NDI5OTAwMzR9.a2L5y-6XT0-dcmHL5YA2C7zKiA1yT9hKbsgeV0gRxLo
+	
+	// Parse
+	info := jwt.RegisteredClaims{}
+	myToken, err := jwt.ParseWithClaims(ss, &info, func(t *jwt.Token) (interface{}, error) {
+		return secret, nil
+	})
+	if err != nil {
+		log.Fatalln(err)
+	}
+	fmt.Println(myToken)
+	fmt.Println(info)
+	// {Andrew  [] 2022-01-23 18:07:14 -0800 PST <nil> <nil> }
+}
+```
+
+See Also:
+* [jwt.io](https://jwt.io/)
+* [Go JWT library](https://github.com/golang-jwt/jwt)
+* [real world example](https://github.com/victorsteven/Go-JWT-Postgres-Mysql-Restful-API/blob/master/api/auth/token.go)
+* [manage jwt](https://github.com/victorsteven/manage-jwt) See how you can invalidate JSON without waiting for the token to expire
 
 ## FAQ
 ### How to make Echo serve an SPA correctly?
 Echo has problems with SPA routing. To make Echo work well with your SPA, you need to enable the `HTML5` property for the Echo static middleware. 
-```go
+```
 e.Use(middleware.StaticWithConfig(echoMw.StaticConfig{
     // This is the path to your SPA build folder, the folder that is created from running "npm build"
     Root:   "public",	
     
     // This is the default html page for your SPA
     Index:  "index.html",	
-	
+    
     // Enable HTML5 mode by forwarding all not-found requests to root so that
     // SPA (single-page application) can handle the routing.
     HTML5:  true,
