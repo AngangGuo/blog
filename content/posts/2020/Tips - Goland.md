@@ -57,7 +57,6 @@ Right-click the left gutter and from the context menu, either select or clear th
 Keep in mind that these settings affect only the current editor, not a file. 
 
 ### Select text vertically?
-
 #### Option 1: Drag the mouse
 * Click the mouse wheel and drag; Or
 * Hold `Alt + Shift` keys and left click the mouse and drag
@@ -66,6 +65,9 @@ Keep in mind that these settings affect only the current editor, not a file.
 Press `Alt + Shift + Insert`, or go to `Edit` > click `Column Selection Mode`,
 * Mouse: click the left button and drag the mouse on the text area you want to select.
 * Keyboard: use `Shift + Arrows` to select a block
+
+### How to fix grammar error?
+To fix a spelling or grammar error, press `Alt+Enter` to see the list of available actions.
 
 ### How to run `Goland` as a lightweight editor from command line?
 You can open a file directly from command line like notepad editor without creating a project first.

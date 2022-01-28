@@ -10,7 +10,7 @@ draft: false
 ---
 
 ## JSON
-### How to get information from JSON?
+### How to get JSON info from request?
 ```go
 info := Info{}
 defer r.Body.Close()
@@ -36,6 +36,78 @@ There's a [ticket](https://github.com/golang/go/issues/3480) for it.
 
 In this case, it's better to preprocess the NAN to 0 before marshal it.
 
+### How to customize JSON?
+You can use UnmarshalJSON
+
+Here is an example to convert JSON array `["1", "Andrew"]` into Go type Associate {"ID": 1, "Name": "Andrew"}
+```
+type Associate struct {
+	ID   int
+	Name string
+}
+
+func (a *Associate) UnmarshalJSON(data []byte) error {
+	var rowValue []string
+	if err := json.Unmarshal(data, &rowValue); err != nil {
+		return err
+	}
+	id, err := strconv.Atoi(rowValue[0])
+	if err != nil {
+		return err
+	}
+	a.ID = id
+	a.Name = rowValue[1]
+	fmt.Println(rowValue)
+	return nil
+}
+
+func main() {
+	data := []byte(`[
+	["1", "Andrew"],
+	["2", "John"],
+	["3", "Vivian"]
+]`)
+	var associates []Associate
+	err := json.Unmarshal(data, &associates)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	fmt.Println(associates)
+}
+// output
+[1 Andrew]
+[2 John]
+[3 Vivian]
+[{1 Andrew} {2 John} {3 Vivian}]
+```
+
+### How to reuse original type?
+See [here](http://choly.ca/post/go-json-marshalling/)
+
+Example on how to change `LastSeen` field as a unix timestamp by using alias to embed the original type `MyUser`
+```
+type MyUser struct {
+	ID       int64     `json:"id"`
+	Name     string    `json:"name"`
+	LastSeen time.Time `json:"lastSeen"`
+}
+
+func (u *MyUser) UnmarshalJSON(data []byte) error {
+	type Alias MyUser
+	aux := &struct {
+		LastSeen int64 `json:"lastSeen"`
+		*Alias
+	}{
+		Alias: (*Alias)(u),
+	}
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+	u.LastSeen = time.Unix(aux.LastSeen, 0)
+	return nil
+}
+```
 ### Should I parse JSON with structs or maps?
 See [here](https://bencane.com/2020/12/08/maps-vs-structs-for-json/)
 
