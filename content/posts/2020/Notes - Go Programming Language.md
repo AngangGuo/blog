@@ -10,6 +10,18 @@ draft: false
 ---
 
 ## JSON
+### What's the JSON backslash escapes?
+You need to use backslash(`\`) to escape the following characters:
+* `\\`: backslash
+* `\"`: quotation mark
+* `\b`: backspace
+* `\f`: formfeed
+* `\n`: linefeed
+* `\r`: carriage return
+* `\t`: horizontal tab
+* `\uxxxx`: 
+* `\/`: slash (optional: The JSON spec says you CAN escape forward slash, but you don't have to. This helps when embedding JSON in a `<script>` tag, which doesn't allow `</` inside strings)
+
 ### How to get JSON info from request?
 ```go
 info := Info{}
@@ -34,7 +46,7 @@ json: unsupported value: NaN
 ```
 There's a [ticket](https://github.com/golang/go/issues/3480) for it.
 
-In this case, it's better to preprocess the NAN to 0 before marshal it.
+In this case, it's better to preprocess the NAN to 0 before marshal it or you can use 
 
 ### How to customize JSON?
 You can use UnmarshalJSON
@@ -57,7 +69,7 @@ func (a *Associate) UnmarshalJSON(data []byte) error {
 	}
 	a.ID = id
 	a.Name = rowValue[1]
-	fmt.Println(rowValue)
+	// fmt.Println(rowValue)
 	return nil
 }
 
@@ -76,25 +88,22 @@ func main() {
 	fmt.Println(associates)
 }
 // output
-[1 Andrew]
-[2 John]
-[3 Vivian]
 [{1 Andrew} {2 John} {3 Vivian}]
 ```
 
 ### How to reuse original type?
 See [here](http://choly.ca/post/go-json-marshalling/)
 
-Example on how to change `LastSeen` field as a unix timestamp by using alias to embed the original type `MyUser`
+Example on how to change `LastSeen` field as a unix timestamp by using alias to embed the original type `User`
 ```
-type MyUser struct {
+type User struct {
 	ID       int64     `json:"id"`
 	Name     string    `json:"name"`
 	LastSeen time.Time `json:"lastSeen"`
 }
 
-func (u *MyUser) UnmarshalJSON(data []byte) error {
-	type Alias MyUser
+func (u *User) UnmarshalJSON(data []byte) error {
+	type Alias User
 	aux := &struct {
 		LastSeen int64 `json:"lastSeen"`
 		*Alias
@@ -149,6 +158,8 @@ We have to know the field name and data type of each JSON element while writing 
 ```  
 
 #### Using Map
+I use it when reading the JSON config file in a program. 
+
 Pro: 
 * Using map when we need to parse an unknown JSON.
 * Easy for simply data struct: `data["name"].(string)`; 
@@ -382,20 +393,6 @@ replace github.com/360EntSecGroup-Skylar/excelize/v2 => github.com/xuri/excelize
 require (
 	github.com/360EntSecGroup-Skylar/excelize/v2 v2.4.1
 )
-```
-
-Keep using the old module names only or replace all the old module names with new module names.
-You'll get the following error message if you use the old module and the new module at the same time: 
-```
-replace github.com/360EntSecGroup-Skylar/excelize/v2 => github.com/xuri/excelize/v2 v2.4.1
-
-require (
-	github.com/360EntSecGroup-Skylar/excelize/v2 v2.4.1
-	github.com/xuri/excelize/v2 v2.4.1
-)
-	
-PS C:\Andrew\prj\rl> go mod tidy
-go: github.com/xuri/excelize/v2@v2.4.1 used for two different module paths (github.com/360EntSecGroup-Skylar/excelize/v2 and github.com/xuri/excelize/v2)
 ```
 
 ### How to use unpublished module in your local directory?

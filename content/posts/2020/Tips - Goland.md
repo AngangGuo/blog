@@ -16,13 +16,17 @@ draft: false
 Ctrl + Alt + Left: Back to previous caret position
 Ctrl + Alt + Right: Forward to next caret position
 
+Ctrl + B: Go to declaration usage
+Ctrl + ]: Go to the closing brace
+Ctrl + [: Go to the start brace
+Ctrl + Shift + M: Jump the cursor to the matching brace
+
 Ctrl + .: fold / unfold selection
 Ctrl + -: fold 
 Ctrl + =: unfold
 
 Ctrl + Alt + Shift + J: Select all occurrences of a word
 Alt + Enter: Fill in struct fields
-Ctrl + B: Go to declaration usage
 ```
 
 ### Customize Keymap
@@ -41,13 +45,19 @@ var (
 Similar for `consts`, `types` and `imports`
 
 ### `For` loop
-Type `fori` -> `tab` will expand to:
+For i loop: Type `fori` -> `tab` will expand to:
 ```
 for i := 0; i < ; i++ {
 	
 }
 ```
 
+For range loop: Type `forr` -> `tab` will expand to:
+```
+for i, i2 := range collection {
+		
+}
+```
 ### View Tips
 #### Soft Wrap
 From `Settings > Editor > General > Soft Wraps`, You can config soft wraps for specific file types. Enter file extensions separating them with semicolon.

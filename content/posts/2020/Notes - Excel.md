@@ -16,8 +16,8 @@ Use any of the following formula to remove the #DIV/0! from Spreadsheet:
 * `=IF(A2,A1/A2,0)` or `=IF(A2,A1/A2,"No Input")`
 * `=IF(ISERROR(A1/A2),0,A1/A2)`
 
-### How to separate CSV data into individual columns?
-When paste CSV data into Excel, all the data will be in one column. 
+### How to paste CSV data into individual columns?
+When pasting CSV data into Excel, all the data will be in one column. 
 To separate the data into individual columns, follow these steps:
 
 * Data > Text to Columns
