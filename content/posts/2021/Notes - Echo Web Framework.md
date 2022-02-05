@@ -43,13 +43,37 @@ In the struct definitions each field can be tagged to restrict binding to specif
 Note:
 * For query, param, header, form only fields with tags are bound.
 * Each step can overwrite bound fields from the previous step. 
-This means if your json request has query param &name=query and body is {"name": "body"} then the result will be User{Name: "body"}.
 
+This means if your json request has query param &name=query and body is {"name": "body"} then the result will be User{Name: "body"}.
 
 Request data is bound to the struct in given order:
 1. Path parameters
 2. Query parameters (only for GET/DELETE methods)
 3. Request body
+
+### How to Bind path parameters instead of JSON?
+If you have the same parameter in URL and JSON data in the request body, they JSON data will overwrite the path parameter.
+If you want to keep the path parameter, you can use these methods:
+```
+// use the "-" json tag
+var params struct {
+    Order string `param:"order" json:"-"`
+}
+
+// or use BindPathParams method
+var params struct {
+	Order string `param:"order"`
+}
+if err := echo.BindPathParams(c, payload); err != nil {
+	return err
+}
+```
+
+Here is a list of Bind methods:
+* BindBody
+* BindHeaders
+* BindPathParams
+* BindQueryParams
 
 ### How to POST JSON data by using Postman?
 * Select "POST" method
