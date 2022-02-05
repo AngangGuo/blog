@@ -10,6 +10,16 @@ draft: false
 ---
 
 ## JSON
+### JSON Name Convention
+The JSON syntax does not impose any restrictions on the strings used as names.
+Most of them either use camelCase or snake_case.
+
+For Go we usually use camelCase like this example code(`myName`) in json package:
+```
+// Field appears in JSON as key "myName".
+Field int `json:"myName"`
+```
+
 ### What's the JSON backslash escapes?
 You need to use backslash(`\`) to escape the following characters:
 * `\\`: backslash
@@ -809,6 +819,29 @@ copy(a[:], b)
 fmt.Println(a) // [49 50 51 52 53 54 55 56]
 ```
 
+## Struct
+### How to compare with an empty struct?
+```
+type Coordinate struct {
+	Row    int
+	Column int
+}
+
+type Config struct {
+	FirstDateCoordinates Coordinate `json:"first-date-coordinates"`
+}
+
+var c = Config{}
+// 
+fmt.Println(c.FirstDateCoordinates == (Coordinate{}))
+```
+Note:
+Because of a parsing ambiguity, parentheses are required around the composite literal `Coordinate{}`.
+
+The use of `==` above applies to structs where all fields are comparable. 
+If the struct contains a non-comparable field (slice, map or function), 
+then the fields must be compared one by one to their zero values.
+
 ## Map
 ### `nil` Map
 A gotcha with maps is that they can be a nil value. A nil map behaves like an empty map when reading, 
@@ -1183,6 +1216,32 @@ go build
 
 // From Linux
 $ env GOOS=windows GOARCH=amd64 go build
+```
+
+## Go Excelize
+Excelize is a library written in pure Go providing a set of functions that allow you to write to and read from XLAM / XLSM / XLSX / XLTM / XLTX files.
+
+### How to get the raw data from a cell?
+Cell `E1` holds date `1/5/2022` with style as `1/5`
+```
+// Normal function
+cellE, _ := f.GetCellValue(config.ClientSheetName, "E1") 
+// Value: 1/5; Type: string
+fmt.Printf("Value: %v; Type: %T\n", cellE, cellE)
+
+// Get raw value
+cell, _ := f.GetCellValue(config.ClientSheetName, "E1", excelize.Options{RawCellValue: true})
+// Value: 44566; Type: string
+fmt.Printf("Value: %v; Type: %T\n", cell, cell)
+
+// Value: 44566; Type: float64
+excelDate, _ := strconv.ParseFloat(cell, 64)
+
+// Value: 2022-01-05 00:00:00 +0000 UTC; Type: time.Time
+excelTime, err := excelize.ExcelDateToTime(excelDate, false)
+
+// Value: 1/5; Type: string
+excelTime.Format("1/2")
 ```
 
 ## Useful Library Links
