@@ -12,6 +12,9 @@ draft: false
 ---
 
 ## ProPresenter Setup
+
+Warning: This is a work in progress
+
 ### How to send contents to OBS in ProPresenter 7?
 Screens > Configure Screens...(Ctrl + Alt + 1) > Audience > New NDI > Select the Mode(1080p29.97, etc.)
 * Rename the NDI output name(Pro7-NDI) - OBS will see this name as its input source
@@ -29,10 +32,6 @@ Note: The video used Syphon as example, but the same principles apply to NDI.
 Or you can create a new NDI screen if you want to have more control(different theme like lower third, etc.).
 * NDI screen can't be turned off, it's always on/available. You may need to delete the unused NDI screen to save some local bandwidth.
 * In Mac, you can use [Syphon](https://renewedvision.com/blog/beginners-guide-to-syphon/) to send video to OBS.
-
-### What the Pros and Cons between using mirrored screen and separate screen as NDI output?
-Mirror Screen:
-
 
 ### How to capture screen to OBS in ProPresenter 6?
 In ProPresenter 6, there's no integrated NDI support. 
