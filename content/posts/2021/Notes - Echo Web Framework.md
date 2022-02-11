@@ -124,6 +124,31 @@ Set the value specifically as `true` will be ok.
 <input type="checkbox" name="agree" value="true">
 ```
 
+## Respond
+### How to send message continually?
+
+```
+e.GET("stream", func(c echo.Context) error {
+    c.Response().Header().Set(echo.HeaderContentType, echo.MIMETextPlain)
+    // this setting is important
+    c.Response().Header().Set("X-Content-Type-Options", "nosniff")
+    c.Response().WriteHeader(http.StatusOK)
+    for i := 0; i < 4; i++ {
+        c.Response().Write([]byte(
+            fmt.Sprintf("%s,%v\n", "processing", i)))
+        c.Response().Flush()
+        time.Sleep(time.Second)
+    }
+
+    c.Response().Write([]byte("Done\n"))
+    c.Response().Flush()
+    return nil
+})
+```
+
+For streaming JSON response see this [example](https://echo.labstack.com/cookbook/streaming-response/)
+
+
 ## Middleware
 ### Middleware levels
 You can use middleware in three levels:

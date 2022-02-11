@@ -784,6 +784,34 @@ func main() {
 }
 ```
 
+### How to response with message continually?
+```
+func HandlePost(w http.ResponseWriter, r *http.Request) {
+    // #1 add flusher
+    flusher, ok := w.(http.Flusher)
+    if !ok {
+        panic("expected http.ResponseWriter to be an http.Flusher")
+    }
+    w.Header().Set("Connection", "Keep-Alive")
+    
+    // make sure this header is set
+    w.Header().Set("X-Content-Type-Options", "nosniff")
+
+    ticker := time.NewTicker(time.Millisecond * 500)
+    go func() {
+        for t := range ticker.C {
+            // #2 add '\n'
+            io.WriteString(w, "Chunk\n")
+            flusher.Flush()
+        }
+    }()
+    time.Sleep(time.Second * 5)
+    ticker.Stop()
+}
+```
+
+See [here](https://stackoverflow.com/questions/26769626/send-a-chunked-http-response-from-a-go-server)
+
 ## Document
 ### How to show your library in GODOC?
 

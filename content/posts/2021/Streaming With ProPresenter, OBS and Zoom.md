@@ -13,7 +13,7 @@ draft: false
 
 ## ProPresenter Setup
 
-Warning: This is a work in progress
+**Warning: This is a work in progress**
 
 ### How to send contents to OBS in ProPresenter 7?
 Screens > Configure Screens...(Ctrl + Alt + 1) > Audience > New NDI > Select the Mode(1080p29.97, etc.)
