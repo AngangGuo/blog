@@ -168,3 +168,15 @@ Fetch options:
     method – HTTP-method,
     headers – an object with request headers (not any header is allowed),
     body – the data to send (request body) as string, FormData, BufferSource, Blob or UrlSearchParams object.
+
+### Fetch Errors
+`fetch()` doesn't throw an error when the server returns a bad HTTP status, e.g. client (400–499) or server errors (500–599).
+
+`fetch()` rejects only if a request cannot be made or a response cannot be retrieved. 
+It might happen because of network problems: no internet connection, host not found, the server is not responding.
+```
+if (!response.ok) {
+    const message = `An error has occured: ${response.status}`;
+    throw new Error(message);
+}
+```

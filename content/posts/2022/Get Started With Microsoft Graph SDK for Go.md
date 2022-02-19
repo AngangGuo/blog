@@ -27,3 +27,6 @@ feature updates. Applications will need to be upgraded to Microsoft Authenticati
 ## Useful Links
 * [Sync files between work account and personal account](https://www.youtube.com/watch?v=YSdLYRcge0I)
 * [Microsoft Graph SDK for Go](https://github.com/microsoftgraph/msgraph-beta-sdk-go)
+* [Microsoft Graph Explorer](https://developer.microsoft.com/en-us/graph/graph-explorer)
+* [App Registration](https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps)
+* See: https://www.youtube.com/watch?v=SInnmOEKcg0

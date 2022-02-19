@@ -10,6 +10,13 @@ tags:
 draft: false
 ---
 
+## Google Drive
+### How to update the file but keep the shared link?
+You can upload a file from your computer to Google Drive and share it with others. 
+If the original file in your computer has been updated to a new version. 
+If you want to update the file in Google Drive to this new version, you can upload it to Google Drive again and select
+`Replace existing file` in the `Upload options` window. Replacing the file won't change sharing settings.
+
 ## PowerShell
 ### How to display environment variables?
 ```
