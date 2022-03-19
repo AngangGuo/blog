@@ -29,6 +29,17 @@ METRICSID                      CORPORATE\mynameid
 METRICSPASSWORD                MYPASSWORD
 ```
 
+## Windows
+### USB scanner always in low battery status
+See [this](https://www.drivereasy.com/knowledge/usb-selective-suspend-everything-you-need-to-know-about-it/)
+
+Frankly speaking, the `USB selective suspend` is really handy for laptop and tablet users in that it saves you power from unnecessary USB devices.
+But if you run into USB device not recognized problem, always have the charger plugged in your computer, 
+or you are on a full-power required USB device at all times, you should disable this feature.
+
+Go to Power Plan settings > Change plan settings > Change advanced power settings > USB settings >
+USB selective suspend setting > `Disabled`
+
 ## Media
 ## Canon XA25
 ### audio settings
@@ -110,6 +121,20 @@ Quote using a keyboard shortcut
 * Select a version to open it in a separate window.
 * If you want to restore a previous version you've opened, select Restore.
 
+## PowerPoint
+### How to export slides as high-resolution JPEG?
+By default, the export resolution of a PowerPoint slide that you want to save as a picture is 96 dots per inch (dpi), 
+it'll be 1280 x 720 pixels for wide screen.
+
+To change the export resolution, you need to change the settings in Windows registry file.
+```
+// regedit
+HKEY_CURRENT_USER\Software\Microsoft\Office\16.0\PowerPoint\Options
+Edit > New > DWORD (32-bit) Value > ExportBitmapResolution > 
+one of these values: 50(667 x 375), 96(1280 x 720), 100(1333 x 750), 150(2000 x 1125), 200(2667 x 1500), 250(3333 x 1875)
+```
+
+See [here](https://docs.microsoft.com/en-us/office/troubleshoot/powerpoint/change-export-slide-resolution) for details.
 
 ## Outlook
 ### How can I show meetings in highlight color?
