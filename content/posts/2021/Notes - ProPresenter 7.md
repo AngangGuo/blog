@@ -8,6 +8,64 @@ tags:
 draft: false
 ---
 
+## Import vs Media
+
+### Import PPT
+From `File` > `Import` > `PowerPoint...`, select the PPT file
+* You must install Microsoft PowerPoint 2016 or greater in order to import PowerPoint file
+* The imported JPG image files will be in `Media\Import` folder
+* Each image has a random unique name
+* The image is as `Fill` `Media` in the presentation `Shape` tab
+
+![Imported Image in a presentation slide](/images/2022/propresenter-import-shape-fill-media.PNG)
+
+Image full path for imported file example:
+```
+C:\Users\angan\OneDrive\Documents\ProPresenter\Media\Import\41a74ec8-78e7-4037-b7dd-dfeec8229e4b.jpg
+```
+
+### Media Action
+
+* Convert PPT into JPG images(See below for more details)
+* Create a new presentation
+* Select all the images and drag them into the presentation
+* It will add these images as Media Action to the presentation
+* The images files will be in `Media\Assets` folder
+
+![PPT images as media action](/images/2022/propresenter-media-action-slide.PNG)
+
+```
+C:\Users\angan\OneDrive\Documents\ProPresenter\Media\Assets\Slide1.jpg
+```
+
+### How to convert PPT into JPG images?
+**PowerPoint Desktop**
+* Open the PPT file from PowerPoint 365 Desktop > Save a Copy > JPEG Interchange Format(.JPG)
+
+**One Drive**
+* Open the PPT file from OneDrive > File > Save As > Download as Images
+
+**Online Service**
+* Use online service such as https://cloudconvert.com/pptx-to-jpg
+
+### Warning: File already exist
+PowerPoint desktop, PowerPoint in OneDrive and most PPT to JPG online services will name the images as `Slide1.jpg`, `Slide2.jpg`, etc.
+
+If you import these files or drag them into ProPresenter, most likely there're other files with the same names already imported into the folder.
+ProPresenter will ask if you want to `Use Exist`, `New Version`, or `Write Over`. Don't choose any of them.
+
+I suggest to rename these files with a prefix like "YYYYMMDD-xxx-Slide1.jpg"
+```
+20220318 Sermon_00001.jpg
+```
+
+See [here](https://support.apple.com/en-ca/guide/mac-help/mchlp1144/mac) on how to rename multiple files in Mac
+See [here](https://www.windowscentral.com/how-rename-multiple-files-bulk-windows-10) on how to rename multiple files on Windows 10
+
+
+### Image Resolution
+See https://docs.microsoft.com/en-us/office/troubleshoot/powerpoint/change-export-slide-resolution
+
 ## Interface
 ### Library
 All your presentations should be in the library. You can create folders in the library to organize your presentation.
