@@ -7,6 +7,8 @@ categories:
 tags:
  - Datamax
  - Zebra
+ - GT420t
+ - GT420d
 draft: false
 ---
 
@@ -29,23 +31,25 @@ The Inquiry Department can be contacted at 877-208-7756 or at [contact.us](http:
 ## Troubleshooting
 
 ### GK420t keeps skipping labels
+One of our GK420t printer keeps skipping labels.
+
+![GK420t Skip Label](/images/2020/gk420t-skip-labels.PNG)
+
 The cause of a Zebra printer skipping labels is usually due to the printer not being fully calibrated or 
 that your driver settings are not set properly for the label size that you are using. 
 
-All the printer settings looks good. The printer may need to be calibrated.
+In our case, all the printer settings look good. The printer need to be calibrated.
 Calibrating ensures the correct and consistent positioning of the label in the printer, 
 and the print on the label.
 
-To fix your Zebra printer from skipping labels, follow these steps:
+Follow these steps to fix the problem:
 
 * Load labels
 * Power on the printer.
 * Press and hold the `Feed` Button until it flashes two times, and then release it
 * Allow your printer to complete feeding labels
 
-Your printer should now be calibrated. To test – press the feed key and one label should be issued each time.
-
-![GK420t Skip Label](/images/2020/gk420t-skip-labels.PNG)
+The printer should now be calibrated. To test – press the feed key and one label should be issued each time.
 
 ### GK420t Printer - Labels stuck around the roll
 To remove the labels on the Platen Roller and clean it, 
