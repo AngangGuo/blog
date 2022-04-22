@@ -380,6 +380,43 @@ The operators `<`, `>` are not defined to compare date / time. Use `time.After()
 {{if or (eq .Lang "tw") (eq .Lang "cn")}}
 ```
 
+### Using embedded template files
+See "Embed Static Files" section for details
+
+## Embed Static Files
+### Three methods to embed a file
+1. As string
+```
+import _ "embed"
+
+//go:embed metrics.html
+var tmplMetricFile string
+
+var tmpls = template.Must(template.New("metrics.html").Parse(tmplMetricFile))
+```
+
+2. As []byte
+```
+import _ "embed"
+
+//go:embed home.html
+var tmplHomeFile []byte
+
+var tmplHome = template.Must(template.New("home.html").Parse(tmplHomeFile))
+```
+
+3. As FS
+```
+import "embed"
+
+//go:embed index.html
+var tmplFS embed.FS
+
+template.Must(template.ParseFS(tmplFS, "index.html"))
+```
+
+See [embed package](https://pkg.go.dev/embed)
+
 ## Module
 See [Developing and publishing modules](https://golang.org/doc/modules/developing)
 
