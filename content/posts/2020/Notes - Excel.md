@@ -27,6 +27,14 @@ To separate the data into individual columns, follow these steps:
 Caution: Excel will remember your selection and when you paste data next time, it'll apply these settings automatically.
 
 ## Excel Notes
+### How to force Excel to re-calculate all the formulas?
+Using keyboard shortcut `Ctrl+Alt+F9` to re-calculate the workbook formulas.
+
+* `F2` – select any cell then press F2 key and hit enter to refresh formulas.
+* `F9` – recalculates all sheets in workbooks
+* `Shift+F9` – recalculates all formulas in the active sheet
+* `Ctrl+Alt+F9` – force calculate open worksheets in all open workbooks including cells that have not been changed
+* `Ctrl+Alt+Shift+F9` – recalculates all sheets in all open workbooks
 
 ### How to copy and paste just visible cells only?
 #### Keyboard shortcut: 
