@@ -9,6 +9,20 @@ tags:
 draft: false
 ---
 
+## Standard Library
+
+### How to re-use parameters in `fmt.Printf()`?
+See [fmt](https://pkg.go.dev/fmt@go1.18.2#hdr-Explicit_argument_indexes) 
+
+In Printf, Sprintf, and Fprintf, the default behavior is for each formatting verb to format successive arguments passed in the call. 
+However, the notation [n] immediately before the verb indicates that the nth one-indexed argument is to be formatted instead. 
+The same notation before a '*' for a width or precision selects the argument index holding the value. 
+After processing a bracketed expression [n], subsequent verbs will use arguments n+1, n+2, etc. unless otherwise directed.
+```
+fmt.Printf("%s, %[1]s","echo") // echo, echo
+fmt.Printf("%v-%v-%v-%[2]v-%v", 100, 200, 300) // 100-200-300-200-300
+```
+
 ## JSON
 ### JSON Name Convention
 The JSON syntax does not impose any restrictions on the strings used as names.
@@ -1044,12 +1058,16 @@ To fix it, use the Pointer Receiver `func (s *Student) SetName(name string)` ins
 // ASCII code
 s := string(65) // convert to "A"
 
-// Right
+// Convert number to string
 n1 := int64(234)
 s1 := strconv.FormatInt(n1, 10) // "234"
 
 n2 := 4.56423
 s2 := strconv.FormatFloat(n2, 'f', 2, 32) // "4.56"
+
+// Using fmt.Sprintf()
+n3 := 123.456
+s3 := fmt.Sprintf("%v", n3) // "123.456"
 ```
 
 ### Build problem
@@ -1283,31 +1301,6 @@ go build
 $ env GOOS=windows GOARCH=amd64 go build
 ```
 
-## Go Excelize
-Excelize is a library written in pure Go providing a set of functions that allow you to write to and read from XLAM / XLSM / XLSX / XLTM / XLTX files.
-
-### How to get the raw data from a cell?
-Cell `E1` holds date `1/5/2022` with style as `1/5`
-```
-// Normal function
-cellE, _ := f.GetCellValue(config.ClientSheetName, "E1") 
-// Value: 1/5; Type: string
-fmt.Printf("Value: %v; Type: %T\n", cellE, cellE)
-
-// Get raw value
-cell, _ := f.GetCellValue(config.ClientSheetName, "E1", excelize.Options{RawCellValue: true})
-// Value: 44566; Type: string
-fmt.Printf("Value: %v; Type: %T\n", cell, cell)
-
-// Value: 44566; Type: float64
-excelDate, _ := strconv.ParseFloat(cell, 64)
-
-// Value: 2022-01-05 00:00:00 +0000 UTC; Type: time.Time
-excelTime, err := excelize.ExcelDateToTime(excelDate, false)
-
-// Value: 1/5; Type: string
-excelTime.Format("1/2")
-```
 
 ## Useful Library Links
 * [Cobra](https://github.com/spf13/cobra) is a library providing a simple interface to create powerful modern CLI interfaces
