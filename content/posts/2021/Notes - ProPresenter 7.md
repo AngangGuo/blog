@@ -121,6 +121,7 @@ Or use [restream.io] service.
 **From `ProPresenter`**
 * Select your presentation
 * Click `Audience` button (or `Ctrl + 1`)to show the slide on the screen
+* Use right arrow key to go to next slide or left arrow key to go to previous slide
 * Click `X` button (or press `Ctrl + 1` again) to exit full screen presentation
 
 ### How to use audio?
@@ -188,8 +189,6 @@ If you build a slide you'd like to save as a Theme Slide in a Theme,
 * Right clicking on the Slide and going to `Themes...`, 
 * Selecting the Theme you wish to put this slide under and then choosing `Add Selection to Theme`
 
-
-
 ## Shortcuts
 ```
 Undo: Ctrl+Z
@@ -212,6 +211,7 @@ Save: Ctrl + S
 Open Bible: Ctrl+Alt+B (Ctrl+B)
 Save Bible search as a new document: Command+Ctrol+S
 
+Preference: Ctrl+comma
 Configure Screens: Ctrl+Alt+1
 Toggle the Main Output On/Off: Ctrl+1
 Toggle the Stage Display On/Off: Ctrl+2
