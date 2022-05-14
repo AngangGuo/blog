@@ -152,7 +152,7 @@ Con:
 * When using structs, we must define every element within the JSON into the struct. 
 We have to know the field name and data type of each JSON element while writing our code.
 ```go
-    / Example is our main data structure used for JSON parsing
+    // Example is our main data structure used for JSON parsing
     type Example struct {
         Name    string `json:"name"`
         Numbers []int  `json:"numbers"`
@@ -423,10 +423,15 @@ var tmplHome = template.Must(template.New("home.html").Parse(tmplHomeFile))
 ```
 import "embed"
 
+// single file
 //go:embed index.html
 var tmplFS embed.FS
-
 template.Must(template.ParseFS(tmplFS, "index.html"))
+
+// or embed multiple directories and files
+//go:embed template static config.json
+var content embel.FS
+template.Must(template.ParseFS(content, "template/*"))
 ```
 
 See [embed package](https://pkg.go.dev/embed)
