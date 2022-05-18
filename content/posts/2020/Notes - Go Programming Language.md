@@ -436,6 +436,41 @@ template.Must(template.ParseFS(content, "template/*"))
 
 See [embed package](https://pkg.go.dev/embed)
 
+### Template Name for ParseFiles
+* default is the first file name
+```
+indexTmpl, _ := template.ParseFiles("template/base.gohtml", "template/index.gohtml")
+fmt.Println(indexTmpl.Name()) // base.gohtml
+indexTmpl.Execute(...)
+```
+
+* If you want to specify a name for the template, you should use one of the file name
+
+From [ParseFiles doc](https://pkg.go.dev/text/template@go1.18.2#Template.ParseFiles):
+
+Since the templates created by `func (t *Template) ParseFiles(filenames ...string) (*Template, error)` are named by the base names of the argument files, 
+t should usually have the name of one of the (base) names of the files.
+
+```
+// the name must be either "index.gohtml" or "base.gohtml",
+indexTemp, err := template.New("index.gohtml").ParseFiles("template/base.gohtml", "template/index.gohtml")
+```
+
+* It will be error if you use other names
+
+```
+indexTmpl, _ := template.New("aa").ParseFiles("template/base.gohtml", "template/index.gohtml")
+indexTmpl.Execute(os.Stdout, nil) // or indexTmpl.ExecuteTemplate(os.Stdout, "aa", nil)
+if err != nil {
+    log.Fatal(err)
+    // 2022/05/17 21:28:04 error: html/template: "aa" is an incomplete template
+}
+
+// It's totally fine if you use the individual file name template such as index.gohtml or base.gohtml
+// but the result my not the same as the first two samples
+err = indexTemp.ExecuteTemplate(os.Stdout, "index.gohtml", nil) // works
+```
+
 ## Module
 See [Developing and publishing modules](https://golang.org/doc/modules/developing)
 
