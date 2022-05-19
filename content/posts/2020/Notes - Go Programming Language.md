@@ -473,6 +473,33 @@ For example, note the first line in index.gohtml
 indexTmpl, _ := template.ParseFiles("template/base.gohtml", "template/index.gohtml")
 ```
 
+* Pitfall: you can only parse base and one of the content template. 
+If you parse more than one content template file, the last one will override the previous content.
+
+```
+// base.gohtml
+{{define "tmBase"}}
+base beginning
+{{block "tmTitle" .}}Default base Title{{end}}
+base ending
+{{end}}
+
+// index.gohtml
+{{template "tmBase" .}}
+{{define "tmTitle"}}Index {{.}} {{end}}
+
+// about.gohtml
+{{template "tmBase" .}}
+{{define "tmTitle"}}About {{.}}{{end}}
+
+tmpl, _ := template.ParseFiles("base.gohtml", "index.gohtml", "about.gohtml")
+tmpl.ExecuteTemplate(os.Stdout, "index.gohtml", "data")
+// Incorrect!!!
+base beginning
+About data // last about override previous index
+base ending
+```
+
 ### Template Name for ParseFiles
 * default is the first file name
 
