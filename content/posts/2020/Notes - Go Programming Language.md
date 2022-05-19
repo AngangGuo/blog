@@ -436,15 +436,54 @@ template.Must(template.ParseFS(content, "template/*"))
 
 See [embed package](https://pkg.go.dev/embed)
 
-### Template Name for ParseFiles
-* default is the first file name
+### Base template, and Template
+* Base Template
+
+Prefer to define the **whole content** in the base file as a template. 
+For example, base.gohtml define the whole file as **"tmBase"**
 ```
-indexTmpl, _ := template.ParseFiles("template/base.gohtml", "template/index.gohtml")
-fmt.Println(indexTmpl.Name()) // base.gohtml
-indexTmpl.Execute(...)
+{{define "tmBase"}}
+<!doctype html>
+<html lang="en">
+<head>
+    <title>
+      {{block "tmTitle" .}}No Title{{end}}
+    </title>
+</head>
+<body>
+    {{block "tmContent" .}}No content{{end}}
+    {{block "tmScript" .}}{{end}}
+</body>
+</html>
+{{end}}
 ```
 
-* If you want to specify a name for the template, you should use one of the file name
+* Other files will use the base template and define other blocks in the file
+
+For example, note the first line in index.gohtml
+```
+{{template "tmBase" .}}
+{{define "tmTitle"}}Index Title{{end}}
+{{define "tmContent"}} <h2>Index Content</h2> {{end}}
+```
+
+* It's important to parse the base file first
+```
+// base.gohtml must be list as the first file in ParseFiles, then other files
+indexTmpl, _ := template.ParseFiles("template/base.gohtml", "template/index.gohtml")
+```
+
+### Template Name for ParseFiles
+* default is the first file name
+
+```
+// Prefer to use default file name and ExecuteTemplate to specify the template name as shown in this example
+indexTmpl, _ := template.ParseFiles("template/base.gohtml", "template/index.gohtml")
+fmt.Println(indexTmpl.Name()) // base.gohtml
+indexTmpl.ExecuteTemplate(os.Stdout, "index.gohtml", data)
+```
+
+* If you want to specify a name for the template, you must use one of the file name
 
 From [ParseFiles doc](https://pkg.go.dev/text/template@go1.18.2#Template.ParseFiles):
 
@@ -452,7 +491,7 @@ Since the templates created by `func (t *Template) ParseFiles(filenames ...strin
 t should usually have the name of one of the (base) names of the files.
 
 ```
-// the name must be either "index.gohtml" or "base.gohtml",
+// the name must be either "index.gohtml" or "base.gohtml", not recommanded
 indexTemp, err := template.New("index.gohtml").ParseFiles("template/base.gohtml", "template/index.gohtml")
 ```
 
