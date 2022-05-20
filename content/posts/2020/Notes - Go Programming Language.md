@@ -458,23 +458,37 @@ For example, base.gohtml define the whole file as **"tmBase"**
 {{end}}
 ```
 
-* Other files will use the base template and define other blocks in the file
+#### Method# 1
+Other files will use the base template and define other blocks in the file
 
-For example, note the first line in index.gohtml
 ```
+// index.gohtml
 {{template "tmBase" .}}
 {{define "tmTitle"}}Index Title{{end}}
 {{define "tmContent"}} <h2>Index Content</h2> {{end}}
+
+// Note: base.gohtml must be list as the first file in ParseFiles, then other files
+tmpl, _ := template.ParseFiles("template/base.gohtml", "template/index.gohtml")
+tmpl.ExecuteTemplate(os.Stdout, "index.gohtml", "data")
 ```
 
-* It's important to parse the base file first
+#### Method# 2 
+1. Don't use `{{template "tmBase" .}}` in content template `index.gohtml`
+2. Use "tmBase" template name instead of file name "index.gohtml" in `ExecuteTemplate`
+
 ```
-// base.gohtml must be list as the first file in ParseFiles, then other files
-indexTmpl, _ := template.ParseFiles("template/base.gohtml", "template/index.gohtml")
+// index.gohtml
+// 1. remove this line: {{template "tmBase" .}}
+{{define "tmTitle"}}Index Title{{end}}
+{{define "tmContent"}} <h2>Index Content</h2> {{end}}
+
+tmpl, _ := template.ParseFiles("template/base.gohtml", "template/index.gohtml")
+// 2. use "tmBase" template instead of "index.gohtml"
+tmpl.ExecuteTemplate(os.Stdout, "tmBase", "data")
 ```
 
 * Pitfall: you can only parse base and one of the content template. 
-If you parse more than one content template file, the last one will override the previous content.
+If you parse more than one content template files, the last one will override the previous content.
 
 ```
 // base.gohtml
@@ -484,45 +498,48 @@ base beginning
 base ending
 {{end}}
 
-// index.gohtml
+// first.gohtml
 {{template "tmBase" .}}
-{{define "tmTitle"}}Index {{.}} {{end}}
+{{define "tmTitle"}}First: {{.}} {{end}}
 
-// about.gohtml
+// last.gohtml
 {{template "tmBase" .}}
-{{define "tmTitle"}}About {{.}}{{end}}
+{{define "tmTitle"}}Last: {{.}}{{end}}
 
-tmpl, _ := template.ParseFiles("base.gohtml", "index.gohtml", "about.gohtml")
+tmpl, _ := template.ParseFiles("base.gohtml", "first.gohtml", "last.gohtml")
 tmpl.ExecuteTemplate(os.Stdout, "index.gohtml", "data")
+
+// Output: 
 // Incorrect!!!
 base beginning
-About data // last about override previous index
+Last: data // last override previous first data
 base ending
 ```
 
 ### Template Name for ParseFiles
-* default is the first file name
+* Default template name is the first file name
 
 ```
 // Prefer to use default file name and ExecuteTemplate to specify the template name as shown in this example
-indexTmpl, _ := template.ParseFiles("template/base.gohtml", "template/index.gohtml")
-fmt.Println(indexTmpl.Name()) // base.gohtml
-indexTmpl.ExecuteTemplate(os.Stdout, "index.gohtml", data)
+tmpl, _ := template.ParseFiles("template/base.gohtml", "template/index.gohtml")
+fmt.Println(tmpl.Name()) // base.gohtml
+tmpl.ExecuteTemplate(os.Stdout, "index.gohtml", data)
 ```
 
 * If you want to specify a name for the template, you must use one of the file name
 
 From [ParseFiles doc](https://pkg.go.dev/text/template@go1.18.2#Template.ParseFiles):
 
-Since the templates created by `func (t *Template) ParseFiles(filenames ...string) (*Template, error)` are named by the base names of the argument files, 
-t should usually have the name of one of the (base) names of the files.
+Since the templates created by `func (t *Template) ParseFiles(filenames ...string) (*Template, error)` are named 
+by the base names of the argument files, it should usually have the name of one of the (base) names of the files.
 
 ```
-// the name must be either "index.gohtml" or "base.gohtml", not recommanded
-indexTemp, err := template.New("index.gohtml").ParseFiles("template/base.gohtml", "template/index.gohtml")
+// the name must be either "index.gohtml" or "base.gohtml", 
+// Not recommanded
+temp, err := template.New("index.gohtml").ParseFiles("template/base.gohtml", "template/index.gohtml")
 ```
 
-* It will be error if you use other names
+* It will be an error if you use a name other than the listed file names
 
 ```
 indexTmpl, _ := template.New("aa").ParseFiles("template/base.gohtml", "template/index.gohtml")
@@ -531,10 +548,6 @@ if err != nil {
     log.Fatal(err)
     // 2022/05/17 21:28:04 error: html/template: "aa" is an incomplete template
 }
-
-// It's totally fine if you use the individual file name template such as index.gohtml or base.gohtml
-// but the result my not the same as the first two samples
-err = indexTemp.ExecuteTemplate(os.Stdout, "index.gohtml", nil) // works
 ```
 
 ## Module
@@ -1097,6 +1110,29 @@ if !ok {
 }  
 ```
 ## Pitfalls
+
+### Break!!
+From [Spec](https://go.dev/ref/spec#Break_statements): 
+A "break" statement terminates execution of the **innermost** "for", "switch", or "select" statement within the same function.
+
+```
+interval := time.NewTicker(5 * time.Minute)
+var nextUpdateTime time.Time = time.Now()
+for {
+    select {
+    case <-interval.C:
+        if time.Now().After(nextUpdateTime) {
+            doJob()
+            nextUpdateTime = getSchedule()
+        }
+    case <-done:
+        break // Wrong!!
+    }
+}
+log.Println("job finished")		
+```
+A bare `break` can only get out of the inside `select` statement, not the outside `for` statement. 
+You need to use `break label` to terminate the `for` loop. See the example below.
 
 ### Why loop three times?
 ```go
