@@ -398,8 +398,35 @@ The operators `<`, `>` are not defined to compare date / time. Use `time.After()
 {{if and (eq .ID 0) (gt .Total 0)}}
 ```
 
-### How to use customer functions into template?
-Go template doesn't have functions, even the simple `.Client + .Liquidation` doesn't work. 
+### How to use a method from within the template?
+If the data has a method, you can use it directly in the template.
+```
+type Metrics struct {
+	Client      int
+	Liquidation int
+}
+
+func (m Metrics) Total() int {
+	return m.Client + m.Liquidation
+
+}
+
+func main() {
+
+	data := Metrics{
+		Client:      2,
+		Liquidation: 5,
+	}
+
+	tmpl := template.Must(template.New("test").Parse(`Client: {{.Client}}; Liquidation: {{.Liquidation}}; Total: {{.Total}} units.`))
+
+	tmpl.Execute(os.Stdout, data)
+	// output: Client: 2; Liquidation: 5; Total: 7 units.
+}
+```
+
+### How to use customer functions inside a template?
+Go template doesn't have many built-in functions, even the simple `.Client + .Liquidation` doesn't work. 
 It's better to calculate any fields, pass the data into template, and the template just show the data.
 
 If you really want to do some calculation inside the template, you can create a customer function by using `template.FuncMap` and
@@ -424,6 +451,8 @@ add it before `Parse` the template.
 	tmpl.Execute(os.Stdout, data)
 	// output: Total: 5 units
 ```
+
+See [here](https://www.calhoun.io/intro-to-templates-p3-functions/) for more function examples
 
 ### Base template and Templates
 * Base Template
