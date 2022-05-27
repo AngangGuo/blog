@@ -389,9 +389,154 @@ The operators `<`, `>` are not defined to compare date / time. Use `time.After()
 {{end}}
 ```
 
-### How to use `or` in template?
+### How to combine conditions in template?
 ```
+// Either the language is tw or cn
 {{if or (eq .Lang "tw") (eq .Lang "cn")}}
+
+// When ID is 0 and the Total number is larger than 0
+{{if and (eq .ID 0) (gt .Total 0)}}
+```
+
+### How to use customer functions into template?
+Go template doesn't have functions, even the simple `.Client + .Liquidation` doesn't work. 
+It's better to calculate any fields, pass the data into template, and the template just show the data.
+
+If you really want to do some calculation inside the template, you can create a customer function by using `template.FuncMap` and
+add it before `Parse` the template.
+```
+	tmAdd := template.FuncMap{
+		"add": func(first, last int) int {
+			return first + last
+		},
+	}
+
+	data := struct {
+		Client      int
+		Liquidation int
+	}{
+		Client:      2,
+		Liquidation: 3,
+	}
+
+	tmpl := template.Must(template.New("test").Funcs(tmAdd).Parse(`Total: {{add .Client .Liquidation}} units.`))
+
+	tmpl.Execute(os.Stdout, data)
+	// output: Total: 5 units
+```
+
+### Base template and Templates
+* Base Template
+
+Prefer to define the **whole content** in the base file as a template.
+For example, base.gohtml define the whole file as **"tmBase"**
+```
+{{define "tmBase"}}
+<!doctype html>
+<html lang="en">
+<head>
+    <title>
+      {{block "tmTitle" .}}No Title{{end}}
+    </title>
+</head>
+<body>
+    {{block "tmContent" .}}No content{{end}}
+    {{block "tmScript" .}}{{end}}
+</body>
+</html>
+{{end}}
+```
+
+#### Method# 1
+Other files will use the base template and define other blocks in the file
+
+```
+// index.gohtml
+{{template "tmBase" .}}
+{{define "tmTitle"}}Index Title{{end}}
+{{define "tmContent"}} <h2>Index Content</h2> {{end}}
+
+// Note: base.gohtml must be list as the first file in ParseFiles, then other files
+tmpl, _ := template.ParseFiles("template/base.gohtml", "template/index.gohtml")
+tmpl.ExecuteTemplate(os.Stdout, "index.gohtml", "data")
+```
+
+#### Method# 2
+1. Don't use `{{template "tmBase" .}}` in content template `index.gohtml`
+2. Use "tmBase" template name instead of file name "index.gohtml" in `ExecuteTemplate`
+
+```
+// index.gohtml
+// 1. remove this line: {{template "tmBase" .}}
+{{define "tmTitle"}}Index Title{{end}}
+{{define "tmContent"}} <h2>Index Content</h2> {{end}}
+
+tmpl, _ := template.ParseFiles("template/base.gohtml", "template/index.gohtml")
+// 2. use "tmBase" template instead of "index.gohtml"
+tmpl.ExecuteTemplate(os.Stdout, "tmBase", "data")
+```
+
+* Pitfall: you can only parse base and one of the content template.
+  If you parse more than one content template files, the last one will override the previous content.
+
+```
+// base.gohtml
+{{define "tmBase"}}
+base beginning
+{{block "tmTitle" .}}Default base Title{{end}}
+base ending
+{{end}}
+
+// first.gohtml
+{{template "tmBase" .}}
+{{define "tmTitle"}}First: {{.}} {{end}}
+
+// last.gohtml
+{{template "tmBase" .}}
+{{define "tmTitle"}}Last: {{.}}{{end}}
+
+tmpl, _ := template.ParseFiles("base.gohtml", "first.gohtml", "last.gohtml")
+tmpl.ExecuteTemplate(os.Stdout, "index.gohtml", "data")
+
+// Output: 
+// Incorrect!!!
+base beginning
+Last: data // last override previous first data
+base ending
+```
+
+### Template Name for ParseFiles
+* Default template name is the first file name
+
+```
+// Prefer to use default file name and ExecuteTemplate to specify the template name as shown in this example
+tmpl, _ := template.ParseFiles("template/base.gohtml", "template/index.gohtml")
+fmt.Println(tmpl.Name()) // base.gohtml
+tmpl.ExecuteTemplate(os.Stdout, "index.gohtml", data)
+```
+
+* If you want to specify a name for the template, you must use one of the file name
+
+From [ParseFiles doc](https://pkg.go.dev/text/template@go1.18.2#Template.ParseFiles):
+
+Since the templates created by `func (t *Template) ParseFiles(filenames ...string) (*Template, error)` are named
+by the base names of the argument files, it should usually have the name of one of the (base) names of the files.
+
+```
+// the name must be either "index.gohtml" or "base.gohtml", 
+// Not recommanded
+temp, err := template.New("index.gohtml").ParseFiles("template/base.gohtml", "template/index.gohtml")
+```
+
+* It will be an error if you use a name other than the listed file names
+
+```
+indexTmpl, _ := template.New("aa").ParseFiles("template/base.gohtml", "template/index.gohtml")
+indexTmpl.Execute(os.Stdout, nil) // or indexTmpl.ExecuteTemplate(os.Stdout, "aa", nil)
+if err != nil {
+    log.Fatal(err)
+    // 2022/05/17 21:28:04 error: html/template: "aa" is an incomplete template
+}
 ```
 
 ### Using embedded template files
@@ -435,120 +580,6 @@ template.Must(template.ParseFS(content, "template/*"))
 ```
 
 See [embed package](https://pkg.go.dev/embed)
-
-### Base template, and Template
-* Base Template
-
-Prefer to define the **whole content** in the base file as a template. 
-For example, base.gohtml define the whole file as **"tmBase"**
-```
-{{define "tmBase"}}
-<!doctype html>
-<html lang="en">
-<head>
-    <title>
-      {{block "tmTitle" .}}No Title{{end}}
-    </title>
-</head>
-<body>
-    {{block "tmContent" .}}No content{{end}}
-    {{block "tmScript" .}}{{end}}
-</body>
-</html>
-{{end}}
-```
-
-#### Method# 1
-Other files will use the base template and define other blocks in the file
-
-```
-// index.gohtml
-{{template "tmBase" .}}
-{{define "tmTitle"}}Index Title{{end}}
-{{define "tmContent"}} <h2>Index Content</h2> {{end}}
-
-// Note: base.gohtml must be list as the first file in ParseFiles, then other files
-tmpl, _ := template.ParseFiles("template/base.gohtml", "template/index.gohtml")
-tmpl.ExecuteTemplate(os.Stdout, "index.gohtml", "data")
-```
-
-#### Method# 2 
-1. Don't use `{{template "tmBase" .}}` in content template `index.gohtml`
-2. Use "tmBase" template name instead of file name "index.gohtml" in `ExecuteTemplate`
-
-```
-// index.gohtml
-// 1. remove this line: {{template "tmBase" .}}
-{{define "tmTitle"}}Index Title{{end}}
-{{define "tmContent"}} <h2>Index Content</h2> {{end}}
-
-tmpl, _ := template.ParseFiles("template/base.gohtml", "template/index.gohtml")
-// 2. use "tmBase" template instead of "index.gohtml"
-tmpl.ExecuteTemplate(os.Stdout, "tmBase", "data")
-```
-
-* Pitfall: you can only parse base and one of the content template. 
-If you parse more than one content template files, the last one will override the previous content.
-
-```
-// base.gohtml
-{{define "tmBase"}}
-base beginning
-{{block "tmTitle" .}}Default base Title{{end}}
-base ending
-{{end}}
-
-// first.gohtml
-{{template "tmBase" .}}
-{{define "tmTitle"}}First: {{.}} {{end}}
-
-// last.gohtml
-{{template "tmBase" .}}
-{{define "tmTitle"}}Last: {{.}}{{end}}
-
-tmpl, _ := template.ParseFiles("base.gohtml", "first.gohtml", "last.gohtml")
-tmpl.ExecuteTemplate(os.Stdout, "index.gohtml", "data")
-
-// Output: 
-// Incorrect!!!
-base beginning
-Last: data // last override previous first data
-base ending
-```
-
-### Template Name for ParseFiles
-* Default template name is the first file name
-
-```
-// Prefer to use default file name and ExecuteTemplate to specify the template name as shown in this example
-tmpl, _ := template.ParseFiles("template/base.gohtml", "template/index.gohtml")
-fmt.Println(tmpl.Name()) // base.gohtml
-tmpl.ExecuteTemplate(os.Stdout, "index.gohtml", data)
-```
-
-* If you want to specify a name for the template, you must use one of the file name
-
-From [ParseFiles doc](https://pkg.go.dev/text/template@go1.18.2#Template.ParseFiles):
-
-Since the templates created by `func (t *Template) ParseFiles(filenames ...string) (*Template, error)` are named 
-by the base names of the argument files, it should usually have the name of one of the (base) names of the files.
-
-```
-// the name must be either "index.gohtml" or "base.gohtml", 
-// Not recommanded
-temp, err := template.New("index.gohtml").ParseFiles("template/base.gohtml", "template/index.gohtml")
-```
-
-* It will be an error if you use a name other than the listed file names
-
-```
-indexTmpl, _ := template.New("aa").ParseFiles("template/base.gohtml", "template/index.gohtml")
-indexTmpl.Execute(os.Stdout, nil) // or indexTmpl.ExecuteTemplate(os.Stdout, "aa", nil)
-if err != nil {
-    log.Fatal(err)
-    // 2022/05/17 21:28:04 error: html/template: "aa" is an incomplete template
-}
-```
 
 ## Module
 See [Developing and publishing modules](https://golang.org/doc/modules/developing)
