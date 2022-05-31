@@ -148,6 +148,22 @@ e.GET("stream", func(c echo.Context) error {
 
 For streaming JSON response see this [example](https://echo.labstack.com/cookbook/streaming-response/)
 
+## Static Files
+### How to serve the embedded static files?
+```
+// Embed static folder
+//go:embed static
+var staticEmbed embed.FS
+...
+
+// Serving static files
+// func (e *Echo) StaticFS(pathPrefix string, filesystem fs.FS) *Route
+// func MustSubFS(currentFs fs.FS, fsRoot string) fs.FS
+e.StaticFS("/static", echo.MustSubFS(staticEmbed, "static"))
+
+// Using embedded static file(image) in template file
+<img src="/static/icon.jpg">
+```
 
 ## Middleware
 ### Middleware levels
