@@ -13,6 +13,28 @@ draft: false
 
 ## Git
 
+### Git Branch
+```
+git branch // list all branches; = git branch --list
+git branch new-branch // create a new branch
+git checkout -b new-branch main
+git checkout new-branch // switch to new-branch
+git branch -d old-branch // delete old-branch; there'll be error if the branch hasn't been merged
+git branch -D old-branch // force delete the old-branch
+
+git push origin --delete old-branch // delete the old-branch in remote repos
+```
+
+### Git Merge
+* fast-forward merge
+```
+git checkout -b new-feature main
+// add / modify / delete files in this new branch and commit them
+git checkout main
+git merge new-feature
+git branch -d new-feature
+```
+
 ### Adding Files
 ```
 // To stage all files(including all files in subdirectories) in your repository, 
@@ -101,6 +123,17 @@ $ git push --force example-branch
 See [here](https://docs.github.com/en/github/committing-changes-to-your-project/changing-a-commit-message)
 
 ## Github
+
+### How to use GitHub personal access token?
+* Settings > Developer settings > Personal access tokens > Generate new token > (write down it)
+* When `git push` your commits, using personal access tokens instead of your password
+```
+PS C:\> git push origin --delete db-branch
+Username for 'https://github.com': AngangGuo
+Password for 'https://AngangGuo@github.com': [your token]
+To https://github.com/AngangGuo/metrics.git
+ - [deleted]         db-branch
+```
 
 ### How to move a file into a folder?
 * Click the pencil icon to edit the file
