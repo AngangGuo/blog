@@ -110,20 +110,36 @@ Set up one OBS to streaming to YouTube and another to Facebook.
 
 Or use [restream.io] service.
 
-## FAQ
 ### How can I show ProPresenter slides in Zoom?
-
-**From `Zoom`**
-* Click `Share Screen` button, select `screen`
-* (Option)Check `Share sound` if you play music
-* Click `Share`
-
+#### Method 1: Using Zoom Screen Share
 **From `ProPresenter`**
 * Select your presentation
 * Click `Audience` button (or `Ctrl + 1`)to show the slide on the screen
 * Use right arrow key to go to next slide or left arrow key to go to previous slide
 * Click `X` button (or press `Ctrl + 1` again) to exit full screen presentation
 
+**From `Zoom`**
+* Click `Share Screen` button, select `screen`
+* (Option)Check `Share sound` if you play music
+* Click `Share`
+
+#### Method 2: Using NDI
+In ProPresenter:
+* Screens > Screen Configuration > Audience > `+` > New NDI Screen > Name: Pro-NDI-Screen (Option: Enable Alpha Key for lyrics overley)
+* (Option) Preferences > Input > Add new video input source > Set it's audio if the video source comes with audio 
+* (Option) Preferences > Audio > SDI & NDI > Enable (Check Enable if you want to send audio together with NDI video)
+* (Option) Screens > Edit Looks > (Setup looks for the NDI screen output)
+
+NDI Tools:
+* Run `NDI Webcam Input` and select the ProPresenter NDI screen as source
+* (Option) Set audio output from `NDI Webcam Input`
+
+In Zoom:
+* Zoom Audio: Select a Microphone > `Line (NewTek NDI Audio)`
+* Zoom Video: Select a camera > `NewTek NDI Video`
+* (Option) Zoom Settings(Or right click the zoom video screen) > Background & Filters > Check/Uncheck `Mirror my video`
+
+## FAQ
 ### How to use audio?
 See [Working With Audio in ProPresenter 7](https://www.youtube.com/watch?v=5H3n7K7oZxo)
 
