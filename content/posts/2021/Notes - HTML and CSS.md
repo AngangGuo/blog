@@ -10,6 +10,14 @@ tags:
 draft: false
 ---
 
+## Style
+### Font Family
+* You can use multiple fonts, each separated by comma
+* If a font name contains white-space, it must be quoted. Single quotes must be used when using the "style" attribute in HTML.
+```
+<h1 style="font-family: Jokerman,'Lucida Handwriting',Gigi">User Metrics</h1>
+```
+
 ## Input
 ### Date
 ```html
