@@ -254,6 +254,11 @@ You can pin gists, your own public repositories or others' repositories if you'v
 3. Select a combination of up to six repositories and/or gists to display.
 4. Click Save pins.
 
+### How to view all my created issues?
+You may create issues in many repositories. To list all the issues you created:
+* Login to GitHub
+* At the top of the page, click `Issues` or `Pull requests` to list all your issues/pull requests.
+
 ## Gitlab
 ### How to sync `gitlab` and `github` repository?
 See [gitlab doc][gitlab]
