@@ -47,7 +47,7 @@ You need to use backslash(`\`) to escape the following characters:
 * `\/`: slash (optional: The JSON spec says you CAN escape forward slash, but you don't have to. This helps when embedding JSON in a `<script>` tag, which doesn't allow `</` inside strings)
 
 ### How to get JSON info from request?
-```go
+```
 info := Info{}
 defer r.Body.Close()
 
@@ -151,7 +151,7 @@ Pro:
 Con: 
 * When using structs, we must define every element within the JSON into the struct. 
 We have to know the field name and data type of each JSON element while writing our code.
-```go
+```
     // Example is our main data structure used for JSON parsing
     type Example struct {
         Name    string `json:"name"`
@@ -192,7 +192,7 @@ Pro:
 Con: 
 * Using `map[string]interface{}` is generally unsafe and require extra work to use the data safely once parsed.
 
-```go
+```
     var data map[string]interface{}
 
 	// Define a JSON string
@@ -250,7 +250,7 @@ The following forms are permitted:
 One or two minus signs may be used; they are equivalent.
 
 For example:
-```go
+```
   // foo.exe
   var message string
   flag.StringVar(&message, "message", "default", "The of the user metrics. Default date is today. Date format: YYYY-MM-DD(2022-01-28)")
@@ -264,7 +264,7 @@ For example:
 
 ## CSV
 ### How to check BOM data at the beginning of the file
-```go
+```
 	f, _ := os.Open(`RL Inventory All Fields_12012021_Vancouver, BC (RL).csv`)
 	defer f.Close()
 
@@ -288,7 +288,7 @@ For example:
 * If there is a quote in the text, quote it like `"""Q"""` for `"Q"`
 
 ### How to set Comma separator?
-```go
+```
     r := csv.NewReader(strings.NewReader(my-csv-string))
 	r.Comma = '#'
 	r.Comment = '*'
@@ -301,7 +301,7 @@ cannot use "#" (type untyped string) as type rune in assignment
 ## Context
 
 ### WithCancel
-```go
+```
 ctx := context.Background()
 ctx, cancel := context.WithCancel(ctx)
 // defer cancel()
@@ -310,7 +310,7 @@ time.AfterFunc(2*time.Second, cancel) // continue to the next line, doesn't wait
 doWithCtx(ctx, 5*time.Second) // context canceled: abort after 2 seconds
 // context canceled
 ```
-```go
+```
 func doWithCtx(ctx context.Context, d time.Duration) {
 	select {
 	// cancelled
@@ -323,7 +323,7 @@ func doWithCtx(ctx context.Context, d time.Duration) {
 ```
 
 ### WithTimeout
-```go
+```
 ctx := context.Background()
 ctx, cancel := context.WithTimeout(ctx, time.Second)
 defer cancel()
@@ -334,7 +334,7 @@ doWithCtx(ctx, 5*time.Second) // context deadline exceeded
 ## Time
 
 ### How long the process last?
-```go
+```
 start := time.Now()
 doSth()
 end := time.Now()
@@ -371,7 +371,7 @@ The operators `<`, `>` are not defined to compare date / time. Use `time.After()
 ```
 
 ### Unix Time
-```go
+```
     ut := time.Now().Unix() 
     fmt.Println(ut) 
     // output: 1257894000
@@ -627,7 +627,7 @@ go get: github.com/360EntSecGroup-Skylar/excelize/v2@v2.4.0 updating to
 ```
 
 Use `replace` directive will fix it:
-```go
+```
 replace github.com/360EntSecGroup-Skylar/excelize/v2 => github.com/xuri/excelize/v2 v2.4.1
 
 require (
@@ -637,7 +637,7 @@ require (
 
 ### How to use unpublished module in your local directory?
 Use `replace` directive as the following:
-```go
+```
 module example.com/mymodule
 
 go 1.16
@@ -774,7 +774,7 @@ Remove the old version and update both Delve and Go to their latest version will
 ### Interface Type assertion
 #### How to convert interface to string?
 String Example:
-```go
+```
 // stats is interface
 stats,_ := page.EvalOnSelector("//div[text()='Employee Name']/../../..",f)
 // convert interface to string
@@ -794,7 +794,7 @@ if !ok {
 ```
 
 ### Type assertion or Parse float64?
-```go
+```
 var i interface{}
 i = "24.08"
 
@@ -874,7 +874,7 @@ func main() {
 
 ## IO
 ### How to read string from command line?
-```go
+```
 scanner := bufio.NewScanner(os.Stdin)
 log.Println("Enter user name: ")
 scanner.Scan()
@@ -883,7 +883,7 @@ fmt.Printf("Your name is %s", username)
 ```
 
 ### How to show message on screen and write into file at the same time?
-```go
+```
 // You must open the file in read/write mode
 f, err := os.OpenFile("app.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 if err != nil {
@@ -898,7 +898,7 @@ log.Println("Hello, World!")
 ```
 
 ### How to check if file exist?
-```go
+```
 if _, err := os.Stat("/path/to/whatever"); err == nil {
   // exists
 } else if os.IsNotExist(err) { // or errors.Is(err, fs.ErrNotExist)
@@ -943,7 +943,7 @@ for {
 ## Network
 
 ### How to properly close the request body?
-```go
+```
 defer func() {
     err := r.Body.Close()
 
@@ -956,7 +956,7 @@ defer func() {
 
 ### Simple Go client
 Get Content
-```go
+```
     response, _ := http.Get(url)
 	defer response.Body.Close()
 
@@ -969,7 +969,7 @@ Get Content
 ```
 
 Download file:
-```go	
+```	
 	file, _ := os.Create(fileName)
 	defer file.Close()
 
@@ -978,7 +978,7 @@ Download file:
 ```
 
 ### Customized Go Client
-```go
+```
 type egnyteFile struct {
 	Path string
 	Name string
@@ -1106,7 +1106,7 @@ A gotcha with maps is that they can be a nil value. A nil map behaves like an em
 but attempts to write to a nil map will cause a runtime panic. You can read more about maps here.
 
 Therefore, you should never initialize an empty map variable:
-```go
+```
 // avoid this 
 var m map[string]string
 
@@ -1120,7 +1120,7 @@ var dictionary = make(map[string]string)
 when you pass a map to a function/method, you are indeed copying it, 
 but just the pointer part(it's a pointer to the underlying runtime.hmap structure), 
 not the data structure that contains the data. So you can modify the map data without passing the map address.
-```go
+```
 func main() {
   myMap := map[string]bool{}
   fmt.Println("before", myMap)
@@ -1145,7 +1145,7 @@ after map[modified:true]
 Tip: if once.Do(f) is called multiple times, only the first call will invoke f, 
 even if f has a different value in each invocation.
 
-```go
+```
 var count int
 increment := func() { count++ }
 decrement := func() { count-- }
@@ -1163,7 +1163,7 @@ You can always read values from a closed channel.
 It will return the default value of the channel type.
 
 To check if a channel is closed:
-```go
+```
 v, ok <- myChan
 if !ok {
   fmt.Println("chan is closed")
@@ -1195,7 +1195,7 @@ A bare `break` can only get out of the inside `select` statement, not the outsid
 You need to use `break label` to terminate the `for` loop. See the example below.
 
 ### Why loop three times?
-```go
+```
 func main() {
 	count:=0
 	c := make(chan int)
@@ -1229,7 +1229,7 @@ a variable, or if an argument is so large that we wish to avoid copy ing it, we 
 address of the variable using a pointer. The same goes for methods that need to update the
 receiver variable.
 
-```go
+```
 type Student struct {
 	Name string
 }
@@ -1322,7 +1322,7 @@ You can only have one package in a folder(`go build` restriction, but doesn't me
 
 ### Defining subtests with `Run`
 Giving the individual test a name like `A=1` in this code:
-```go
+```
 func TestFoo(t *testing.T) {
   // <setup code>
   t.Run("A=1", func(t *testing.T) { ... })
@@ -1336,7 +1336,7 @@ func TestFoo(t *testing.T) {
 Note that `t.Helper()` is needed in `assert` function to tell the test suite that this function is a helper. 
 By doing this when it fails the line number reported will be in our function call rather than inside our test helper.
 
-```go
+```
 func TestHello(t *testing.T) {
 	assert:= func(t *testing.T, got, want string) {
 		t.Helper()
@@ -1377,7 +1377,7 @@ FAIL    github.com/AngangGuo/try/tdd 1.184s
 ```
 
 ### TestMain
-```go
+```
 func TestMain(m *testing.M) {
 	v := m.Run()
 	if v == 0 && goroutineLeaked() {
@@ -1391,7 +1391,7 @@ func TestMain(m *testing.M) {
 ### Benchmarks
 * To run the benchmarks, use `go test -bench .`
 * Function of the form: `func BenchmarkXxx(*testing.B)`. For example
-```go
+```
 func BenchmarkRandInt(b *testing.B) {
     // optional: reset timer after setup 
     // setup code
@@ -1454,7 +1454,7 @@ No error message, it will just be treated as normal comment line.
 
 * Multiple example functions for a package/type/function/method may be provided by appending a distinct suffix 
 to the name. The suffix must start with a lower-case letter.
-```go
+```
 // multiple bytes.Compare() function examples from src/bytes/example_test.go
 func ExampleCompare() {...}
 func ExampleCompare_search() {...)
@@ -1462,7 +1462,7 @@ func ExampleCompare_search() {...)
 
 ## Other
 ### How to use text.tabwriter?
-```go
+```
 wr := new(tabwriter.Writer)
 // func (b *Writer) Init(output io.Writer, minwidth, tabwidth, padding int, padchar byte, flags uint) *Writer
 wr.Init(os.Stdout, 1, 8, 1, '\t', 0)
@@ -1508,3 +1508,5 @@ $ env GOOS=windows GOARCH=amd64 go build
 * [Cobra](https://github.com/spf13/cobra) is a library providing a simple interface to create powerful modern CLI interfaces
 * [Echo](https://echo.labstack.com) is a high performance, extensible, minimalist Go web framework
 * [Validator](https://github.com/go-playground/validator) implements value validations for structs and individual fields based on tags.
+* [Bluemonday](https://github.com/microcosm-cc/bluemonday) is a fast golang HTML sanitizer
+* [Casbin](https://github.com/casbin/casbin) is an authorization library
