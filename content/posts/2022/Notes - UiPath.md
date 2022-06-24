@@ -3,21 +3,32 @@ title: "Notes - UiPath"
 date: 2022-06-14T10:36:34-07:00
 draft: true
 ---
+
+## Studio
+
+### DataTable
+#### `Extract Table Data` Activity
+Extract tabular data from a specific web page(table) or application(Excel)
+
+
+
+#### `Select()` Method
+Datatable.Select() is a part of .net framework and returns an array of DataRow objects. 
+To convert DataRow() to DataTable, you have to use CopyToDataTable.
+```
+dtFilter = dtOrder.Select("[Facility]='YVR3' OR [Facility]='YYC1' AND [Threshold]<16").CopyToDataTable
+
+// drFilter type is DataRow; dtFilter type is DataTable
+drFilter = dtTablaTotal.Select(“FechaProd >20/02/2020 00:00:00”)
+dtFilter = drFilter.CopyToDataTable
+```
+
 ## StudioX
 StudioX projects are designed for attended use only and we do not recommend using StudioX when developing projects intended for unattended use.
 
 ## Troubleshooting
 
 ### Microsoft Edge - Can't install extension
-See: https://docs.uipath.com/studio/docs/edge-group-policies
-https://docs.microsoft.com/en-us/deployedge/microsoft-edge-policies#extensioninstallallowlist
+See [UiPath - Edge Group Policies](https://docs.uipath.com/studio/docs/edge-group-policies)
+ and [Microsoft Edge Policies](https://docs.microsoft.com/en-us/deployedge/microsoft-edge-policies#extensioninstallallowlist)
 
-Recommand:
-SOFTWARE\Policies\Microsoft\Edge\ExtensionInstallAllowlist\1 = "extension_id1"
-SOFTWARE\Policies\Microsoft\Edge\ExtensionInstallAllowlist\2 = "extension_id2"
-
-Actural:
-Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge\ExtensionInstallAllowlist
-
-Edge: create key: ExtensionInstallAllowlist
-1: bhchaenngmlcobfechfkikaofjlmejop 
