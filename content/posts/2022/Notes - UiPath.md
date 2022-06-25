@@ -23,6 +23,10 @@ drFilter = dtTablaTotal.Select(“FechaProd >20/02/2020 00:00:00”)
 dtFilter = drFilter.CopyToDataTable
 ```
 
+### Git Integration
+* Go to [Github App - UiPath](https://github.com/apps/uipath) > Select the repositories > Install
+* 
+
 ## StudioX
 StudioX projects are designed for attended use only and we do not recommend using StudioX when developing projects intended for unattended use.
 
