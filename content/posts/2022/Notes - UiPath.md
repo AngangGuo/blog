@@ -32,6 +32,11 @@ StudioX projects are designed for attended use only and we do not recommend usin
 
 ## Troubleshooting
 
+### Why UiPath extension can't be installed in Chrome incognito mode?
+The [UiPath extension](https://docs.uipath.com/studio/docs/extension-for-chrome) is installed but can't be used in incognito mode.
+See [Enable access to file URLs and incognito mode](https://docs.uipath.com/studio/docs/chrome-extension#enable-access-to-file-urls-and-incognito-mode)
+on how to enable it.
+
 ### Microsoft Edge - Can't install extension
 See [UiPath - Edge Group Policies](https://docs.uipath.com/studio/docs/edge-group-policies)
  and [Microsoft Edge Policies](https://docs.microsoft.com/en-us/deployedge/microsoft-edge-policies#extensioninstallallowlist)
