@@ -72,6 +72,16 @@ git tag
 // show tag details
 git show v1.0
 ```
+
+### How to get the remote URL of a repository?
+```
+// one of the following commands
+git remote -v
+git config --get remote.origin.url
+git ls-remote --get-url
+git remote show origin
+```
+
 ### How to change remote URL from Gitlab to Github?
 ```
 $ git remote -v
@@ -123,6 +133,12 @@ $ git push --force example-branch
 See [here](https://docs.github.com/en/github/committing-changes-to-your-project/changing-a-commit-message)
 
 ## Github
+### How to add your project into Github?
+```
+git remote add origin https://github.com/YourAccountName/your-project.git
+git branch -M main
+git push -u origin main
+```
 
 ### How to use GitHub personal access token?
 * Settings > Developer settings > Personal access tokens > Generate new token > (write down it)

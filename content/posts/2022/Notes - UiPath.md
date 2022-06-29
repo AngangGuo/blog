@@ -4,7 +4,76 @@ date: 2022-06-14T10:36:34-07:00
 draft: true
 ---
 
+
+## Pitfalls
+### Switch Activity
+By default, the Switch activity uses the integer argument(int32). 
+If using string argument, quotation marks aren't used in the `Case` field. 
+
+For example: use `Case Andrew` instead of `Case "Andrew"`. 
+It seems the [doc](https://docs.uipath.com/studio/docs/the-switch-activity) doesn't mention it.
+
+There's options in the Case statement that you can choose (empty) or (null). 
+You can also convert the condition into array index, or assign "NA"(or any string reasonable to your situation) to variable if it's empty.
+
+### Use Application/Browser Activity
+Option `Open: IfNotOpen`: If the browser is opened, it won't open a new browser instance, nor goes to the URL.
+
+For example: After I run `Login.xaml`, it opens Chrome browser, go to `https://example.com/Login.aspx` and logged in the website. 
+The browser is left open in `https://example.com/Welcome.aspx` page. 
+
+If I run this script again without close the first instance, it won't open another browser, nor go to the Login page,
+but trys to find the `User Name` at the Welcome page and cause error: `Source: Type Into 'User Name'`
+
+### Try Catch Activity
+You need to add `Catch Exception` block to handle the errors(or ignore the error), 
+otherwise the script will be terminated because of the un-handled exception.
+
 ## Studio
+* When duplicates selectors are found, they are highlighted yellow.
+* After a Target is indicated, it is recommended to indicate an Anchor for it in order to create a reliable Descriptor.
+* You can indicate up to 3 Anchors for any Target.
+* The targeting process happens again at runtime, with all three methods searching in parallel for the target. This means that the method that seems to be the fastest at design time might change at runtime.
+* If there are both a variable and an argument with the same name, the variable is always defaulted to and used at runtime.
+* 
+
+### Shortcuts
+* Choose variable (Ctrl+Space)
+* Choose argument (Ctrl+Shift+Space)
+* Create variable (Ctrl+K)
+* Create argument (Ctrl+M)
+
+### Verify Execution
+At runtime, verifies if the action performed by the activity was correct. 
+
+This is done by indicating an element that should appear or disappear after the action is performed, 
+which is monitored and verified after the activity is executed. This feature can be enabled from the Project Settings, 
+or from the body of each activity, by selecting Add Verification from the context menu. 
+
+The `Verify Execution` feature is present in the Modern UI Automation experience.
+
+**Possible Usage**
+It should be used by an action with a single expected result comes out(UI element appear or disappear, specific text show out, etc). 
+Like after I searched the Load ID `L1053099` from the Receiving tab in BlueIQ, the `Pallet Details` should come out, etc.
+
+### Check App State
+Checks the state of an application or web browser by verifying if an element appears in or disappears from the user interface.
+It can 
+* execute one set of activities if the element is found and a different set of activities if the element is not found. 
+* monitor an entire application for changes, not only a single UI element. 
+* be used as a condition for the `Retry Scope` activity. 
+* be used outside a `Use Application/Browser` activity.
+
+### Check state by using loop and condition
+For the login condition that `Check App State` can't handle these complex situations, I can use loop and condition check.
+
+For example, after login I want to check if it's success or failed, if failed what kind of problems, etc.
+
+### Descriptor
+See [Advanced Descriptor Configuration](https://docs.uipath.com/activities/docs/advanced-descriptor-configuration)
+
+* You can indicate up to 3 Anchors for any Target.
+* Three targeting methods: Selector, Fuzzy Selector, and Image.
 
 ### DataTable
 #### `Extract Table Data` Activity
