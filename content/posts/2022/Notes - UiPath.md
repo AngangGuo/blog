@@ -37,6 +37,12 @@ otherwise the script will be terminated because of the un-handled exception.
 * If there are both a variable and an argument with the same name, the variable is always defaulted to and used at runtime.
 * 
 
+### Modern Experience vs Classic Experience
+See [here](https://docs.uipath.com/studio/docs/modern-design-experience#section-differences-between-modern-experience-and-classic-experience)
+
+* Some activities can only be found in Modern Experience, others only in Classic Experience
+* You can use Classic Activities in Modern Experience by selecting `Show Classic` from the filter in Activities tab; or use Modern Activities in Classic Experience
+
 ### Shortcuts
 * Choose variable (Ctrl+Space)
 * Choose argument (Ctrl+Shift+Space)
@@ -76,6 +82,15 @@ See [Advanced Descriptor Configuration](https://docs.uipath.com/activities/docs/
 * Three targeting methods: Selector, Fuzzy Selector, and Image.
 
 ### DataTable
+* In DataTables, individual cells can be identified by using the Column name or zero-based index and the row index.
+* The most common activities and methods to create DataTables are:
+  * The Build Data Table Activity
+  * The Read Range Activities
+  * The Read CSV Activity
+  * The Data Scraping Action
+  * The Generate Data Table From Text Activity
+  
+
 #### `Extract Table Data` Activity
 Extract tabular data from a specific web page(table) or application(Excel)
 
@@ -92,9 +107,28 @@ drFilter = dtTablaTotal.Select(“FechaProd >20/02/2020 00:00:00”)
 dtFilter = drFilter.CopyToDataTable
 ```
 
+### Global Exception Handler
+* Only one Global Exception Handler can be set per automation project
+* `errorInfo` with the `In` direction - contains the information about the error that was thrown and the workflow that failed.
+* `result` with the `Out` direction - used for determining the next behavior of the process when it encounters the error.
+
+Next behavior can be:
+* Continue - The exception is re-thrown.
+* Ignore - The exception is ignored, and the execution continues from the next activity.
+* Retry - The activity which threw the exception is retried.
+* Abort - The execution stops after running the current handler.
+
+```
+errorInfo.RetryCount < 3
+result = ErrorAction.Retry // Ignore, Continue, or Abort
+```
+
 ### Git Integration
 * Go to [Github App - UiPath](https://github.com/apps/uipath) > Select the repositories > Install
 * 
+
+## Useful VB Functions
+
 
 ## StudioX
 StudioX projects are designed for attended use only and we do not recommend using StudioX when developing projects intended for unattended use.
