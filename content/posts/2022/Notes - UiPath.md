@@ -48,7 +48,8 @@ See [here](https://docs.uipath.com/studio/docs/modern-design-experience#section-
 * Choose argument (Ctrl+Shift+Space)
 * Create variable (Ctrl+K)
 * Create argument (Ctrl+M)
-
+* Ctrl + F5: Run project
+* 
 ### Verify Execution
 At runtime, verifies if the action performed by the activity was correct. 
 
@@ -128,7 +129,24 @@ result = ErrorAction.Retry // Ignore, Continue, or Abort
 * 
 
 ## Useful VB Functions
+```
+Name = "Andrew"
+Name.Length // 6
+Name.Replace("rew","y") // Andy
+Name.Substring(0,1) // A
 
+InitialMessage = "You searched for author William Shakespeare. His books can be found in the following sotres: Bookland, The Bookshop, Downtown Books, Classics bookstore."
+author = InitialMessage.Split("."c).First.ToString.Substring(InitialMessage.LastIndexOf("author")+"author".Length).Trim
+
+isStudent = True // False
+
+Age = 20 // int32
+"Your " + Age.ToString + "years old."
+
+FirstName = "Andrew"
+Student = {FirstName, LastName, Age}
+Student(0) // Andrew
+```
 
 ## StudioX
 StudioX projects are designed for attended use only and we do not recommend using StudioX when developing projects intended for unattended use.
