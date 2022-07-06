@@ -6,6 +6,13 @@ draft: true
 
 
 ## Pitfalls
+### (Data Table)Add Data Row
+Inside `For Each Row` activity, the myRow in `ForEach myRow in dt_Data1` can't be used directly in `Add Data Row` activity:
+```
+This row alread belongs to another table
+```
+Use `myRow.itemArray` instead
+
 ### Switch Activity
 By default, the Switch activity uses the integer argument(int32). 
 If using string argument, quotation marks aren't used in the `Case` field. 
@@ -43,12 +50,26 @@ See [here](https://docs.uipath.com/studio/docs/modern-design-experience#section-
 * Some activities can only be found in Modern Experience, others only in Classic Experience
 * You can use Classic Activities in Modern Experience by selecting `Show Classic` from the filter in Activities tab; or use Modern Activities in Classic Experience
 
+### Arguments
+* There're three types of arguments: IN, OUT, IN/OUT; Use `Property` if the argument is not used but you want to keep it.
+* Argument names should be in PascalCase with a prefix stating the argument direction, such as in_DefaultTimeout, in_FileName, out_TextResult, io_RetryNumber.
+* Do not require a scope
+* Can be created even if the Designer panel doesn't contain any activity
+* Used to pass data between automation
+
+#### How to pass data by using argument?
+* Invoke the Workflow File
+* Click the `Import Arguments` button
+* Assign the out arguments from child workflow to variables in parent process.
+* Or from parent workflow assign data to in arguments of the child for it to be used in child process.
+
 ### Shortcuts
 * Choose variable (Ctrl+Space)
 * Choose argument (Ctrl+Shift+Space)
 * Create variable (Ctrl+K)
-* Create argument (Ctrl+M)
-* Ctrl + F5: Run project
+* Ctrl+M: Create In argument
+* Ctrl+Shift+M: Create Out argument
+* Ctrl+F5: Run project
 * 
 ### Verify Execution
 At runtime, verifies if the action performed by the activity was correct. 
@@ -91,11 +112,12 @@ See [Advanced Descriptor Configuration](https://docs.uipath.com/activities/docs/
   * The Data Scraping Action
   * The Generate Data Table From Text Activity
   
+* Build Data Table
+* For Each Row
+* Add Data Row (row.itemArray)
 
 #### `Extract Table Data` Activity
 Extract tabular data from a specific web page(table) or application(Excel)
-
-
 
 #### `Select()` Method
 Datatable.Select() is a part of .net framework and returns an array of DataRow objects. 
@@ -108,6 +130,11 @@ drFilter = dtTablaTotal.Select(“FechaProd >20/02/2020 00:00:00”)
 dtFilter = drFilter.CopyToDataTable
 ```
 
+### Processing Excel File
+* If using any activities inside `App Integration > Excel`, these activities must be inside `Excel Application Scope`
+* For any activities inside `System > File > Workbook`, they can be used directly
+
+## Error Handling
 ### Global Exception Handler
 * Only one Global Exception Handler can be set per automation project
 * `errorInfo` with the `In` direction - contains the information about the error that was thrown and the workflow that failed.
@@ -124,6 +151,10 @@ errorInfo.RetryCount < 3
 result = ErrorAction.Retry // Ignore, Continue, or Abort
 ```
 
+### Useful Links
+* [Creating Error-Proof Resuable Workflows In UiPath](https://forum.uipath.com/t/creating-error-proof-reusable-workflows-in-uipath/331675)
+
+## Version Control
 ### Git Integration
 * Go to [Github App - UiPath](https://github.com/apps/uipath) > Select the repositories > Install
 * 
@@ -134,6 +165,10 @@ Name = "Andrew"
 Name.Length // 6
 Name.Replace("rew","y") // Andy
 Name.Substring(0,1) // A
+
+myArr = "A,B,C".Split(","c) // String[] - {"A","B","C"}
+String.Join("-", myArr) // A-B-C
+myArr.ToList // List<string>(3){"A","B","C"}
 
 InitialMessage = "You searched for author William Shakespeare. His books can be found in the following sotres: Bookland, The Bookshop, Downtown Books, Classics bookstore."
 author = InitialMessage.Split("."c).First.ToString.Substring(InitialMessage.LastIndexOf("author")+"author".Length).Trim
@@ -146,6 +181,14 @@ Age = 20 // int32
 FirstName = "Andrew"
 Student = {FirstName, LastName, Age}
 Student(0) // Andrew
+
+// create exception
+New BussinessRuleException(“Password is too short”)
+```
+
+### Useful C# Functions
+```
+new System.Exception("Main.xaml: Login failed. ")
 ```
 
 ## StudioX

@@ -142,3 +142,6 @@ Note:
     * For testing: get them from `https://esqa.moneris.com/mpg`
     * For production: get them from `https://www3.moneris.com/mpg`
 * Our website use iframe and the link only works by using ip address like `http://192.168.1.1/Donation/credit.html`
+
+## Useful Links
+[Using the Moneris Hosted Payment Page with data preload to reduce card testing fraud](https://www.mugo.ca/Blog/Using-the-Moneris-Hosted-Payment-Page-with-data-preload-to-reduce-card-testing-fraud)
