@@ -4,8 +4,17 @@ date: 2022-06-14T10:36:34-07:00
 draft: true
 ---
 
-
+## Recommendation
+* using PascalCase for variable names. PascalCase is a naming convention in which the first letter of each word in a variable is capitalized. Eg: ItemValue, LastName.
+* 
 ## Pitfalls
+### Input Dialog
+Note: The `Result` can be String or other data types like Int32, Double, etc.
+
+* `Options` - An array of options to choose from. If set to contain only one element, a tex box appears to write text. If set to contain 2 or 3 elements, they appear as radio buttons to select from. If set to contain more than 3 items, they appear as a combo box to select from. This field supports only String Array variables. Ex. {"Item1", "Item2", "Item3", "Item4", "Item5"}
+* `Options String` - A string containing options to chose from. If set to contain only one element, a text box appears to write text. If set to contain 2 or 3 elements, they appear as radio buttons to select from. If set to contain more than 3 items, they appear as a combo box to select from. This field supports only String variables.
+* `Result` - The value inserted by the user in the input dialog. 
+
 ### (Data Table)Add Data Row
 Inside `For Each Row` activity, the myRow in `ForEach myRow in dt_Data1` can't be used directly in `Add Data Row` activity:
 ```
@@ -160,14 +169,17 @@ result = ErrorAction.Retry // Ignore, Continue, or Abort
 * 
 
 ## Useful VB Functions
+### String
 ```
 Name = "Andrew"
 Name.Length // 6
 Name.Replace("rew","y") // Andy
 Name.Substring(0,1) // A
+"3 Years".Split(" "c)(0) // 3
 
 myArr = "A,B,C".Split(","c) // String[] - {"A","B","C"}
 String.Join("-", myArr) // A-B-C
+
 myArr.ToList // List<string>(3){"A","B","C"}
 
 InitialMessage = "You searched for author William Shakespeare. His books can be found in the following sotres: Bookland, The Bookshop, Downtown Books, Classics bookstore."
@@ -178,14 +190,74 @@ isStudent = True // False
 Age = 20 // int32
 "Your " + Age.ToString + "years old."
 
-FirstName = "Andrew"
-Student = {FirstName, LastName, Age}
-Student(0) // Andrew
+strYear = "3"
+dblYear = CDbl(strYear) // 3.00 - string to double
+Math.Round(2.34123, 2) // 2.34
+```
 
+### Collection
+#### List
+List - System.Collections.Generic.List<T>: used to store multiple values of the same data type, just like Arrays. Unlike Arrays, their size is dynamic.
+
+#### Dictionary
+Dictionary - System.Collections.Generic.Dictionary<TKey, TValue>: used to store objects in the form of (key, value) pairs, where each of the two can be of a separate data type.
+
+#### Array
+**Array** - `ArrayOf<T>` or `System.DataType[]`: used to store multiple values of the same data type. The size (number of objects) is defined at creation.
+
+Note: As a good case practice, arrays are used for defined sets of data (for example, the months of the year or a predefined list of files in a folder). 
+Whenever the collection might require size changes, a List is probably the better option.
+
+From Variables panel > Variable type > Array of [T] > Select Types > String > []string
+```
+StrArray = {"Monday", "Tuesday", "Wednesday"}
+// StrArray(0) -> "Monday"
+// You can change array value, but can't change array size
+StrArray(1) = "Sunday"
+String.Join(" ",StrArray) // Sunday Tuesday Wednesday
+
+```
+
+### Date and Time
+* DateTime - System.DateTime: Used to store specific time coordinates (mm/dd/yyyy hh:mm:ss).
+* TimeSpan - System.TimeSpan: Used to store information about a duration(dd:hh:mm:ss).
+* 
+```
+DateTime.Now
+
+```
+
+### GenericValue
+The GenericValue (UiPath.Core.GenericValue) data type is particular to UiPath and can store any kind of data, including text, numbers, dates, and arrays. 
+This type is mainly used in activities in which we aren't sure what type of data we'll receive, yet in general, using this is temporary.
+
+UiPath Studio has an automatic conversion mechanism of GenericValue variables and arguments, which you can guide towards the desired outcome by carefully defining their expressions.
+
+Please remember that GenericValue variables are a temporary solution at most. When it becomes clear what the data type should be, we strongly recommend that you change it to the specific type.
+
+When "+" is used between Generic Value variables, it is interpreted based on the value of the first variable.
+* The "+" operator is interpreted as Concatenation in the case of Strings.
+* The "+" operator is interpreted as an Addition in the case of Int32.
+
+### Exception
+```
 // create exception
 New BussinessRuleException(“Password is too short”)
 ```
 
+### Convert
+```
+StrVar = Convert.Tostring(IntVar)
+StrVar = DblVar.ToString
+StrVar = BoolVar.ToString()
+StrVar = Now.ToString(“dd-MM-yyyy”) // DateTimeVar.ToString("dd-MM-yyyy")
+
+IntVar = ToInt32(StrVar)
+IntVar = CInt(StrVar)
+IntVar = ToInt32(DblVar) 
+DblVar = Parse(StrVar) 
+BoolVar = ToBoolean(IntVar)
+```
 ### Useful C# Functions
 ```
 new System.Exception("Main.xaml: Login failed. ")
