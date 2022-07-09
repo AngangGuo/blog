@@ -1,7 +1,13 @@
 ---
 title: "Notes - UiPath"
 date: 2022-06-14T10:36:34-07:00
-draft: true
+categories:
+  - Programming
+  - Web
+tags:
+  - UiPath
+  - RPA
+draft: false
 ---
 
 ## Recommendation
@@ -71,6 +77,44 @@ See [here](https://docs.uipath.com/studio/docs/modern-design-experience#section-
 * Click the `Import Arguments` button
 * Assign the out arguments from child workflow to variables in parent process.
 * Or from parent workflow assign data to in arguments of the child for it to be used in child process.
+
+####  How to pass Browser instance between activities?
+**Login.xaml**
+
+Use Application/Browser > Properties > 
+* Input/Output Element > Output Element > Ctrl+Shift+M > `out_LoginBrowser`(UiElement type)
+* Options > Close > Never
+* Options > Open > Always
+
+**Main.xaml**
+
+Invoke Workflow File > Workflow file name: Login.xaml > Import Arguments >  assign `out_LoginBrowser` to `io_Browser` argument
+Then you can pass the `io_Browser` argument to other activities
+
+**CloseLoadPallets.xaml**
+
+Input Element: in_Browser (pass from io_Browser)
+
+When using Extract Data Table > Extrac Data Wizard > Add Data
+
+If you get error `Target Application could not be identified`
+Input Application > Indicate target on screen
+
+**Logout.xaml**
+* Input/Output Element > Input Element > Ctrl+M > `in_Browser`(UiElement type)
+* Options > Close > Always
+* Options > Open > Never
+
+
+**Main.xaml**
+
+After the browser is closed from Logout.xaml, if you exit the Main.xaml, this error will show out:
+```
+07/08/2022 11:46:31 RemoteException wrapping System.Exception: Could not retrieve the result of the job execution. 
+This might be because a message was too large to process.
+```
+
+It is caused by no reference to io_Browser, assign `io_Browser = null` will prevent the error message.
 
 ### Shortcuts
 * Choose variable (Ctrl+Space)
@@ -177,13 +221,25 @@ Name.Replace("rew","y") // Andy
 Name.Substring(0,1) // A
 "3 Years".Split(" "c)(0) // 3
 
+String.Concat (VarName1, VarName2)
+VarName.Contains (“text”)
+String.Format(“{0} is {1}”, VarName1, VarName2)
+VarName1.IndexOf(“a”)
+VarName1.LastIndexOf("author")
+String.Join(“|”, CollVarName1)
+VarName.Replace (“original”, “replaced”)
+VarName.Split(“|“c)(index)
+VarName1.Substring(startIndex, length)
+String.IsNullOrEmpty(DayOfTheWeek)
+InputData = InputData.Replace("<day_of_week>",DayOfTheWeek.Trim)
+
 myArr = "A,B,C".Split(","c) // String[] - {"A","B","C"}
 String.Join("-", myArr) // A-B-C
 
-myArr.ToList // List<string>(3){"A","B","C"}
-
 InitialMessage = "You searched for author William Shakespeare. His books can be found in the following sotres: Bookland, The Bookshop, Downtown Books, Classics bookstore."
 author = InitialMessage.Split("."c).First.ToString.Substring(InitialMessage.LastIndexOf("author")+"author".Length).Trim
+
+String.Format("Availability for {0}: {1}", Author, String.Join(","c+vbcr,Bookstores))
 
 isStudent = True // False
 
@@ -198,6 +254,11 @@ Math.Round(2.34123, 2) // 2.34
 ### Collection
 #### List
 List - System.Collections.Generic.List<T>: used to store multiple values of the same data type, just like Arrays. Unlike Arrays, their size is dynamic.
+
+```
+myArr.ToList // List<string>(3){"A","B","C"}
+
+```
 
 #### Dictionary
 Dictionary - System.Collections.Generic.Dictionary<TKey, TValue>: used to store objects in the form of (key, value) pairs, where each of the two can be of a separate data type.
@@ -217,6 +278,16 @@ StrArray(1) = "Sunday"
 String.Join(" ",StrArray) // Sunday Tuesday Wednesday
 
 ```
+
+### RegEx Builder
+Methods in UiPath that use the RegEx builder: Matches, IsMatch, and Replace
+* Matches: Searches an input string for all occurrences and returns all the successful matches. Output datatype: System.Collections.Generic.IEnumerable<System.Text.RegularExpressions.Match>
+* IsMatch: Indicates whether the specified regular expression finds a match in the specified input string. Output datatype: Boolean
+* Replace: Replaces strings that match a regular expression pattern with a specified replacement string. Output datatype: String
+ 
+
+
+For Each activity: Keep in mind that the TypeArgument should be Match in System.Text.RegularExpressions.
 
 ### Date and Time
 * DateTime - System.DateTime: Used to store specific time coordinates (mm/dd/yyyy hh:mm:ss).
