@@ -14,12 +14,39 @@ draft: false
 * using PascalCase for variable names. PascalCase is a naming convention in which the first letter of each word in a variable is capitalized. Eg: ItemValue, LastName.
 * 
 ## Pitfalls
+
+### FindChildren Activity (C#)
+`FindChildren` will output elements as IEnumerable<UiElement>. I want to locate on of the INPUT box element, the `Contain("INPUT")` method doesn't work in this case.
+But `item.GetFriendlyName(false).Trim(' ') == "INPUT"` failed to match it. I checked the string length:
+```
+msg = item.GetFriendlyName(false)
+// msg + ":" +msg.Length
+'INPUT  ctl00_ctl00_cont...':28
+'INPUT ':8
+```
+I copied the string and check the ASCII codes from [online tool](https://onlinestringtools.com/convert-string-to-ascii).
+I found that the two single quote(apostrophe) `'` are part of the string. To fix it:
+```
+msg = item.GetFriendlyName(false).Replace("'"," ").Trim(' ')
+// msg + ":" +msg.Length
+INPUT  ctl00_ctl00_cont...:26
+INPUT:5
+```
+
 ### Input Dialog
 Note: The `Result` can be String or other data types like Int32, Double, etc.
 
 * `Options` - An array of options to choose from. If set to contain only one element, a tex box appears to write text. If set to contain 2 or 3 elements, they appear as radio buttons to select from. If set to contain more than 3 items, they appear as a combo box to select from. This field supports only String Array variables. Ex. {"Item1", "Item2", "Item3", "Item4", "Item5"}
 * `Options String` - A string containing options to chose from. If set to contain only one element, a text box appears to write text. If set to contain 2 or 3 elements, they appear as radio buttons to select from. If set to contain more than 3 items, they appear as a combo box to select from. This field supports only String variables.
 * `Result` - The value inserted by the user in the input dialog. 
+
+Input Dialog will remove all the new line or line feed from the string(but not spaces). For example if I paste the following into the dialog:
+```
+L956769
+L966682 
+L979021
+```
+The result will be `L956769L966682L979021`. If I add two spaces after `L966682`, the result will be `L956769L966682  L979021`.
 
 ### (Data Table)Add Data Row
 Inside `For Each Row` activity, the myRow in `ForEach myRow in dt_Data1` can't be used directly in `Add Data Row` activity:
@@ -150,13 +177,30 @@ For the login condition that `Check App State` can't handle these complex situat
 
 For example, after login I want to check if it's success or failed, if failed what kind of problems, etc.
 
-### Descriptor
+## Selectors & Descriptors
+
+### Selectors
+* Selectors should be specific and generic at the same time
+
+### Dynamic Selectors
+A [dynamic selector](https://docs.uipath.com/studio/docs/dynamic-selectors) uses a variable or an argument as a property for the attribute of your target tag.
+```
+<webctrl tag='TABLE' />
+<webctrl isleaf='1' tableRow='{{RowNumber}}' tag='TD' />
+```
+
+Methods:
+* The Anchor Base
+* The Relative Selector
+* The Visual Tree Hierarchy
+* The Find Children
+
 See [Advanced Descriptor Configuration](https://docs.uipath.com/activities/docs/advanced-descriptor-configuration)
 
 * You can indicate up to 3 Anchors for any Target.
 * Three targeting methods: Selector, Fuzzy Selector, and Image.
 
-### DataTable
+## DataTable
 * In DataTables, individual cells can be identified by using the Column name or zero-based index and the row index.
 * The most common activities and methods to create DataTables are:
   * The Build Data Table Activity
@@ -167,7 +211,12 @@ See [Advanced Descriptor Configuration](https://docs.uipath.com/activities/docs/
   
 * Build Data Table
 * For Each Row
-* Add Data Row (row.itemArray)
+* Add Data Row (row.itemArray, )
+
+### ArrayRow
+Some activities like `Add Data Row` can add ArrayRow to a data table. To create an array row:
+* Constants: {"Andrew", "Guo"}
+* Variable: {FirstName, LastName}
 
 #### `Extract Table Data` Activity
 Extract tabular data from a specific web page(table) or application(Excel)
@@ -183,11 +232,32 @@ drFilter = dtTablaTotal.Select(“FechaProd >20/02/2020 00:00:00”)
 dtFilter = drFilter.CopyToDataTable
 ```
 
-### Processing Excel File
+## Excel File Processing
+UiPath offers two types of design experience (Modern and Classic) each with two separate ways of accessing and manipulating workbooks:
+
+### Workbook - File Access Level: `System > File > Workbook`
+
+* All workbook activities will be executed in the background.
+* Doesn't require Microsoft Excel to be installed, 
+* The file should not be open in Excel at runtime.
+* Works only for .xls and .xlsx files but not .xlsm files
+* Workbook activities do not require a scope. The Excel file needs to be indicated in the properties for each individual activity.
+
+
+### Excel - Excel App Integration: `App Integration > Excel`
+(offers different options depending on whether you are using the Modern or Classic design experience).
+
+* Microsoft Excel must be installed
+* Works with .xls, .xlsx and .xlsm, and it has some specific activities for working with .csv. 
+* All activities can be set to either be visible to the user or run in the background. 
+* The file can be open in Excel at runtime.
 * If using any activities inside `App Integration > Excel`, these activities must be inside `Excel Application Scope`
-* For any activities inside `System > File > Workbook`, they can be used directly
+* If the same workflow deals with information from two or more Excel files, an Excel Application Scope has to be used for each file.
+
 
 ## Error Handling
+* If (Find Children) activity is included in `Try Catch` and the value of the `ContinueOnError` property is True, no error is caught when the project is executed.
+* 
 ### Global Exception Handler
 * Only one Global Exception Handler can be set per automation project
 * `errorInfo` with the `In` direction - contains the information about the error that was thrown and the workflow that failed.
@@ -238,6 +308,8 @@ String.Join("-", myArr) // A-B-C
 
 InitialMessage = "You searched for author William Shakespeare. His books can be found in the following sotres: Bookland, The Bookshop, Downtown Books, Classics bookstore."
 author = InitialMessage.Split("."c).First.ToString.Substring(InitialMessage.LastIndexOf("author")+"author".Length).Trim
+
+FirstName = Row(4).ToString.Substring(0, Row(4).ToString.IndexOf(" "))
 
 String.Format("Availability for {0}: {1}", Author, String.Join(","c+vbcr,Bookstores))
 
@@ -329,13 +401,46 @@ IntVar = ToInt32(DblVar)
 DblVar = Parse(StrVar) 
 BoolVar = ToBoolean(IntVar)
 ```
-### Useful C# Functions
+## Useful C# Functions
 ```
 new System.Exception("Main.xaml: Login failed. ")
+
+// Get the load id from "L956769L966682L979021" or "L956769 L966682  L979021"
+LoadIDs.Replace("L", " L").Split(new []{" ",";"},System.StringSplitOptions.RemoveEmptyEntries)
+
+// Use Environment.NewLine instead of "\n" for the "Input Label" prompt in Input Dialog Activity 
+"Please type the Load IDs:"+Environment.NewLine+"Note: You can type in multiple load ids separeted by spaces or new lines."
 ```
 
 ## StudioX
 StudioX projects are designed for attended use only and we do not recommend using StudioX when developing projects intended for unattended use.
+
+## Misc
+### How to create a generic Windows credential?
+* Control Panel > User Accounts > Credential Manager > Windows Credentials > Add a generic credential.
+* Install `UiPath.Credentials.Activities = 2.0.0` from Manage Packages to use the Windows generic credentials.
+* Use a `Get Credentials` activity. In the Properties Panel, create a variable called Username using control + K to store the username value and a variable called Password to store the password value.
+* Use `Type Into` activity to enter the email stored in the Username variable and indicate the Username field on the Acme website. Enable the SimulateType option from the Properties Panel so that the action can be performed in the background.
+* Use a `Type Secure Text` activity to enter the password stored in the Password variable. Enable the SimulateType option from the Properties Panel.
+
+Note: You can't use `Type Into` activity to input the Password text. `Can't convert secure text to string`
+
+```
+Source: Get Credential
+
+Message: Could not find the asset 'https://acme-test.uipath.com/login'. Error code: 1002; Asset name: https://acme-test.uipath.com/login
+
+Exception Type: UiPath.Core.Activities.OrchestratorHttpException
+```
+You need to create the same credentials in UiPath Orchestrator:
+
+`Login to https://platform.uipath.com/ > Orchestrator > Assets > Add asset > Create a new asset`
+* Asset name: https://acme-test.uipath.com/login
+* Type: Credential
+* Username: myEmail
+* Password: myPassword
+* Create
+
 
 ## Troubleshooting
 
