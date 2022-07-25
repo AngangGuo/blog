@@ -312,7 +312,10 @@ author = InitialMessage.Split("."c).First.ToString.Substring(InitialMessage.Last
 FirstName = Row(4).ToString.Substring(0, Row(4).ToString.IndexOf(" "))
 
 String.Format("Availability for {0}: {1}", Author, String.Join(","c+vbcr,Bookstores))
+```
 
+### Other
+```
 isStudent = True // False
 
 Age = 20 // int32
@@ -321,6 +324,8 @@ Age = 20 // int32
 strYear = "3"
 dblYear = CDbl(strYear) // 3.00 - string to double
 Math.Round(2.34123, 2) // 2.34
+
+DateTime.ParseExact(VarDate.ToString.Substring(0) ,“dd-MMM-yyyy”,System.Globalization.CultureInfo.InvariantCulture).ToString(“d-MMM-yyyy”)
 ```
 
 ### Collection
