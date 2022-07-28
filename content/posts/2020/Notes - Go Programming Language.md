@@ -1159,10 +1159,10 @@ fmt.Printf("Count: %d\n", count)
 ```
 
 ### How to check if channel is closed?
-You can always read values from a closed channel. 
-It will return the default value of the channel type.
+After calling close, and after any previously sent values have been received, 
+receive operations will return the zero value for the channel's type without blocking. 
 
-To check if a channel is closed:
+The multi-valued receive operation returns a received value along with an indication of whether the channel is closed.
 ```
 v, ok <- myChan
 if !ok {
@@ -1170,6 +1170,32 @@ if !ok {
 }  
 ```
 ## Pitfalls
+
+### Receive value from closed channel
+You can receive value from a channel even if it's closed
+```
+func main() {
+	max := 3
+	respond := make(chan int, max)
+
+	for i := 1; i <= max; i++ {
+		respond <- i
+	}
+
+	close(respond)
+
+    // you can read value from a channel after it is closed
+	for v := range respond {
+		fmt.Printf("Response: %v\n", v)
+	}
+}
+```
+
+func doQuery(respond chan<- string, wg *sync.WaitGroup) {
+defer wg.Done()
+
+	respond <- "Hello"
+}
 
 ### Break!!
 From [Spec](https://go.dev/ref/spec#Break_statements): 

@@ -23,3 +23,6 @@ NOTE: The first step is very important. If you forget to insert the waste coffee
 ![De'Longhi ESAM 3200](/images/2022/delonghi-infuser.png)
 
 ![De'Longhi ESAM 3200](/images/2022/delonghi-esam3200.png)
+
+### How can I reset Samsung Smart monitor?
+The remote control can't type the password 0000.
