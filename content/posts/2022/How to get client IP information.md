@@ -215,4 +215,5 @@ X-Real-Ip:[1.2.3.4]] {}
 * [The perils of the “real” client IP](https://adam-p.ca/blog/2022/03/x-forwarded-for/)
 * [Security 101: X-Forwarded-For vs. Forwarded vs PROXY](https://systemoverlord.com/2020/03/25/security-101-x-forwarded-for-vs-forwarded-vs-proxy.html)
 * https://ipinfo.io/developers
+* https://github.com/ip2location/ip2location-go
 

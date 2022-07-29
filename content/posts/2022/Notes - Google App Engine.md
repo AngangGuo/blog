@@ -35,7 +35,11 @@ draft: false
    * Create Go App Engine project in your computer
    * Deploy to App Engine: `gcloud app deploy`
 
+### Where can I find APP Engine logs?
+https://console.cloud.google.com/logs
+
 ## Links
 * https://cloud.google.com/go/docs
 * https://cloud.google.com/go/docs/setup
 * https://cloud.google.com/appengine/docs/standard/go/create-app
+* [Google Cloud - Go Examples](https://github.com/GoogleCloudPlatform/golang-samples)
