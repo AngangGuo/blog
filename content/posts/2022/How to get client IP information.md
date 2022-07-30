@@ -11,6 +11,7 @@ tags:
 draft: false
 ---
 
+## Get client information
 ### How to get client IP address?
 The `X-Forwarded-For` (XFF) HTTP header is a de facto standard for identifying the originating IP address of a client 
 connecting to a web server through an HTTP proxy or load balancer.
@@ -124,10 +125,10 @@ GET / HTTP/1.1
 ## Pitfalls 
 ### Why the city information is different from different online services for the same IP address?
 The same IP address `69.158.251.18` have different city name:
-`Richmond`(British Columbia): ip2location.io (Best)
-`Burnaby`(British Columbia): ipwhois.io
-`Vancouver`(British Columbia): ipinfo.io
-`Sainte-Agathe-des-Monts`(Quebec): ip-api.com (Worst)
+* `Richmond`(British Columbia): ip2location.io (Best)
+* `Burnaby`(British Columbia): ipwhois.io
+* `Vancouver`(British Columbia): ipinfo.io
+* `Sainte-Agathe-des-Monts`(Quebec): ip-api.com (Worst)
 
 There are many factors as to why the geolocation data results are not 100% accurate. Factors include:
 * Where the IP address was registered
@@ -136,9 +137,10 @@ There are many factors as to why the geolocation data results are not 100% accur
 * Whether the connection is cellular or not
 
 For example, I connected to internet by using Internet Service Provider (ISP, e.g. Shaw or Telus in our city) router. 
-Only the ISP knows exactly which computer IP you have, but the online IP Lookup service only sees the public IP address from you ISP.
+Only the ISP knows exactly which computer IP I have, but the online IP Lookup service only sees the public IP address from my ISP.
 
-The ISP has services for Vancouver, Burnaby and other cities. The same public IP may have users in different cities. 
+The ISP(Shaw or Telus) has services in Vancouver, Burnaby and other cities at the same time. 
+The same public IP may be used by different users in different cities. 
 
 From the [IP Geolocation Data Accuracy](https://www.ip2location.com/data-accuracy) report, 
 the threshold of accuracy is less than 50 miles, the accuracy is around 80% in average.
@@ -148,7 +150,8 @@ I got two different IP addresses from these online services:
 * `69.158.251.18`: ipinfo.io, ip2location.io, etc.
 * `207.102.244.236`: whatismyipaddress.com, showmyip.com, etc.
 
-It's caused by using different route to different services: 
+It's caused by using different route to different services. One route from Vancouver, CA goes to California, USA, 
+another route is from Vancouver, CA goes to Ottawa, CA. See the trace route below for details.
 ```
 G:\>tracert ipinfo.io
 
@@ -159,9 +162,9 @@ over a maximum of 30 hops:
   2    <1 ms    <1 ms    <1 ms  10.92.0.33
   3    <1 ms    <1 ms    <1 ms  10.92.0.43
   4    <1 ms    <1 ms    <1 ms  192.168.254.5
-  5     2 ms     2 ms     1 ms  69.158.251.17
+  5     2 ms     2 ms     1 ms  69.158.251.17 (First Public IP Node, British Columbia, Canada)
   6     4 ms     4 ms     5 ms  172.21.173.233
-  7     6 ms     8 ms    10 ms  core1vancouver_9-1-0.net.bell.ca [64.230.123.248]
+  7     6 ms     8 ms    10 ms  core1vancouver_9-1-0.net.bell.ca [64.230.123.248] (Ottawa, Canada)
   8     9 ms    10 ms    10 ms  tcore3-seattle_hundredgige0-5-0-0.net.bell.ca [64.230.79.92]
   9     7 ms     7 ms     9 ms  bx5-seattle_bundle-ether9.net.bell.ca [64.230.125.245]
  10     7 ms     7 ms     7 ms  google-peering.net.bell.ca [64.230.186.30]
@@ -179,10 +182,10 @@ over a maximum of 30 hops:
   1     1 ms    <1 ms    <1 ms  172.28.2.6
   2    <1 ms    <1 ms    <1 ms  10.92.0.33
   3    <1 ms    <1 ms    <1 ms  10.92.0.43
-  4     1 ms     1 ms     1 ms  207.194.4.33
+  4     1 ms     1 ms     1 ms  207.194.4.33 (First Public IP Node)
   5     8 ms     4 ms     1 ms  host11.220.108.206.in-addr.arpa [206.108.220.11]
-  6     7 ms     7 ms     7 ms  154.11.12.219
-  7     8 ms     7 ms     8 ms  74.125.50.110
+  6     7 ms     7 ms     7 ms  154.11.12.219 (British Columbia, Canada)
+  7     8 ms     7 ms     8 ms  74.125.50.110 (California, USA)
   8     8 ms     8 ms     8 ms  74.125.243.177
   9    11 ms     7 ms     7 ms  142.251.48.211
  10     7 ms     7 ms     7 ms  sea30s08-in-f20.1e100.net [142.250.69.212]
