@@ -10,6 +10,54 @@ tags:
 draft: false
 ---
 
+## Table
+### `colspan` & `rowspan` Examples
+
+```
+<table>
+  <tr>
+    <td>Row 1, Col 1</td>
+    <td>Row 1, Col 2</td>
+  </tr>
+  <tr>
+    <td colspan="2">Row 2, Col 1 & Col 2</td>
+  </tr>
+</table>
+```
+
+```
+<table>
+  <tr>
+    <th>Row 1, Col 1</th>
+    <th>Row 1, Col 2</th>
+  </tr>
+  <tr>
+    <td>Row 2, Col 1</td>
+    <td rowspan="2">Row 2 & Row 3, Col 2</td>
+  </tr>
+  <tr>
+    <td>Row 3, Col 1</td>
+  </tr>
+</table>
+```
+
+## Link
+### Jump to a topic
+If you want to link to a specific topic/section of a page, Add an `id` attribute and give a name to the section of the page.
+```
+<body>
+    <h2 id="top">My Report</h2>
+    <p>
+        a very long report
+        ...
+    </p>
+    <div id="footer">
+        <a href="#top">Back To Top</a>
+    </div>
+</body>
+
+```
+
 ## Style
 ### Font Family
 * You can use multiple fonts, each separated by comma

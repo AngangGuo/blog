@@ -5,6 +5,9 @@ categories:
   - Church
 tags:
   - ProPresenter
+  - Live Stream
+  - YouTube
+  - PPT
 draft: false
 ---
 
@@ -83,11 +86,23 @@ To add a presentation into the playlist:
 * Press Ctrl+Enter to add it into your playlist (or drag and drop by mouse)
 
 ## Live Stream
+### How to live-stream to YouTube?
+#### Schedule a live stream event from YouTube
+* YouTube > Go Live > Schedule Stream > Fill in Title, Description > Select Visibility and set the date and time > Done
+* The scheduled event will show out. Click `Share` icon to copy the link or send message to social medias.
+* Copy the `Stream URL`(`rtmp://a.rtmp.youtube.com/live2`) and `Stream Key` and paste them into ProPresenter. 
+
+Note: You can also get the link from `Manage` tab, hover and click the `Option` icon beside the scheduled video > `Get sharable link`
+
+#### Setup ProPresenter Capture Settings
+* ProPresenter > Click `Live` > Select `Capture Settings...` > Fill in the `Stream URL` and `Stream Key`
+* Start Capture
+
 ### How to live-stream to Facebook?
 First, go to Facebook > Login > Live Video > Go live > Stream Setup 
 * From `Select a video source` section, Select `Streaming software`
-*  > Copy `Stream key` (FB-1650472968634461-0-Ab...)
-* Click `Advanced Settings` > Copy `Server URL`(rtmps://live-api-s.facebook.com:443/rtmp/) 
+*  > Copy `Stream key` (FB-165...-0-Ab...)
+* Click `Advanced Settings` > Copy `Server URL`(`rtmps://live-api-s.facebook.com:443/rtmp/`) 
 
 Note: Once you start to preview the broadcast you have up to 5 hours to go live.
 

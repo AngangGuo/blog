@@ -10,6 +10,7 @@ tags:
 draft: false
 ---
 
+## App Engine - Go
 ### Step by Step
 1. Create A Project
    * In the [Google Cloud Console](https://console.cloud.google.com/welcome), on the project selector page, select or create a Google Cloud project.
@@ -34,6 +35,53 @@ draft: false
 6. Deploy to App Engine 
    * Create Go App Engine project in your computer
    * Deploy to App Engine: `gcloud app deploy`
+
+### How to serve a static website?
+File and folder structure:
+```
+MyPrj
+  +-- app.yaml
+  +-- www
+        +-- favicon.ico
+        +-- index.html
+        +-- static
+              +-- app.css
+              +-- poster.jpg
+              +-- background.jpg
+```
+
+Here is `app.yaml`. 
+```
+runtime: go116
+
+handlers:
+  - url: /
+    static_files: www/index.html
+    upload: www/index.html
+
+  - url: /(.*)
+    static_files: www/\1
+    upload: www/(.*)
+```
+
+index.html
+```
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="static/app.css">
+  <title>App Static Site</title>
+  <style>
+    body {
+      background-image: url('static/background.jpg');
+    }
+  </style>
+</head>
+<body>
+...
+</body>
+</html>
+```
 
 ### Where can I find APP Engine logs?
 https://console.cloud.google.com/logs

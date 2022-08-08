@@ -70,8 +70,9 @@ Does it need to be in different computer? need verify.
 ### How to use video from OBS?
 Select the `OBS Virtual Camera`
 
-### How to make OBS NDI work in Zoom?
-??
+[//]: # (### How to make OBS NDI work in Zoom?)
+
+[//]: # (??)
 
 ## Troubleshooting
 If you are seeing everything sized incorrectly, go to the OBS menu option and click Preferences. 
