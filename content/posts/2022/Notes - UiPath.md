@@ -10,9 +10,50 @@ tags:
 draft: false
 ---
 
+## Control Flow
+
+### How to verify if `Get Text` is empty?
+* Check App State (Element to appear / Element to disappear)
+* Retry Scope & Check True(or Check False)
+* Do While
+* Element Exists / On Element Appear (Classic)
+
+### How to select a value from dropdown?
+1. For single value: `Select Item` activity > Type in the text of the dropdown you want to select
+2. Multiple values: `Select Multiple Items` > List the items you want to select like {"A", "D"}. The type is `String[]`
+3. Modern style select box: `Click` activity > `Type Info` activity > `Send Hotkey` (enter)
+4. `Find Children` activity(AllItems - IEnumerable<UiElement>) > 
+   * `For Each` activity > item (type: UiPath.Core.UiElement)
+   * `Get Text` activity: Input Element: item / TheValue)
+   * (Alternative)`Get Attribute` activity: item / "aaname" / TheValue
+   * `Log Message` > TheValue
+
+
+### How to use `Invoke code` activity?
+Step by step example:
+* Build Data Table > Column Name:Costs, Values: 100, 200, 300 > Output: DTCost
+* Invoke Code > Edit Arguments: 
+  * MyDT / In / DataTable / DTCost
+  * MySum / Out / Int32 / Sum
+* Invoke Code > Edit Code:
+```
+Dim row As DataRow
+MySum = 0
+For Each row In MyDT.Rows
+	MySum = CInt(row("Costs").toString) + MySum
+Next row
+```
+* Message Box > Sum.ToString
+
+Note: 
+* Arguments `MyDT` and `MySum` are used inside `Invoke Code` activity;
+* `DTCost` is DataTable variable created by `Build Data Table` activity
+* `Sum` is used to export the value from `Invoke Code`
+
 ## Recommendation
 * using PascalCase for variable names. PascalCase is a naming convention in which the first letter of each word in a variable is capitalized. Eg: ItemValue, LastName.
 * 
+
 ## Pitfalls
 
 ### FindChildren Activity (C#)
@@ -312,6 +353,9 @@ author = InitialMessage.Split("."c).First.ToString.Substring(InitialMessage.Last
 FirstName = Row(4).ToString.Substring(0, Row(4).ToString.IndexOf(" "))
 
 String.Format("Availability for {0}: {1}", Author, String.Join(","c+vbcr,Bookstores))
+
+properTemp = StrConv(City, VBStrConv.ProperCase)
+
 ```
 
 ### Other
@@ -334,7 +378,7 @@ List - System.Collections.Generic.List<T>: used to store multiple values of the 
 
 ```
 myArr.ToList // List<string>(3){"A","B","C"}
-
+AllCities = Enumerable.Concat(SpainCities.AsEnumberable, UKCilites.AsEnumberalbe).ToList
 ```
 
 #### Dictionary
