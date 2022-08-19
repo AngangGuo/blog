@@ -18,6 +18,13 @@ draft: false
 * Do While
 * Element Exists / On Element Appear (Classic)
 
+### What's the difference between `Retry Scope` activity and `Do While` condition?
+You can ensure the text is gotten by using `Retry Scope` activity or `Do While` condition.
+But there're some important difference between them:
+* Condition: Use `Check False` activity as condition for `Retry Scope`; Use comparison operator in `Do While` loop
+* Error: `Retry Scope` throws error if exceeds the `NumberOfRetries`; `Do While` will retry forever if you don't stop it. 
+You can decide if you want to throw error after certain retries or not throw any error. 
+
 ### How to select a value from dropdown?
 1. For single value: `Select Item` activity > Type in the text of the dropdown you want to select
 2. Multiple values: `Select Multiple Items` > List the items you want to select like {"A", "D"}. The type is `String[]`
@@ -77,9 +84,9 @@ INPUT:5
 ### Input Dialog
 Note: The `Result` can be String or other data types like Int32, Double, etc.
 
-* `Options` - An array of options to choose from. If set to contain only one element, a tex box appears to write text. If set to contain 2 or 3 elements, they appear as radio buttons to select from. If set to contain more than 3 items, they appear as a combo box to select from. This field supports only String Array variables. Ex. {"Item1", "Item2", "Item3", "Item4", "Item5"}
-* `Options String` - A string containing options to chose from. If set to contain only one element, a text box appears to write text. If set to contain 2 or 3 elements, they appear as radio buttons to select from. If set to contain more than 3 items, they appear as a combo box to select from. This field supports only String variables.
-* `Result` - The value inserted by the user in the input dialog. 
+* `Options` - An array of options to choose from. If set to contain only one element, a tex box appears to write text. If set to contain 2 or 3 elements, they appear as radio buttons to select from. If set to contain more than 3 items, they appear as a combo box to select from. This field supports only String Array variables. Ex. {"Item1", "Item2", "Item3"}
+* `Options String` - A string containing options to chose from. If set to contain only one element, a text box appears to write text. If set to contain 2 or 3 elements, they appear as radio buttons to select from. If set to contain more than 3 items, they appear as a combo box to select from. This field supports only String variables. The option need to be separated with semicolon. Ex. "Item1; Item2; Item3" 
+* `Result` - The value(String) inserted by the user in the input dialog. 
 
 Input Dialog will remove all the new line or line feed from the string(but not spaces). For example if I paste the following into the dialog:
 ```
@@ -452,13 +459,23 @@ BoolVar = ToBoolean(IntVar)
 ```
 ## Useful C# Functions
 ```
+// Input Dialog
+new string[] {"1. Close Pallets", "2. QC - Liquidation"}
+MyChoise.StartWith("2.")
+
 new System.Exception("Main.xaml: Login failed. ")
 
 // Get the load id from "L956769L966682L979021" or "L956769 L966682  L979021"
 LoadIDs.Replace("L", " L").Split(new []{" ",";"},System.StringSplitOptions.RemoveEmptyEntries)
 
+// Split asset tags like: "LPNN798834755LPNRRCI6927711lpnn170702279"
+AssetTags.ToUpper().Replace("LPN", " LPN").Split(new []{" "},System.StringSplitOptions.RemoveEmptyEntries)
+
 // Use Environment.NewLine instead of "\n" for the "Input Label" prompt in Input Dialog Activity 
 "Please type the Load IDs:"+Environment.NewLine+"Note: You can type in multiple load ids separeted by spaces or new lines."
+
+Dictionary<string, string> AssetInfo = new Dictionary<string, string> {}
+AssetInfo.Add("SourceLocation", "YVR3")
 ```
 
 ## StudioX
