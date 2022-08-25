@@ -148,6 +148,39 @@ fetch(url, options)
 .then(result => /* process result */)
 ```
 
+### How to post form data by using JavaScript?
+```
+<form name="myform1" action="/save" method="post">
+    <input type="submit" value="Save" onclick="doSubmit()" id="myButton">
+</form>
+
+<script type="text/javascript">
+    function doSubmit() {
+        var btn = document.getElementById("myButton");
+        btn.value = "Waiting ..."
+        btn.disabled = true;
+        document.forms["myform1"].submit();
+    }
+</script>
+```
+
+### How to prevent double click/submit?
+```
+<script>
+    var clicked = false;
+    function doSubmit2() {
+        if (!clicked) {
+            clicked = true;
+
+            var btn = document.getElementById("myButton2");
+            btn.value = "Waiting 2 ..."
+            btn.disabled = true;
+            document.forms["myform2"].submit();
+        }
+        // double click: do nothing
+    }
+</script>
+```
 ### Response
 Response properties:
 
