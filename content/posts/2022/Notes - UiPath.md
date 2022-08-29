@@ -57,6 +57,14 @@ Note:
 * `DTCost` is DataTable variable created by `Build Data Table` activity
 * `Sum` is used to export the value from `Invoke Code`
 
+## Error
+### Try Catch activity
+* Ctrl + T: Places the selected activity inside the Try section of a Try Catch activity
+* If an activity is included in Try Catch, in the Try section, and the value of the ContinueOnError property is True, no error is caught when the project is executed
+* Try Catch activity does not catch fatal exceptions
+* There is no limit to how many Catches you can use in a Try Catch activity
+* This activity requires at least two of the three fields to be in use
+
 ## Recommendation
 * using PascalCase for variable names. PascalCase is a naming convention in which the first letter of each word in a variable is capitalized. Eg: ItemValue, LastName.
 * 
