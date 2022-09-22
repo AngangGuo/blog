@@ -124,6 +124,12 @@ Set the value specifically as `true` will be ok.
 <input type="checkbox" name="agree" value="true">
 ```
 
+### How to hide Echo banner?
+```
+e := echo.New()
+e.HideBanner = true
+```
+
 ## Respond
 ### How to send message continually?
 
