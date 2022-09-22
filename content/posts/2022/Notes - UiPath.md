@@ -113,6 +113,7 @@ It seems the [doc](https://docs.uipath.com/studio/docs/the-switch-activity) does
 There's options in the Case statement that you can choose (empty) or (null). 
 You can also convert the condition into array index, or assign "NA"(or any string reasonable to your situation) to variable if it's empty.
 
+
 ### Use Application/Browser Activity
 Option `Open: IfNotOpen`: If the browser is opened, it won't open a new browser instance, nor goes to the URL.
 
@@ -326,9 +327,13 @@ result = ErrorAction.Retry // Ignore, Continue, or Abort
 * [Creating Error-Proof Resuable Workflows In UiPath](https://forum.uipath.com/t/creating-error-proof-reusable-workflows-in-uipath/331675)
 
 ## Version Control
-### Git Integration
+### Git Integration Prerequisite
+GIT integration in Studio requires the [Microsoft Visual C++ 2015 Redistributable Update 3](https://www.microsoft.com/en-us/download/details.aspx?id=53587) version.
+Download and install `vc_redist.x64.exe` or `vc_redist.x86.exe` to enable Git integration.
+
+### GitHub Integration
+Install UiPath GitHub App to access your repository:
 * Go to [Github App - UiPath](https://github.com/apps/uipath) > Select the repositories > Install
-* 
 
 ## Useful VB Functions
 ### String
@@ -474,12 +479,14 @@ AssetTags.ToUpper().Replace("LPN", " LPN").Split(new []{" "},System.StringSplitO
 // Use Environment.NewLine instead of "\n" for the "Input Label" prompt in Input Dialog Activity 
 "Please type the Load IDs:"+Environment.NewLine+"Note: You can type in multiple load ids separeted by spaces or new lines."
 
+// Initialize dictionary
 Dictionary<string, string> AssetInfo = new Dictionary<string, string> {}
 AssetInfo.Add("SourceLocation", "YVR3")
-```
+AssetInfo["SourceLocation"] = YVR3
 
-## StudioX
-StudioX projects are designed for attended use only and we do not recommend using StudioX when developing projects intended for unattended use.
+// For Each activity to loop through a dictionary AssetInfo
+item type is System.Collections.Generics.KeyValuePair<System.String, System.String>
+```
 
 ## Misc
 ### How to create a generic Windows credential?

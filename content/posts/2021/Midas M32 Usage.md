@@ -1,5 +1,5 @@
 ---
-title: "Midas M32 Usage - Part 1"
+title: "Midas M32 Usage"
 date: 2021-10-02T23:13:47-07:00
 categories:
   - Church
@@ -42,7 +42,6 @@ This is used to smooth out volume levels.
 
 The best way to think of a gate is like an actual gate; it opens and closes to let things (or signal) pass. 
 The threshold determines the volume level at which the gate will open. 
-The attack control determines how fast the gate will act once the threshold has been reached. 
 The release controls how long the gate will stay open. 
 
 A gate won’t pass any signal at all until the signal coming into it reaches the threshold. 
@@ -73,16 +72,93 @@ If your filter is at 150 Hz it is safe to assume the signal will only be reduced
 However, one octave below that, at 75 Hz, your signal may be attenuated 15dB,
 or 12dB more. This would represent a 12dB per octave rolloff, which is common.
 
+## DCA
+### What's DCA?
+DCA is an abbreviation for Digitally Controlled Amplifier.
+A DCA is helpful in any situation where you need to adjust multiple channels at the same time.
+
+For example, if you have 10 channels of drums and you wanted to lower their volume without messing up your mix, 
+you could go to each channel, one-by-one and lower their volumes by exactly the same amount or 
+you could just assign them all to a DCA and use that DCA fader to lower each channel’s volume simultaneously.
+
+
+### How to assign channels to a DCA?
+* Press DCA Group 1-8.
+* Press and hold `Select` button of the DCA channel you wish to use.
+* Tap the `Select` button for all input channels you want to be assigned to this DCA channel
+* Release the `Select` button of the DCA channel to finish the setting.
+
+### What's the difference between DCA and group(Bus)?
+A DCA channel is like a remote control, it turns up/down the volume of several channels at the same time.
+A Bus group can be 
+
+## Mute Group
+### What's a mute group?
+
+### How to set up a mute group?
+To assign channels to one of the six mute groups, perform the following steps:
+1. Press the `MUTE GRP` screen selection button to switch the main display to the Mute Groups view.
+2. Press and hold the desired mute group button on the lower right-hand side of the console's control surface.
+3. While holding the mute group button, press the `SEL` button of any input or output channel, on any layer, that you wish to assign to that mute group
+4. When you have assigned all of the desired channels to the mute group, release the dedicated `Mute Group` button.
+
+NOTE: The individual channel `MUTE` buttons will remain fully functional during the assignment process, 
+only the mute group buttons are blocked.
+
+To use the `MUTE GRP` screen to mute or unmute the groups, perform the following steps:
+1. Tap any of the six push encoders to mute the corresponding group, and thus mute all channels that are assigned to that mute group.
+2. Tap the push encoder of a currently-muted group to unmute the mute group.
+3. When finished working with mute groups, tap the `MUTE GRP` screens election button to exit the `MUTE GRP` screen. 
+The entire screen will again display its full set of controls for the current page
+
+## Bus
+### How to send Channel 1 & Channel 2 signals to Bus 1?
+Method A:
+* Select Channel 1
+* Press `BUS 1-4` on the BUS SENDS panel
+* Rotate the first knob to set the signal send to bus 1
+* Repeat the above step for channel 2
+
+Method B:
+* Go to Bus 1-8 layer by pressing `Bus 1-8` button
+* Select Bus 1
+* Press `Fader Flip` button
+* Unmute channel 1 and adjust the fader
+* Unmute channel 2 and adjust the fader
+* Press `Fader Flip` again
+
+Note: (TODO)
+Need to confirm:
+If all channels are unmuted, you need to adjust the fader to send different signal to Bus
+If all channels are muted, then you may only need to unmute the desired channels to send signal to bus.
+If you need to send a channel to several bus groups, you don't need to unselect the RL button for that channel
+If you send the channel signal to bus and from bus to RL main, then you need to unselect RL for each channel, and select RL for the bus
+
+Channel: remove RL output
+Bus: Add RL output
+
 
 ## Matrix Mixes 
-See https://www.youtube.com/watch?v=jQ09efrN8MQ
+See [here](https://www.youtube.com/watch?v=jQ09efrN8MQ) 
 
 A Matrix is a mix of other mixes, or a mix of Subgroups.
+
+#### Channel vs Bus vs Matrix
+* You can group several channels into a bus.
+* You can group several buses into a matrix.
+* You can't send channel signals to matrix
+
+See [here](https://www.youtube.com/watch?v=54UhtUEgw70) for more about matrix
 
 ### Why use matrix mixes?
 By using Matrix mixes, we have independent mix level control over individual mixes for broadcast truck,
 overflow room, cry room, live stream, backstage, etc.
 not affecting our FOH mix or any stage mixes.
+
+### How to group buses into matrix?
+Press `MTX 1-6/MAIN C` button to go to the Matrix panel > Select the Bus you want to add to the matrix >  
+Adjust the matrix fader to indicate the bus signal to send to the matrix. 
+
 
 ## Load/Save Scene Settings
 ### How to save a scene setting?
@@ -103,15 +179,25 @@ You can load your scenes following these steps:
 ### USB Drive
 You can also save/load scenes to/from USB drive.
 
+## Routing
+### How to send Bus 1 signal to Output 8?
+Routing > out 1-16 > 
+* Analog Output: Output 08
+* Category: Mix Bus
+* Output Signal: MixBus 01
+* Tap: Post Fader
+
+## Mis
+### How to set Scribble Strip for a channel?
+* Press `Setup` > Go to `scribble strip` tab > 
+* Select `Channel`, `Color`, `Icon`, 
+* Select a name from `Snippets` or type the channel name
+* Save
+
 ## Tips
 ### Select the proper channel
 To adjust the settings at the top panel, make sure you select the right channel first.
 All the settings adjustment only affect the selected channel.
-
-### Bus Send
-* Individual Bus: Select one of the Bus channel, press fider flip button to visualize 
-showing the volume of each channel send to this Bus
-* Individual Channel: select the channel and set the bus send button on the top panel to send singal to each bus
 
 ### Setting take effect
 You need to push the EQ/Gate/Low Cut/COMP button at the panel section for the settings to take effect
