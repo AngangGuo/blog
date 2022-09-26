@@ -168,6 +168,12 @@ See [FFmpeg Wiki][7]
 ffmpeg -i input.flv -ss 00:00:14.435 -vframes 1 out.png
 ```
 
+Or see [here](https://stackoverflow.com/questions/27568254/how-to-extract-1-screenshot-for-a-video-with-ffmpeg-at-a-given-time)
+on how to control output quality by using `-q:v` option.
+```
+ffmpeg -ss 01:23:45 -i input -frames:v 1 -q:v 2 output.jpg
+```
+
 ###  Convert video file
 ```
 ffmpeg -i in.mp4 -s 320x180 -b:v 1500k -b:a 128k out.mp4
