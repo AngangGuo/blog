@@ -13,8 +13,9 @@ draft: false
 See [Use mail merge to send bulk email messages](https://support.microsoft.com/en-us/office/use-mail-merge-to-send-bulk-email-messages-0f123521-20ce-4aa8-8b62-ac211dedefa4)
 
 ### Prepare Email List
-When using `.csv` file format, there should be at least two columns.
+It's better to use Excel file which easy to edit and add/remove columns.
 
+When using `.csv` file format, there should be at least two columns.
 If you only need Email address, you can add a dumb column with `,NA` at the end of each row when edited in IDE,
 or add a sequence column(Seq,Email) when edited in Excel.
 ```
@@ -29,5 +30,11 @@ email1@gmail.com,NA
 email2@gmail.com,NA
 email3@hotmail.com,NA
 ```
+
+### Prepare Word Document
+* Create a Word document and type in your Email contents
+* Go to `Mailings` > `Start Mail Merge` > `E-mail Messages`
+* Go to Mailings > Select Recipients > Use an Existing List ... > Select your mail list file
+* 
 
 ### Set Outlook Account

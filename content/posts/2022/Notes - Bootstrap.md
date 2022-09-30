@@ -10,6 +10,19 @@ tags:
 draft: false
 ---
 
+## Text
+### Line height
+Change the line height with .lh-* utilities.
+* lh-1
+* lh-sm
+* lh-base
+* lh-lg
+* etc.
+
+```
+<p class="lh-1">...</p>
+```
+
 ## Table
 ### Horizontal Alignment - Middle
 * Margin: `mx-auto`

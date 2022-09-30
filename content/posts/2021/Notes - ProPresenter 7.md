@@ -17,7 +17,7 @@ draft: false
 From `File` > `Import` > `PowerPoint...`, select the PPT file
 * You must install Microsoft PowerPoint 2016 or greater in order to import PowerPoint file
 * The imported JPG image files will be in `Media\Import` folder
-* Each image has a random unique name
+* Each image has a random unique name(new version)
 * The image is as `Fill` `Media` in the presentation `Shape` tab
 
 ![Imported Image in a presentation slide](/images/2022/propresenter-import-shape-fill-media.PNG)
@@ -51,7 +51,7 @@ C:\Users\angan\OneDrive\Documents\ProPresenter\Media\Assets\Slide1.jpg
 **Online Service**
 * Use online service such as https://cloudconvert.com/pptx-to-jpg
 
-### Warning: File already exist
+### Warning: File already exist(For ProPresent 6)
 PowerPoint desktop, PowerPoint in OneDrive and most PPT to JPG online services will name the images as `Slide1.jpg`, `Slide2.jpg`, etc.
 
 If you import these files or drag them into ProPresenter, most likely there're other files with the same names already imported into the folder.
@@ -61,6 +61,24 @@ I suggest to rename these files with a prefix like "YYYYMMDD-xxx-Slide1.jpg"
 ```
 20220318 Sermon_00001.jpg
 ```
+
+### How to rename multiple file names?
+From Windows PowerShell
+```
+cd <your directory>
+dir | Rename-Item -NewName {$_.Directory.Name + " - " + $_.Name}
+// dir | Rename-Item -NewName {"20220928 Sermon-" + $_.Name
+```
+
+From CMD prompt
+```
+for %a in (*.*) do ren "%a" "prefix - %a"
+```
+
+You can also rename in File Explore by select all the files and press F2, type a MySlide.jpg, all the files will changed to 
+MySlide(1).jpg, MySlide(2).jpg, etc. Be careful that the slides order may different from you presentation order.
+Prefer to use the above commands to rename files.
+
 
 See [here](https://support.apple.com/en-ca/guide/mac-help/mchlp1144/mac) on how to rename multiple files in Mac
 See [here](https://www.windowscentral.com/how-rename-multiple-files-bulk-windows-10) on how to rename multiple files on Windows 10
@@ -84,6 +102,10 @@ To add a presentation into the playlist:
 * Search(Ctrl+F) your library 
 * Select the desired presentation
 * Press Ctrl+Enter to add it into your playlist (or drag and drop by mouse)
+
+## Look & Theme
+### How to change looks?
+See [Automatically changing your looks and themes in ProPresenter 7](https://www.youtube.com/watch?v=rbDHnjJaFiY)
 
 ## Live Stream
 ### How to live-stream to YouTube?
