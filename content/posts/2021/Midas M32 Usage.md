@@ -21,17 +21,15 @@ that would otherwise distort the signal.
 On a microphone preamplifier, input gain varies the amount of amplification applied to the microphone.
 
 ### Noise Gate
-A noise gate is a device that is used to control the **volume** of an audio signal.
-Noise gates attenuate signals that register below a certain threshold.
+Noise Gate to block the noise below gate is like a water bank to block the water below bank.
 
+Noise gates attenuate signals that register below a certain threshold.
 By turning the THRESHOLD rotary control, the audio level at which the gate affects the signal can be controlled
 
 Note: Pressing the GATE button engages the noise gate for the selected channel.
 
-
-https://en.wikipedia.org/wiki/Noise_gate
-
-https://www.presonus.com/learn/technical-articles/How-To-Use-Dynamics-Processing-Getting-Started-With-Compressors-Gates-and-More
+See [here](https://en.wikipedia.org/wiki/Noise_gate) and
+[here](https://www.presonus.com/learn/technical-articles/How-To-Use-Dynamics-Processing-Getting-Started-With-Compressors-Gates-and-More)
 
 ### Compressor VS. Gate
 Gates and compressors in its virtual (i.e. plug-in) or hardware form are classified as dynamic processors.
