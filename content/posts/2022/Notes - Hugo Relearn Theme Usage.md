@@ -1,7 +1,13 @@
 ---
 title: "Notes   Hugo Relearn Theme Usage"
 date: 2022-10-03T15:08:48-07:00
-draft: true
+categories:
+  - Tech
+  - Church
+tags:
+  - Hugo
+  - Instruction
+draft: false
 ---
 
 Learn(and Relearn) theme works with a page tree structure to organize content: 

@@ -167,7 +167,9 @@ In ProPresenter:
 * (Option) Preferences > Audio > SDI & NDI > Enable (Check Enable if you want to send audio together with NDI video)
 * (Option) Screens > Edit Looks > (Setup looks for the NDI screen output)
 
-NDI Tools:
+`NDI Webcam Input` can send NDI to your webcam apps like Zoom.
+It will convert any NDI video and audio signal on your network as a webcam source.
+
 * Run `NDI Webcam Input` and select the ProPresenter NDI screen as source
 * (Option) Set audio output from `NDI Webcam Input`
 
@@ -239,7 +241,7 @@ You can add as many Theme Slides as you wish within a Theme.
 
 ### How to create a new theme by using a slide?
 If you build a slide you'd like to save as a Theme Slide in a Theme, 
-* Right clicking on the Slide and going to `Themes...`, 
+* Right-click on the Slide and going to `Themes...`, 
 * Selecting the Theme you wish to put this slide under and then choosing `Add Selection to Theme`
 
 ## Shortcuts
@@ -291,6 +293,12 @@ Key Mapping: Alt + K
 ```
 
 ## Screen
+### How to show slides on my second screen(an HDMI projector)?
+* (Windows) Configure the second screen as `extend` the primary screen
+* (ProPresenter)Create an Audience screen for the projector:<br>
+Screens > Configure Screens... > Click `+` to add the `BMH HDMI` projector screen
+* Show a slide and click the `Audience` toggle button in the top right corner of the screen to show or hide the Audience Screen
+
 ### How to create a multi-view layout?
 See [here](https://www.youtube.com/watch?v=HZDOf3RRRcs)
 
