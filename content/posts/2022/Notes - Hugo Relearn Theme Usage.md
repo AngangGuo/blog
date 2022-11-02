@@ -1,5 +1,5 @@
 ---
-title: "Notes   Hugo Relearn Theme Usage"
+title: "Notes - Hugo Relearn Theme Usage"
 date: 2022-10-03T15:08:48-07:00
 categories:
   - Tech
@@ -12,6 +12,14 @@ draft: false
 
 Learn(and Relearn) theme works with a page tree structure to organize content: 
 All contents are pages, which belong to other pages.
+
+## Create a new site
+```
+hugo new site churchMedia
+cd churchMedia
+git init
+git submodule add https://github.com/McShelby/hugo-theme-relearn.git themes/relearn
+```
 
 ## File Structure
 ### Folders
