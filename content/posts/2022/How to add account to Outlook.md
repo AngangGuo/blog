@@ -1,5 +1,5 @@
 ---
-title: "How to Add eHosting Account to Outlook?"
+title: "How to set up eHosting account?"
 date: 2022-09-25T09:56:19-07:00
 categories:
   - Tech
@@ -7,6 +7,7 @@ categories:
 tags:
   - eHosting
   - Outlook
+  - Thunderbird
 draft: false
 ---
 
@@ -75,10 +76,11 @@ Please switch to use port 587 if you plan to use our SMTP servers to send out em
 However you may want to use their provided SMTP servers to send out your emails instead.
 ```
 
+
 ### eHosting Webmail
 Go to website https://ehosting.ca/horde/imp/ or http://mail.ehosting.ca/
 
-## Outlook: Adding Account
+## Outlook Settings
 ### Adding eHosting account
 * File > Add Account
   * andrew@agcfca.net
@@ -106,6 +108,24 @@ See [eHosting mail settings](https://ehosting.ca/customerService/settings.php?se
 
 Note: For Gmail, Hotmail, etc. Outlook can set up them automatically.
 
+## Mozilla Thunderbird Settings
+Here is the settings if using Mozilla Thunderbird:
+
+### SMTP Server Settings
+* User Name: `andrew@agcfca.net`
+* Server Name: `mail1.ehostings.ca`
+* Port: `465`
+* Connection Security: `SSL/TLS`
+* Authentication Method: `Normal Password`
+
+### IMAP Server Settings
+* User Name: `andrew@agcfca.net`
+* Server Name: `mail1.ehosting.ca`
+* Port: `993`
+* Connection Security: `SSL/TLS`
+* Authentication Method: `Normal Password`
+
+
 ## Troubleshooting
 
 ### Can't connect to SMTP server
@@ -124,4 +144,3 @@ Secure SMTP (SSMTP) - port 465
 IMAP4 over SSL (IMAPS) - port 993
 Secure POP3 (SSL-POP) - port 995
 ```
-
