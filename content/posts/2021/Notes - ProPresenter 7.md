@@ -17,7 +17,7 @@ draft: false
 From `File` > `Import` > `PowerPoint...`, select the PPT file
 * You must install Microsoft PowerPoint 2016 or greater in order to import PowerPoint file
 * The imported JPG image files will be in `Media\Import` folder
-* Each image has a random unique name(new version)
+* Each image has a random unique name(v7.9.2)
 * The image is as `Fill` `Media` in the presentation `Shape` tab
 
 ![Imported Image in a presentation slide](/images/2022/propresenter-import-shape-fill-media.PNG)
@@ -26,7 +26,18 @@ Image full path for imported file example:
 ```
 C:\Users\angan\OneDrive\Documents\ProPresenter\Media\Import\41a74ec8-78e7-4037-b7dd-dfeec8229e4b.jpg
 ```
+If you delete this presentation from ProPresenter, it won't delete the imported images from the disk.
+You need to delete these files manually.
 
+### Import Media
+* From PowerPoint, Save PPT file as JPG image files
+* From ProPresenter, Select a folder in `MEDIA` section, then `File` > `Import` > `Media...` > Select the images
+* The images will show out in the MEDIA folder as `CUE`, the image files will stay in its original folder(no copying into ProPresenter)
+* When you add images into a playlist, each image will show out as an individual video in the panel(not convenient)
+* To delete the image, you can right-click the image select one of these:
+  * `Delete Cues` will remove from ProPresenter only
+  * `Move to trash` will delete cues from all ProPresenter playlists and delete the file from the hard drive
+  
 ### Media Action
 
 * Convert PPT into JPG images(See below for more details)
