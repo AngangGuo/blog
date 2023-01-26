@@ -39,4 +39,13 @@ Set the variable as empty string will remove it.
 
 * `$Env:METRICSID = ""`
 
-
+### How to display environment variables?
+```
+// dir and gci are both aliases for Get-ChildItem
+// dir env:
+PS > gci env: | where name -like 'METRICS*'
+Name                           Value
+----                           -----
+METRICSID                      CORPORATE\mynameid
+METRICSPASSWORD                MYPASSWORD
+```

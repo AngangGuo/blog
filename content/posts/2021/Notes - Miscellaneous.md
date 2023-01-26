@@ -7,6 +7,7 @@ categories:
 tags:
   - Outlook
   - Markdown
+  - Windows
 draft: false
 ---
 
@@ -16,18 +17,6 @@ You can upload a file from your computer to Google Drive and share it with other
 If the original file in your computer has been updated to a new version. 
 If you want to update the file in Google Drive to this new version, you can upload it to Google Drive again and select
 `Replace existing file` in the `Upload options` window. Replacing the file won't change sharing settings.
-
-## PowerShell
-### How to display environment variables?
-```
-// dir and gci are both aliases for Get-ChildItem
-// dir env:
-PS > gci env: | where name -like 'METRICS*'
-Name                           Value
-----                           -----
-METRICSID                      CORPORATE\mynameid
-METRICSPASSWORD                MYPASSWORD
-```
 
 ## Windows
 ### USB scanner always in low battery status
@@ -39,6 +28,24 @@ or you are on a full-power required USB device at all times, you should disable 
 
 Go to Power Plan settings > Change plan settings > Change advanced power settings > USB settings >
 USB selective suspend setting > `Disabled`
+
+### How to find a string from text files?
+```
+// Search in book folder
+findstr painting "D:\books\*"
+
+// Search in sub-folder as well
+findstr /s painting "D:\books\*"
+
+// Ignore the case; with line number; in the .txt files; including subfolder
+findstr /s /i /n painting "D:\books\*.txt"
+```
+```
+PS Q:\Manifest Files\> findstr 7131 *.csv
+Manifest74d.csv:LPNRRDO5571318,B08888C5HG,201,Home,7007 Handheld Vacuums,40.48,BISSELL International Trading Co,2994B
+Manifest74d.csv:LPNRRDO2307131,B08YRV5756,79,Kitchen,5022 Stand Mixers,108.87,,SM-1553N
+Manifest465.csv:LPNRREA0771316,B08P2D6RDT,201,Home,7001 Upright Vacuums,141.16,Eureka,NEU100C
+```
 
 ## Media
 ## Canon XA25

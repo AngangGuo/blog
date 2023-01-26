@@ -1,5 +1,5 @@
 ---
-title: "Notes - Hugo Relearn Theme Usage"
+title: "Notes   Hugo Relearn Theme Usage"
 date: 2022-10-03T15:08:48-07:00
 categories:
   - Tech
@@ -68,4 +68,20 @@ magic.gif
 Use this code to show the image from within `_index.md`: 
 `![Magic](magic.gif?classes=shadow)`
 
+## Multilingual & i18n
+### Basic Configuration
+```
+# English is the default language
+defaultContentLanguage = "en"
 
+[Languages]
+[Languages.en]
+title = "Documentation for Media Team"
+weight = 1
+languageName = "English"
+
+[Languages.zn]
+title = "媒体组设备使用指南"
+weight = 2
+languageName = "简体中文"
+```
