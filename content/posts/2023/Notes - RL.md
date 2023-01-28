@@ -6,7 +6,7 @@ categories:
   - RL
 tags:
   - Printer
-  - Markdown
+  - Office
   - Windows
 draft: false
 ---
@@ -22,3 +22,11 @@ The easy way to reset it is to follow below video. In short:
 * Printer will reset and reboot
 
 {{< youtube yo07NVqC-0U >}}
+
+## Office
+### How to open file links directly in Office desktop apps?
+In any Microsoft 365 app:
+* Windows App: `File` > `Options` > `Advanced` > `Link Handling`
+* Mac App: `Preferences` > `General` > `Link Handling`
+* Select `Open supported hyperlinks to Office files in Office desktop apps`
+
