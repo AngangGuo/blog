@@ -85,3 +85,7 @@ title = "媒体组设备使用指南"
 weight = 2
 languageName = "简体中文"
 ```
+
+## Sample Websites
+* https://ksucs-hugo.russfeld.me/
+* https://textbooks.cs.ksu.edu/cis526/
