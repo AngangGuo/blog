@@ -10,6 +10,12 @@ draft: false
 ---
 
 ## Tips
+### How to view file version history?
+* Open the file you want to view.
+* Click `File` > `Info` > `Version history`. 
+* Select a version to open it in a separate window. 
+* If you want to restore a previous version you've opened, select Restore.
+
 ### How to remove/suppress the `#DIV/0!` error?
 Use any of the following formula to remove the #DIV/0! from Spreadsheet:
 * `=IFERROR(A1/A2, 0)`
