@@ -19,6 +19,13 @@ If you want to update the file in Google Drive to this new version, you can uplo
 `Replace existing file` in the `Upload options` window. Replacing the file won't change sharing settings.
 
 ## Windows
+### How to show file structures?
+```
+tree /f > tree.txt
+// or
+dir /A:D /B /S
+```
+
 ### USB scanner always in low battery status
 See [this](https://www.drivereasy.com/knowledge/usb-selective-suspend-everything-you-need-to-know-about-it/)
 
@@ -144,6 +151,17 @@ one of these values: 50(667 x 375), 96(1280 x 720), 100(1333 x 750), 150(2000 x 
 See [here](https://docs.microsoft.com/en-us/office/troubleshoot/powerpoint/change-export-slide-resolution) for details.
 
 ## Outlook
+### How to convert plain text mail to HTML?
+* For Individual Email: 
+Click `Replay` > `Pop Out` > `Format Text` > Select `HTML`
+
+* For all Emails: 
+`File` > `Option` > `Mail` > `Compose messages in this format` > `HTML`
+
+### How to recall an Email?
+Open the email in a separate window >
+File > Info > Resend or Recall > Recall this message
+
 ### How can I show meetings in highlight color?
 For some important meetings, you may want to highlight them so that it can stand out from among your other meetings.
 
@@ -160,7 +178,6 @@ I even missed an appointment with our manager at 8:00 because the appointment is
 You can change your working hours by setting Start time, End time, Work week, etc. from within Outlook:
 
 File > Options > Calendar > Work time > Work hours
-
 
 ### How to recover deleted message/folder in Outlook?
 See [doc](https://support.microsoft.com/en-us/office/recover-deleted-items-in-outlook-for-windows-49e81f3c-c8f4-4426-a0b9-c0fd751d48ce)
