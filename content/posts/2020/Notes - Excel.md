@@ -9,7 +9,7 @@ tags:
 draft: false
 ---
 
-## Tips
+## Q & A
 ### How to view file version history?
 * Open the file you want to view.
 * Click `File` > `Info` > `Version history`. 
@@ -32,7 +32,7 @@ To separate the data into individual columns, follow these steps:
 
 Caution: Excel will remember your selection and when you paste data next time, it'll apply these settings automatically.
 
-## Excel Notes
+
 ### How to force Excel to re-calculate all the formulas?
 Using keyboard shortcut `Ctrl+Alt+F9` to re-calculate the workbook formulas.
 
@@ -72,7 +72,6 @@ Note: the duplicate is for the rows you selected, it may contain one or more col
 
 Note: This can only highlight individual duplicated cells, not duplicate rows.
 
-## FAQ
 ### Why the cell can't show out the whole number in Text format?
 Excel cell format is `General` by default, therefore it can display up to 11 digits in a cell. 
 For numbers more than 11 digits it'll show out as scientific format such as `1.23457E+11`.
@@ -83,4 +82,12 @@ You need to set the cell format as `Text` **first**, then enter the long number.
 Alternatively, type a single quotation mark (') first in the cell, and then type the long number.
 (such as `'1234567890123`)
 
+### How to fill in data into the pre-ordered associate name list?
+* The source data(User Metrics) are in column F and G
+  * Employee Name in column F from F2 to F24
+  * FG(Client) number in column G from G2 to G24
+* The pre-ordered associate names are in column B from B2 to B31; The data will be filled into column C (C2:C31)
+* Type in the following formula to C2:C31(Example C11): 
+  * =XLOOKUP(B11,$F$2:$F$24,$G$2:$G$24,0); This formula means search `Chen, Jun`(B11) in range F2:F24, if found, return data in G2:G24(10); if not found, return 0;
 
+![User Metrics Data](/images/2023/user-metrics-xlookup.PNG)

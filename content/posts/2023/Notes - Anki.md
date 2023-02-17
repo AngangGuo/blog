@@ -1,5 +1,5 @@
 ---
-title: "Notes   Anki"
+title: "Notes - Anki"
 date: 2023-02-10T14:25:36-08:00
 categories:
   - Tech

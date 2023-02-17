@@ -30,3 +30,10 @@ In any Microsoft 365 app:
 * Mac App: `Preferences` > `General` > `Link Handling`
 * Select `Open supported hyperlinks to Office files in Office desktop apps`
 
+## Outlook
+### How to copy password from email?
+For security reasons, some emails send the very long temp password that can't be copied.
+The workaround is to select the password, right click, from context menu select `Search "The-Secret-Text"`; 
+click the `Bing` icon at the bottom right to search the text in the browser, you can now copy the text from the web page.
+
+Note: Remember to change your password after login to the system the first time.
