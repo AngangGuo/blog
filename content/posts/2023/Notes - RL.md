@@ -37,3 +37,7 @@ The workaround is to select the password, right click, from context menu select 
 click the `Bing` icon at the bottom right to search the text in the browser, you can now copy the text from the web page.
 
 Note: Remember to change your password after login to the system the first time.
+
+## Useful Links
+* [ListDiff.com](http://www.listdiff.com/compare-2-lists-difference-tool): compare two lists
+* 

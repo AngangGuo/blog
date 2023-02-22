@@ -83,6 +83,12 @@ Alternatively, type a single quotation mark (') first in the cell, and then type
 (such as `'1234567890123`)
 
 ### How to fill in data into the pre-ordered associate name list?
+The `XLOOKUP` function searches a range or an array, and then returns the item corresponding to the first match it finds. 
+If no match exists, then XLOOKUP can return the closest (approximate) match. 
+```go
+=XLOOKUP(lookup_value, lookup_array, return_array,[if_not_found], [match_mode], [search_mode])
+```
+
 * The source data(User Metrics) are in column F and G
   * Employee Name in column F from F2 to F24
   * FG(Client) number in column G from G2 to G24
