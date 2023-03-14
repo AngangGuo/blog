@@ -21,9 +21,15 @@ Anki is a program which makes remembering things easy.
 * Notes & Fields:
 * Card Types
 
+## Tips
+### How to delete a card?
+Browse > Right-click the card > Notes > Delete
+
+Or use the shortcut `Ctrl+Del`
+
 ## Setting
 ### Paste clipboard images as PNG
-By default Anki pastes images on the clipboard as JPG files, to save disk space. 
+By default, Anki pastes images on the clipboard as JPG files, to save disk space. 
 You can use the option to paste as PNG images instead. 
 PNG images support transparent backgrounds and are lossless, but they usually result in much larger file sizes.
 
