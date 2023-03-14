@@ -9,6 +9,12 @@ tags:
 draft: false
 ---
 
+## Tips
+* To insert current date: `Ctrl+;`
+* To add today’s date in such a way that it updates when you recalculate or reopen your spreadsheet: `=Today()`
+* To insert current time: `Ctrl+Shift+;`
+
+
 ## Q & A
 ### How to view file version history?
 * Open the file you want to view.
