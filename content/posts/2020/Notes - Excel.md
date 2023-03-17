@@ -16,6 +16,18 @@ draft: false
 
 
 ## Q & A
+### How to add Header & Footer ?
+It's better to add the file path and name at the bottom of the Excel form so that we can find it easily in the future.
+
+Follow these steps to add header and footer in Excel:
+* Go to `Insert` tab, in the `Text` group, click `Header & Footer`
+* Excel will display the worksheet in Page Layout view
+* To add or edit a header or footer, click the left, center, or right header or footer text box at the top or the bottom of the worksheet page (under Header, or above Footer)
+* Type the new header or footer text
+
+To close the header and footer, you must switch from `Page Layout` view to `Normal` view
+* On the `View` tab, in the Workbook Views group, click `Normal`.
+
 ### How to view file version history?
 * Open the file you want to view.
 * Click `File` > `Info` > `Version history`. 
