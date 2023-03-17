@@ -128,6 +128,14 @@ Quote using a keyboard shortcut
 * Paste the original message and then type your own message
 * Press Enter twice and to type your message after the quote
 
+### How to create a chat group?
+* Select the `New Chat` button(or press `Ctrl+N`)
+* In the `To:` line, type the email addresses of those you want to include in this group
+* Type a message and send it to finish creating your new group
+* Click the pencil button at the top to change the group name
+
+See [here](https://support.microsoft.com/en-us/office/create-a-group-chat-556d9323-75f4-4cbe-ba49-e65d7d8d53a8)
+
 ## Office
 ### How to view the previous version of Office files?
 * Open the file you want to view.
