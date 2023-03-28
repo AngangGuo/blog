@@ -7,6 +7,7 @@ categories:
 tags:
   - Outlook
   - Markdown
+  - Windows
 draft: false
 ---
 
@@ -17,19 +18,14 @@ If the original file in your computer has been updated to a new version.
 If you want to update the file in Google Drive to this new version, you can upload it to Google Drive again and select
 `Replace existing file` in the `Upload options` window. Replacing the file won't change sharing settings.
 
-## PowerShell
-### How to display environment variables?
+## Windows
+### How to show file structures?
 ```
-// dir and gci are both aliases for Get-ChildItem
-// dir env:
-PS > gci env: | where name -like 'METRICS*'
-Name                           Value
-----                           -----
-METRICSID                      CORPORATE\mynameid
-METRICSPASSWORD                MYPASSWORD
+tree /f > tree.txt
+// or
+dir /A:D /B /S
 ```
 
-## Windows
 ### USB scanner always in low battery status
 See [this](https://www.drivereasy.com/knowledge/usb-selective-suspend-everything-you-need-to-know-about-it/)
 
@@ -39,6 +35,24 @@ or you are on a full-power required USB device at all times, you should disable 
 
 Go to Power Plan settings > Change plan settings > Change advanced power settings > USB settings >
 USB selective suspend setting > `Disabled`
+
+### How to find a string from text files?
+```
+// Search in book folder
+findstr painting "D:\books\*"
+
+// Search in sub-folder as well
+findstr /s painting "D:\books\*"
+
+// Ignore the case; with line number; in the .txt files; including subfolder
+findstr /s /i /n painting "D:\books\*.txt"
+```
+```
+PS Q:\Manifest Files\> findstr 7131 *.csv
+Manifest74d.csv:LPNRRDO5571318,B08888C5HG,201,Home,7007 Handheld Vacuums,40.48,BISSELL International Trading Co,2994B
+Manifest74d.csv:LPNRRDO2307131,B08YRV5756,79,Kitchen,5022 Stand Mixers,108.87,,SM-1553N
+Manifest465.csv:LPNRREA0771316,B08P2D6RDT,201,Home,7001 Upright Vacuums,141.16,Eureka,NEU100C
+```
 
 ## Media
 ## Canon XA25
@@ -114,6 +128,14 @@ Quote using a keyboard shortcut
 * Paste the original message and then type your own message
 * Press Enter twice and to type your message after the quote
 
+### How to create a chat group?
+* Select the `New Chat` button(or press `Ctrl+N`)
+* In the `To:` line, type the email addresses of those you want to include in this group
+* Type a message and send it to finish creating your new group
+* Click the pencil button at the top to change the group name
+
+See [here](https://support.microsoft.com/en-us/office/create-a-group-chat-556d9323-75f4-4cbe-ba49-e65d7d8d53a8)
+
 ## Office
 ### How to view the previous version of Office files?
 * Open the file you want to view.
@@ -137,6 +159,17 @@ one of these values: 50(667 x 375), 96(1280 x 720), 100(1333 x 750), 150(2000 x 
 See [here](https://docs.microsoft.com/en-us/office/troubleshoot/powerpoint/change-export-slide-resolution) for details.
 
 ## Outlook
+### How to convert plain text mail to HTML?
+* For Individual Email: 
+Click `Replay` > `Pop Out` > `Format Text` > Select `HTML`
+
+* For all Emails: 
+`File` > `Option` > `Mail` > `Compose messages in this format` > `HTML`
+
+### How to recall an Email?
+Open the email in a separate window >
+File > Info > Resend or Recall > Recall this message
+
 ### How can I show meetings in highlight color?
 For some important meetings, you may want to highlight them so that it can stand out from among your other meetings.
 
@@ -153,7 +186,6 @@ I even missed an appointment with our manager at 8:00 because the appointment is
 You can change your working hours by setting Start time, End time, Work week, etc. from within Outlook:
 
 File > Options > Calendar > Work time > Work hours
-
 
 ### How to recover deleted message/folder in Outlook?
 See [doc](https://support.microsoft.com/en-us/office/recover-deleted-items-in-outlook-for-windows-49e81f3c-c8f4-4426-a0b9-c0fd751d48ce)

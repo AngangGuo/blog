@@ -73,6 +73,19 @@ git tag
 git show v1.0
 ```
 
+### How to make git forget a tracked file?
+```
+git update-index --skip-worktree <file> // ignore the file
+git update-index --no-skip-worktree <file> // to cancel
+```
+See [here](https://stackoverflow.com/questions/1274057/how-do-i-make-git-forget-about-a-file-that-was-tracked-but-is-now-in-gitignore)
+
+### What's the difference between `assume-unchanged` and `skip-worktree`?
+* `--assume-unchanged` assumes that a developer shouldn’t change a file. This flag is meant for improving performance for not-changing folders like SDKs.
+* `--skip-worktree` is useful when you instruct git not to touch a specific file ever because developers should change it. For example, if the main repository upstream hosts some production-ready configuration files and you don’t want to accidentally commit changes to those files, --skip-worktree is exactly what you want.
+
+See [here](https://stackoverflow.com/questions/13630849/git-difference-between-assume-unchanged-and-skip-worktree/13631525#13631525)
+
 ### How to get the remote URL of a repository?
 ```
 // one of the following commands

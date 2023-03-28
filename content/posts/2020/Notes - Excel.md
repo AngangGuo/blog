@@ -10,6 +10,30 @@ draft: false
 ---
 
 ## Tips
+* To insert current date: `Ctrl+;`
+* To add today’s date in such a way that it updates when you recalculate or reopen your spreadsheet: `=Today()`
+* To insert current time: `Ctrl+Shift+;`
+
+
+## Q & A
+### How to add Header & Footer ?
+It's better to add the file path and name at the bottom of the Excel form so that we can find it easily in the future.
+
+Follow these steps to add header and footer in Excel:
+* Go to `Insert` tab, in the `Text` group, click `Header & Footer`
+* Excel will display the worksheet in Page Layout view
+* To add or edit a header or footer, click the left, center, or right header or footer text box at the top or the bottom of the worksheet page (under Header, or above Footer)
+* Type the new header or footer text
+
+To close the header and footer, you must switch from `Page Layout` view to `Normal` view
+* On the `View` tab, in the Workbook Views group, click `Normal`.
+
+### How to view file version history?
+* Open the file you want to view.
+* Click `File` > `Info` > `Version history`. 
+* Select a version to open it in a separate window. 
+* If you want to restore a previous version you've opened, select Restore.
+
 ### How to remove/suppress the `#DIV/0!` error?
 Use any of the following formula to remove the #DIV/0! from Spreadsheet:
 * `=IFERROR(A1/A2, 0)`
@@ -26,7 +50,7 @@ To separate the data into individual columns, follow these steps:
 
 Caution: Excel will remember your selection and when you paste data next time, it'll apply these settings automatically.
 
-## Excel Notes
+
 ### How to force Excel to re-calculate all the formulas?
 Using keyboard shortcut `Ctrl+Alt+F9` to re-calculate the workbook formulas.
 
@@ -66,7 +90,6 @@ Note: the duplicate is for the rows you selected, it may contain one or more col
 
 Note: This can only highlight individual duplicated cells, not duplicate rows.
 
-## FAQ
 ### Why the cell can't show out the whole number in Text format?
 Excel cell format is `General` by default, therefore it can display up to 11 digits in a cell. 
 For numbers more than 11 digits it'll show out as scientific format such as `1.23457E+11`.
@@ -77,4 +100,18 @@ You need to set the cell format as `Text` **first**, then enter the long number.
 Alternatively, type a single quotation mark (') first in the cell, and then type the long number.
 (such as `'1234567890123`)
 
+### How to fill in data into the pre-ordered associate name list?
+The `XLOOKUP` function searches a range or an array, and then returns the item corresponding to the first match it finds. 
+If no match exists, then XLOOKUP can return the closest (approximate) match. 
+```go
+=XLOOKUP(lookup_value, lookup_array, return_array,[if_not_found], [match_mode], [search_mode])
+```
 
+* The source data(User Metrics) are in column F and G
+  * Employee Name in column F from F2 to F24
+  * FG(Client) number in column G from G2 to G24
+* The pre-ordered associate names are in column B from B2 to B31; The data will be filled into column C (C2:C31)
+* Type in the following formula to C2:C31(Example C11): 
+  * =XLOOKUP(B11,$F$2:$F$24,$G$2:$G$24,0); This formula means search `Chen, Jun`(B11) in range F2:F24, if found, return data in G2:G24(10); if not found, return 0;
+
+![User Metrics Data](/images/2023/user-metrics-xlookup.PNG)
