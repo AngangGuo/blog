@@ -48,6 +48,30 @@ theme = "hugo-theme-relearn"
 home = [ "HTML", "RSS", "SEARCH"]
 ```
 
+### Change theme color
+Add the following code into `config.toml`
+```
+themeVariant = [ "auto", "relearn-bright", "relearn-light", "relearn-dark", "Red", "Blue"]
+themeVariantAuto = [ "relearn-light", "relearn-dark" ]
+```
+
+### Add menu shortcuts
+```
+[[menu.shortcuts]]
+name = "<i class='fab fa-fw fa-github'></i> GitHub repo"
+identifier = "ds"
+url = "https://github.com/McShelby/hugo-theme-relearn"
+weight = 10
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-fw fa-tags'></i> Tags"
+url = "tags/"
+weight = 40
+```
+
+### Change site logo
+Create `logo.html` in /layouts/partials
+
 ### (Optional)
 Update Go module
 ```
@@ -117,12 +141,19 @@ magic.gif
 Use this code to show the image from within `_index.md`: 
 `![Magic](magic.gif?classes=shadow)`
 
-### FontAwesome Icons
-You can use FontAwesome icons directly in your markdown file.
+### Font Awesome Icons
+The `icon` shortcode displays icons using the Font Awesome library.
 
-Note:
-* Only [FontAwesome Version 5](https://fontawesome.com/v5/search) works with Relearn theme
-* Find the icon and copy the HTML code, e.g `<i class="fas fa-wifi"></i>` and paste it into your markdown file directly
+You can use Font Awesome icons directly in your markdown file.
+* Browse through the available icons in the [Font Awesome Gallery](https://fontawesome.com/v5/search?m=free). 
+* Once find the specific icon, copy the icon name and paste into the Markdown content, e.g. `{{% icon heart %}}`
+* Alternatively you can copy the HTML code, e.g `<i class="fas fa-heart"></i>` and paste it into your markdown file.
+
+Note: Only Font Awesome version 5 works with the Relearn theme
+
+### Site Logo
+To change the site logo, create logo.html in /layouts/partials, edit the file contents and save it.
+The content of this file will show as site logo of the page.
 
 ## Multilingual & i18n
 ### Basic Configuration
