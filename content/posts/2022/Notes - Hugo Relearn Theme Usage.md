@@ -1,5 +1,5 @@
 ---
-title: "Notes   Hugo Relearn Theme Usage"
+title: "Notes - Hugo Relearn Theme Usage"
 date: 2022-10-03T15:08:48-07:00
 categories:
   - Tech
@@ -9,7 +9,7 @@ tags:
 draft: false
 ---
 
-Learn(and Relearn) theme works with a page tree structure to organize content: 
+Hugo [Relearn](https://github.com/McShelby/hugo-theme-relearn) theme works with a page tree structure to organize content: 
 All contents are pages, which belong to other pages.
 
 ## Create a new site
@@ -69,36 +69,13 @@ url = "tags/"
 weight = 40
 ```
 
-### Change site logo
-Create `logo.html` in /layouts/partials
-
-### (Optional)
-Update Go module
-```
-hugo mod get -u
-
-// to add module requirements and sums:
-go mod tidy
-```
-
-### Try it
-Create some pages according to below instructions and run it
-
-### (Optional)Upload to `Github.com`
-Create a new repository in Github(rldoc)
-```
-git remote add origin https://github.com/AngangGuo/rldoc.git
-git branch -M main
-git push -u origin main
-Username for 'https://github.com': AngangGuo
-Password for 'https://AngangGuo@github.com': (use token instead of password)ghp_XdN...ldu3
-```
+Note: You can use Font Awesome icons in the menu shortcuts. 
+See Image section on how to use `icon` shortcode.
 
 ## File Structure
 ### Folders
 * The root folder is `project/content` folder which contains all your pages.
 * `_index.md` is required in each folder, it’s your “folder home page”
-* 
 
 ### Pages
 There are three kinds of predefined pages:
@@ -151,7 +128,7 @@ You can use Font Awesome icons directly in your markdown file.
 
 Note: Only Font Awesome version 5 works with the Relearn theme
 
-### Site Logo
+### How to change site logo?
 To change the site logo, create logo.html in /layouts/partials, edit the file contents and save it.
 The content of this file will show as site logo of the page.
 
@@ -171,6 +148,25 @@ languageName = "English"
 title = "媒体组设备使用指南"
 weight = 2
 languageName = "简体中文"
+```
+
+## Common Commands
+### Update Go module
+```
+hugo mod get -u
+
+// to add module requirements and sums:
+go mod tidy
+```
+
+### Upload project to `Github.com`
+Create a new repository in Github(rldoc)
+```
+git remote add origin https://github.com/AngangGuo/rldoc.git
+git branch -M main
+git push -u origin main
+Username for 'https://github.com': AngangGuo
+Password for 'https://AngangGuo@github.com': (use token instead of password)ghp_XdN...ldu3
 ```
 
 ## Sample Websites
