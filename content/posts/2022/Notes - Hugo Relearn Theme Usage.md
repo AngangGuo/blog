@@ -85,7 +85,7 @@ go mod tidy
 Create some pages according to below instructions and run it
 
 ### (Optional)Upload to `Github.com`
-Create a new repository in Github(rldoc)
+Create a new repository in GitHub(rldoc)
 ```
 git remote add origin https://github.com/AngangGuo/rldoc.git
 git branch -M main
@@ -93,12 +93,46 @@ git push -u origin main
 Username for 'https://github.com': AngangGuo
 Password for 'https://AngangGuo@github.com': (use token instead of password)ghp_XdN...ldu3
 ```
+## Settings
+### Showing ">" before the parent menu items
+```
+# If set to true, the menu in the sidebar will be displayed in a collapsible tree view.
+collapsibleMenu = true
+```
+
+### Hidden Pages
+Hidden pages and all its children are hidden in the menu, arrow navigation and children shortcode.
+
+You can visit the hidden page by using the direct link, or show the hidden children pages when `showhidden="true"`.
+
+Hidden page setings
+```
+disableSearchHiddenPages = true
+disableSeoHiddenPages = true
+disableTagHiddenPages = true
+```
+
+```
+# Hidden settings in Frontmatter
++++
+title = "My Secret Page"
+hidden = true
++++
+```
+
+```
+# Show hidden children on this pages
+{{% children showhidden="true" %}}
+```
 
 ## File Structure
 ### Folders
 * The root folder is `project/content` folder which contains all your pages.
 * `_index.md` is required in each folder, it’s your “folder home page”
-* 
+
+### What's the page bundles?
+Do you know the difference between using `index.md` and `_index.md`?
+See [here](https://gohugo.io/content-management/page-bundles/)
 
 ### Pages
 There are three kinds of predefined pages:
@@ -129,6 +163,47 @@ hugo new <chapter>/<name>/_index.md
 hugo new <chapter>/<name>.md
 ```
 
+### List the child pages(sub-folders) in the parent page
+You can use the `children` shortcode to list the child pages 
+```
+// list only the page title
+{{% child %}}
+
+// list page title with description
+{{% child description="true" %}}
+```
+
+See [here](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/children/index.html)
+
+### Link to other pages
+* Link page in the same folder
+```
+[AWARDCO](awardco/) - Service Anniversary Platform.
+```
+* Link page in other folder
+```
+[Gift Card](../management/giftcard/) - Reward associates with gift card. 
+```
+
+## Attachments
+The shortcode lists files found in a specific folder. 
+The name of the folder depends on your page type (either branch bundle, leaf bundle or page).
+
+### Folder name
+* For simple pages, attachments must be placed in a folder named `your-page-name.files`.
+* If your page is a branch or leaf bundle, attachments must be placed in a nested `_index.files` or `index.files` folder, accordingly.
+
+### Show attachment files
+```
+// simplest format
+{{% attachments /%}}
+
+// customized title and selected file format
+{{% attachments title="Related **files**" pattern=".*\.(pdf|mp4)" /%}}
+```
+
+See [here](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/index.html)
+
 ## Images
 ### Location
 All the images should be in the same folder as the document.
@@ -152,8 +227,20 @@ You can use Font Awesome icons directly in your markdown file.
 Note: Only Font Awesome version 5 works with the Relearn theme
 
 ### Site Logo
-To change the site logo, create logo.html in /layouts/partials, edit the file contents and save it.
+To change the site logo, create logo.html in `/layouts/partials`, edit the file contents and save it.
 The content of this file will show as site logo of the page.
+
+### Change the favicon
+If your favicon is a SVG, PNG or ICO, just drop off your image in your local `static/images/` folder and name it `favicon.svg`, `favicon.png` or `favicon.ico` respectively.
+
+If no favicon file is found, the theme will lookup the alternative filename `logo` in the same location and will repeat the search for the list of supported file types.
+
+If you need to change this default behavior, create a new file in `layouts/partials/` named `favicon.html`. Then write something like this:
+```
+<link rel="icon" href="/images/favicon.bmp" type="image/bmp">
+```
+
+See [here](https://mcshelby.github.io/hugo-theme-relearn/basics/customization/index.html)
 
 ## Multilingual & i18n
 ### Basic Configuration
