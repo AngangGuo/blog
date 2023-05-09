@@ -122,7 +122,7 @@ hidden = true
 
 ```
 # Show hidden children on this pages
-{{% children showhidden="true" %}}
+{{% chil dren showhidden="true" %}}
 ```
 
 ## File Structure
