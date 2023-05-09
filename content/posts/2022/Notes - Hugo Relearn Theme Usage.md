@@ -167,10 +167,10 @@ hugo new <chapter>/<name>.md
 You can use the `children` shortcode to list the child pages 
 ```
 // list only the page title
-{{% child %}}
+{{% child ren %}}
 
 // list page title with description
-{{% child description="true" %}}
+{{% child ren description="true" %}}
 ```
 
 See [here](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/children/index.html)
