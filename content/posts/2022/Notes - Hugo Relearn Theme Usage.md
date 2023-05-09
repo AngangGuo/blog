@@ -122,7 +122,7 @@ hidden = true
 
 ```
 # Show hidden children on this pages
-{{% children showhidden="true" %}}
+{{%/* children showhidden="true" */%}}
 ```
 
 ## File Structure
@@ -167,10 +167,10 @@ hugo new <chapter>/<name>.md
 You can use the `children` shortcode to list the child pages 
 ```
 // list only the page title
-{{% children %}}
+{{%/* children */%}}
 
 // list page title with description
-{{% children description="true" %}}
+{{%/* children description="true" */%}}
 ```
 
 See [here](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/children/index.html)
@@ -196,10 +196,10 @@ The name of the folder depends on your page type (either branch bundle, leaf bun
 ### Show attachment files
 ```
 // simplest format
-{{% attachments /%}}
+{{%/* attachments /*/%}}
 
 // customized title and selected file format
-{{% attachments title="Related **files**" pattern=".*\.(pdf|mp4)" /%}}
+{{%/* attachments title="Related **files**" pattern=".*\.(pdf|mp4)" /*/%}}
 ```
 
 See [here](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/index.html)
@@ -221,9 +221,9 @@ The `icon` shortcode displays icons using the Font Awesome library.
 
 You can use Font Awesome icons directly in your markdown file.
 * Browse through the available icons in the [Font Awesome Gallery](https://fontawesome.com/v5/search?m=free). 
-* Once find the specific icon, copy the icon name and paste into the Markdown content, e.g. `{{% icon heart %}}`
+* Once find the specific icon, copy the icon name and paste into the Markdown content, e.g. `{{%/* icon heart */%}}`
 * Alternatively you can copy the HTML code, e.g `<i class="fas fa-heart"></i>` and paste it into your markdown file.
-
+ \{\{%\\* icon heart *\\%\}\}
 Note: Only Font Awesome version 5 works with the Relearn theme
 
 ### How to change site logo?

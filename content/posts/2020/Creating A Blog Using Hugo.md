@@ -196,6 +196,12 @@ The easiest is to use [Vercel(ZEIT) Now](https://vercel.com/docs), see [example]
 See [this post](/posts/2020/host-static-website-on-gitlab-pages/) on how to host your blog on Gitlab.
 
 ## FAQ
+### How to show shortcode example in markdown file?
+To show `{{</* youtube qtIqKaDlqXo */>}}`in markdown file, you code it as following
+```
+{{</*/* youtube qtIqKaDlqXo */*/>}}
+```
+
 ### How can I link within a page?
 Here is the example on how to use anchor to link within a page.
 
