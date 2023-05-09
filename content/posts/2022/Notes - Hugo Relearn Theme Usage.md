@@ -122,7 +122,7 @@ hidden = true
 
 ```
 # Show hidden children on this pages
-{{% chil dren showhidden="true" %}}
+{{% children showhidden="true" %}}
 ```
 
 ## File Structure
@@ -167,10 +167,10 @@ hugo new <chapter>/<name>.md
 You can use the `children` shortcode to list the child pages 
 ```
 // list only the page title
-{{% child ren %}}
+{{% children %}}
 
 // list page title with description
-{{% child ren description="true" %}}
+{{% children description="true" %}}
 ```
 
 See [here](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/children/index.html)
