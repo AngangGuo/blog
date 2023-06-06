@@ -3,10 +3,11 @@ title: "Notes - Caddy Server"
 date: 2020-09-30T21:55:29-07:00
 categories:
  - Tech
- - Server
+ - Application
 tags:
  - Caddy
  - Go
+ - Server
 draft: false
 ---
 

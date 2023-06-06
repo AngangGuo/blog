@@ -5,7 +5,6 @@ categories:
  - Church
  - Bible
 tags:
- - Pray-reading
  - Prayer
 draft: false
 summary: "新店行道会张茂松牧师祷读教导笔记。祷读的精髓是让人享受神的话，神的话是我们的粮食，是可以让我们吃喝快乐的，要去享受。"

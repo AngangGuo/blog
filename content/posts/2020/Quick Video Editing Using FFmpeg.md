@@ -6,7 +6,7 @@ categories:
  - Media
 tags:
  - FFmpeg
- - Video Editing
+ - Video
 draft: false
 ---
 

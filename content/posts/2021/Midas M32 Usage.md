@@ -5,7 +5,7 @@ categories:
   - Church
   - Media
 tags:
-  - Sound System
+  - Mixer
   - Midas
 draft: false
 ---

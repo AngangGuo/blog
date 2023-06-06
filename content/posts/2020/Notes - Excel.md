@@ -2,10 +2,11 @@
 title: "Notes - Excel"
 date: 2020-07-10T13:18:04-07:00
 categories:
- - Tech
- - Office
+  - Tech
+  - Application
 tags:
- - Excel
+  - Excel
+  - Office
 draft: false
 ---
 

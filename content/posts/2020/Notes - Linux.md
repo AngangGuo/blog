@@ -6,6 +6,7 @@ categories:
  - OS
 tags:
  - Ubuntu
+ - Linux
 draft: false
 ---
 

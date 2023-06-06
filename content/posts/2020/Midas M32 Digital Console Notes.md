@@ -5,8 +5,8 @@ categories:
  - Church
  - Media
 tags:
- - M32 Mixer
- - Sound System
+ - Mixer
+ - Midas
 draft: false
 ---
 

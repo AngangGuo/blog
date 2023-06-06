@@ -2,11 +2,12 @@
 title: "Live Streaming Using OBS and Zoom"
 date: 2020-05-24T22:17:11-07:00
 categories:
- - Church
- - Live Streaming
+  - Church
+  - Application
 tags:
- - Zoom
- - OBS
+  - Zoom
+  - OBS
+  - Live Steaming
 draft: false
 ---
 

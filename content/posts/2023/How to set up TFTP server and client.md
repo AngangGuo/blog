@@ -3,10 +3,10 @@ title: "How to Set Up TFTP Server and Client"
 date: 2023-01-01T22:46:41-08:00
 categories:
   - Tech
-  - Windows
+  - Server
 tags:
   - TFTP
-  - Server
+  - Application
 draft: false
 ---
 

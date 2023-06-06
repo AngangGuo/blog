@@ -2,9 +2,9 @@
 title: "圣经经卷口诀"
 date: 2023-02-22T08:42:37-08:00
 categories:
-  - Bible
+  - Church
 tags:
-  - Book Name
+  - Bible
   - Abbreviations
 draft: false
 ---

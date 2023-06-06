@@ -3,9 +3,9 @@ title: "Migrating a Website to Netlify"
 date: 2020-12-06T12:47:19-08:00
 categories:
  - Tech
- - Website
+ - Web
 tags:
- - Git
+ - Website
  - Github 
  - Netlify
 draft: false
