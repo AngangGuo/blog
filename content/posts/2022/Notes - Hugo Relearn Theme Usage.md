@@ -5,7 +5,7 @@ categories:
   - Tech
 tags:
   - Hugo
-  - Instruction
+  - Theme
 draft: false
 ---
 
@@ -82,7 +82,7 @@ go mod tidy
 ```
 
 ### Try it
-Create some pages according to below instructions and run it
+Add some pages according to [below instructions]({{< ref "#add-page" >}}) and run it
 
 ### (Optional)Upload to `Github.com`
 Create a new repository in GitHub(rldoc)
@@ -134,7 +134,7 @@ hidden = true
 Do you know the difference between using `index.md` and `_index.md`?
 See [here](https://gohugo.io/content-management/page-bundles/)
 
-### Pages
+### Pages {#add-page}
 There are three kinds of predefined pages:
 (See [here](https://mcshelby.github.io/hugo-theme-relearn/cont/archetypes/) for more details)
 
