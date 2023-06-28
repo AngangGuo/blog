@@ -116,3 +116,11 @@ If no match exists, then XLOOKUP can return the closest (approximate) match.
   * =XLOOKUP(B11,$F$2:$F$24,$G$2:$G$24,0); This formula means search `Chen, Jun`(B11) in range F2:F24, if found, return data in G2:G24(10); if not found, return 0;
 
 ![User Metrics Data](/images/2023/user-metrics-xlookup.PNG)
+
+### Excel doesn't update formula after recent updating, how to fix it?
+Excel doesn't update formulas. 
+Whenever I copy a formula, the value in the destination cells show the same value as the source and doesn't re-calculate in the new cells.
+
+Change the following settings to fix this problem:
+* File > Options > Formulas > Workbook Calculation > Automatic
+

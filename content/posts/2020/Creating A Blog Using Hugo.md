@@ -211,6 +211,12 @@ Here is the example on how to use anchor to link within a page.
 Add a link to the anchor by using the same markdown link syntax [Link to the anchor within the page]({{</* ref "#my-anchor" */>}})
 ```
 
+### How can I link to another page?
+To link to `Leave Request` section on page `content/hr/kronos/_index.md`, you can use the following code example:
+```
+See [here](/hr/kronos/#leave-request) for more information.
+```
+
 ### How can I add YouTube video to my page?
 By using Hugo `Shortcode`, Copy the YouTube video ID that follows v= in the video’s URL and pass it to the youtube shortcode:
 ```
