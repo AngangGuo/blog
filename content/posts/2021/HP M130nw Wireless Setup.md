@@ -41,15 +41,36 @@ SSID: TELUS9A06
 Channel: 54 (5G)
 ```
 
-## Setup Laptops
+### Setup Laptops
 After the printer wireless function works, you can add the wireless printer to each laptop from Windows `Printers & Scanners`.
 
 * Click `Add a printer or scanner` button 
 * Select `NPI2796D8 (HP LaserJet MFP M130nw)` wireless printer.
 * It will be installed to your laptop and ready to use.
 
+## Setup Wi-Fi Direct Printing
+Wi-Fi Direct enables printing from a wireless mobile device without requiring a connection to a network or the Internet.
+
+### Enable Wi-Fi Direct Printing from printer
+1. On the printer control panel, press the Setup button.
+2. Open the following menus: `Network Setup` > `Wireless Menu` > `Wi-Fi Direct`
+3. Choose one of the following connection methods:
+   * Automatic: Choosing this option sets the password to 12345678.
+   * Manual: Choosing this option generates a secure, randomly generated password.
+
+### Using Wi-Fi Direct Printing from mobile device or Windows computer
+1. On the mobile device, open the Wi-Fi or Wi-Fi Direct menu.
+2. From the list of available networks, select the printer name.
+3. If prompted, enter the Wi-Fi Direct password, or select OK on the printer control panel.
+
+### Install HP Smart App to Windows
+The easiest way to use the printer from PC is to [download](https://support.hp.com/us-en/drivers/selfservice/hp-laserjet-pro-mfp-m130-series/9365370/model/9365372) 
+and install `HP Smart App`. It'll find the printer automatically. (USB, Newwork or Wi-Fi direct)
+
 ## Scan
 From `Windows Fax and Scan`, you can also use it as a scanner. 
+Also you can use `HP Smart App` to scan document.
 
 ## Link
-[HP LaserJet Printers - Wireless Printer Setup](https://support.hp.com/us-en/product/hp-laserjet-pro-mfp-m130-series/9365370/model/9365372/document/c05211196)
+* [HP LaserJet Printers - Wireless Printer Setup](https://support.hp.com/us-en/product/hp-laserjet-pro-mfp-m130-series/9365370/model/9365372/document/c05211196)
+* [HP LaserJet MFP M130nw User Guide](http://h10032.www1.hp.com/ctg/Manual/c05208327.pdf)
