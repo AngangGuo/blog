@@ -7,7 +7,7 @@ categories:
 tags:
   - NDI
   - Zoom
-  - ProPresentor
+  - ProPresenter
 draft: false
 ---
 
@@ -24,7 +24,7 @@ any other device on your network with NDI.
 * `Capture Settings` > `Config Rol` > Resize and move the `NDI Region of Interest` window to your desired location
 * Select `Region of interest` to enable screen capture
 
-### How to show Zoom screen to ProPresentor?
+### How to show Zoom screen to ProPresenter?
 * Capture the Zoom Application. See [How to capture screen?]({{< ref "#capture" >}})
 * Config the captured Zoom screen as the input of ProPresenter. See [ProPresenter NDI Input]({{< ref "#ndi-input" >}})
 

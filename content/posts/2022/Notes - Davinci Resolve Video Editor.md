@@ -2,9 +2,9 @@
 title: "Notes - Davinci Resolve Video Editor"
 date: 2022-06-06T16:00:13-07:00
 categories:
-  - Video Editor
   - Church
 tags:
+  - Video Editor
   - Davinci Resolve
 draft: false
 ---
@@ -15,7 +15,7 @@ draft: false
 * Zoom the photo: 
 `Inspector > Video > Transform > Zoom > xxx`
 * Add a border to a photoA: 
-  1. Right click the photo in timeline, choose `Open in Fusion Page`
+  1. Right-click the photo in timeline, choose `Open in Fusion Page`
   2. `Effects > Templates > Edit > Effects > Colored Border`
   3. Drop the `Colored Border` effect at the middle of the MediaIn1 and MediaOut1
 * Add similar border to other photos: Select all the other photos, then click the photoA with the middle button to copy the border effect
