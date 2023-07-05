@@ -38,6 +38,22 @@ click the `Bing` icon at the bottom right to search the text in the browser, you
 
 Note: Remember to change your password after login to the system the first time.
 
+## Repair
+### How to reset a stuck infuser for De'Longhi coffee machine?
+If you can't insert(or remove) the infuser, you can reset it by following these steps:
+* Install all the other accessories, especially the drip try and waste coffee container/tray
+* Close the service door
+* Unplug from the outlet
+* Wait 3 seconds and then plug in again
+* Wait for all the lights to go off
+* Machine is reset and you can insert or remove the infuser now
+
+NOTE: The first step is very important. If you forget to insert the waste coffee tray, the machine won't reset.
+
+![De'Longhi ESAM 3200](/images/2022/delonghi-infuser.png)
+
+![De'Longhi ESAM 3200](/images/2022/delonghi-esam3200.png)
+
 ## Useful Links
 * [ListDiff.com](http://www.listdiff.com/compare-2-lists-difference-tool): compare two lists
 * 
