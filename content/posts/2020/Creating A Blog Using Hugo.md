@@ -282,6 +282,29 @@ baseURL = "https://angang.gitlab.io/"
 
 The better solution can be using relative URLs as shown [below]({{< ref "#css-load-error" >}})
 
+### How to update theme?
+Netlify failed to build, here are some of the error messages:
+```
+10:58:47 PM: Failed during stage 'preparing repo': Error checking out submodules: Submodule 'themes/meme' (https://github.com/reuixiy/hugo-theme-meme.git) registered for path 'themes/meme'
+Cloning into '/opt/build/repo/themes/meme'...
+fatal: remote error: upload-pack: not our ref 625747fa34a795c7b6d75ea80da20c8a84d9c2c6
+fatal: Fetched in submodule path 'themes/meme', but it did not contain 625747fa34a795c7b6d75ea80da20c8a84d9c2c6. Direct fetching of that commit failed.
+: exit status 128
+```
+
+To Update MemE
+```
+~/blog $ git submodule update --rebase --remote
+```
+
+If failed, try:
+```
+# 1. Delete meme folder, e.g. and commit
+~/blog $ rm -rf themes/meme
+# 2. Clone MemE again, then commit and push
+~/blog $ git clone --depth 1 https://github.com/reuixiy/hugo-theme-meme.git themes/meme
+```
+
 ### Why the generated static site can't load CSS/JS files ? {#css-load-error}
 Using `hugo` to generate the static files into `public` folder. 
 It shows the following errors when serving it from `localhost` by using Goland browser.
