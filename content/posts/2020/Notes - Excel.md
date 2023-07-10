@@ -124,3 +124,7 @@ Whenever I copy a formula, the value in the destination cells show the same valu
 Change the following settings to fix this problem:
 * File > Options > Formulas > Workbook Calculation > Automatic
 
+### How to fix circular references error?
+Go to tab `Formulas`, choose `Error-checking` (or `Circular References` on dropdown list),
+Excel will show out all formula errors. 
+
