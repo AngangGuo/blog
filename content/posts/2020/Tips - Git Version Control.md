@@ -73,6 +73,24 @@ git tag
 git show v1.0
 ```
 
+### How to rename a git tag
+To rename git tag `v0.2` to `v1.0`
+```
+// create a new tag
+$ git tag v1.0 v0.2
+$ git push --tags
+Total 0 (delta 0), reused 0 (delta 0)
+To https://github.com/AngangGuo/donation.git
+ * [new tag]         v1.0 -> v1.0
+
+// delete old tag
+$ git tag -d v0.2
+$ git push origin :refs/tags/0.2
+remote: warning: Deleting a non-existent ref.
+To https://github.com/AngangGuo/donation.git
+ - [deleted]         0.2
+```
+
 ### How to make git forget a tracked file?
 ```
 git update-index --skip-worktree <file> // ignore the file
@@ -109,24 +127,6 @@ origin  https://github.com/AngangGuo/RenewalFamily.git (push)
 git push -u origin master
 ```
 
-### How to rename a git tag
-To rename git tag `v0.2` to `v1.0`
-```
-// create a new tag
-$ git tag v1.0 v0.2
-$ git push --tags
-Total 0 (delta 0), reused 0 (delta 0)
-To https://github.com/AngangGuo/donation.git
- * [new tag]         v1.0 -> v1.0
-
-// delete old tag
-$ git tag -d v0.2
-$ git push origin :refs/tags/0.2
-remote: warning: Deleting a non-existent ref.
-To https://github.com/AngangGuo/donation.git
- - [deleted]         0.2
-```
-
 ### How to rewrite the most recent commit message?
 **Commit has not been pushed online**
 ```
@@ -152,6 +152,15 @@ git remote add origin https://github.com/YourAccountName/your-project.git
 git branch -M main
 git push -u origin main
 ```
+
+### How to import repository from GitLab?
+Go to your repositories > New > Import a repository 
+* Your old repository's clone URL: https://gitlab.com/angang/shareverses
+* Your new repository name: shareverses
+* Begin Import
+* Fill in credentials info and start import
+
+See [here](https://documentation.its.umich.edu/node/4001) and [here](https://docs.github.com/en/migrations/importing-source-code/using-github-importer/importing-a-repository-with-github-importer)
 
 ### How to use GitHub personal access token?
 * Settings > Developer settings > Personal access tokens > Generate new token > (write down it)

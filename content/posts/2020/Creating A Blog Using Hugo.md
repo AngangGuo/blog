@@ -299,8 +299,9 @@ To Update MemE
 
 If failed, try:
 ```
-# 1. Delete meme folder, e.g. and commit
+# 1. Delete meme folder and commit
 ~/blog $ rm -rf themes/meme
+
 # 2. Clone MemE again, then commit and push
 ~/blog $ git clone --depth 1 https://github.com/reuixiy/hugo-theme-meme.git themes/meme
 ```
