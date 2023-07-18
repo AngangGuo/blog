@@ -173,6 +173,18 @@ To https://github.com/AngangGuo/metrics.git
  - [deleted]         db-branch
 ```
 
+### Permission Error
+The following error shows out when I push to GitHub:
+```
+remote: Permission to AngangGuo/blog.git denied to renewalfamily.
+fatal: unable to access 'https://github.com/AngangGuo/blog.git/': The requested URL returned error: 403
+```
+
+Solution
+* Control Panel -> User Accounts -> Manage your credentials -> Windows Credentials
+* Under Generic Credentials there are some credentials related to GitHub, Click on them and click "Remove".
+* Push again and login to GitHub
+
 ### How to move a file into a folder?
 * Click the pencil icon to edit the file
 * In the filename field, type in the path you want the file to move in. Or
@@ -253,7 +265,7 @@ Beginning with a dash, use spaces separate the square brackets.
 ### How to reference a commit or issue in comment?
 Every commit, issue or pull request has a uniqe URL or SHA hash code(commit only). 
 Insert the URL or SHA into the comment directly, 
-Github will automatically convert it into shortened links to the commit.
+GitHub will automatically convert it into shortened links to the commit.
 
 ```
 // for commit
@@ -267,13 +279,13 @@ Issue or pull request URL: https://github.com/AngangGuo/playiq/issues/4 => #4
 
 See [Autolinked references and URLs](https://docs.github.com/en/github/writing-on-github/autolinked-references-and-urls)
 
-### How to add images to Github comments?
+### How to add images to GitHub comments?
 * Using Snipping Tool in Windows to get the image, copy to clipboard.
 * Click on the right position in Github issue comments, paste the image in the comment directly
 
 Or using drag and drop also works.
 
-### How to mark Github issue as `bug`?
+### How to mark GitHub issue as `bug`?
 Open the issue, at the right hand of the page, you can assign `bug` label to mark the issue.
 
 ### Preview HTML File
