@@ -18,6 +18,12 @@ If the original file in your computer has been updated to a new version.
 If you want to update the file in Google Drive to this new version, you can upload it to Google Drive again and select
 `Replace existing file` in the `Upload options` window. Replacing the file won't change sharing settings.
 
+## MacOS
+### Screenshot
+* Shift+Command+5: Show snipping tool control panel
+* Shift+Command+3: Capture the whole screen
+* Shift+Command+4: Select an area of your screen and take a screenshot
+
 ## Windows
 ### How to show file structures?
 ```
@@ -265,9 +271,12 @@ You can also use raw HTML in your Markdown, and it'll mostly work pretty well.
 </dl>
 ```
 
-### VLC: Lock Window Size
-Select Tools ⇨ Preferences ⇨ Interface then uncheck the box Resize interface to video size. Finally, restart VLC. 
-When I started a video VLC was always maximized. The box was checked by default.
+### Escape
+You can make a backtick (`) render within inline code by wrapping the code in double (or more) backticks (``)
+
+```
+`` `foo` ``
+```
 
 ### Links
 There are two ways to create links.
@@ -300,6 +309,11 @@ Reference-style:
 
 [logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
 ```
+
+## VLC
+### Lock Window Size
+Select Tools ⇨ Preferences ⇨ Interface then uncheck the box Resize interface to video size. Finally, restart VLC.
+When I started a video VLC was always maximized. The box was checked by default.
 
 ## Hugo
 
