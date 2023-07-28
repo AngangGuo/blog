@@ -23,6 +23,21 @@ fmt.Printf("%s, %[1]s","echo") // echo, echo
 fmt.Printf("%v-%v-%v-%[2]v-%v", 100, 200, 300) // 100-200-300-200-300
 ```
 
+### Replace & Replacer
+```
+// Replace returns a copy of the string s with the first n 
+// non-overlapping instances of old replaced by new.
+// func NewReplacer(oldnew ...string) *Replacer
+fmt.Println(strings.Replace("123.456.789.0", ".", "", -1)) // "1234567890"
+
+// Replacer replaces a list of strings with replacements. 
+// func NewReplacer(oldnew ...string) *Replacer
+// func (r *Replacer) Replace(s string) string
+r := strings.NewReplacer("一", "1", "二", "2", "三", "3", "百", "", "十", "")
+fmt.Println(r.Replace("三百二十一")) // 321
+fmt.Println(r.Replace("三十一")) // 31
+```
+
 ## JSON
 ### JSON Name Convention
 The JSON syntax does not impose any restrictions on the strings used as names.

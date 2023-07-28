@@ -18,7 +18,7 @@ x86 Legacy BIOS, IA32 UEFI, x86_64 UEFI, ARM64 UEFI and MIPS64EL UEFI are suppor
 
 ## Creating a Bootable USB
 ### Install Ventoy
-* [Download]() the installation package, like ventoy-x.x.xx-windows.zip and decompress it.
+* [Download](https://www.ventoy.net/en/download.html) the installation package, like ventoy-x.x.xx-windows.zip and decompress it.
 * Run `Ventoy2Disk.exe` , select the USB device and click Install or Update button.
 
 Note:
@@ -39,4 +39,4 @@ Ventoy will search all the directories and subdirectories recursively to find al
 See [here](https://www.ventoy.net/en/doc_secure.html)
 
 In my case, I need to disable Secure Boot in BIOS. 
-`Shift+Restart` to enter BIOS setup.
+Press `Del` when turn on the computer or press `Shift+Restart` from Windows to enter BIOS and disable secure boot.

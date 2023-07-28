@@ -73,6 +73,24 @@ git tag
 git show v1.0
 ```
 
+### How to rename a git tag
+To rename git tag `v0.2` to `v1.0`
+```
+// create a new tag
+$ git tag v1.0 v0.2
+$ git push --tags
+Total 0 (delta 0), reused 0 (delta 0)
+To https://github.com/AngangGuo/donation.git
+ * [new tag]         v1.0 -> v1.0
+
+// delete old tag
+$ git tag -d v0.2
+$ git push origin :refs/tags/0.2
+remote: warning: Deleting a non-existent ref.
+To https://github.com/AngangGuo/donation.git
+ - [deleted]         0.2
+```
+
 ### How to make git forget a tracked file?
 ```
 git update-index --skip-worktree <file> // ignore the file
@@ -109,24 +127,6 @@ origin  https://github.com/AngangGuo/RenewalFamily.git (push)
 git push -u origin master
 ```
 
-### How to rename a git tag
-To rename git tag `v0.2` to `v1.0`
-```
-// create a new tag
-$ git tag v1.0 v0.2
-$ git push --tags
-Total 0 (delta 0), reused 0 (delta 0)
-To https://github.com/AngangGuo/donation.git
- * [new tag]         v1.0 -> v1.0
-
-// delete old tag
-$ git tag -d v0.2
-$ git push origin :refs/tags/0.2
-remote: warning: Deleting a non-existent ref.
-To https://github.com/AngangGuo/donation.git
- - [deleted]         0.2
-```
-
 ### How to rewrite the most recent commit message?
 **Commit has not been pushed online**
 ```
@@ -153,6 +153,15 @@ git branch -M main
 git push -u origin main
 ```
 
+### How to import repository from GitLab?
+Go to your repositories > New > Import a repository 
+* Your old repository's clone URL: https://gitlab.com/angang/shareverses
+* Your new repository name: shareverses
+* Begin Import
+* Fill in credentials info and start import
+
+See [here](https://documentation.its.umich.edu/node/4001) and [here](https://docs.github.com/en/migrations/importing-source-code/using-github-importer/importing-a-repository-with-github-importer)
+
 ### How to use GitHub personal access token?
 * Settings > Developer settings > Personal access tokens > Generate new token > (write down it)
 * When `git push` your commits, using personal access tokens instead of your password
@@ -163,6 +172,18 @@ Password for 'https://AngangGuo@github.com': [your token]
 To https://github.com/AngangGuo/metrics.git
  - [deleted]         db-branch
 ```
+
+### Permission Error
+The following error shows out when I push to GitHub:
+```
+remote: Permission to AngangGuo/blog.git denied to renewalfamily.
+fatal: unable to access 'https://github.com/AngangGuo/blog.git/': The requested URL returned error: 403
+```
+
+Solution
+* Control Panel -> User Accounts -> Manage your credentials -> Windows Credentials
+* Under Generic Credentials there are some credentials related to GitHub, Click on them and click "Remove".
+* Push again and login to GitHub
 
 ### How to move a file into a folder?
 * Click the pencil icon to edit the file
@@ -244,7 +265,7 @@ Beginning with a dash, use spaces separate the square brackets.
 ### How to reference a commit or issue in comment?
 Every commit, issue or pull request has a uniqe URL or SHA hash code(commit only). 
 Insert the URL or SHA into the comment directly, 
-Github will automatically convert it into shortened links to the commit.
+GitHub will automatically convert it into shortened links to the commit.
 
 ```
 // for commit
@@ -258,13 +279,13 @@ Issue or pull request URL: https://github.com/AngangGuo/playiq/issues/4 => #4
 
 See [Autolinked references and URLs](https://docs.github.com/en/github/writing-on-github/autolinked-references-and-urls)
 
-### How to add images to Github comments?
+### How to add images to GitHub comments?
 * Using Snipping Tool in Windows to get the image, copy to clipboard.
 * Click on the right position in Github issue comments, paste the image in the comment directly
 
 Or using drag and drop also works.
 
-### How to mark Github issue as `bug`?
+### How to mark GitHub issue as `bug`?
 Open the issue, at the right hand of the page, you can assign `bug` label to mark the issue.
 
 ### Preview HTML File

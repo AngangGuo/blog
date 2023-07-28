@@ -23,6 +23,17 @@ const renderedText = htmlElement.innerText
 htmlElement.innerText = string
 ```
 
+## JavaScript
+### Template literals
+In JavaScript, you can use variables in strings by using a technique called string interpolation or template literals. 
+Template literals are enclosed by backticks “ ``` ` ``` “ (instead of single or double quotes) and use the syntax ``` `${variable}` ``` 
+to insert the variables’ values inside the string. Here’s an example:
+
+```
+let name = 'Andrew';
+console.log(`My name is ${name}.`);
+```
+
 ## Using XPath in JavaScript
 See [Introduction to using XPath in JavaScript](https://developer.mozilla.org/en-US/docs/Web/XPath/Introduction_to_using_XPath_in_JavaScript)
 ```javascript
