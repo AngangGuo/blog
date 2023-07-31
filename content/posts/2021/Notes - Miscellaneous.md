@@ -18,12 +18,6 @@ If the original file in your computer has been updated to a new version.
 If you want to update the file in Google Drive to this new version, you can upload it to Google Drive again and select
 `Replace existing file` in the `Upload options` window. Replacing the file won't change sharing settings.
 
-## MacOS
-### Screenshot
-* Shift+Command+5: Show snipping tool control panel
-* Shift+Command+3: Capture the whole screen
-* Shift+Command+4: Select an area of your screen and take a screenshot
-
 ## Windows
 ### How to show file structures?
 ```
