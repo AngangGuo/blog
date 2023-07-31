@@ -41,6 +41,14 @@ Use any of the following formula to remove the #DIV/0! from Spreadsheet:
 * `=IF(A2,A1/A2,0)` or `=IF(A2,A1/A2,"No Input")`
 * `=IF(ISERROR(A1/A2),0,A1/A2)`
 
+### How to show data conditional?
+In the daily report file, I want to show the WIP data in current date, but not in the future date. 
+
+```
+// Show data only if tested assets(B4) and receiving assets(C4) exists
+=IF((B4+C4)>0,D3-B4+C4,"")
+```
+
 ### How to paste CSV data into individual columns?
 When pasting CSV data into Excel, all the data will be in one column. 
 To separate the data into individual columns, follow these steps:
