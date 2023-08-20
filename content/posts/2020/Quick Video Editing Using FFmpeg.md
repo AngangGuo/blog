@@ -114,13 +114,19 @@ ffmpeg -loop 1 -i %1 -i %2 -c:v libx264 -vf format=yuv420p -c:a copy -shortest "
 ```
 
 ### How to merge multiple video files?
-* Create a video file list in the order you want to merge
+* Create a video file list in the order you want to merge. Example:
+```
+file video1.mp4
+file video2.mp4
+...
+```
+
 * Use the following command to merge it
 ```
 ffmpeg -f concat -safe 0 -i mylist.txt -c copy all.mp4
 ```
 
-The following batch file can merge all the mp4 video files in the folder if the file order is not important.
+* The following batch file can merge all the mp4 video files in the folder if the file order is not important.
 
 **mergeall.bat**
 ```
