@@ -3,9 +3,10 @@ title: "Notes - Apple: macOS"
 date: 2022-03-18T15:49:39-07:00
 categories:
   - Tech
-  - Apple
+  - OS
 tags:
   - MacOS
+  - Apple
 draft: false
 ---
 
@@ -38,6 +39,10 @@ Command–Mission Control: Show the desktop.
 Option–Volume Up: Open Sound preferences. This works with any of the volume keys.
 Option–Brightness Up: Open Displays preferences. This works with either Brightness key.
 ```
+### Screenshot Shortcuts
+* Shift+Command+5: Show snipping tool control panel
+* Shift+Command+3: Capture the whole screen
+* Shift+Command+4: Select an area of your screen and take a screenshot
 
 ### How to rename multiple file names?
 * On your Mac, select the items, then Ctrl-click one of them.
@@ -48,3 +53,14 @@ Option–Brightness Up: Open Displays preferences. This works with either Bright
     * `Format`: Choose a name format for the files, then choose to put the index, counter, or date before or after the name. Enter a name in the Custom Format field, then enter the number you want to start with.
 * Click `Rename`
 
+### How to reinstall macOS?
+
+* Turn on your Mac and continue to press and hold the `power button` until you see the startup options window.
+* Click the gear icon labeled Options, then click Continue.
+* Connect to WiFi by click the wireless icon in the top right corner of the screen
+* Select `Reinstall MacOS Monterey` to continue
+
+Note:
+* You may need to wait very long time for `continue` button to show out
+* You must `press the mouse pad` to simulate the left click button. Double tap doesn't work
+* See [here](https://support.apple.com/en-us/HT204904)
