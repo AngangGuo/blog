@@ -17,6 +17,13 @@ draft: false
 
 
 ## Q & A
+### How to make a table as strap color?
+Format it as a table:  
+`Home` > `Format as table`
+
+If you want to use different colors for your table:  
+`Page Layout` > `Theme Colors`
+
 ### How to add Header & Footer ?
 It's better to add the file path and name at the bottom of the Excel form so that we can find it easily in the future.
 
