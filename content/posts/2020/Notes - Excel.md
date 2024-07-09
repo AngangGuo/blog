@@ -17,6 +17,15 @@ draft: false
 
 
 ## Q & A
+### How to open the file in Desktop App?
+When someone share a link to an Excel file, it usually opened in Browser if you click the link.
+
+To open the file from desktop app
+* Click the `Editing` icon on the top right corner
+* Open in Desktop App
+
+[open in desktop app](/images/2020/excel-open-in-desktop-app.JPG)
+
 ### How to make a table as strap color?
 Format it as a table:  
 `Home` > `Format as table`
