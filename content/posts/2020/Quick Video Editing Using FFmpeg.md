@@ -180,6 +180,14 @@ on how to control output quality by using `-q:v` option.
 ffmpeg -ss 01:23:45 -i input -frames:v 1 -q:v 2 output.jpg
 ```
 
+### How to convert a picture to video file?
+```
+ffmepg -framerate 30 -loop 1 -i Slide1.jpg -c:v libx264 -t 5 out.mp4
+```
+* -framerate: should be the same as your video frame rate
+* -t: video length (seconds)
+* -vf scale=1920:1080: if you need to scale the picture
+
 ###  Convert video file
 ```
 ffmpeg -i in.mp4 -s 320x180 -b:v 1500k -b:a 128k out.mp4
