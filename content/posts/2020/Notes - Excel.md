@@ -17,6 +17,22 @@ draft: false
 
 
 ## Q & A
+### How to open the file in Desktop App?
+When someone share a link to an Excel file, it usually opened in Browser if you click the link.
+
+To open the file from desktop app
+* Click the `Editing` icon on the top right corner
+* Open in Desktop App
+
+[open in desktop app](/images/2020/excel-open-in-desktop-app.JPG)
+
+### How to make a table as strap color?
+Format it as a table:  
+`Home` > `Format as table`
+
+If you want to use different colors for your table:  
+`Page Layout` > `Theme Colors`
+
 ### How to add Header & Footer ?
 It's better to add the file path and name at the bottom of the Excel form so that we can find it easily in the future.
 

@@ -8,8 +8,16 @@ tags:
   - Outlook
   - Markdown
   - Windows
+  - Miscellaneous
 draft: false
 ---
+
+## Useful Website Links
+* [File Sharing/transfers](filetransfer.io) 
+* [Compare list](www.listdiff.com) 
+* [Convert a website table to Markdown](https://tabletomarkdown.com/convert-website-table-to-markdown/)
+* [Convert Spreadsheet table to Markdown](https://tabletomarkdown.com/convert-spreadsheet-to-markdown/)
+* myapps.microsoft.com: my applications
 
 ## Google Drive
 ### How to update the file but keep the shared link?

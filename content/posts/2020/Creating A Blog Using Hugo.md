@@ -196,6 +196,20 @@ The easiest is to use [Vercel(ZEIT) Now](https://vercel.com/docs), see [example]
 See [this post](/posts/2020/host-static-website-on-gitlab-pages/) on how to host your blog on Gitlab.
 
 ## FAQ
+### Error when pushing to GitHub?
+When push to GitHub, get this error message
+```
+Update failed in themes\meme themes\meme: couldn't find remote ref refs/heads/master
+```
+Run following command to fix it (for more details see [here](https://github.com/reuixiy/hugo-theme-meme#update-meme) and [here](https://stackoverflow.com/questions/6930147/git-pull-displays-fatal-couldnt-find-remote-ref-refs-heads-xxxx-and-hangs-up)):
+```
+git remote prune origin --dry-run
+
+// failed to update meme
+rm -rf themes/meme
+git clone --depth 1 https://github.com/reuixiy/hugo-theme-meme.git themes/meme
+```
+
 ### How to show shortcode example in markdown file?
 To show `{{</* youtube qtIqKaDlqXo */>}}`in markdown file, you code it as following
 ```

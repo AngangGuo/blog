@@ -10,7 +10,16 @@ draft: false
 ---
 
 
-## Tips to speed up editing
+### How to open a GitHub project?
+Git > Clone... > Select `GitHub` from left panel.
+
+If you can't see the GitHub list from left panel:
+* Version Control: `Git`
+* URL: Your GitHub repository link
+* Directory: the folder where your local Git repository will be created
+* Click `Clone`
+* Login to your GitHub account if needed
+
 ### Keyboard Shortcuts
 ```
 Ctrl + Alt + Left: Back to previous caret position
@@ -58,7 +67,7 @@ for i, i2 := range collection {
 		
 }
 ```
-### View Tips
+### Tips
 #### Soft Wrap
 From `Settings > Editor > General > Soft Wraps`, You can config soft wraps for specific file types. Enter file extensions separating them with semicolon.
 
