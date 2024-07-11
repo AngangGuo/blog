@@ -17,6 +17,16 @@ draft: false
 
 
 ## Q & A
+### How to unhide all rows?
+Using keyboard shortcuts:
+* Ctrl + A: Select the entire document
+* Ctrl + Shift + 9: unhide all rows on your spreadsheet
+
+Using context menu:
+* Home > Format > Hide & Unhide > Unhide rows
+
+![unhide rows](/images/2020/excel-unhide-rows.JPG)
+
 ### How to open the file in Desktop App?
 When someone share a link to an Excel file, it usually opened in Browser if you click the link.
 
