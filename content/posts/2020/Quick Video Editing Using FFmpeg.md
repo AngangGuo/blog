@@ -51,15 +51,28 @@ ffmpeg -i video.mp4 -ss 00:01:00 -to 00:02:00 -c copy cut.mp4
 @echo off
 echo -------------------------------------------------------------------------
 echo.
-echo Usage: acut audiofile.m4a start-time end-time
+echo Usage: acut audiofile.mp4 start-time end-time
 echo.
-echo Example: acut 20200401.m4a 00:00:30 00:10:30
+echo Example: acut 20200401.mp4 00:00:30 00:10:30
 echo.
 echo -------------------------------------------------------------------------
 echo. 
 
-ffmpeg -ss %2 -i %1 -to %3 -c copy -copyts -avoid_negative_ts 1 "%~n1_cut%~x1"
+echo // long timestamp keeps at the beginning of the new video looks strange
+echo C:\Tools\ffmpeg7\ffmpeg -ss %2 -i %1 -to %3 -c copy -copyts -avoid_negative_ts 1 "%~n1_cut%~x1"
+
+echo // end time not correct
+echo C:\Tools\ffmpeg7\ffmpeg -ss %2 -i %1 -to %3 -c copy "%~n1_cut%~x1" 
+
+echo // black beginning
+echo C:\Tools\ffmpeg7\ffmpeg -i %1 -ss %2 -to %3 -c copy -copyts -avoid_negative_ts 1 "%~n1_cut%~x1"
+
+echo // this command works well
+C:\Tools\ffmpeg7\ffmpeg -ss %2 -to %3 -i %1 -c copy -map 0 -avoid_negative_ts make_zero "%~n1_cut%~x1"
 ```
+
+Note:
+The above command is for .mp4 files, for .mov file, see [here](https://unix.stackexchange.com/questions/778153/trimming-a-video-using-ffmpeg-leads-to-black-screen)
 
 ### How to convert a video to 720p?
 Use the following commands to convert a video to 720P or 360P. See [Scaling][8]
