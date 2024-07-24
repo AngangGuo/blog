@@ -6,11 +6,28 @@ categories:
   - Web
 tags:
   - UiPath
-  - RPA
+  - Work
 draft: false
 ---
 
+## Work
+### How to update RLPath(UiPath project)?
+```
+// this works on the laptop
+git stash
+git pull
+
+// If the above command doesn't work well, 
+// try to re-clone to a new folder
+git clone --depth 1 https://github.com/AngangGuo/RLPath.git RLPath
+```
+
 ## Control Flow
+
+### How to comment / un-comment an activity?
+Select the activity
+* To comment an activity: Ctrl + D
+* To un-comment an activity: Ctrl + E
 
 ### How to verify if `Get Text` is empty?
 * Check App State (Element to appear / Element to disappear)
@@ -426,8 +443,6 @@ Methods in UiPath that use the RegEx builder: Matches, IsMatch, and Replace
 * IsMatch: Indicates whether the specified regular expression finds a match in the specified input string. Output datatype: Boolean
 * Replace: Replaces strings that match a regular expression pattern with a specified replacement string. Output datatype: String
  
-
-
 For Each activity: Keep in mind that the TypeArgument should be Match in System.Text.RegularExpressions.
 
 ### Date and Time
