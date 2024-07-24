@@ -549,3 +549,16 @@ on how to enable it.
 See [UiPath - Edge Group Policies](https://docs.uipath.com/studio/docs/edge-group-policies)
  and [Microsoft Edge Policies](https://docs.microsoft.com/en-us/deployedge/microsoft-edge-policies#extensioninstallallowlist)
 
+### Wrong language in project file
+Error message: 
+`Expression activity type ‘CSharpValue`1’ requires compilation inorder to run`
+
+If a project missing `project.json` file, UiPath will automatically create one when you open your project.
+The default design language is VB(VisualBasic), but my project is C#. 
+
+Change the `expressionLanguage` to `CSharp will solve the problem.
+
+`"expressionLanguage": "CSharp",`
+
+
+
