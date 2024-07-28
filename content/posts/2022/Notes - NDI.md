@@ -12,8 +12,19 @@ draft: false
 ---
 
 ## NDI
+### Screen Capture HX vs Screen Capture
+* Sreen Capture is uncompressed and requires a lot of bandwidth.
+* Screen Capture HX allows for smoother video streaming and reduces the strain on your network, 
+making it a good choice for situations with limited network resources or when streaming over wireless connections.
 
-### Screen Capture vs Screen Monitor
+Here is the detailed information from official website:
+> NDI Screen Capture HX provides features comparable to NDI Screen Capture, but it uniquely leverages GPU acceleration. 
+>
+> This ensures low-latency video delivery, supporting resolutions up to 4K and frame rates of 120 Hertz or higher, 
+using H.264 or HEVC compression. 
+GPU acceleration significantly reduces your system's CPU workload, enhancing overall efficiency.
+
+[//]: # (### Screen Capture vs Screen Monitor)
 
 ### How to capture screen? {#capture}
 From computer A run `Screen Capture` to share your computer’s desktop video and/or audio to 
