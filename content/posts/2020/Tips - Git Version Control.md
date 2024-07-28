@@ -93,10 +93,21 @@ To https://github.com/AngangGuo/donation.git
 
 ### How to make git forget a tracked file?
 ```
+git update-index --assume-unchanged <file>
+
 git update-index --skip-worktree <file> // ignore the file
 git update-index --no-skip-worktree <file> // to cancel
 ```
 See [here](https://stackoverflow.com/questions/1274057/how-do-i-make-git-forget-about-a-file-that-was-tracked-but-is-now-in-gitignore)
+
+Or see [here](https://stackoverflow.com/questions/1274057/how-do-i-make-git-forget-about-a-file-that-was-tracked-but-is-now-in-gitignore?rq=1) on using these commands: 
+```
+git rm --cached <file>
+git rm -r --chched <folder>
+```
+WARNING: 
+While this will not remove the physical file from your local machine, 
+it will remove the files from other developers' machines on their next git pull.
 
 ### What's the difference between `assume-unchanged` and `skip-worktree`?
 * `--assume-unchanged` assumes that a developer shouldn’t change a file. This flag is meant for improving performance for not-changing folders like SDKs.
@@ -308,6 +319,17 @@ You can pin gists, your own public repositories or others' repositories if you'v
 You may create issues in many repositories. To list all the issues you created:
 * Login to GitHub
 * At the top of the page, click `Issues` or `Pull requests` to list all your issues/pull requests.
+
+### How to add Github account to your two-factor authentication app?
+* Login to your Github account > Click your account icon
+* Password and authentication > Two-factor authentication
+* Authenticator app > Edit 
+* Github will show QR code, 
+* Scan the QR code from your authentication app will add Github account to your app
+
+### Two-factor authentication
+* You can set up SMS/Text message, authenticator app or GitHub mobile app to authenticate.
+* You can select your preperred 2FA method as one of the above.
 
 ## Gitlab
 ### How to sync `gitlab` and `github` repository?
