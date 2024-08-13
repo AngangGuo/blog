@@ -10,6 +10,18 @@ tags:
 draft: false
 ---
 
+## Best Practices
+### Use locators
+Locators come with auto waiting and retry-ability. 
+Auto waiting means that Playwright performs a range of actionability checks on the elements, 
+such as ensuring the element is visible and enabled before it performs the click. 
+To make tests resilient, we recommend prioritizing user-facing attributes and explicit contracts.
+```
+page.getByRole('button', { name: 'submit' });
+```
+
+
+
 ## Tips
 ### How to wait for one of several pages to show out?
 Use regular expression to check each one of the pages may be showed out.
@@ -36,7 +48,7 @@ url := iq.page.URL()
 ```
 
 ### How to get the page ready?
-For Goto page function using *WaitUntilState options for fine adjustment.
+For `page.Goto()` function using *WaitUntilState options for fine adjustment.
 ```
 // Other options: WaitUntilStateDomcontentloaded / WaitUntilStateLoad
 _, err := iq.page.Goto(blueIQURL, playwright.PageGotoOptions{
@@ -44,10 +56,6 @@ _, err := iq.page.Goto(blueIQURL, playwright.PageGotoOptions{
 })
 ```
 Or use `WaitForLoadState` function if you already in the page.
-
-Note: This function will not work if your page is re-directing to other pages, 
-like searching an asset tag in BlueIQ and re-directing to repair page.
-Use the above `WaitForURL` function instead in this case.
 ```
 // LoadStateLoad - not ready, can't get threshold remaining
 // LoadStateDomcontentloaded - page doesn't show out but you can get the data - faster
@@ -57,6 +65,10 @@ err = iq.page.WaitForLoadState(playwright.PageWaitForLoadStateOptions{State: pla
 // Or use Locator.WaitFor
 err = iq.page.Locator(auditRepairThresholdRemainingID).WaitFor()
 ```
+
+Note: This function will not work if your page is re-directing to other pages,
+like searching an asset tag in BlueIQ and re-directing to repair page.
+Use the above `WaitForURL` function instead in this case.
 
 ## Selector
 
