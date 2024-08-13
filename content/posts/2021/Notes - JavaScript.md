@@ -24,6 +24,25 @@ htmlElement.innerText = string
 ```
 
 ## JavaScript
+### URL functions
+![url diagram](/images/2021/url-diagram.JPG)
+
+```
+// window.location = window.location.href
+console.log(window.location.href) // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_split1
+console.log(window.location.origin) // https://www.w3schools.com
+console.log(window.location.host) // www.w3schools.com
+
+const url = new URL("https://www.example.com/path/to/page?query=value#fragment");
+console.log(url.protocol); // "https:"
+console.log(url.host);     // "www.example.com"
+console.log(url.pathname); // "/path/to/page"
+console.log(url.search);   // "?query=value"
+console.log(url.hash);     // "#fragment"
+```
+
+See [MDN web docs](https://developer.mozilla.org/en-US/docs/Web/API/URL)
+
 ### Template literals
 In JavaScript, you can use variables in strings by using a technique called string interpolation or template literals. 
 Template literals are enclosed by backticks “ ``` ` ``` “ (instead of single or double quotes) and use the syntax ``` `${variable}` ``` 
