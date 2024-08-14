@@ -201,12 +201,12 @@ uglyURLs = false
         weight = 2
         pre = "internal"
         post = "archive"
-#    [[menu.main]]
-#        url = "/plans/"
-#        name = "读经计划"
-#        weight = 3
-#        pre = "internal"
-#        post = "archive"
+    [[menu.main]]
+        url = "/faith/"
+        name = "faith"
+        weight = 3
+        pre = "internal"
+        post = "archive"
     [[menu.main]]
         url = "/categories/"
         name = "Categories"
