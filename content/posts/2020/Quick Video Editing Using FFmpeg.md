@@ -17,6 +17,25 @@ a high quality polyphase filter.
 I got some video and audio files need to be processed. 
 
 ## Tips
+### How to change video/audio volume?
+```
+// video
+ffmpeg -i input.mp4 -af "volume=0.5" -c:v copy output.mp4
+
+// audio
+ffmpeg -i input.mp3 -af "volume=0.5" output.mp3
+```
+`volume=0.5`: half the volume; 
+a value less than 1 decreases the volume, and a value greater than 1 increases it.
+
+You can also use decibels like `volume=3dB`. 
+
+### Detecting the volume
+With `volumedetect`, we can find out how much a track's volume can be increased:
+```
+ffmpeg -i input.mp3 -af "volumedetect" -vn -sn -dn -f null -
+```
+See [link](https://creatomate.com/blog/how-to-change-the-volume-of-a-media-file-using-ffmpeg)
 
 ### How to cut video from A to B?
 You may want to remove some part of the video and keep another part. 
