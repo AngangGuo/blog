@@ -9,6 +9,16 @@ tags:
 draft: false
 ---
 
+## Tips
+### Regular expression is not a const
+There are boolean, rune, integer, floating-point, complex, and string constants. 
+Rune, integer, floating-point, and complex constants are collectively called numeric constants.
+
+Regular expression can only be defined as a variable, not const.
+```
+var re = regexp.MustCompile("RepairDetailLOB|AssetConfiguration|Summary")
+```
+
 ## Standard Library
 
 ### How to re-use parameters in `fmt.Printf()`?

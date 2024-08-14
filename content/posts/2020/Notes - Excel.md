@@ -15,8 +15,12 @@ draft: false
 * To add today’s date in such a way that it updates when you recalculate or reopen your spreadsheet: `=Today()`
 * To insert current time: `Ctrl+Shift+;`
 
-
 ## Q & A
+### How to insert the same data to multiple cells at the same time?
+* Select all cells you want to insert the data
+* Press `F2` and type in the data
+* Press `Ctrl+Enter`
+
 ### How to unhide all rows?
 Using keyboard shortcuts:
 * Ctrl + A: Select the entire document

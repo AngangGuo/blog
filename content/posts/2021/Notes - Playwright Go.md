@@ -10,6 +10,65 @@ tags:
 draft: false
 ---
 
+## Best Practices
+### Use locators
+Locators come with auto waiting and retry-ability. 
+Auto waiting means that Playwright performs a range of actionability checks on the elements, 
+such as ensuring the element is visible and enabled before it performs the click. 
+To make tests resilient, we recommend prioritizing user-facing attributes and explicit contracts.
+```
+page.getByRole('button', { name: 'submit' });
+```
+
+
+
+## Tips
+### How to wait for one of several pages to show out?
+Use regular expression to check each one of the pages may be showed out.
+```
+// Repair tab
+// auditRepairURL = `https://blueiq.cloudblue.com/Audit/RepairDetailLOB.aspx`
+
+// Test tab
+// auditTestURL = `https://blueiq.cloudblue.com/Audit/AssetConfiguration.aspx`
+
+// Not found tab
+// auditSummaryURL = "https://blueiq.cloudblue.com/Audit/Summary.aspx"
+
+// Any one of the above three cases
+var reAssetURLs = regexp.MustCompile("RepairDetailLOB|AssetConfiguration|Summary")
+
+// It will be done if any one of the above url reached
+err = iq.page.WaitForURL(reAssetURLs, playwright.PageWaitForURLOptions{
+	WaitUntil: playwright.WaitUntilStateDomcontentloaded,
+})
+
+// check which url reached
+url := iq.page.URL()
+```
+
+### How to get the page ready?
+For `page.Goto()` function using *WaitUntilState options for fine adjustment.
+```
+// Other options: WaitUntilStateDomcontentloaded / WaitUntilStateLoad
+_, err := iq.page.Goto(blueIQURL, playwright.PageGotoOptions{
+    WaitUntil: playwright.WaitUntilStateNetworkidle,
+})
+```
+Or use `WaitForLoadState` function if you already in the page.
+```
+// LoadStateLoad - not ready, can't get threshold remaining
+// LoadStateDomcontentloaded - page doesn't show out but you can get the data - faster
+// LoadStateNetworkidle - page is visible and ready - stable but slower
+err = iq.page.WaitForLoadState(playwright.PageWaitForLoadStateOptions{State: playwright.LoadStateNetworkidle})
+
+// Or use Locator.WaitFor
+err = iq.page.Locator(auditRepairThresholdRemainingID).WaitFor()
+```
+
+Note: This function will not work if your page is re-directing to other pages,
+like searching an asset tag in BlueIQ and re-directing to repair page.
+Use the above `WaitForURL` function instead in this case.
 
 ## Selector
 
@@ -31,7 +90,8 @@ err = page.Click("text=Vancouver") // ok
 err = page.Click("text=Vancouver, BC (RL)") // ok
 ```
 ```
-err = page.Click("text=Vancouver,&nbsp;BC&nbsp;(RL)") // not work
+// not work
+err = page.Click("text=Vancouver,&nbsp;BC&nbsp;(RL)") 
 ```
 
 ### XPath
