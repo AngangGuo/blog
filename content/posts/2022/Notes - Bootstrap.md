@@ -10,6 +10,35 @@ tags:
 draft: false
 ---
 
+## Examples
+### Center Alignment
+* `text-center`: center the text inside the container row "r1"
+* `justify-content-center`: make all three columns "c1", "c2", and "c3" center as a group inside row "r2"; or make the button horizontal center inside column "r2"
+* `d-flex align-items-center`: make the button vertical center inside of the "c2" container; you can use `align-items-start` to move the button to the top of "c2" container
+* `align-self-center`: make the "c2" container as a whole to be center vertically inside column "r2" ; 
+
+```
+<div class="container">
+    <div id="r1" class="row">
+        <div class="col">
+            <h3 class="text-center">Check Threshold Remaining</h3>
+        </div>
+    </div>
+    <div id="r2" class="row justify-content-center" style="min-height: 60vh;">
+        <div id="c1" class="col-4 col-md-3 d-flex justify-content-end">
+            <textarea name="asset-list" id="asset-list" style="min-width: 100%; overflow: scroll"></textarea>
+        </div>
+        <div id="c2" class="col-4 col-md-3 align-self-center d-flex align-items-center justify-content-center" style="background-color: lightyellow; height: 30vh">
+            <button onclick="getThreshold()">Get Thresholds</button>
+        </div>
+        <div id="c3" class="col-4 col-md-3">
+            <div id="result" style="min-height: 100%; min-width: 100%; overflow: scroll; background-color: aliceblue">
+            </div>
+        </div>
+    </div>
+</div>
+```
+
 ## Text
 ### Line height
 Change the line height with .lh-* utilities.
