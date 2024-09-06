@@ -3,21 +3,46 @@ title: "Notes - PowerShell & CMD"
 date: 2022-05-13T20:45:54-07:00
 categories:
   - Tech
-  - Command Line
 tags:
   - PowerShell
   - CMD
+  - Command Line
 draft: false
 ---
 
 ## Tips
 ### How to execute one command after another?
+### Execute multiple commands on one line
+* Windows CMD: `go build | try`
+    * &: separate multiple commands on one command line.
+    * &&: run the command following && only if the command preceding the symbol is successful. `mkdir -p newApp && cd newApp`
+    * ||: run the command following || only if the command preceding || fails.
+
+* For Powershell or Bash(semicolon): 
+  * `go build; .\try.exe`: Execute the first command, then second command
+  * `go build; if ($?) {.\server.exe}`: To execute the second command only if the first command is succeed
+
+### How to find the location of an executable file?
+From command line:
 ```
-go build -o server.exe; .\server.exe
+G:\>where hugo
+C:\Andrew\prg\bin\hugo.bat
 ```
-To execute the second command only if the first command is succeed:
+
+From PowerShell:
 ```
-go build; if ($?) {.\server.exe}
+PS C:\Andrew\prj\blog> Get-Command hugo
+CommandType     Name       Version    Source
+-----------     ----       -------    ------
+Application     hugo.bat   0.0.0.0    C:\Andrew\prg\bin\hugo.bat
+```
+
+### How to change character encoding?
+Beginning in PowerShell 5.1, the redirection operators (> and >>) call the Out-File cmdlet,
+which is UTF-16 encoding by default. To change the encoding to UTF-8:
+```
+$PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'
+.\plan-b.exe | Out-File plan.txt -encoding utf8
 ```
 
 ## Environment Variables
