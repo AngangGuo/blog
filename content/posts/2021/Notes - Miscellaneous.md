@@ -144,6 +144,17 @@ Quote using a keyboard shortcut
 
 See [here](https://support.microsoft.com/en-us/office/create-a-group-chat-556d9323-75f4-4cbe-ba49-e65d7d8d53a8)
 
+## OBS
+### How to run OBS in portable mode?
+Windows
+First, download the ZIP from the [Download page](https://obsproject.com/download) and unzip it.
+
+There are two methods to launch OBS in portable mode:
+* Either place an empty `portable_mode` or `portable_mode.txt` file in the root directory and open `obs64.exe` in `bin/64bit/`.
+* Or, launch `bin/64bit/obs64.exe` using the `--portable` flag.
+
+Note: You may need to install C++ to make OBS work.
+
 ## Office
 ### How to view the previous version of Office files?
 * Open the file you want to view.
@@ -210,23 +221,6 @@ If you can't find the deleted item in your Outlook, you can recover it from the 
 
 ### Add Emoji in Email
 Press Windows logo key + .(or ;) to open the Emoji Panel
-
-## Command Line
-### Execute multiple commands on one line
-* Windows CMD: `go build | try`
-  * &: separate multiple commands on one command line.
-  * &&: run the command following && only if the command preceding the symbol is successful. `mkdir -p newApp && cd newApp`
-  * ||: run the command following || only if the command preceding || fails.
-
-* For Powershell or Bash(semicolon): `go build; .\try.exe`
-
-### Change character encoding
-Beginning in PowerShell 5.1, the redirection operators (> and >>) call the Out-File cmdlet, 
-which is UTF-16 encoding by default. To change the encoding to UTF-8:
-
-`$PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'`
-
-`.\plan-b.exe | Out-File plan.txt -encoding utf8`
 
 ## Markdown
 ### Comment
