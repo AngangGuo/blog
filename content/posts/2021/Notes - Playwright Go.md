@@ -20,7 +20,11 @@ To make tests resilient, we recommend prioritizing user-facing attributes and ex
 page.getByRole('button', { name: 'submit' });
 ```
 
-
+#### Use `codegen` to generate locators
+To pick a locator run the codegen command followed by the URL that you would like to pick a locator from.
+```
+npx playwright codegen your-url(playwright.dev)
+```
 
 ## Tips
 ### How to wait for one of several pages to show out?
