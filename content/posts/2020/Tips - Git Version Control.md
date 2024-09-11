@@ -13,6 +13,22 @@ draft: false
 
 ## Git
 
+### How to remove Git submodule from a project?
+I use go module 
+
+require github.com/McShelby/hugo-theme-relearn v0.0.0-20230328175528-8d474ed3b16b // indirect
+
+```
+# Remove the submodule entry from .git/config
+git submodule deinit -f themes/hugo-theme-relearn
+
+# Remove the entry in .gitmodules
+git rm -f themes/hugo-theme-relearn
+
+# Remove the submodule directory from the .git/modules directory
+rd /s .git\modules\themes\hugo-theme-relearn
+```
+
 ### Git Branch
 ```
 git branch // list all branches; = git branch --list
