@@ -12,8 +12,19 @@ draft: false
 
 ## Tips
 * To insert current date: `Ctrl+;`
-* To add today’s date in such a way that it updates when you recalculate or reopen your spreadsheet: `=Today()`
 * To insert current time: `Ctrl+Shift+;`
+* To add today’s date in such a way that it updates when you recalculate or reopen your spreadsheet: `=Today()`
+
+## Usage
+### `XLOOKUP`
+Customer send asset list asking for status.
+* Download Inventory All Fields file, and open it in Excel(default .CSV)
+* Open customer file, copy the Inventory All Fileds page into  
+
+```
+// H column: Label; AA column: Site
+=XLOOKUP(A2,'RL Inventory All Fields'!H:H, 'RL Inventory All Fields'!AA:AA)
+```
 
 ## Q & A
 ### How to insert the same data to multiple cells at the same time?
