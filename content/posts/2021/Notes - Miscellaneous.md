@@ -155,6 +155,9 @@ There are two methods to launch OBS in portable mode:
 
 Note: You may need to install C++ to make OBS work.
 
+### How to stop steaming automatically?
+Tools > Output Timer > Stop streaming after: fill in hours > Start
+
 ## Office
 ### How to view the previous version of Office files?
 * Open the file you want to view.
