@@ -38,6 +38,23 @@ Ctrl + Alt + Shift + J: Select all occurrences of a word
 Alt + Enter: Fill in struct fields
 ```
 
+### How to create a macro?
+I found a Bible reading plan on the web and it listed 4 lines for each day.
+I need to combine the first two lines and remove the other two lines for each day.
+
+I created a macro to do it:
+* Place the cursor at the first line
+* Menu > Edit > Macros > Start Macro Recording
+* Press "Ctrl + Shift + J" combine the first two lines
+* Move cursor down and press "Ctrl+Y" two times to remove the other two lines
+* Menu > Edit > Macros > Stop Macro Recording
+* Name it "Reformat Plan"
+
+Bind a keyboard shortcut to a macro
+* Press `Ctrl+Alt+S` to open settings
+* Keymap > Macros > Right-click the macro and choose `Add Keyboard Shortcut` 
+* Press `Alt+K` > OK
+
 ### Customize Keymap
 Sort Lines:
 ```
