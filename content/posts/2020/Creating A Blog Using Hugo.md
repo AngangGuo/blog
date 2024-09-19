@@ -225,6 +225,8 @@ Here is the example on how to use anchor to link within a page.
 Add a link to the anchor by using the same markdown link syntax [Link to the anchor within the page]({{</* ref "#my-anchor" */>}})
 ```
 
+Note: Using `{}` instead of `()` as the anchor delimiter.
+
 ### How can I link to another page?
 To link to `Leave Request` section on page `content/hr/kronos/_index.md`, you can use the following code example:
 ```
