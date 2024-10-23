@@ -178,9 +178,27 @@ page.EvalOnSelectorAll("ul.todo-list > li", "el => el.length")
 page.WaitForSelector("//div[text()='Employee Name']")
 ```
 
-### Show value of a Select element
+### Get option value of a Select element
 ```go
-value,err:=page.EvalOnSelector(selectElementID, "e => e.value")
+// HTML Tag
+// <option value="10" selected="1">Oct</option>
+
+// get the option value
+value,err := page.Locator("#month").Evaluate("e=>e.value", "") // 10
+
+// also this works
+value,err := page.Locator("#month").InputValue() // 10
+
+// get the option text
+label,err := page.Locator("#month").Evaluate("e=>e.selectedOptions[0].text", "") // Oct
+
+// Note: InnerText() will return all the option texts of a select
+// page.Locator("#month").InnerText() 
+//Jan
+//Feb
+//Mar
+//Apr
+//...
 ```
 
 ### Set an option value
