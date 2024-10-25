@@ -45,6 +45,11 @@ $PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'
 .\plan-b.exe | Out-File plan.txt -encoding utf8
 ```
 
+### How to get PowerShell version
+```
+> $PSVersionTable
+```
+
 ## Environment Variables
 ### How to show environment variables?
 Show all environment variables: 
