@@ -27,6 +27,15 @@ If you want to update the file in Google Drive to this new version, you can uplo
 `Replace existing file` in the `Upload options` window. Replacing the file won't change sharing settings.
 
 ## Windows
+### How to record your screen on Windows 11?
+You can record your screen by using Snipping Tool
+* Open Snipping Tool
+* In the top toolbar, press the Record button, then press New.
+* Click to drag and drop a rectangle indicating the portion of the screen you would like to record.
+* Press Start and you will see a 3-second countdown begin for your recording.
+* After you finish, press Stop. 
+* Save it, or edit it in Microsoft Clipchamp
+
 ### How to show file structures?
 ```
 tree /f > tree.txt
