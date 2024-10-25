@@ -205,6 +205,13 @@ The name of the folder depends on your page type (either branch bundle, leaf bun
 See [here](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/index.html)
 
 ## Images
+### Alignment
+* Left: `![sharp clean 1](sharp-clean-1.png?classes=left)`
+* Right: `![sharp clean 1](sharp-clean-1.png?classes=right)`
+* Inline: `![sharp clean 1](sharp-clean-1.png?classes=inline)`
+
+See [here](https://mcshelby.github.io/hugo-theme-relearn/authoring/markdown/index.html#css-classes)
+
 ### Location
 All the images should be in the same folder as the document.
 
