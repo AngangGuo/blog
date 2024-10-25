@@ -365,4 +365,10 @@ imageHostURL = "/"
 For more details see also [here](https://discourse.gohugo.io/t/gohugo-without-baseurl-or-with-relative-url-only/2779)
 and [here](https://discourse.gohugo.io/t/mime-type-text-plain-is-not-a-supported-stylesheet-mime-type-and-strict-mime-checking-is-enabled/16435/11)
 
+## Troubleshooting
+### Error copying static files to the public folder
+When running "hugo server", it gets errors that failed to copy static files(font file and css file) to the public folder.
+
+Solution:
+Delete the `public` folder and re-run the command.
 
