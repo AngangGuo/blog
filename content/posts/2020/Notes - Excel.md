@@ -27,6 +27,16 @@ Customer send asset list asking for status.
 ```
 
 ## Q & A
+### How to fill in the formula to the rest of the cells?
+Suppose you have a 3-column table with header, 
+the formula in column C2 is: `=A2+B2`
+
+If there're 10 rows with the same formula,
+You can select `C2` to `C11` and press `Ctrl + D` to fill the formula to the rest of the cells below C2.
+
+The alternative is to copy C2, select the other cells and paste the formula to them.
+
+
 ### How to insert the same data to multiple cells at the same time?
 * Select all cells you want to insert the data
 * Press `F2` and type in the data

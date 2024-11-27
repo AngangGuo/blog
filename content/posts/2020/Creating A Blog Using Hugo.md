@@ -217,15 +217,19 @@ To show `{{</* youtube qtIqKaDlqXo */>}}`in markdown file, you code it as follow
 ```
 
 ### How can I link within a page?
+WARNING: you must call the ref / relref shortcode with '% %' instead of '< >' to work correctly for the anchor target attribute
+
 Here is the example on how to use anchor to link within a page.
 
 ```markdown
-### Add anchor at the end of the text you want to link to {#my-anchor}
+### Add anchor at the end of the text {#my-anchor}
 
-Add a link to the anchor by using the same markdown link syntax [Link to the anchor within the page]({{</* ref "#my-anchor" */>}})
+Add a link to the anchor [Link to the in-page anchor]({{%/* ref "#my-anchor" */%}})
 ```
 
-Note: Using `{}` instead of `()` as the anchor delimiter.
+Note: 
+* Using `{}` instead of `()` as the anchor delimiter.
+* Using `%` instead of `<` or `>` for the link
 
 ### How can I link to another page?
 To link to `Leave Request` section on page `content/hr/kronos/_index.md`, you can use the following code example:
