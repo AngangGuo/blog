@@ -9,14 +9,14 @@ tags:
   - Presentation
 draft: false
 ---
-FreeShow is our free presentation software similar to ProPresenter.
+
+FreeShow is our free presentation software alternative to ProPresenter.
 
 ## Edit
 ### Keyboard Shotcuts
 * Split: Alt+Enter
 
 ## Bible
-
 
 ### How to create a bilingual Bible versions slides?
 * Select "NIV" and "新标点和合本" from the left panel of the scriptures drawer, right click and press "New collection"
@@ -72,6 +72,13 @@ To achieve this, there're several steps:
 ![freeshow style livestream](/images/2024/freeshow-style-livestream.JPG)
 
 ![freeshow output livestream](/images/2024/freeshow-output-livestream.JPG)
+
+### How to make the preview screen bigger?
+If there're two or more output windows, each one shows out is smaller.
+
+To make it shows out only one preview window, right-click on the title of other windows and select `Hide from preview`.
+
+See also [Make the output screen bigger](https://github.com/ChurchApps/FreeShow/issues/1059)
 
 ### Stage View
 https://github.com/ChurchApps/FreeShow/issues/1013
