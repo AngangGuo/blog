@@ -78,20 +78,49 @@ Use the above `WaitForURL` function instead in this case.
 
 See [Element Selectors](https://playwright.dev/docs/selectors/)
 
+## CSS Selector
+### Other Selector
+Playwright adds custom pseudo-classes like :visible, :has-text(), :has(), :is(), :nth-match() and more.
+See [Other locators](https://playwright.dev/docs/other-locators)
+
+```
+// Clicks a <button> that has either a "Log in" or "Sign in" text.
+await page.locator('button:has-text("Log in"), button:has-text("Sign in")').click();
+```
+
+### Table selector
+```
+table := page.Locator("#DXMainTable") // ID selector
+table.Locator("tbody > tr").Last().InnerText()
+table.Locator("tbody > tr.dxgvDataRow").Count() // Class selector
+
+firstRow := page.Locator("#DXDataRow0")
+firstRow.Locator("td").Nth(i).InnerText()
+firstRow.Locator("td").Last().InnerText()
+
+// Not pseudo classes with multiple selectors
+// not(:required, .item__cost, [disabled], [readonly], [type="date"]) 
+// See https://developer.mozilla.org/en-US/docs/Web/CSS/:not
+page.Locator("#DXMainTable > tbody > tr:not(#HeadersRow, #FilterRow)").Count()
+
+// Nested selecotr
+table.Locator("tbody > tr").Last().Locator("td").Count()
+```
+
 ### Select element by label
 Excerpt of page source
 ```
     <tr>
         <td>
-            <input id="ctl32_ctl04_ctl07_divDropDown_ctl70" type="checkbox">
-            <label for="ctl32_ctl04_ctl07_divDropDown_ctl70">Vancouver,&nbsp;BC&nbsp;(RL)</label>
+            <input id="divDropDown" type="checkbox">
+            <label for="divDropDown">Vancouver,&nbsp;BC&nbsp;(RL)</label>
         </td>
     </tr>
 ```
-```go
+```
 // See https://playwright.dev/docs/selectors#text-selector
-err = page.Click("text=Vancouver") // ok
-err = page.Click("text=Vancouver, BC (RL)") // ok
+page.Click("text=Vancouver") // ok
+page.Click("text=Vancouver, BC (RL)") // ok
 ```
 ```
 // not work
@@ -100,7 +129,7 @@ err = page.Click("text=Vancouver,&nbsp;BC&nbsp;(RL)")
 
 ### XPath
 
-```javascript
+```
 // div text is 'Employee Name'
 page.WaitForSelector("//div[text()='Employee Name']")
 
@@ -116,7 +145,7 @@ You can't use an ID selector starting as a number: `'#123' is not a valid select
 You can use escape the number as `` `#\31 23` `` or `` `id=123` ``
 
 ## Common Commands
-```go
+```
 // launch with options
 pw.Chromium.Launch(playwright.BrowserTypeLaunchOptions{
 	Headless: playwright.Bool(true),
