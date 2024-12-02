@@ -6,7 +6,7 @@ categories:
   - Programming 
 tags:
   - Go
-  - Playwrite
+  - Playwrighe
 draft: false
 ---
 
@@ -107,6 +107,18 @@ page.Locator("#DXMainTable > tbody > tr:not(#HeadersRow, #FilterRow)").Count()
 table.Locator("tbody > tr").Last().Locator("td").Count()
 ```
 
+### ID Selector
+`page.locator('id=my-button')`
+
+### Class Name Selector
+`page.locator('.submit-button')`
+
+### Text Selector
+`page.locator('css=button#id')`
+
+### XPath Selector
+`page.locator('xpath=//button[text()="Submit"]'`
+
 ### Select element by label
 Excerpt of page source
 ```
@@ -143,6 +155,17 @@ Class identifiers are allowed to start with a number, but ID identifiers are not
 You can't use an ID selector starting as a number: `'#123' is not a valid selector.`
 
 You can use escape the number as `` `#\31 23` `` or `` `id=123` ``
+
+### `WaitFor` vs `WaitForLoadState`
+`WaitFor` is for element
+```
+err := page.Locator("//input[@id='lastName-input']").WaitFor(playwright.PageWaitForSelectorOptions{
+	State: playwright.WaitForSelectorStateVisible,
+})
+
+// Default
+err := page.Locator("//input[@id='lastName-input']").WaitFor()
+```
 
 ## Common Commands
 ```
@@ -202,13 +225,13 @@ page.EvalOnSelectorAll("ul.todo-list > li", "el => el.length")
 
 ## Select HTML Element
 ### Wait for selector
-```go
+```
 // prefer to use WaitForSelector rather than time.Sleep
 page.WaitForSelector("//div[text()='Employee Name']")
 ```
 
 ### Get option value of a Select element
-```go
+```
 // HTML Tag
 // <option value="10" selected="1">Oct</option>
 
@@ -233,7 +256,7 @@ label,err := page.Locator("#month").Evaluate("e=>e.selectedOptions[0].text", "")
 ### Set an option value
 You can set the select options according to Label, Value, Index or Elements
 
-```go
+```
     // by label
     v,err:=page.SelectOption("#ctl32_ctl04_ctl03_ddValue",playwright.SelectOptionValues{Labels: playwright.StringSlice("Canada")})
     
@@ -250,7 +273,7 @@ See [`&nbsp;` Space Problem](https://github.com/mxschmitt/playwright-go/issues/1
 ### iFrame
 See [Example](https://github.com/mxschmitt/playwright-go/issues/97)
 
-```go
+```
     frameElement, err := page.QuerySelector("#myframe")
     if err != nil {
         log.Fatalf("could not find #myframe iframe: %v\n", err)
@@ -269,7 +292,7 @@ See [Example](https://github.com/mxschmitt/playwright-go/issues/97)
 * All the downloaded files belonging to the browser context are deleted when the browser context is closed.
 * Browser context must be created with the `acceptDownloads` set to `true` when user needs access to the downloaded content.
 
-```go
+```
     // 1. Browser instance
     browser, err := pw.Chromium.Launch(playwright.BrowserTypeLaunchOptions{
         Headless: playwright.Bool(false),
@@ -296,7 +319,7 @@ See [Example](https://github.com/mxschmitt/playwright-go/issues/97)
 ```
 
 ### Run JavaScript function on selector
-```go
+```
 // 1. simple example
 page.EvalOnSelector("//div[text()='Employee Name']/../../..",`(el) => el.nodeName`) // TBODY
 
@@ -326,7 +349,7 @@ csvStats, _ := page.EvalOnSelector("//div[text()='Employee Name']/../../..", f)
 Browser will be lunched in headless mode by default.
 
 To run in non-headless mode:
-```go
+```
 browser, err := pw.Chromium.Launch(playwright.BrowserTypeLaunchOptions{
   Headless: playwright.Bool(false),
 })
@@ -335,7 +358,7 @@ browser, err := pw.Chromium.Launch(playwright.BrowserTypeLaunchOptions{
 ## HTTP authentication example?
 Use `browser.NewContext()` for HTTP authentication
 
-```go
+```
 // ignore all error handling
 func main() {
 	pw, _ := playwright.Run()
@@ -366,7 +389,7 @@ func main() {
 ## Event
 ### How to listen for console event?
 See [here](https://github.com/mxschmitt/playwright-go/issues/186)
-```go
+```
 messages := make(chan playwright.ConsoleMessage, 1) 
 page.On("console", func(message playwright.ConsoleMessage) { 
     messages <- message 
