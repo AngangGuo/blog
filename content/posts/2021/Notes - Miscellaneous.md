@@ -19,6 +19,14 @@ draft: false
 * [Convert Spreadsheet table to Markdown](https://tabletomarkdown.com/convert-spreadsheet-to-markdown/)
 * myapps.microsoft.com: my applications
 
+## Microsoft Edge Browser
+### Edge browser asking for PIN
+When I refresh the page and want to access the blueiq report, Edge keeps asking for the PIN.
+It won't let me in even if I entered the right pin.
+
+Solution:
+Select other account, then type the email and password instead of pin.
+
 ## Google Drive
 ### How to update the file but keep the shared link?
 You can upload a file from your computer to Google Drive and share it with others. 
