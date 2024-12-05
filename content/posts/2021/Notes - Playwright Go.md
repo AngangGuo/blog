@@ -3,10 +3,10 @@ title: "Notes - Playwright-Go"
 date: 2021-01-25T17:09:37-08:00
 categories:
   - Tech
-  - Programming 
+  - RPA
 tags:
   - Go
-  - Playwrighe
+  - Playwright
 draft: false
 ---
 
@@ -89,6 +89,9 @@ await page.locator('button:has-text("Log in"), button:has-text("Sign in")').clic
 ```
 
 ### Table selector
+Note: 
+* Table row and column are all zero(0) based for Nth() function
+
 ```
 table := page.Locator("#DXMainTable") // ID selector
 table.Locator("tbody > tr").Last().InnerText()
