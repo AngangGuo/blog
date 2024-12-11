@@ -10,6 +10,9 @@ draft: false
 ---
 
 
+### Shotcut to fix the highlighted/underline code
+Press `Alt + Enter` when your caret is at the underlined or highlighted text to see how GoLand suggests fixing it.
+
 ### How to open a GitHub project?
 Git > Clone... > Select `GitHub` from left panel.
 
