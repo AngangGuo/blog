@@ -9,7 +9,12 @@ tags:
 draft: false
 ---
 
-## Photo Slide Show Technics
+### Shortcuts
+* Ctrl+Shift+,: Move clip to left
+* ctrl+Shift+.: Move clip to right
+* Ctrl+Shift+v: Paste insert
+
+### Photo Slide Show Technics
 * Set the default photo length:
 `Preferences > User > Editing > General Settings > Standard Still Duration`
 * Zoom the photo: 
