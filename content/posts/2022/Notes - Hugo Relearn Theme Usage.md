@@ -3,9 +3,12 @@ title: "Notes - Hugo Relearn Theme Usage"
 date: 2022-10-03T15:08:48-07:00
 categories:
   - Tech
+  - Web
 tags:
   - Hugo
+  - Blog
   - Theme
+  - Relearn
 draft: false
 ---
 
@@ -267,7 +270,7 @@ weight = 2
 languageName = "简体中文"
 ```
 
-## Common Commands
+## MISC
 ### Update Go module
 ```
 hugo mod get -u
@@ -285,6 +288,9 @@ git push -u origin main
 Username for 'https://github.com': AngangGuo
 Password for 'https://AngangGuo@github.com': (use token instead of password)ghp_XdN...ldu3
 ```
+
+### How to add video to the document?
+See [Github issue#967](https://github.com/McShelby/hugo-theme-relearn/discussions/967)
 
 ## Sample Websites
 * https://ksucs-hugo.russfeld.me/

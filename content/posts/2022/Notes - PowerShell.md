@@ -23,13 +23,13 @@ draft: false
     * ||: run the command following || only if the command preceding || fails.
 
 #### For Powershell or Bash(semicolon): 
-Old version:
-  * `go build; .\try.exe`: Execute the first command, then second command
-  * `go build; if ($?) {.\server.exe}`: To execute the second command only if the first command is succeed
-
 New version:  
   * `go build && .\try.exe`: Execute the second command only if the first one succeeds
   * `go build || .\try.exe`: Execute the second command only if the first one fails
+
+Old version:
+  * `go build; .\try.exe`: Execute the first command, then second command
+  * `go build; if ($?) {.\server.exe}`: To execute the second command only if the first command is succeed
 
 ### How to find the location of an executable file?
 From command line:

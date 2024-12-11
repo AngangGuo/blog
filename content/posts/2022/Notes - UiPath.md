@@ -2,8 +2,8 @@
 title: "Notes - UiPath"
 date: 2022-06-14T10:36:34-07:00
 categories:
-  - Programming
-  - Web
+  - Tech
+  - RPA
 tags:
   - UiPath
   - Work

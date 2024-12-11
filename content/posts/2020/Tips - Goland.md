@@ -9,6 +9,8 @@ tags:
 draft: false
 ---
 
+### How to change terminal PowerShell?
+Download 
 
 ### Shotcut to fix the highlighted/underline code
 Press `Alt + Enter` when your caret is at the underlined or highlighted text to see how GoLand suggests fixing it.

@@ -19,6 +19,25 @@ draft: false
 * [Convert Spreadsheet table to Markdown](https://tabletomarkdown.com/convert-spreadsheet-to-markdown/)
 * myapps.microsoft.com: my applications
 
+## Microsoft PowerToys
+[Microsoft PowerToys](https://learn.microsoft.com/en-us/windows/powertoys/) is a set of utilities for power users to tune and streamline their Windows experience for greater productivity.
+
+[PowerToys Awake](https://learn.microsoft.com/en-us/windows/powertoys/awake) is a tool for Windows designed to keep a computer awake without having to manage its power and sleep settings. 
+This can be helpful when running time-consuming tasks, ensuring that the computer does not go to sleep or turn off its screens.
+
+Download the PowerToys from [here](https://github.com/microsoft/PowerToys/releases).
+If you don't have admin access, you can download the Per User installer.
+
+### PowerRename
+See [Regular Expression](https://en.wikipedia.org/wiki/Regular_expression)
+
+Examples
+```
+// Change Slide1.JPG to training01.JPG
+Search: Slide([\d])
+Replace: training0$1
+```
+
 ## Microsoft Edge Browser
 ### Edge browser asking for PIN
 When I refresh the page and want to access the blueiq report, Edge keeps asking for the PIN.
