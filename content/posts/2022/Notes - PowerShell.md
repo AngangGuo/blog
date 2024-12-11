@@ -11,16 +11,25 @@ draft: false
 ---
 
 ## Tips
-### How to execute one command after another?
+
+### How to open terminal in the current folder?
+1. Right-click the folder > Open in Terminal
+2. From Windows Explorer address bar > `wt -d .`
+
 ### Execute multiple commands on one line
-* Windows CMD: `go build | try`
+#### Windows CMD: `go build | try`
     * &: separate multiple commands on one command line.
     * &&: run the command following && only if the command preceding the symbol is successful. `mkdir -p newApp && cd newApp`
     * ||: run the command following || only if the command preceding || fails.
 
-* For Powershell or Bash(semicolon): 
+#### For Powershell or Bash(semicolon): 
+Old version:
   * `go build; .\try.exe`: Execute the first command, then second command
   * `go build; if ($?) {.\server.exe}`: To execute the second command only if the first command is succeed
+
+New version:  
+  * `go build && .\try.exe`: Execute the second command only if the first one succeeds
+  * `go build || .\try.exe`: Execute the second command only if the first one fails
 
 ### How to find the location of an executable file?
 From command line:
@@ -90,3 +99,4 @@ Name                           Value
 METRICSID                      CORPORATE\mynameid
 METRICSPASSWORD                MYPASSWORD
 ```
+
