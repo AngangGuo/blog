@@ -11,7 +11,36 @@ tags:
 draft: false
 ---
 
-### Installation
+## Installation
+### How to install Caddy to MacBook?
+#### Install Homebrew
+[Homebrew](https://brew.sh/): The Missing Package Manager for macOS (or Linux)
+
+```
+// Install the Howebrew from Mac terminal
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+#### Install Caddyserver
+```
+homebrew install caddy
+```
+
+To start caddy new and restart at login:
+```
+brew services start caddy
+```
+
+To run caddy from command line:
+```
+// using config file
+XDG_DATA_HOME="/usr/local/var/lib" /usr/local/opt/caddy/bin/caddy run --config /usr/local/etc/Caddyfile
+
+// as file server
+caddy file-server // index.html
+caddy file-server --browse // list files in the folder
+```
+
 ### How to install Caddy in Ubunbu?
 * Commands list
 ```

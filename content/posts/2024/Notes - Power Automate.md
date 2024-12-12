@@ -35,3 +35,10 @@ Expression must contain a 'Numeric value'
 * Calculate: `=LoopIndex + 1`
 * 
 
+### My machine doesn't show out in the cloud flow
+See [doc](https://learn.microsoft.com/en-us/power-automate/desktop-flows/manage-machines)
+
+You can also install the machine-runtime app by following:
+* Open Power Automate Desktop
+* Settings > Machine settings > Open machine settings
+* Install the machine-runtime app

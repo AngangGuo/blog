@@ -356,6 +356,9 @@ defer cancel()
 doWithCtx(ctx, 5*time.Second) // context deadline exceeded
 ```
 
+### Key / Value pair
+* Key should be in a private type when adding a key value pair
+
 ## Time
 
 ### How long the process last?
@@ -1194,6 +1197,16 @@ if !ok {
   fmt.Println("chan is closed")
 }  
 ```
+
+## Concurrency
+### WaitGroup vs Channel vs Mutex
+* 
+
+### WaitGroup
+```
+
+```
+
 ## Pitfalls
 
 ### Receive value from closed channel
