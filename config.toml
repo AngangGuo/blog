@@ -39,7 +39,7 @@ enableRobotsTXT = true
 # Number of items per page in paginated
 # lists (valid for the `posts` homepage
 # layout in MemE)
-paginate = 15
+# paginate.pagerSize = 15
 
 # URL related
 disablePathToLower = false
@@ -142,7 +142,7 @@ uglyURLs = false
     home = ["HTML", "SectionsAtom", "SectionsRSS"]
     section = ["HTML"]
     # Taxonomy
-    taxonomyTerm = ["HTML"]
+    # taxonomyTerm = ["HTML"]
     # Taxonomy term
     taxonomy = ["HTML"]
     # Note: https://github.com/gohugoio/hugo/issues/4528#issuecomment-508488859
@@ -468,7 +468,7 @@ uglyURLs = false
 
     # Display count of posts in each
     # taxonomy term?
-    displayTaxonomyTermCount = true
+    # displayTaxonomyTermCount = true
 
 
     ######################################
