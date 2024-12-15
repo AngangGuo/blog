@@ -127,6 +127,20 @@ Visit the blog website and the protocol will changed to `https`.
 
 ## Troubleshooting
 
+### Module "meme" is not compatible with this Hugo version
+Netlify failed to build the blog site. Error message:
+```
+2:19:33 PM: Failed during stage 'building site': Build script returned non-zero exit code: 2 
+2:19:33 PM: build.command from netlify.toml                               
+2:19:33 PM: ────────────────────────────────────────────────────────────────
+2:19:33 PM: $ hugo --gc --minify
+2:19:33 PM: WARN 2024/12/15 22:19:33 Module "meme" is not compatible with this Hugo version; 
+run "hugo mod graph" for more information.
+```
+
+I've updated the meme theme but the `Netlify.toml` still use the old Hugo version.
+Update the Hugo version in `Netlify.toml` from the root of blog repository fixed the problem.
+
 ### "build.command" failed
 Error message
 ```
