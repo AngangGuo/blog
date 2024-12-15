@@ -127,6 +127,31 @@ Visit the blog website and the protocol will changed to `https`.
 
 ## Troubleshooting
 
+### "build.command" failed
+Error message
+```
+Command failed with exit code 255: hugo (https://ntl.fyi/exit-code-255)
+```
+
+This error is caused due to the repository is private. 
+
+Warning: Make sure your private repository can be deployed publicly.
+
+To solve this problem
+
+Go to Netlify
+* In Netlify, go to the app, site settings > Build & deploy > Continuous Deployment > Deploy Key
+* Click on `Generate deploy key`
+* Copy the deploy key
+
+![netlify generate deply key](/images/2020/netlify-generate-deploy-key.JPG)
+
+Go to GitHub repository you want to deploy
+* Go to, settings > Deploy Keys
+* Paste the deploy key and save
+
+![github add deply keys](/images/2020/github-add-deploy-keys.JPG)
+
 ### Hugo Themes not found
 The `git clone` method for installing themes is not supported by Netlify.
 A better approach is to install a theme as a proper git submodule.
