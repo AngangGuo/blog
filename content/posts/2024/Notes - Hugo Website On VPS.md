@@ -34,13 +34,34 @@ curl -1sLf 'https://dl.cloudsmith.io/public/caddy/testing/debian.deb.txt' | sudo
 
 sudo apt update
 sudo apt install caddy
-
-systemctl status caddy
 ```
+
+### Useful Commands
+```
+// show caddy service status
+systemctl status caddy
+
+// check log file for caddy service
+journalctl -xeu caddy.service
+
+// rename "public" folder to "rlpro"
+mv /var/www/html/public /var/www/html/rlpro
+
+// remove tags folder
+rm -f -r tags/
+
+// remove all folders which name start with s
+rm -f -r s*/
+
+// reload caddy service after updated the Caddyfile
+systemctl reload caddy
+// or this command
+systemctl daemon-reload
+```
+
 ### Caddyfile
 Tips: 
 * You can use `nano` or `vim` to edit file
-* After you update the Caddyfile, run `systemctl reload caddy` or `systemctl daemon-reload` to reload it
 * Use `*` after `basic_auth` for whole site authentication, `/` does not work
 
 ```
@@ -51,7 +72,7 @@ rlpro.angang.ca {
     
     # use "caddy hash-password" command to generate the password hash
     basic_auth * {
-        name $2a$14$HsHZgDUA9...
+        name $2a$Password_Hash...
     }
     
     file_server
@@ -65,7 +86,7 @@ the client will not able to visit the page, for they don't have permission to ac
 #### Password Hash
 You can use `caddy hash-password` to generate hash password for basic-auth(or https://bcrypt.online/).
 
-A BCrypt hash includes salt and as a result this algorithm returns different hashes for the same input
+A BCrypt hash includes salt and as a result this algorithm returns different hashes for the same input.
 
 ### Testing
 1. Point your domain's A/AAAA DNS records at this machine.
@@ -89,7 +110,11 @@ sudo apt install hugo // old version from Ubuntu bundle
 ```
 
 ### Preparing Site files
-* git clone
+In a simple hosting environment, where you typically `ftp`, `rsync`, 
+or `scp` your files to the root of a virtual host, 
+the contents of the `public` directory are all that you need.
+
+* git clone // access token
 * hugo
 * cp -r
 
@@ -132,7 +157,15 @@ To                         Action      From
 ### Caddy failed to load Caddyfile
 After I added the basic_auth and reload, it shows the following error message:
 ```
+Error: adapting config using caddyfile: /etc/caddy/Caddyfile:16: unrecognized directive: //
+```
 
+Use `*` instead of `/` for matching all files
+```
+// "basic_auth / {" doesn't work 
+basic_auth * {
+    name $2a$Password_Hash...
+}
 ```
 
 ### Caddy failed to start
