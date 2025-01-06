@@ -233,6 +233,57 @@ page.EvalOnSelectorAll("ul.todo-list > li", "el => el.length")
 page.WaitForSelector("//div[text()='Employee Name']")
 ```
 
+### Get the source HTML
+```
+// whole page html
+html, err := page.Content()
+
+// all product HTML nodes on the page
+productHTMLElements, err := page.Locator(".product").All()
+
+// where to store the scraped data
+var products []Product
+    
+// get each product information
+for _, productElement := range productHTMLElements {
+    name, err := productElement.Locator("h4").First().TextContent()
+    ...
+    product := Product{}
+    product.name = strings.TrimSpace(name)
+    products = append(products, product)
+}
+
+// export data as .csv
+// open the CSV file 
+file, err := os.Create("products.csv")
+if err != nil {
+    log.Fatal("Could not open the CSV output file:", err)
+}
+defer file.Close()
+
+// initialize a CSV file writer
+writer := csv.NewWriter(file)
+
+// define the CSV header row
+// and write it to the file
+headers := []string{
+    "name",
+}
+writer.Write(headers)
+
+// add each product to the CSV output file
+for _, product := range products {
+    // convert a Product to an array of strings
+    record := []string{
+        product.name,
+    }
+
+    // write a new CSV record
+    writer.Write(record)
+}
+defer writer.Flush()
+```
+
 ### Get option value of a Select element
 ```
 // HTML Tag
@@ -272,6 +323,32 @@ You can set the select options according to Label, Value, Index or Elements
 
 Note: You can't select the text with `&nbsp;` space in the label for now. 
 See [`&nbsp;` Space Problem](https://github.com/mxschmitt/playwright-go/issues/131)
+
+### How to scroll down the page
+Keep in mind that Playwright doesn't offer a built-in method to scroll down the page. 
+So, you need to define custom JavaScript logic as in the snippet below. 
+```
+scrollingScript := `
+// scroll down the page 10 times
+const scrolls = 10
+let scrollCount = 0
+
+// scroll down and then wait for 0.5s
+const scrollInterval = setInterval(() => {
+    window.scrollTo(0, document.body.scrollHeight)
+    scrollCount++
+
+    if (scrollCount === scrolls) {
+    clearInterval(scrollInterval)
+    }
+}, 500)
+`
+// execute the custom JavaScript script on the page
+_, err = page.Evaluate(scrollingScript, []interface{}{})
+if err != nil {
+        log.Fatal("Could not perform the JS scrolling logic:", err)
+}
+```
 
 ### iFrame
 See [Example](https://github.com/mxschmitt/playwright-go/issues/97)
@@ -348,17 +425,41 @@ f:=`
 csvStats, _ := page.EvalOnSelector("//div[text()='Employee Name']/../../..", f)
 ```
 
-### Headless Mode
-Browser will be lunched in headless mode by default.
-
-To run in non-headless mode:
+### How to listen for console event?
+See [here](https://github.com/mxschmitt/playwright-go/issues/186)
 ```
-browser, err := pw.Chromium.Launch(playwright.BrowserTypeLaunchOptions{
-  Headless: playwright.Bool(false),
+messages := make(chan playwright.ConsoleMessage, 1) 
+page.On("console", func(message playwright.ConsoleMessage) { 
+    messages <- message 
+}) 
+```
+
+## Installation, Set up, and Configuration
+### Install Dependencies
+```
+// Command line
+go run github.com/playwright-community/playwright-go/cmd/playwright@latest install --with-deps
+# Or
+go install github.com/playwright-community/playwright-go/cmd/playwright@latest
+playwright install --with-deps
+
+// Or from inside the program
+err := playwright.Install()
+
+// with options
+playwright.Install(&playwright.RunOptions{
+    Browsers: []string{"chromium"},
+    // DriverDirectory:     "/tmp/playwright",
+    SkipInstallBrowsers: false,
+    Verbose:             true,
 })
+
+// Install driver only; See https://github.com/playwright-community/playwright-go/issues/478
+driver, _ := playwright.NewDriver(playwright.RunOptions{ SkipInstallBrowsers: true })
+err := driver.Install()
 ```
 
-## HTTP authentication example?
+### HTTP authentication example?
 Use `browser.NewContext()` for HTTP authentication
 
 ```
@@ -389,12 +490,49 @@ func main() {
 
 ```
 
-## Event
-### How to listen for console event?
-See [here](https://github.com/mxschmitt/playwright-go/issues/186)
+### Headless Mode
+Browser will be lunched in headless mode by default.
+
+To run in non-headless mode:
 ```
-messages := make(chan playwright.ConsoleMessage, 1) 
-page.On("console", func(message playwright.ConsoleMessage) { 
-    messages <- message 
-}) 
+browser, err := pw.Chromium.Launch(playwright.BrowserTypeLaunchOptions{
+  Headless: playwright.Bool(false),
+})
 ```
+
+## Avoid Anti-bots
+To avoid the simple anti-bots, you can randomize your requests.
+The idea is to use proxies to change the output IP and set real User Agent header values.
+
+### Customer User Agent
+
+```
+// create a new browser context with a custom user agent 
+customUserAgent := "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
+context, err := browser.NewContext(
+    playwright.BrowserNewContextOptions{
+        UserAgent: &customUserAgent,
+    },
+)
+```
+
+### HTTP Proxy
+To configure an HTTP proxy in Playwright, you have to pass a Proxy object to the Launch() method.
+
+```
+// create a Proxy object with the proxy connection URL
+proxy := playwright.Proxy {
+    Server: "http://211.32.24.28:9083",
+}
+
+// initialize a Chromium instance with the specified proxy
+browser, err := pw.Chromium.Launch(
+    playwright.BrowserTypeLaunchOptions{
+        Proxy: &proxy,
+        // other configs...
+    },
+)
+```
+
+### Still Blocked
+You can try [zenrows](https://www.zenrows.com/blog/playwright-golang#avoid-getting-blocked).
