@@ -83,3 +83,18 @@ See also [Make the output screen bigger](https://github.com/ChurchApps/FreeShow/
 ### Stage View
 https://github.com/ChurchApps/FreeShow/issues/1013
 
+## Troubleshooting
+### Why the content shows out on screen as lower third without background?
+All the settings for `Primary` output seems correct, 
+* `Use style`: `Default` or `-`
+* `Always on top`: Enabled. 
+
+But the text shows out on the projector looks the same as the lower third style, and no picture background shows out.
+
+**Cause and solution:**  
+After further inspection, I found that the `Always on top` is also enabled for `Output - Lower Third` which overrides the primary output.
+
+Disable the `Always on top` for `Output - Lower Third` will fix the problem.
+
+![freeshow output livestream window setting](/images/2024/freeshow-livestream-output-window-setting.JPG)
+
