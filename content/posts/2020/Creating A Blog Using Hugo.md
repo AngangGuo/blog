@@ -376,3 +376,20 @@ When running "hugo server", it gets errors that failed to copy static files(font
 Solution:
 Delete the `public` folder and re-run the command.
 
+### Rendering raw HTML
+Error message when run `hugo serve`:
+```
+WARN  Raw HTML omitted while rendering "C:/Users/caguoa00/GolandProjects/rldoc/content/info/battery/_index.md"; 
+see https://gohugo.io/getting-started/configuration-markup/#rendererunsafe
+You can suppress this warning by adding the following to your site configuration:
+ignoreLogs = ['warning-goldmark-raw-html']
+```
+
+Solution:
+```
+# Add following settings to your config.toml
+[markup]
+[markup.goldmark]
+[markup.goldmark.renderer]
+unsafe = true
+```
