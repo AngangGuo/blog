@@ -27,6 +27,12 @@ Customer send asset list asking for status.
 ```
 
 ## Q & A
+### How to add a link to another sheet in the document?
+Insert > Link
+* Text to display: Goto Sheet2
+* Link to: Place in This Document
+* Cell Reference: Select Sheet2
+
 ### How to fill in the formula to the rest of the cells?
 Suppose you have a 3-column table with header, 
 the formula in column C2 is: `=A2+B2`
