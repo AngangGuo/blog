@@ -1,6 +1,12 @@
 ---
 title: "Notes - Misc for Work"
 date: 2025-01-22T12:46:53-08:00
+categories:
+  - Tech
+  - Hardware
+tags:
+  - Work
+  - Printer
 draft: false
 ---
 

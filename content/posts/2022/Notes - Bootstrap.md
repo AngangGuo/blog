@@ -2,6 +2,7 @@
 title: "Notes - Bootstrap"
 date: 2022-08-06T10:33:40-07:00
 categories:
+  - Tech
   - Web
 tags:
   - Bootstrap

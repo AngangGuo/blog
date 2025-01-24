@@ -2,6 +2,7 @@
 title: "Notes - HTMX"
 date: 2024-08-02T11:02:05-07:00
 categories:
+  - Tech
   - Web
 tags:
   - HTMX

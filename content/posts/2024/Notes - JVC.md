@@ -2,6 +2,7 @@
 title: "Notes - JVC Wireless Headphones"
 date: 2024-08-16T23:03:10-07:00
 categories:
+  - Tech
   - Home
 tags:
   - JVC
