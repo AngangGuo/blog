@@ -2,6 +2,7 @@
 title: "Notes - Davinci Resolve Video Editor"
 date: 2022-06-06T16:00:13-07:00
 categories:
+  - Tech
   - Church
 tags:
   - Video Editor

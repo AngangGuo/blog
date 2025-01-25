@@ -2,7 +2,7 @@
 title: "Notes - Power Automate"
 date: 2024-11-21T12:40:06-08:00
 categories:
-  - Programming
+  - Tech
   - RPA
 tags:
   - Power Automate

@@ -3,7 +3,7 @@ title: "Windows Audit Mode or OOBE"
 date: 2021-11-26T14:48:33-08:00
 categories:
   - Tech
-  - Work
+  - Server
 tags:
   - Windows
   - OOBE
