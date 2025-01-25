@@ -63,7 +63,7 @@ To achieve this, there're several steps:
    * `Override slide with template`: LowerThirdTemplate (Show lyrics as lower third)
 3. Last, create a new output(LiveStreamOutput) in the `Settings` > `Outputs` tab
    * `Use style`: LowerThirdStyle
-   * `Always on top`: Off
+   * `Always on top`: Off (See notes)
    * `Enable NDI`: On (Capture the lower third screen on another computer)
    * `Transparent`: On (Only show the lyrics, backgroud will be transparent)
    * `Invisible window`: On (The LiveStreamOutput window doesn't show out on this computer)
@@ -72,6 +72,9 @@ To achieve this, there're several steps:
 ![freeshow style livestream](/images/2024/freeshow-style-livestream.JPG)
 
 ![freeshow output livestream](/images/2024/freeshow-output-livestream.JPG)
+
+Notes:
+Make sure to set the `Always on top` disabled for livestream output.
 
 ### How to make the preview screen bigger?
 If there're two or more output windows, each one shows out is smaller.
