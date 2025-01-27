@@ -2,10 +2,9 @@
 title: "祷读经文 - （2020 - 2021 年度）"
 date: 2020-09-06T07:47:55-07:00
 categories:
- - Church
- - Bible
+  - Faith
 tags:
- - Verses
+ - Bible
  - Prayer
 dropCap: false
 toc: false
