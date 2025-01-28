@@ -2,10 +2,10 @@
 title: "Watchman"
 date: 2024-08-04T23:25:33-07:00
 categories:
-  - faith
+  - Faith
 tags:
-  - watchman
-  - prayer
+  - Watchman
+  - Prayer
   - 爱住千家
 draft: false
 ---

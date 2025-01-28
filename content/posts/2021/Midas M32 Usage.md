@@ -10,6 +10,15 @@ tags:
 draft: false
 ---
 
+The Midas M32 Digital Console for Live and Studio brings cutting-edge Midas innovation to the world of medium-format consoles.
+Loaded with 32 premium Midas Pre-amplifiers, 25 time-aligned and phase-coherent DSP mix buses,
+brilliant DSP processing and routing, and massive expansion options,
+the M32 is an ideal foundation for moderate venues and professional touring rigs.
+Add to that a sense of ergonomics that makes it one of the easiest digital boards to get around,
+and there's no wonder the M32 is one of the most popular mixers of its class we've ever seen.
+
+![Midas M32][m32]
+
 ## CONFIG/PREAMP
 https://en.wikipedia.org/wiki/Microphone_preamplifier
 
@@ -177,6 +186,13 @@ You can load your scenes following these steps:
 ### USB Drive
 You can also save/load scenes to/from USB drive.
 
+### How to shutdown M32?
+* Press `Setup` button on the panel
+* Select `GLOBAL` tab using the arrow button
+* Select `SHUTDOWN` by turning the leftmost nob below the screen
+* Shut down the system by pushing the nob
+* Turn of the power switch at the right back of the mixer
+
 ## Routing
 ### How to send Bus 1 signal to Output 8?
 Routing > out 1-16 > 
@@ -199,3 +215,5 @@ All the settings adjustment only affect the selected channel.
 
 ### Setting take effect
 You need to push the EQ/Gate/Low Cut/COMP button at the panel section for the settings to take effect
+
+[m32]: /images/2020/m32.jpg
