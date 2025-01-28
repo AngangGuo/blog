@@ -2,8 +2,8 @@
 title: "Notes - NDI"
 date: 2022-01-16T21:34:22-08:00
 categories:
-  - Tech
   - Church
+  - Media
 tags:
   - NDI
   - Zoom
