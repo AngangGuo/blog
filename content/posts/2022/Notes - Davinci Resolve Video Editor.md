@@ -10,10 +10,22 @@ tags:
 draft: false
 ---
 
+## Tips
 ### Shortcuts
 * Ctrl+Shift+,: Move clip to left
 * ctrl+Shift+.: Move clip to right
 * Ctrl+Shift+v: Paste insert
+
+## FAQ
+### How to grab a still picture from current timeline?
+File menu > Export > Current Frame as Still. 
+You can set a shortcut via Keyboard Customization.
+You can pick file type in the dropdown, inc. png, dpx or tiff for uncompressed. 
+Resolution is timeline's.
+
+## Photo Slide Show
+### Tips
+* Make sure to pre-resize your photo to a similar size, otherwise some photos may very large and will eat up all your system resources when rendering
 
 ### Photo Slide Show Technics
 * Set the default photo length:
@@ -26,7 +38,3 @@ draft: false
   3. Drop the `Colored Border` effect at the middle of the MediaIn1 and MediaOut1
 * Add similar border to other photos: Select all the other photos, then click the photoA with the middle button to copy the border effect
 * Fill the background with blurred picture: `Effects > Open FX > Resolve FX Stylize > Blanking Fill`, you can change the settings from Inspector tab
-
-
-### Tips
-* Make sure to pre-resize your photo to a similar size, otherwise some photos may very large and will eat up all your system resources when rendering
