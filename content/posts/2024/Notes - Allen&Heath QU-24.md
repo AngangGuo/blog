@@ -39,6 +39,41 @@ amplifiers on last, and switch them off first.
 Warning:
 Remember to turn the `Mix` key off or select `LR` to return to the main mix on faders.
 
+## Church Sound System
+### XLR Port For Video Camera
+Use Mixer#4 for video camera.
+
+### Wireless Mic Ports
+Two wireless mics can connect to channel 14 and channel 16 ports under the mixer.
+
+![church wireless ports](/images/2025/qu-24-church-wireless-ports.png)
+
+### Shure BLX24
+
+![shure blx24](/images/2025/qu-24-church-shure-blx24-pg58.png)
+
+### Audio Technica System 10
+See [here](https://www.audio-technica.com/en-ca/microphones/wireless-systems/line-series/system-10)
+
+![system 10 mic](/images/2025/qu-24-system-10-mic.jpg)
+
+![system 10 receiver](/images/2025/qu-24-system-10-receiver.png)
+
+* System ID Select Switch: Press to cycle through System ID numbers. 
+* Pairing Switch: Press to initiate pairing.
+* Pair Indicator: Glows green to indicate presence of paired transmitter. Also blinks green to indicate pairing mode activated.
+
+#### Pairing Receivers with Transmitters 
+Note: Up to eight transmitters may be paired with any one receiver. 
+1. Turn on the receiver and transmitter. 
+2. Press the System ID button on the receiver you wish to pair.  
+The ID number will blink on the display. Continue to press the System ID button until the display shows the number from 1 to 8  that you want. 
+3. Within 15 seconds, press and hold the Pair button on the receiver for about one second. 
+The receiver’s Pairing Indicator will  begin to blink green. 
+Your receiver is now in Pair Mode.
+   * Note: If the receiver’s  Pair button is not pressed within 15 seconds, the System  ID number will revert to its previous setting. 
+4. Open your transmitter and press and hold its Pair button within 30  seconds of entering Pair Mode. The transmitter display will now  show the System ID number you have chosen on the receiver.  The receiver’s Pairing Indicator will glow steady, indicating you have  successfully paired your system.
+
 ## Useful Links
 * [QU-24 Mixer Resources](https://www.allen-heath.com/hardware/qu/qu-24/resources/)
 * [QU-24 Tutorial](https://www.youtube.com/watch?v=WZWexI3vJ1U&list=PLztcw5PSecKe2lj48bDXoV9TNbQnc2czC&index=1&pp=iAQB)
