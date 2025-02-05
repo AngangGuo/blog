@@ -37,6 +37,13 @@ In Audit mode, From System Preparation Tool window
 Note: You can un-select if you don't need to capture the image used for other computers
 
 ### How to keep Administrator account enabled?
+Note: 
+* The following instruction is for Windows 7. 
+It's not needed when I install Windows 11 on ROG laptop recently.
+Windows 11 can enter to the OOBE mode many times.
+* You may need to disable `Secure Boot` to avoid system asking you to logon to the Administrator account. 
+Usually restart the system one more time to go into OOBE mode if Secure Boot is enabled.
+
 See [here](https://support.microsoft.com/en-us/topic/21f02ac5-8fea-f3e9-313a-bb5276e11688)
 
 You go into Sysprep Audit mode from the Out of Box Experience (OOBE) screen.
@@ -56,6 +63,8 @@ When you turn on the laptop next time, it'll go directly into Audit mode.
 ### How to update device driver?
 Check the Device Manager, if there are any unknown devices, right-click it and select `Properties`,
 update driver, search Windows Update, the driver will be installed automatically from `Windows Update`.
+
+For some devices, you may need to download the driver from vendor website.
 
 You may need to restart windows by using the above command for the update to take effect.
 Repeat the above steps for other unknown devices.

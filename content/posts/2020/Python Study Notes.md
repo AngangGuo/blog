@@ -1,5 +1,5 @@
 ---
-title: "Python Study Notes"
+title: "Notes - Python"
 date: 2020-05-13T22:21:22-07:00
 categories:
  - Tech
