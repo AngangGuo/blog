@@ -10,7 +10,7 @@ tags:
 draft: false
 ---
 
-## PC won't trun on
+## PC won't turn on
 ### Checking External Connections
 Start by checking the power connections outside the PC. 
 Make sure that the power cable is securely plugged into the back of the PC and that the switch on the back is in the “I” position.
@@ -100,3 +100,6 @@ Reinstall memory card and other removable parts. (clean the connector)
 Step 4:
 For HP laptop:
 Win + B + Press Power button, when computer turned on, release all the keys, HP laptop will restore BIOS.
+
+## Republic Of Games
+* F2: enter BIOS
