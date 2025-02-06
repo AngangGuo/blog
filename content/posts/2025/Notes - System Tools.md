@@ -11,6 +11,7 @@ tags:
   - Clonezilla
   - OOBE
   - Diskpart
+  - Reset
 draft: false
 ---
 
@@ -18,7 +19,12 @@ draft: false
 ### Ventoy
 [Ventoy](https://www.ventoy.net/en/index.html) is an open source tool to create bootable USB drive for ISO/WIM/IMG/VHD(x)/EFI files.
 
-Download and copy Windows 11 ISO to the Ventory partition.
+Download and copy Windows 11 ISO to the Ventoy partition.
+
+### Why I can't find the HDD listed?
+After booting Windows 11 installation, there's no HDD shown out.
+1. You may need to disable the `Secure Boot` from BIOS
+2. You may need to disable the [Intel VMD]({{% ref "vmd" %}}) from BIOS
 
 ### Clonezilla
 [Clonezilla](https://clonezilla.org/) is a partition and disk imaging/cloning program.
@@ -46,7 +52,7 @@ Win + X: Show list of useful tasks (Disk Management, Device Manager, etc.)
 
 // todo
 // secure boot
-// intel xxx
+// intel VMD
 
 ### How to reset forgotten Windows password?
 * Boot to Windows installation screen by using a bootable USB, 
@@ -62,12 +68,21 @@ cd Windows\System32
 ren Utilman.exe Utilman.exe.bak
 copy cmd.exe Utilman.exe
 ```
+Boot into Windows login page and click the `Ease of Access` icon(like a dial clock icon) to open the cmd window
 
-Boot into Windows login page and click the help icon(like a dial clock icon) to open the cmd window
-Enter this command to open the windows password reset panel
+Enter the following commands to reset the password:
 ```
-control userpasswords2
+// list current users in the system
+net user
+// change the password for a user
+net user OldUserName NewPassword
+// Or add a new user
+net user NewUserName NewPassword /add
+// Or add the user to the admin group
+net localgroup administrators username /add
+
 ```
+Exit and reboot into your Windows system, login using the new password.
 
 After you reset the password
 ```
@@ -90,6 +105,7 @@ del Utilman.exe.bak
 * Toshiba: F12
 * Republic of Games: F2 or F9
 
+
 ## Bitlocker
 You can't restore or reset Windows to their original status if you don't have the Bitlocker keys.
 
@@ -102,10 +118,6 @@ install Windows to the new partition.
 
 After finish the installation, you need to enter the [audit mode](/posts/2021/windows-oobe/) to install all the device drivers.
 You can download the driver from the vendor website.
-
-Notes:
-1. You may need to disable the `Secure Boot` from BIOS
-2. You may need to disable the [VMD]({{% ref "vmd" %}}) from BIOS
 
 ## Diskpart
 ### How to clear the encrypted HDD?
