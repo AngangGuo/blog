@@ -32,6 +32,39 @@ amplifiers on last, and switch them off first.
 2. Touch `Shut Down` to safely complete processes such as parameter storing and USB data transfer or recording.
 3. Once complete, press the `ON/OFF` switch to turn the mixer off.
 
+### How to copy channel 1 settings to channel 2 & channel 3?
+* While holding down the `Copy` key, 
+press a Sel key of channel 1 to copy the associated processing parameters. 
+* Then hold down the `Paste` key and press the strip Sel key of the channel 2, 
+then Sel key of channel 3 to paste it to them. 
+* Hold down Reset and press a key to reset parameters to factory default.
+
+Note:
+You can also copy/paste Mix parameters using the above procedure.
+
+### How to save a session as a scene?
+Once you have set up the mixer ready for the session, 
+* Press `Scenes` button to go to the Scenes screen
+* Press one of the number in the scenes list
+* Name it(AGCF2025) and press `OK` to store the current mix settings as a scene.
+
+You could name and store a scene as a template starting point
+for future shows, for each band after you sound check them,
+theatre show cues, recording sessions and so on.
+
+You can store up to 100 scenes within the Qu mixer. 
+
+You can copy and clear existing scenes. 
+* To copy a scene hold down the Copy key and touch a scene in the list. 
+* Then hold down the Paste key and touch the scene position to copy to. 
+This copies all scene parameters, its name and filter.
+
+### How to recall/restore a scene?
+* Press `Scenes` button
+* From the `Scenes` screen, press the scene you want to recall(AGCF2025)
+* Press `Recall` button on the screen
+* Press `OK` to restore the settings of the scene
+
 ### Adjustment
 * Select the channel by press `SEL` button
 * Adjust gain
