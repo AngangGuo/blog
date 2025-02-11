@@ -76,6 +76,12 @@ Remember to turn the `Mix` key off or select `LR` to return to the main mix on f
 ### XLR Port For Video Camera
 Use Mixer#4 for video camera.
 
+### What's the channel for computer?
+* Channel 15 is for computer audio. 
+* Make sure to press number#1 selector on Nexxtech 3 way audio selector to switch to channel 15
+
+![church nexxtech port 1](/images/2025/qu-24-nexxtech-1.JPG)
+
 ### Wireless Mic Ports
 Two wireless mics can connect to channel 14 and channel 16 ports under the mixer.
 
