@@ -27,7 +27,7 @@ To avoid loud thumps, do not switch the mixer on or off
 while the PA speakers are powered. Always switch the
 amplifiers on last, and switch them off first.
 
-### How to switching the mixer off?
+### How to switch the mixer off?
 1. First select the `Home` screen.
 2. Touch `Shut Down` to safely complete processes such as parameter storing and USB data transfer or recording.
 3. Once complete, press the `ON/OFF` switch to turn the mixer off.
@@ -71,6 +71,30 @@ This copies all scene parameters, its name and filter.
 
 Warning:
 Remember to turn the `Mix` key off or select `LR` to return to the main mix on faders.
+
+### How to set up Reverbs fx?
+Set up three FXs:
+* Press `FX` button
+* Select `FX1` (can be used by all vocal channel)
+  * Tap `Fn` button to open the preset library
+  * FX Type: `Reverbs`
+  * Factory Library: `Plate Vocal`
+  * Tap `Recall`
+* Select `FX2` (can be used by instruments and vocals)
+  * Tap `Fn` button to open the preset library
+  * FX Type: `Reverbs`
+  * Factory Library: `Hall Large`
+  * Tap `Recall`
+* Select `FX3` (can be used on drums)
+   * Tap `Fn` button to open the preset library
+   * FX Type: `Reverbs`
+   * Factory Library: `Room Live Drums`
+   * Tap `Recall`
+
+Assign channels to FX
+* Press `FX1` button, set all you vocals to -10db;
+* Press `FX2` button, set all vocals to -20db, and all your guitars and keyboards to -10db, except for base guitar;
+* Press `FX3` button, set all your drum mics to -10db, except for the kick drum;
 
 ## Church Sound System
 ### XLR Port For Video Camera

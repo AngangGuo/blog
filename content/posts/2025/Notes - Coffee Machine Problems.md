@@ -1,5 +1,5 @@
 ---
-title: "Notes   Coffee Machine Problems"
+title: "Notes - Coffee Machine Problems"
 date: 2025-01-28T13:39:37-08:00
 categories:
   - Tech
@@ -18,7 +18,7 @@ draft: false
 * [Brew group is stuck, Drip tray wont go in](https://www.youtube.com/watch?v=1y67ktXdrBs)
 
 ### The brew group gear is not in neutral position
-* Follow the instructions below how to set the brew group gear inside the machine in neutral position:
+Follow the instructions below how to set the brew group gear inside the machine in neutral position:
 * Close the service door, and place everything back (water tank/ drip tray/ coffee grounds container).
 * Press the ON/OFF button to switch OFF the machine. Wait until you hear no more sounds (this can take up to 15-20 seconds).
 * Press the ON/OFF button to switch the machine ON. Do not take any actions as opening the service door/ removing the drip tray/water tank before the machine is ready for use.
