@@ -23,7 +23,7 @@ Download and copy Windows 11 ISO to the Ventoy partition.
 ### Why I can't find the HDD listed?
 After booting Windows 11 installation, there's no HDD shown out.
 1. You may need to disable the `Secure Boot` from BIOS
-2. You may need to disable the [Intel VMD]({{% ref "vmd" %}}) from BIOS
+2. You may need to disable the [Intel VMD]({{% ref "#vmd" %}}) from BIOS
 
 ### Clonezilla
 [Clonezilla](https://clonezilla.org/) is a partition and disk imaging/cloning program.
