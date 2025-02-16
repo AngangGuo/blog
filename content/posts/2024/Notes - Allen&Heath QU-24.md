@@ -32,6 +32,8 @@ amplifiers on last, and switch them off first.
 2. Touch `Shut Down` to safely complete processes such as parameter storing and USB data transfer or recording.
 3. Once complete, press the `ON/OFF` switch to turn the mixer off.
 
+![qu-24 shutdown](/images/2025/qu-24-shutdown.JPG)
+
 ### How to copy channel 1 settings to channel 2 & channel 3?
 * While holding down the `Copy` key, 
 press a Sel key of channel 1 to copy the associated processing parameters. 
@@ -102,7 +104,7 @@ Use Mixer#4 for video camera.
 
 ### What's the channel for computer?
 * Channel 15 is for computer audio. 
-* Make sure to press number#1 selector on Nexxtech 3 way audio selector to switch to channel 15
+* Make sure to press number#1 selector on `Nexxtech 3 Way Audio Selector` to switch to channel 15
 
 ![church nexxtech port 1](/images/2025/qu-24-nexxtech-1.JPG)
 
@@ -110,6 +112,13 @@ Use Mixer#4 for video camera.
 Two wireless mics can connect to channel 14 and channel 16 ports under the mixer.
 
 ![church wireless ports](/images/2025/qu-24-church-wireless-ports.png)
+
+### Stage Layout
+* Piano#2, Vocal#7
+* Vacal#4, 10, 11, 12, 13
+* Monitor#1 to Drum
+
+![stage layout](/images/2025/qu-24-stage-layout.jpg)
 
 ### Shure BLX24
 

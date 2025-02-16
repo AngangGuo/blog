@@ -115,7 +115,7 @@ You can find your Bitlocker recovery keys from https://account.microsoft.com/dev
 Boot to Windows installation disk, remove the encrypted partition and then create a new partition from the space,
 install Windows to the new partition.
 
-After finish the installation, you need to enter the [audit mode](/posts/2021/windows-oobe/) to install all the device drivers.
+After finish the installation, you need to enter the [audit mode](https://blog.angang.ca/posts/2021/windows-oobe/) to install all the device drivers.
 You can download the driver from the vendor website.
 
 ## Diskpart
