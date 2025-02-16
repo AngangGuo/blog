@@ -10,7 +10,6 @@ tags:
   - Ventoy
   - Clonezilla
   - OOBE
-  - Diskpart
   - Reset
 draft: false
 ---
