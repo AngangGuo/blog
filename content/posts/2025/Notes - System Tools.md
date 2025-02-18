@@ -15,6 +15,10 @@ draft: false
 ---
 
 ## Tools
+* [Barcode Generator](https://barcode.tec-it.com/en)
+* [Open Hardware Monitor](https://openhardwaremonitor.org/)
+* [TechPowerUp GPU-Z](https://www.techpowerup.com/gpuz/)
+* 
 ### Ventoy
 [Ventoy](https://www.ventoy.net/en/index.html) is an open source tool to create bootable USB drive for ISO/WIM/IMG/VHD(x)/EFI files.
 
@@ -35,6 +39,8 @@ See [instruction](https://clonezilla.org/clonezilla-live-doc.php).
 **Warning:**
 To get the Windows image, you need to enter to the OOBE mode and 
 select "Generate" for system to remove the device specific information from the image.
+
+
 
 ## Apps
 ### Outbyte Driver Updater
