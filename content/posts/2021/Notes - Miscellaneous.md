@@ -195,6 +195,22 @@ Note: You may need to install C++ to make OBS work.
 Tools > Output Timer > Stop streaming after: fill in hours > Start
 
 ## Office
+### How to add barcode to a Word document?
+See [here](https://support.microsoft.com/en-us/office/field-codes-displaybarcode-6d81eade-762d-4b44-ae81-f9d3d9e07be3)
+* Click or tap where you want the barcode.
+* Press `Ctrl + F9`. You must do this, as just typing curly brackets {} won't work.
+* Type `DisplayBarcode` plus arguments and switches. See below table for more details.
+* To see the barcode, right-click the Field code and select `Toggle Field Codes`.
+
+| Code type         | DisplayBarcode syntax                              |
+| ----------------- |----------------------------------------------------|
+| QR code           | DisplayBarcode “http://www.microsoft.com” QR \\q 3 |
+| EAN13 (with text) | DisplayBarcode “490123456789” EAN13 \\t            |
+| Code 39           | DisplayBarcode “2345678” CODE39 \\d \\t            |
+| Code 128          | DisplayBarcode “PI-001” CODE128 \\t                |
+| UPCA              | DisplayBarcode "012345678901" UPCA \\t \\x         |
+| UPCE              | DisplayBarcode "123456" UPCE \\t \\x               |
+
 ### How to view the previous version of Office files?
 * Open the file you want to view.
 * Click File > Info > Version history. 
