@@ -1,5 +1,5 @@
 ---
-title: "Tips - Label Printer"
+title: "Notes - Printer Problems"
 date: 2020-07-06T15:27:41-07:00
 categories:
  - Tech

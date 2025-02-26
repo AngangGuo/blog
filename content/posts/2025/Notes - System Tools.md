@@ -96,20 +96,6 @@ del Utilman.exe.bak
 ```
 
 ## PC
-### Keys to enter BIOS
-* Acer: F12, F9 or Esc
-* Asus: Esc or F8
-* Compaq: F9 or Esc
-* Dell: F12
-* HP: F9 or Esc
-* Lenovo: F12, F8, F10, F11
-* MSI: F11
-* Razer Blade: F12
-* Samsung: F12 or F2
-* Sony: Esc or F11
-* Toshiba: F12
-* Republic of Games: F2 or F9
-
 
 ## Bitlocker
 You can't restore or reset Windows to their original status if you don't have the Bitlocker keys.
