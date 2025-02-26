@@ -3,13 +3,15 @@ title: "Windows Installation - Can't Find Hard Drives"
 date: 2021-11-25T11:59:42-08:00
 categories:
   - Tech
-  - Work
+  - Windows
 tags:
   - Windows
-  - Driver
+  - VMD
+  - Intel RST
 draft: false
 ---
 
+## HDD Won't Show Out
 We have an Asus UX325EA-DS51 laptop that failed to start up. 
 The Windows operating system need to be re-installed.
 
@@ -18,18 +20,21 @@ I can see the hard drive in the BIOS.
 But during Windows installation process, the hard drive can't be found by the installation program.
 
 ### Solution
-Go to Intel website and download the `Intel Rapid Storage Technology (Intel RST) Driver 18.6.1.1016` which supports 10th Gen and 11th Gen Intel Core platforms. 
-File name is [F6flpy-x64 - VMD.zip](https://www.intel.com/content/www/us/en/download/19512/intel-rapid-storage-technology-driver-installation-software-with-intel-optane-memory-10th-and-11th-gen-platforms.html)
+1. Disable VMD Controller from BIOS(Advanced menu)
 
-Extract the file into a folder in the installation USB disk then boot from it. 
+![bios disble vmd](/images/2021/windows-installation-disable-vmd.jpg)
 
-When prompting `"Where do you want to install Windows?"`, 
-* Select `Load driver`
-* Select the driver folder (you can use mouse or the right arrow key to expand the folder)
-* Install driver `Intel RST VMD Controller 9A0B(iaStorVD.inf)`
-* Your SSD driver will show out
-* (Option)Delete the old partitions and create new partitions
-* Select the partition to install Windows
+2. Download the latest `Intel RST` driver and load the driver during Windows installation
+
+Go to Intel website and download the `Intel Rapid Storage Technology (Intel RST) Driver 18.6.1` or later which supports 10th Gen and 11th Gen Intel Core platforms. 
+
+Extract driver files from `SetupRST.exe`:
+* Open terminal in the directory with SetupRST.exe by right-clicking the directory and selecting "Open in Terminal" or "Open PowerShell here"
+* Enter the following command: `./SetupRST.exe -extractdrivers SetupRST_extracted`
+* Copy all driver files from the SetupRST-extracted to a USB key media.
+* For Microsoft Windows: During the operating system installation, after selecting the location to install 
+      Windows, click `Load Driver` to install a third party SCSI or RAID driver.
+* When prompted, insert the USB media and press Enter.
 
 After Windows installation, you can find some devices are marked as unknown devices. 
 See following on how to update device drivers. 
