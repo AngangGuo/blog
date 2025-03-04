@@ -15,6 +15,10 @@ draft: false
 ---
 
 ## Tools
+* [Barcode Generator](https://barcode.tec-it.com/en)
+* [Open Hardware Monitor](https://openhardwaremonitor.org/)
+* [TechPowerUp GPU-Z](https://www.techpowerup.com/gpuz/)
+* 
 ### Ventoy
 [Ventoy](https://www.ventoy.net/en/index.html) is an open source tool to create bootable USB drive for ISO/WIM/IMG/VHD(x)/EFI files.
 

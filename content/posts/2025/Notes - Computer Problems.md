@@ -101,5 +101,34 @@ Step 4:
 For HP laptop:
 Win + B + Press Power button, when computer turned on, release all the keys, HP laptop will restore BIOS.
 
-## Republic Of Games
-* F2: enter BIOS
+## Audit Mode
+### MSI laptop locked out in audit mode
+We entered into audit mode, changed the language settings and restart,
+the Administrator account is disabled and locked.
+
+Restart the system, press the `F3` key on the keyboard repeatedly to enter the system recovery screen.
+For unknown reason it directly entered the audit mode again so we can work on it.
+
+Note: You can press `Del` key to enter into BIOS.
+
+See [here](https://www.msi.com/support/technical_details/DT_OS_Recovery_SOP) for more details on how to restore the system.
+
+## BIOS
+### Keys to enter BIOS
+* Acer: F12, F9 or Esc
+* Asus: Esc or F8
+* Compaq: F9 or Esc
+* Dell: F12
+* HP: F9 or Esc
+* Lenovo: F12, F8, F10, F11
+* MSI: Del, F11
+* Razer Blade: F12
+* Samsung: F12 or F2
+* Sony: Esc or F11
+* Toshiba: F12
+* Republic of Games: F2 or F9
+
+### Secure Boot
+When `Secure Boot` is enabled, you can't install Windows.
+Disable it if you need to install new Windows to the HDD.
+

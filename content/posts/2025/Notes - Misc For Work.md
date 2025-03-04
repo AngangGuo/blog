@@ -10,6 +10,13 @@ tags:
 draft: false
 ---
 
+## Meeting
+### Connect to display
+To connect your laptop to the meeting display, press `Windows logo key + K` from your laptop,
+type in the numbers shown on the display and connect.
+
+To show display options, press `Windows logo key + P`
+
 ## Printer
 ### How to keep Zebra printer settings in Firefox?
 Control Panel > Devices and Printers > Right-click the Zebra printer > 
