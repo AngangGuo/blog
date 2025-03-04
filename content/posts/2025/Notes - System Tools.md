@@ -89,7 +89,54 @@ copy Utilman.exe.bak Utilman.exe
 del Utilman.exe.bak
 ```
 
-## PC
+## FTP
+### Windows`ftp` command
+```
+!               delete          literal         prompt          send
+?               debug           ls              put             status
+append          dir             mdelete         pwd             trace
+ascii           disconnect      mdir            quit            type
+bell            get             mget            quote           user
+binary          glob            mkdir           recv            verbose
+bye             hash            mls             remotehelp
+cd              help            mput            rename
+close           lcd             open            rmdir
+```
+
+### Example
+To log on to the ftp server named ftp.example.microsoft.com and run the ftp commands contained in a file named resync.txt, type:
+```
+ftp -s:resync.txt ftp.example.microsoft.com
+```
+
+You can use `ftp` interactively
+```
+ftp> open angang.ca
+Connected to angang.ca.
+220 Microsoft FTP Service
+200 OPTS UTF8 command successful - UTF8 encoding now ON.
+User (angang.ca:(none)): andrew
+331 Password required
+Password:
+
+230 User logged in.
+ftp> cd audio/daogao
+250 CWD command successful.
+ftp> pwd
+257 "/audio/daogao" is current directory.
+ftp> ls
+200 PORT command successful.
+125 Data connection already open; Transfer starting.
+20250205DG.mp3
+20250212DG.mp3
+20250219DG.mp3
+226 Transfer complete.
+ftp: 51 bytes received in 0.00Seconds 25.50Kbytes/sec.
+ftp> bye
+
+```
+
+## BIOS
 ### Keys to enter BIOS
 * Acer: F12, F9 or Esc
 * Asus: Esc or F8
