@@ -15,11 +15,12 @@ draft: false
 
 ![qu-16 rear panel](/images/2025/qu-24-rear-panel.png)
 
-## Operation
+
+## Church Sound System
 ### How to power on the mixer?
 Press the `ON/OFF` switch.
-The mixer takes just a few seconds to boot up. 
-It restores its previous settings. 
+The mixer takes just a few seconds to boot up.
+It restores its previous settings.
 LR mix is selected and it’s processing shown on the screen.
 
 Warning:
@@ -27,12 +28,57 @@ To avoid loud thumps, do not switch the mixer on or off
 while the PA speakers are powered. Always switch the
 amplifiers on last, and switch them off first.
 
+### How to recall/restore a scene?
+* Press `Scenes` button
+* From the `Scenes` screen, press the scene you want to recall(AGCF2025)
+* Press `Recall` button on the screen
+* Press `OK` to restore the settings of the scene
+
 ### How to switch the mixer off?
 1. First select the `Home` screen.
 2. Touch `Shut Down` to safely complete processes such as parameter storing and USB data transfer or recording.
 3. Once complete, press the `ON/OFF` switch to turn the mixer off.
 
 ![qu-24 shutdown](/images/2025/qu-24-shutdown.JPG)
+
+### Stage Layout
+* Piano#2, Vocal#7
+* Vacal#10, 11, 12, 13(#4 if need one more)
+* Monitor#1 to Drum
+
+![stage layout](/images/2025/qu-24-stage-layout.jpg)
+
+Other Ports
+* Monitor#4 connect to video camera
+* Port#15 for computer
+* Port#14 and Port#16 are for wireless mics
+
+### XLR Port For Video Camera
+Use Mixer#4 for video camera.
+
+### Which port / channel is for computer?
+* Channel 15 is for computer audio.
+* Make sure to press number#1 selector on `Nexxtech 3 Way Audio Selector` to switch to channel 15
+
+![church nexxtech port 1](/images/2025/qu-24-nexxtech-1.JPG)
+
+### Wireless Mic Ports
+Two wireless mics can connect to channel 14 and channel 16 ports under the mixer.
+
+![church wireless ports](/images/2025/qu-24-church-wireless-ports.png)
+
+### Piano and Singer
+* Port#2 is for Piano.
+* Port#? is for keyboard
+
+Warning: Using tripod base for keyboard singer to prevent the stand from falling down.
+
+![tripod base stand](/images/2025/qu-24-microphone-stands-tripod-base.JPG)
+
+## Q & A
+### How to eliminate microphone background noise?
+Turning on the `Gate` and increase the threshold to prevent the two wireless microphones from 
+capturing the nearby backgroud noise(someone talking).
 
 ### How to copy channel 1 settings to channel 2 & channel 3?
 * While holding down the `Copy` key, 
@@ -61,18 +107,9 @@ You can copy and clear existing scenes.
 * Then hold down the Paste key and touch the scene position to copy to. 
 This copies all scene parameters, its name and filter.
 
-### How to recall/restore a scene?
-* Press `Scenes` button
-* From the `Scenes` screen, press the scene you want to recall(AGCF2025)
-* Press `Recall` button on the screen
-* Press `OK` to restore the settings of the scene
-
-### Adjustment
-* Select the channel by press `SEL` button
-* Adjust gain
-
-Warning:
-Remember to turn the `Mix` key off or select `LR` to return to the main mix on faders.
+### How to assign Pre/Post fade sends?
+Hold down the `Pre Fade` key(at the left side of the channel 1 Sel key) and press `Sel` keys to toggle channel sends pre or post fader for 
+the mix currently selected in the Master Strip. The `Sel` keys light green to show channels set pre-fade.
 
 ### How to set up Reverbs fx?
 Set up three FXs:
@@ -97,28 +134,6 @@ Assign channels to FX
 * Press `FX1` button, set all you vocals to -10db;
 * Press `FX2` button, set all vocals to -20db, and all your guitars and keyboards to -10db, except for base guitar;
 * Press `FX3` button, set all your drum mics to -10db, except for the kick drum;
-
-## Church Sound System
-### XLR Port For Video Camera
-Use Mixer#4 for video camera.
-
-### What's the channel for computer?
-* Channel 15 is for computer audio. 
-* Make sure to press number#1 selector on `Nexxtech 3 Way Audio Selector` to switch to channel 15
-
-![church nexxtech port 1](/images/2025/qu-24-nexxtech-1.JPG)
-
-### Wireless Mic Ports
-Two wireless mics can connect to channel 14 and channel 16 ports under the mixer.
-
-![church wireless ports](/images/2025/qu-24-church-wireless-ports.png)
-
-### Stage Layout
-* Piano#2, Vocal#7
-* Vacal#4, 10, 11, 12, 13
-* Monitor#1 to Drum
-
-![stage layout](/images/2025/qu-24-stage-layout.jpg)
 
 ### Shure BLX24
 
