@@ -161,6 +161,16 @@ Your receiver is now in Pair Mode.
    * Note: If the receiver’s  Pair button is not pressed within 15 seconds, the System  ID number will revert to its previous setting. 
 4. Open your transmitter and press and hold its Pair button within 30  seconds of entering Pair Mode. The transmitter display will now  show the System ID number you have chosen on the receiver.  The receiver’s Pairing Indicator will glow steady, indicating you have  successfully paired your system.
 
+## Troubleshooting
+### Wireless mic stop working due to battery too low
+Two times in a row the wireless mic stop working due to low battery.
+
+Possible solutions:
+* Use more powerful batteries
+* Turn the wireless mic on right before pastor use it
+* Replace with another wireless mic
+* Prepare a wired microphone standby and use it when needed
+
 ## Useful Links
 * [QU-24 Mixer Resources](https://www.allen-heath.com/hardware/qu/qu-24/resources/)
 * [QU-24 Tutorial](https://www.youtube.com/watch?v=WZWexI3vJ1U&list=PLztcw5PSecKe2lj48bDXoV9TNbQnc2czC&index=1&pp=iAQB)
