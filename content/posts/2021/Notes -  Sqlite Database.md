@@ -102,6 +102,21 @@ create table associate (
     modified TEXT NOT NULL DEFAULT (datetime('now','localtime'))
 );
 ```
+
+### How to create a table from a template table?
+```
+CREATE TABLE new_table
+AS
+SELECT *
+FROM existing_table
+WHERE 1 = 0;
+```
+Note that this approach might not replicate constraints like primary keys, foreign keys, or indexes. 
+If you want to copy the entire schema including constraints, 
+
+you'll need to use a more manual approach by running a `CREATE TABLE` statement 
+with the same column definitions and constraints explicitly.
+
 ### Default value
 If the default value of a column is CURRENT_TIME, CURRENT_DATE or CURRENT_TIMESTAMP, 
 then the value used in the new row is a text representation of the current UTC date and/or time. 
