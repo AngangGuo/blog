@@ -59,6 +59,61 @@ $PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'
 > $PSVersionTable
 ```
 
+## Command Line
+### Batch file example
+Upload files to FTP server.
+```
+@echo off
+REM Set FTP server details
+set FTP_SERVER=your_ftp_server.com
+set FTP_USER=your_username
+set FTP_PASSWORD=your_password
+set FTP_REMOTE_DIR=/path/to/remote/directory/  REM e.g., /uploads/ or /public_html/files/
+
+REM Set local directory containing files to upload
+set LOCAL_DIR=C:\Path\To\Your\Local\Folder  REM e.g., C:\Users\caguoa00\Uploads
+
+REM Ensure the local directory exists
+if not exist "%LOCAL_DIR%" (
+    echo Local directory "%LOCAL_DIR%" not found.
+    pause
+    exit /b 1
+)
+
+REM Create temporary FTP script file
+echo open %FTP_SERVER% > ftp_script.txt
+echo %FTP_USER%>>ftp_script.txt
+echo %FTP_PASSWORD%>>ftp_script.txt
+echo cd %FTP_REMOTE_DIR% >> ftp_script.txt
+echo prompt off >> ftp_script.txt
+echo mput "%LOCAL_DIR%\*" >> ftp_script.txt
+echo bye >> ftp_script.txt
+
+REM Execute FTP command with the script
+ftp -s:ftp_script.txt
+
+REM Check FTP execution exit code
+if errorlevel 1 (
+    echo FTP upload failed.
+    pause
+) else (
+    echo FTP upload successful.
+)
+
+REM Clean up temporary FTP script file
+del ftp_script.txt
+
+pause
+exit /b 0
+```
+
+Warning: 
+No spaces around `>>` for username and password, otherwise login will be failed.
+```
+echo %FTP_USER%>>ftp_script.txt
+echo %FTP_PASSWORD%>>ftp_script.txt
+```
+
 ## Environment Variables
 ### How to show environment variables?
 Show all environment variables: 
