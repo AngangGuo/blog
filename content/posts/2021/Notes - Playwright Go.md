@@ -26,6 +26,50 @@ To pick a locator run the codegen command followed by the URL that you would lik
 npx playwright codegen your-url(playwright.dev)
 ```
 
+## Basic Processing
+### Read
+```
+// Read data from label, span, div, etc.
+page.Locator(idInventoryDetailsTotalRecords).InnerText()
+
+// input or textarea
+page.Locator(idInventoryDetailsLocation).InputValue()
+
+// other - JS code
+await page.waitForSelector("#foo")
+await page.$eval("#foo", el => el.value)
+
+// using value property of HTMLDataElement interface
+await page.locator(inputSelector).evaluate((el) => el.value);
+
+// using innerText property of HTMLElement interface
+await page.locator("#element").evaluate(node => node.innerText)
+```
+### Write
+```
+// input
+page.Locator(idInventoryDetailsLocation).Fill(location)
+```
+
+### Other
+```
+// Click
+page.Locator(idInventoryDetailsSearch).Click()
+
+// Goto
+page.Goto(blueIQURL, playwright.PageGotoOptions{
+		WaitUntil: playwright.WaitUntilStateNetworkidle,
+	})
+	
+// Wait
+page.Locator(loginErrorMsgID).WaitFor(
+    playwright.LocatorWaitForOptions{
+        Timeout: playwright.Float(500),
+    })
+
+```
+
+
 ## Tips
 ### How to wait for one of several pages to show out?
 Use regular expression to check each one of the pages may be showed out.
