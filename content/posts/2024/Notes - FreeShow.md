@@ -12,6 +12,15 @@ draft: false
 
 FreeShow is our free presentation software alternative to ProPresenter.
 
+
+## Template
+* For all the template, the default resolution should be 1920 x 1080 as of V1.3.9. 
+The font size may look different if the resolution is not 1920 x 1080.
+* To change the background color of the textbox, you should go to the "item" tab.
+* Cloud sync: As long as both of your media folders are added in the drawer, 
+and you have set up drive sync for the shows, it will automatically find any matching media file with the same name when it's set as a slide background, regardless of the root path!
+
+
 ## Edit
 ### Keyboard Shotcuts
 * Split: Alt+Enter
