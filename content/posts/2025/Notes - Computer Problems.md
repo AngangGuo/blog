@@ -11,6 +11,9 @@ draft: false
 ---
 
 ## PC won't turn on
+### How to boot to USB drive from Dell Alienware Aurora R16?
+You can enter the One Time Boot menu, turn on your computer, and then press F12 immediately.
+
 ### Checking External Connections
 Start by checking the power connections outside the PC. 
 Make sure that the power cable is securely plugged into the back of the PC and that the switch on the back is in the “I” position.
