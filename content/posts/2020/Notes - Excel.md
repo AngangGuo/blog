@@ -48,7 +48,7 @@ The alternative is to copy C2, select the other cells and paste the formula to t
 * Press `F2` and type in the data
 * Press `Ctrl+Enter`
 
-### How to unhide all rows?
+### How to un-hide all rows?
 Using keyboard shortcuts:
 * Ctrl + A: Select the entire document
 * Ctrl + Shift + 9: unhide all rows on your spreadsheet
@@ -136,10 +136,12 @@ See [here](https://trumpexcel.com/select-visible-cells/)
 
 #### Select visible cells
 * Select the entire range you need to copy.
-* Press F5, this opens Go to dialog. Click on Special button.
-* Now select visible cells option.
-* Now press CTRL + C
+* Home > `Find & Select` > `Go To Special...` (Or press `F5` > select `Special...`)
+* Select `Visible cells only` > `OK`
+* Press `CTRL + C` to copy.
 * Then go to target sheet and press CTRL + V to paste.
+
+![copy visible](/images/2020/excel-copy-visible.png)
 
 ### How to remove duplicated rows?
 You can remove duplicate cell values or rows according to your selection.
