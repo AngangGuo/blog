@@ -151,6 +151,12 @@ You can remove duplicate cell values or rows according to your selection.
  
 Note: the duplicate is for the rows you selected, it may contain one or more columns.
 
+### How to jump to the first/last worksheet directly with keyboard?
+We created a spreadsheet for our 500 location labels. 
+You can use these shortcuts to move around the worksheets.
+* `Ctrl + PgUp` or `Ctrl + PgDn`: move to previous/next worksheet
+* `Ctrl + <` or `Ctrl + >`: move to first/last worksheet
+
 ### How to highlight duplicate values?
 1. Select the cells you want to check for duplicates.
 2. Click `Home` > `Conditional Formatting` > `Highlight Cells Rules` > `Duplicate Values`.
