@@ -27,6 +27,17 @@ Customer send asset list asking for status.
 ```
 
 ## Q & A
+### How to get the delta from previous two cells?
+For the weekly report, the right most delta column is used to show the difference between the last two weeks.
+Each week we add a weekly column before the delta column.
+
+To get the delta value from the last two weeks, use this formula:
+```
+// A3:ZZ3: the third row, data will be between column A and column ZZ
+// COLUMN(): current column number
+=INDEX(A3:ZZ3,1,COLUMN()-1)-INDEX(A3:ZZ3,1,COLUMN()-2)
+```
+
 ### How to add a link to another sheet in the document?
 Insert > Link
 * Text to display: Goto Sheet2
