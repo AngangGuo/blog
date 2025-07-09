@@ -1166,6 +1166,33 @@ before map[]
 after map[modified:true]
 ```
 
+### Map: cannot assign to struct field
+A struct value in a map is unaddressable. 
+```
+type Info struct {
+  Name string
+}
+
+func main() {
+  var info = Info{}
+  m:=make(map[string]Info)
+  m["a"]=info
+  m["a"].Name = "Andrew"
+  
+  fmt.Println(m)
+}
+
+Compile Error:
+cannot assign to struct field m["a"].Name in map
+```
+If you want to change the struct value, use pointer instead
+```
+var info = Info{}
+m:=make(map[string]*Info)
+m["a"]=&info
+m["a"].Name = "Andrew"
+```
+
 ## Concurrency
 ### Once
 `func (o *Once) Do(f func())`
