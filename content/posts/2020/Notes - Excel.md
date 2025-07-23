@@ -27,6 +27,31 @@ Customer send asset list asking for status.
 ```
 
 ## Q & A
+### How to generate barcodes in Excel?
+To generate barcodes in Excel, you'll need to use a barcode font and a formula. 
+* Download and install a barcode font like [Code 39](https://www.barcodesinc.com/free-barcode-font/) or Code 128. 
+* Create a formula that adds starting and ending characters to your data
+
+Suppose the Asset Tag is in cell A2, barcode is in B2. 
+* Type in the following formula in B2: `="*"&A2&"*"` or add asterisk character before and after your text like `*LPNNL4XDM5MFF*`
+* Apply the barcode font to cell B2. 
+
+| Asset Tag | Barcode     |
+| --- |-------------|
+| LPNNL4XDM5MFF | ="*"&A2&"*" |
+
+Note: 
+If you use barcode in Word: 
+There is a default setting in some versions of
+Word that changes text surrounded by *'s into bold text. This setting must be
+disabled for these fonts to work, otherwise the * characters that are necessary
+for the barcode to scan properly will be lost and the thickness of the bars
+will be altered. 
+The setting might be found in a different place in different
+versions but this is how I disabled it. From the Tools menu open the
+AutoCorrect dialog box. On the AutoFormat tab uncheck the box for "*Bold* and
+_underline_"
+
 ### How to get the delta from previous two cells?
 For the weekly report, the right most delta column is used to show the difference between the last two weeks.
 Each week we add a weekly column before the delta column.
