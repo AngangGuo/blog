@@ -29,7 +29,7 @@ Customer send asset list asking for status.
 ## Q & A
 ### How to generate barcodes in Excel?
 To generate barcodes in Excel, you'll need to use a barcode font and a formula. 
-* Download and install a barcode font like [Code 39](https://www.barcodesinc.com/free-barcode-font/) or Code 128. 
+* Download and install a barcode font like [Code 39](https://www.fontspace.com/bar-code-39-font-f28432) or Code 128. 
 * Create a formula that adds starting and ending characters to your data
 
 Suppose the Asset Tag is in cell A2, barcode is in B2. 
