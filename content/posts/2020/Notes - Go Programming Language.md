@@ -642,6 +642,31 @@ See [embed package](https://pkg.go.dev/embed)
 See [Developing and publishing modules](https://golang.org/doc/modules/developing)
 
 ### How to replace a module?
+#### Replace with local version
+I created a new program that uses Excelize library, but my laptop can't access github.com.
+There are Excelize libraries in my local folders.
+
+See below example on how to use the local copy of the library.
+```
+// go.mod
+module wtw
+
+go 1.23.4
+
+// add this replace command section for make the program using local copy of the library
+replace (
+	github.com/xuri/excelize/v2 => C:\Users\caguoa00\go\pkg\mod\github.com\xuri\excelize\v2@v2.9.1
+)
+
+// no change for this section
+require (
+	github.com/richardlehane/mscfb v1.0.4 // indirect
+	github.com/xuri/excelize/v2 v2.9.1 // indirect
+	...
+)
+```
+
+#### Library remote path changed
 The Go Excel library has changed the location and path from `github.com/360EntSecGroup-Skylar/excelize` to `github.com/xuri/excelize`.
 Our program all using the import path as `"github.com/360EntSecGroup-Skylar/excelize/v2"`
 
