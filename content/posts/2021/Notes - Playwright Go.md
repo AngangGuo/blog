@@ -10,6 +10,49 @@ tags:
 draft: false
 ---
 
+## FAQ
+### How to connect to an existing browser?
+When access some websites, like Vendor Central, we don't have the option to get credentials/API keys to connect from our apps. 
+We can go to the website using our current credential and connect to it from our app.
+
+* Launch the browser with the remote debugging port enabled:
+```
+// From command line
+"C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222 --user-data-dir="C:\temp\playwright_profile"
+```
+
+* Connect Playwright Go to the running browser:
+
+```
+ func main() {
+    pw, err := playwright.Run()
+    if err != nil {
+        log.Fatalf("could not start playwright: %v", err)
+    }
+    defer pw.Stop()
+
+    // Connect to the existing browser via CDP
+    browser, err := pw.Chromium.ConnectOverCDP(playwright.ConnectOverCDPOptions{
+        WsURL: playwright.String("http://localhost:9222"), // Use the port from step 1
+    })
+    if err != nil {
+        log.Fatalf("could not connect to browser: %v", err)
+    }
+    defer browser.Close()
+
+    // Access the default browser context
+    browserContexts := browser.Contexts()
+    if len(browserContexts) == 0 {
+        log.Fatalf("no browser contexts found")
+    }
+    page, err := browserContexts[0].NewPage() // Or iterate to find the desired page
+    if err != nil {
+        log.Fatalf("could not create page: %v", err)
+    }
+    ...
+ }
+```
+
 ## Best Practices
 ### Use locators
 Locators come with auto waiting and retry-ability. 
