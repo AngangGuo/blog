@@ -288,6 +288,64 @@ For example:
 
 
 ## CSV
+### How to read csv file with different columns?
+We have a manifest file which has different columns in the first two rows than the rest rows:
+```
+AMM2
+Manifest,INVAN,Y20251104,Y3,2025-11-04 15:51
+LPN6GKN,LPN6GKN,B0MZX,201,Home,2010,7000 Floorcare,2010,7007 Handheld Vacuums,105.31,BISSELL Co,2513E
+LPNCWLV,LPNWXLV,B089C,79,Kitchen,7904,4600 Hot Beverages,7904,4602 Espresso Machines,347.20,Nespresso,EN510BCA
+...
+```
+
+To process this file, we need to set `FieldsPerRecord = -1` in the reader and read each record one by one.
+```
+// ignore errors for better readability
+f, _ := os.Open(filePath)
+defer f.Close()
+
+r := csv.NewReader(f)
+
+// the first two rows in the manifest file with different columns than the rest rows
+r.FieldsPerRecord = -1
+
+firstRow, _ := r.Read()
+
+// first row should always be "AMM2"
+if len(firstRow) != 1 || firstRow[0] != "AMM2" {
+    return csvFileName, fmt.Errorf("invalid manifest file: %s: %s: %d", filePath, firstRow[0], len(firstRow))
+}
+
+// check second row
+secondRow, _ := r.Read()
+if len(secondRow) != manifestSecondRowLength {
+    return csvFileName, fmt.Errorf("invalid manifest file: %s: %d", filePath, len(secondRow))
+}
+loadID := secondRow[manifestLoadIDCol]
+
+// Write the information to a new csv file
+csvFileName = loadID + ".csv"
+csvFile, _ := os.Create(path.Join(manifestFixedFileFolder, csvFileName))
+defer csvFile.Close()
+
+writer := csv.NewWriter(csvFile)
+defer writer.Flush()
+
+_ = writer.Write(firstRow)
+_ = writer.Write(secondRow)
+
+for {
+    // `record` is a slice of strings: []string{"field1", "field2", ...}
+    record, _ := r.Read()
+
+    // ignore the asin number without subcat
+    if record[manifestSubCatCol] == "" {
+        continue
+    }
+    _ = writer.Write(record)
+}
+```
+
 ### How to check BOM data at the beginning of the file
 ```
 	f, _ := os.Open(`RL Inventory All Fields_12012021_Vancouver, BC (RL).csv`)
