@@ -17,6 +17,14 @@ draft: false
 
 ## Usage
 ### `XLOOKUP`
+`=XLOOKUP(lookup_value,lookup_array,return_array,if_not_found,match_mode,search_mode)`
+* lookup_value - the value to look for
+* lookup_array - the range or array to search within
+* return_array - the range or array to return values from
+* if_not_found - value to return if no match is found
+* match_mode - settings for exact, approximate, and wildcard matching
+* search_mode - settings for first to last, last to first, and binary searches
+
 Customer send asset list asking for status.
 * Download Inventory All Fields file, and open it in Excel(default .CSV)
 * Open customer file, copy the Inventory All Fileds page into  
@@ -24,6 +32,31 @@ Customer send asset list asking for status.
 ```
 // H column: Label; AA column: Site
 =XLOOKUP(A2,'RL Inventory All Fields'!H:H, 'RL Inventory All Fields'!AA:AA)
+```
+
+### How to get the last non-empty value
+Column J is the COGS value for each category.
+To get the total COGS value(last) from column J, use the following formula:
+```
+=XLOOKUP(TRUE,'Yield-Category'!J:J<>"",'Yield-Category'!J:J,,,-1)
+```
+
+### Find an asset in another column?
+Find an asset in another column, show "Yes" if found, "No" if not.
+```
+// find B1 in column A
+=IF(COUNTIF(A:A,B1)>0,"Yes", "No")
+
+// find D2 in range A:2 to A:14
+=IF(COUNTIF($A$2:$A$14, D2)>0, "yes", "no") // lock the range
+```
+
+You can use `COUNTIFS` if there are multiple criteria across different ranges.
+
+### How to delete everything after space?
+To change the text `12/10/2025 07:34:58` to `12/10/2025`, use the following formula:
+```
+=LEFT(A1,Find(" ",A1)-1)
 ```
 
 ## Q & A
@@ -36,8 +69,8 @@ Suppose the Asset Tag is in cell A2, barcode is in B2.
 * Type in the following formula in B2: `="*"&A2&"*"` or add asterisk character before and after your text like `*LPNNL4XDM5MFF*`
 * Apply the barcode font to cell B2. 
 
-| Asset Tag | Barcode     |
-| --- |-------------|
+| Asset Tag     | Barcode     |
+|---------------|-------------|
 | LPNNL4XDM5MFF | ="*"&A2&"*" |
 
 Note: 
