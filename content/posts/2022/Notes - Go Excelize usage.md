@@ -14,6 +14,9 @@ draft: false
 [Excelize](https://github.com/qax-os/excelize) is a library written in pure Go providing a set of functions that allow 
 you to write to and read from XLAM / XLSM / XLSX / XLTM / XLTX files.
 
+### Tips
+* Make sure to save `f.Save()` the Excel file after modify it.
+
 ### Common Functions
 Open a file
 ```
@@ -45,10 +48,23 @@ Set cell value
 wtwFile.SetCellValue(SheetName, "A1", "Pallet#")
 ```
 
+set cell value as Int
+```
+templateFile.SetCellInt(sheetName, currentCell, int64(cat.LT21))
+```
+
 Get sheet data
 ```
 tempRows, err := wtwFile.GetRows(tempSheetName)
 ```
+
+Set formula
+```
+cogsVolumeFormula := fmt.Sprintf("=%s/%s", currentCell, overallCOGSCell)
+currentCell, _ = getCellNameInColumn(currentCell, 1)
+_ = templateFile.SetCellFormula(sheetName, currentCell, cogsVolumeFormula)
+```
+Note: See below on how to re-calculate the formula when opening the file in Excel.
 
 Save Excel file
 ```
@@ -93,14 +109,39 @@ excelTime, err := excelize.ExcelDateToTime(excelDate, false)
 excelTime.Format("1/2")
 ```
 
-## Tips
-* Make sure to save `f.Save()` the Excel file after modify it.
+### Force Excel to Recalculate on Open (Writing Files)
+When writing data into a spreadsheet by using Go Excelize, 
+the formulas in the sheet doesn't update automatically.
 
-## FAQ
+You can update the formula cells manually from Excel by pressing `Ctrl+Alt+Shift+F9` or `Ctrl+Alt+F9`. 
 
-### Why the formula cell doesn't updated(re-calculate)?
-When writing data into a spreadsheet by using Go Excelize, the formulas in the sheet doesn't update automatically.
+If you are writing data to cells and want the formulas to update automatically 
+when a user opens the file in Microsoft Excel, use the `UpdateLinkedValue()` method BEFORE saving. 
+This clears cached values inside the spreadsheet, 
+triggering Excel's native calculation engine to run immediately upon opening.
+```
+// Write data to cells in the sheet that contains formulas.
+if err := f.UpdateLinkedValue(); err != nil {
+    log.Fatal(err)
+}
 
-You can't update the Excel formula cells by using Excelize. See [#757](https://github.com/qax-os/excelize/issues/757)
-But you can update the formula cells manually from Excel by pressing `Ctrl+Alt+Shift+F9` or `Ctrl+Alt+F9`. 
+if err := f.SaveAs("Book1.xlsx"); err != nil {
+    log.Fatal(err)
+}
+```
 
+### Compute a Cell Value Instantly (Reading Files)
+If your application needs to fetch the calculated result of a formula directly 
+inside your Go code without opening Excel, use `CalcCellValue()`.
+
+Limitation: 
+This only evaluates the specific cell you target and 
+supports a subset of standard Excel functions (like SUM, AVERAGE, VLOOKUP). 
+It does not support complex layout mechanics like iterative calculations or array formulas.
+```
+// Evaluate and fetch the real-time calculated string value of the cell
+result, err := f.CalcCellValue("Sheet1", "A3")
+if err != nil {
+    log.Fatal(err)
+}
+```
