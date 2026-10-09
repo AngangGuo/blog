@@ -4,7 +4,55 @@ date: 2026-09-22T07:18:09-07:00
 draft: false
 ---
 
-### How to search Bible using abbreviation code?
+## Setup
+
+### Add Bible versions
+You can find and download Bible versions from [Beblia](https://github.com/Beblia/Holy-Bible-XML-Format).
+* [新标点和合本, 上帝版](https://github.com/Beblia/Holy-Bible-XML-Format/blob/master/ChineseCUNPSSBible.xml)
+* Replace `上帝` with `　神` (Character Code: 12288, 31070) if you prefer `和合本, 　神版`
+
+### The book names are in English, how to change them into Chinese?
+FreeShow takes the Bible book names from the XML file.
+But sometimes they are in English for a different language or missing entirely.
+
+To change the book names, follow the steps below if you already imported it into FreeShow:
+* Goto Documents > FreeShow > Bibles,
+* Open the saved Bible file(.fsb).
+* Search and replace the book names.
+* Run FreeShow and you should see the changes.
+```
+// original names
+[{"name":"Chinese Bible CUNPSS (Simplified) (新标点和合本, 上帝版)","books":[{"number":"1","name":"Genesis",
+
+// You can change the translation name and book names
+[{"name":"新标点和合本","books":[{"number":"1","name":"创世纪",
+```
+
+* If you want to edit the original `.XML` file, you can add a `name=""` attributes to the book tags,
+  like this: `<book number="1" name="创世记">`.
+* Import it after you added all the book names.
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<bible translation="新标点和合本,神版" status="">
+	<testament name="Old">
+		<book number="1" name="创世记">
+			<chapter number="1">
+				<verse number="1">起初，　神创造天地。</verse>
+```
+
+## Usage
+### How to create a bilingual Bible versions slides?
+* Select "NIV" and "新标点和合本" from the left panel of the scriptures drawer, right click and press "New collection"
+* Click on the collection "EN + CBCS" and select the verses
+* Select the Template "Scripture 2" for bilingual scriptures
+* Click `New Show` to make the selected bilingual scriptures as a show
+
+![freeshow bilingual bible version](/images/2024/freeshow-bible-collection.JPG)
+
+See also [here](https://github.com/ChurchApps/FreeShow/issues/236#issuecomment-1683423643)
+
+### How to search the Bible using abbreviation codes? (For advanced users)
 * Suppose you need to show Chinese version `John 3:16`
 * Select your Bible version from Scripture drawer, eg. Chinese version `和合本`
 * Click the drawer content search button
