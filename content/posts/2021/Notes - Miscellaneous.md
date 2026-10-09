@@ -3,12 +3,12 @@ title: "Notes - Miscellaneous"
 date: 2021-07-30T08:49:20-07:00
 categories:
   - Tech
-  - Other
+  - Miscellaneous
 tags:
   - Outlook
   - Markdown
   - Windows
-  - Miscellaneous
+  - PowerToys
 draft: false
 ---
 
@@ -31,12 +31,20 @@ If you don't have admin access, you can download the Per User installer.
 ### PowerRename
 See [Regular Expression](https://en.wikipedia.org/wiki/Regular_expression)
 
-Examples
+* Example 1: Change Slide1.JPG to training01.JPG
 ```
-// Change Slide1.JPG to training01.JPG
 Search: Slide([\d])
 Replace: training0$1
 ```
+
+* Example 2: Add "-1" at the end of all file names
+```
+Search: (.*)
+Replace: $1-1
+Apply to: Filename only
+```
+
+![powerrename example 2](/images/2021/powerrename-example-2.png)
 
 ## Microsoft Edge Browser
 ### Edge browser asking for PIN
